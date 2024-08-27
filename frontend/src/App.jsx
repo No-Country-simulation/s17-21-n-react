@@ -1,14 +1,18 @@
-function App() {
+import { Routes, Route } from 'react-router-dom';
+import Home from './Pages/Home/Home';
+import { AdminRoutes, StudentsRoutes, TeachersRoutes } from './Routes';
+
+const App = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-background">
-      <h1 className="text-4xl font-bold mb-8 text-center text-primary font-sans">
-        ¡Bienvenido a nuestro sitio web!
-      </h1>
-      <p className="text-xl text-text mb-4">
-        Estamos felices de tenerte aquí. Explora y disfruta el contenido.
-      </p>
+    <div className='font-hind'>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/students/*" element={<StudentsRoutes />} />
+        <Route path="/teachers/*" element={<TeachersRoutes />} />
+        <Route path="/admin/*" element={<AdminRoutes />} />
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;
