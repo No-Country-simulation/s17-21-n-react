@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer";
 
 const Home = () => {
   return (
@@ -16,7 +17,7 @@ const Home = () => {
               Access your academic progress, assignments, and more.
             </p>
             <Link
-              to="/students/dashboard"
+              to="/student/dashboard"
               className="inline-block text-blue-500 hover:underline"
             >
               Go to Student Dashboard
@@ -29,7 +30,7 @@ const Home = () => {
               Manage courses, track students, and access teaching resources.
             </p>
             <Link
-              to="/teachers/dashboard"
+              to="/teacher/dashboard"
               className="inline-block text-green-500 hover:underline"
             >
               Go to Teacher Dashboard
@@ -50,6 +51,7 @@ const Home = () => {
           </div>
         </section>
       </div>
+        <Footer/>
     </>
   );
 };

@@ -5,14 +5,16 @@ export const theme = {
     colors: {
       primary: "#2b4eff",
       secondary: "#0e1133",
+      secondary_hover: "#1a1d66",
       base_white: "#f5f5f5",
       base_black: "#0a0a0b",
       success: "#58FC2F",
       warning: "#f6161f",
+      warning_hover: "#C81010",
       error: "#40298b",
-      background_primary: "##F4F5F9",
+      background_primary: "#F4F5F9",
       text_primary: "#374151",
-      text_secondary: "#7A797F",
+      text_secondary: "#CBD5E1",
       border: "#E5E7EB",
     },
     fontFamily: {
