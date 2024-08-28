@@ -1,12 +1,14 @@
-import { Route, Routes } from 'react-router-dom';
-import DashboardAdmin from '../Pages/Admin/DashboardAdmin';
+import DashboardAdmin from "../Pages/Admin/DashboardAdmin";
+
+import NestedRoutes from "./NestedRoutes";
+
+const adminRoutes = [
+  { path: "dashboard", element: <DashboardAdmin /> },
+  // Otras rutas específicas para administradores
+];
 
 const AdminRoutes = () => {
-  return (
-    <Routes>
-      <Route path="/dashboard" element={<DashboardAdmin />} />
-    </Routes>
-  );
+  return <NestedRoutes routes={adminRoutes} />;
 };
 
 export default AdminRoutes;
