@@ -1,9 +1,8 @@
 import { errorImage, errorMan1, errorMan2 } from "../assets"
 
-
 const ErrorPage = () => {
     return (
-        <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+        <main className="grid h-screen place-items-center px-6 py-24 sm:py-32 lg:px-8">
             <div className="text-center">
                 <img 
                     className="mx-auto mb-6 h-48" 
@@ -22,7 +21,7 @@ const ErrorPage = () => {
                 </div>
             </div>
 
-            <div className="absolute bottom-2 left-60 xl:block hidden">
+            <div className="absolute bottom-2 left-60 xl:block 2xl:left-1/4 2xl:bottom-56 hidden">
                 <img
                     className="w-64 h-64 object-contain"
                     src={errorMan1}
@@ -30,9 +29,9 @@ const ErrorPage = () => {
                 />
             </div>
 
-            <div className="absolute bottom-72 right-96 xl:block hidden">
+            <div className="absolute bottom-72 right-96 xl:block 2xl:right-1/3 2xl:bottom-1/2 hidden">
                 <img
-                    className="w-20 h-28  object-contain"
+                    className="w-20 h-28 object-contain"
                     src={errorMan2}
                     alt="Representacion de error"
                 />
