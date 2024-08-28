@@ -9,7 +9,7 @@ const Footer = () => {
       <section className="container mx-auto max-w-7xl flex flex-col lg:flex-row justify-between text-white px-6 py-10 gap-8">
         <div className="font-hind flex flex-col gap-[30px]">
           <h1 className="text-white font-bold text-4xl leading-6">EducaPro</h1>
-          <p className="text-[#A1A2AB] font-normal text-base max-w-64">
+          <p className="text-lightGray font-normal text-base max-w-64">
             Optimiza la gestión de tus cursos y profesores. Simplifica la
             administración educativa con nuestra plataforma integral.
           </p>
@@ -24,7 +24,7 @@ const Footer = () => {
           {Object.entries(footerLinks).map(([section, links]) => (
             <div key={section} className="flex flex-col gap-5 w-44">
               <h3 className="font-bold text-xl capitalize">{section}</h3>
-              <ul className="flex flex-col gap-1 text-[#A1A2AB] leading-6 text-base">
+              <ul className="flex flex-col gap-1 text-lightGray leading-6 text-base">
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link

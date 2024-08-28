@@ -15,6 +15,7 @@ export const theme = {
       background_primary: "#F4F5F9",
       text_primary: "#374151",
       text_secondary: "#CBD5E1",
+      lightGray: "#A1A2AB",
       border: "#E5E7EB",
     },
     fontFamily: {
