@@ -1,11 +1,11 @@
-import errorImage from "../assets/images/404.png"
-import errorMan1 from "../assets/images/man1.png"
-import errorMan2 from "../assets/images/man2.png"
+import errorImage from "../assets/images/404.webp";
+import errorMan1 from "../assets/images/man1.webp";
+import errorMan2 from "../assets/images/man2.webp";
 
 const ErrorPage = () => {
     return (
         <>
-            <div className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+            <div className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
                 <div className="text-center">
                     <img className="mx-auto mb-6 h-48" src={errorImage} alt="Error 404" />
                     <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">Página no encontrada</h1>
@@ -29,7 +29,7 @@ const ErrorPage = () => {
                 />
             </div>
 
-            <div className="absolute bottom-72 right-96 xl:block hidden">
+            <div className="absolute bottom-[42%] right-[20%] xl:block hidden">
                 <img
                     className="w-20 h-28  object-contain"
                     src={errorMan2}
