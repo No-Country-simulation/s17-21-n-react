@@ -5,7 +5,7 @@ import footerLinks from "../utils/data";
 const Footer = () => {
   const location = useLocation();
   return (
-    <footer className="w-screen bg-secondary">
+    <footer className="w-full bg-secondary">
       <section className="container mx-auto max-w-7xl flex flex-col lg:flex-row justify-between text-white px-6 py-10 gap-8">
         <div className="font-hind flex flex-col gap-[30px]">
           <h1 className="text-white font-bold text-4xl leading-6">EducaPro</h1>
