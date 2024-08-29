@@ -10,8 +10,8 @@ const Footer = () => {
         <div className="font-hind flex flex-col gap-[30px]">
           <h1 className="text-white font-bold text-4xl leading-6">EducaPro</h1>
           <p className="text-lightGray font-normal text-base max-w-64">
-            Optimiza la gestión de tus cursos y profesores. Simplifica la
-            administración educativa con nuestra plataforma integral.
+            Optimiza la gestión de tus cursos y profesores. Simplifica la administración educativa
+            con nuestra plataforma integral.
           </p>
           <div className="flex flex-row gap-3.5">
             <img src={facebook} alt="Facebook Icon" width={44} height={44} />
@@ -29,10 +29,10 @@ const Footer = () => {
                   <li key={link.label}>
                     <Link
                       to={link.href}
-                      className={["hover:text-white hover:font-semibold",
-                        location.pathname === link.href
-                          ? "text-white font-semibold"
-                          : "",].join(" ")}
+                      className={[
+                        "hover:text-white hover:font-semibold",
+                        location.pathname === link.href ? "text-white font-semibold" : "",
+                      ].join(" ")}
                     >
                       {link.label}
                     </Link>
@@ -58,16 +58,13 @@ const Footer = () => {
               </button>
             </div>
             <p className="max-w-72 text-[#83848A] text-sm leading-5">
-              Recibe las últimas noticias y actualizaciones directamente en tu
-              bandeja.
+              Recibe las últimas noticias y actualizaciones directamente en tu bandeja.
             </p>
           </div>
         </div>
       </section>
       <div className="flex flex-col md:flex-row py-10 items-center justify-center gap-1 leading-6 font-hind font-normal text-sm text-[#83848A] border-t border-[#1C1F3F]">
-        <p>
-          © {new Date().getFullYear()} EducaPro, Todos los derechos reservados.
-        </p>
+        <p>© {new Date().getFullYear()} EducaPro, Todos los derechos reservados.</p>
         <p>Equipo: s17-n-react-node</p>
       </div>
     </footer>

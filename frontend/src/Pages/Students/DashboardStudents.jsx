@@ -13,23 +13,18 @@ const DashboardStudents = () => {
           <div className="bg-blue-100 p-4 rounded shadow-md">
             <h2 className="text-2xl font-semibold mb-4">Academic Progress</h2>
             <p className="text-lg">
-              Track your progress across different subjects and view your
-              grades.
+              Track your progress across different subjects and view your grades.
             </p>
           </div>
 
           <div className="bg-green-100 p-4 rounded shadow-md">
             <h2 className="text-2xl font-semibold mb-4">Assignments</h2>
-            <p className="text-lg">
-              Manage and keep track of your assignments and deadlines.
-            </p>
+            <p className="text-lg">Manage and keep track of your assignments and deadlines.</p>
           </div>
 
           <div className="bg-yellow-100 p-4 rounded shadow-md">
             <h2 className="text-2xl font-semibold mb-4">Resources</h2>
-            <p className="text-lg">
-              Access study materials, guides, and other resources.
-            </p>
+            <p className="text-lg">Access study materials, guides, and other resources.</p>
           </div>
         </div>
       </section>
