@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer";
+import NavbarHome from "../../components/NavbarHome";
 
 const Home = () => {
   return (
     <>
+      <NavbarHome/>
       <div className="container mx-auto p-4">
         <header className="text-center mb-8">
           <h1 className="text-4xl font-bold">Welcome to Our Application!</h1>
