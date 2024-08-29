@@ -3,9 +3,7 @@ const DashboardAdmin = () => {
     <div className="container mx-auto p-4">
       <header className="text-center mb-8">
         <h1 className="text-4xl font-bold">Admin Dashboard</h1>
-        <p className="text-lg mt-2">
-          Manage the application settings, users, and more.
-        </p>
+        <p className="text-lg mt-2">Manage the application settings, users, and more.</p>
       </header>
 
       <section className="text-center mb-8">

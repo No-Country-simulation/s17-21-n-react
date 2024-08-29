@@ -33,11 +33,7 @@ export default function Layout({ userRole }) {
   return (
     <div className="relative h-screen overflow-hidden">
       {/* Pasa userRole al Sidebar */}
-      <Sidebar
-        isOpen={isSidebarOpen}
-        sidebarRef={sidebarRef}
-        userRole={userRole}
-      />
+      <Sidebar isOpen={isSidebarOpen} sidebarRef={sidebarRef} userRole={userRole} />
 
       {isSidebarOpen && (
         <div
@@ -46,13 +42,8 @@ export default function Layout({ userRole }) {
         ></div>
       )}
 
-      <div
-        className={`flex-1 p-4 transition-all duration-300 ease-in-out lg:ml-64`}
-      >
-        <button
-          onClick={toggleSidebar}
-          className={`lg:hidden p-2 absolute top-4 left-4`}
-        >
+      <div className={`flex-1 p-4 transition-all duration-300 ease-in-out lg:ml-64`}>
+        <button onClick={toggleSidebar} className={`lg:hidden p-2 absolute top-4 left-4`}>
           <Menu className="w-6 h-6" />
         </button>
         <div>

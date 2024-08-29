@@ -4,8 +4,7 @@ const DashboardTeachers = () => {
       <header className="text-center mb-8">
         <h1 className="text-4xl font-bold">Teacher Dashboard</h1>
         <p className="text-lg mt-2">
-          Manage your courses, track student progress, and access teaching
-          resources.
+          Manage your courses, track student progress, and access teaching resources.
         </p>
       </header>
 
@@ -13,9 +12,7 @@ const DashboardTeachers = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="bg-blue-100 p-4 rounded shadow-md">
             <h2 className="text-2xl font-semibold mb-4">Course Management</h2>
-            <p className="text-lg">
-              Create, edit, and manage your courses and assignments.
-            </p>
+            <p className="text-lg">Create, edit, and manage your courses and assignments.</p>
           </div>
 
           <div className="bg-green-100 p-4 rounded shadow-md">
@@ -27,9 +24,7 @@ const DashboardTeachers = () => {
 
           <div className="bg-yellow-100 p-4 rounded shadow-md">
             <h2 className="text-2xl font-semibold mb-4">Teaching Resources</h2>
-            <p className="text-lg">
-              Access resources, teaching materials, and guidelines.
-            </p>
+            <p className="text-lg">Access resources, teaching materials, and guidelines.</p>
           </div>
         </div>
       </section>
