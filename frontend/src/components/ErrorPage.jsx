@@ -21,7 +21,7 @@ const ErrorPage = () => {
                 </div>
             </div>
 
-            <div className="absolute bottom-2 left-60 xl:block 2xl:left-1/4 2xl:bottom-56 hidden">
+            <div className="absolute bottom-[2%] left-[28%] xl:block 2xl:left-[34%] hidden">
                 <img
                     className="w-64 h-64 object-contain"
                     src={errorMan1}
@@ -29,7 +29,7 @@ const ErrorPage = () => {
                 />
             </div>
 
-            <div className="absolute bottom-72 right-96 xl:block 2xl:right-1/3 2xl:bottom-1/2 hidden">
+            <div className="absolute bottom-[42%] right-[20%] xl:block 2xl:right-[25%] hidden">
                 <img
                     className="w-20 h-28 object-contain"
                     src={errorMan2}
