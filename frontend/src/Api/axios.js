@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // const baseURL = import.meta.env.VITE_BASE_URL;
-const baseURL = "https://localhost:3001" 
+const baseURL = "www.FaltaURLdelBack.com" 
 
 const configureAxios = (token) => {
     const api = axios.create({
