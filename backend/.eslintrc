@@ -1,0 +1,22 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "sort-keys-fix"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "indent": ["error", 2],
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "curly": ["error", "multi"],
+    "no-empty": "error",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "sort-keys-fix/sort-keys-fix": "error",
+    "key-spacing": [2, { "align": "colon" }],
+    "object-curly-spacing": ["error","always"],
+    "array-bracket-spacing": ["error","always"]
+  }
+}
