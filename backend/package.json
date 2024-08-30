@@ -5,8 +5,8 @@
   "repository": "https://github.com/No-Country-simulation/s17-21-n-react",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development concurrently \"npm run watch-compile\" \"npm run watch-dev\"",
-    "watch-compile": "swc src index.ts -w --out-dir dist",
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run watch-compile\" \"npm run watch-dev\"",
+    "watch-compile": "swc src -w --out-dir dist",
     "watch-dev": "nodemon --watch \"dist/**/*\" -e js dist/index.js",
     "build": "swc src index.ts -d dist",
     "start": "NODE_ENV=production node dist/index.js",
@@ -21,6 +21,7 @@
     "@typescript-eslint/eslint-plugin": "8.3.0",
     "@typescript-eslint/parser": "8.3.0",
     "concurrently": "8.2.2",
+    "cross-env": "^7.0.3",
     "eslint": "8.45.0",
     "eslint-plugin-sort-keys-fix": "1.1.2",
     "nodemon": "3.1.4",
@@ -36,5 +37,6 @@
     "dotenv": "16.4.5",
     "express": "4.19.2",
     "morgan": "1.10.0"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
