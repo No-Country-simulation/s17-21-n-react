@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Link, useLocation , useNavigate} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { SidebarConfig } from "./Layout/config/sidebarConfig";
 import useUserStore from "../store/auth";
 
@@ -8,12 +8,12 @@ export default function Sidebar({ isOpen, sidebarRef, userRole }) {
   const navigate = useNavigate();
 
   const menuItems = SidebarConfig[userRole] || [];
-  
+
   const { logout } = useUserStore();
 
   const handleLogout = () => {
     logout();
-    alert('You have successfully logged out!');
+    alert("You have successfully logged out!");
     navigate("/");
   };
 
@@ -59,7 +59,7 @@ export default function Sidebar({ isOpen, sidebarRef, userRole }) {
       <div className="flex items-end p-4 border-t border-slate-700 mt-auto">
         <button
           className="w-full py-2 bg-warning text-white rounded-lg hover:bg-warning_hover"
-          onClick={ handleLogout}
+          onClick={handleLogout}
         >
           Cerrar Sesión
         </button>

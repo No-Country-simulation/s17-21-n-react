@@ -15,7 +15,7 @@ const Login = () => {
 
   const setTokenAndRole = useUserStore((state) => state.setTokenAndRole);
   const navigate = useNavigate();
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
   const api = configureAxios();
 
   const handleChange = (e) => {
@@ -40,26 +40,26 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-  try {
-    const res = await api.post('/login', { email: form.email, password: form.password });
-    const { token, role, id } = res.data;
-    setTokenAndRole(token, role, id);
-    alert('User logged in successfully');
-      if (role === 'student') {
-        navigate('/student/');
-      } else if (role === 'teacher') {
-        navigate('/teacher/');
-      } else if (role === 'admin') {
-        navigate('/admin/');
+    try {
+      const res = await api.post("/login", { email: form.email, password: form.password });
+      const { token, role, id } = res.data;
+      setTokenAndRole(token, role, id);
+      alert("User logged in successfully");
+      if (role === "student") {
+        navigate("/student/");
+      } else if (role === "teacher") {
+        navigate("/teacher/");
+      } else if (role === "admin") {
+        navigate("/admin/");
       }
-  } catch (error) {
-    if (error.response && error.response.status === 403) {
-      setError(error.response.data);
-    } else {;
-      setError('Login failed.');
+    } catch (error) {
+      if (error.response && error.response.status === 403) {
+        setError(error.response.data);
+      } else {
+        setError("Login failed.");
+      }
     }
-  }
-}
+  };
 
   return (
     <div>
@@ -182,8 +182,9 @@ const Login = () => {
                 </Link>
               </div>
 
-              <button className="rounded bg-primary w-full text-white p-3 mt-11 font-medium"
-              type="submit"
+              <button
+                className="rounded bg-primary w-full text-white p-3 mt-11 font-medium"
+                type="submit"
               >
                 Iniciar Sesión
               </button>
