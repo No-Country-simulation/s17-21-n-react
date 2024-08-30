@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { bg, circle, dots, eye, eye_hide, man1, man2, rightArrow, zigzag } from "../../assets";
 import { useState } from "react";
+import configureAxios from "../../Api/axios";
+import useUserStore from "../../store/auth";
 import Footer from "../../components/Footer";
 
 const Login = () => {
@@ -10,6 +12,11 @@ const Login = () => {
     password: "",
     remember: false,
   });
+
+  const setTokenAndRole = useUserStore((state) => state.setTokenAndRole);
+  const navigate = useNavigate();
+  const [error, setError] = useState(null); 
+  const api = configureAxios();
 
   const handleChange = (e) => {
     setForm({
@@ -29,6 +36,30 @@ const Login = () => {
     e.preventDefault(); // Evitar que el botón intente enviar el formulario
     setPasswordVisible(!passwordVisible);
   };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+  try {
+    const res = await api.post('/login', { email: form.email, password: form.password });
+    const { token, role, id } = res.data;
+    setTokenAndRole(token, role, id);
+    alert('User logged in successfully');
+      if (role === 'student') {
+        navigate('/student/');
+      } else if (role === 'teacher') {
+        navigate('/teacher/');
+      } else if (role === 'admin') {
+        navigate('/admin/');
+      }
+  } catch (error) {
+    if (error.response && error.response.status === 403) {
+      setError(error.response.data);
+    } else {;
+      setError('Login failed.');
+    }
+  }
+}
 
   return (
     <div>
@@ -93,7 +124,7 @@ const Login = () => {
 
           <h2 className="text-[40px] font-bold mb-12">Iniciar Sesión</h2>
           <div className="bg-white rounded-[10px] px-4 py-12 sm:px-[70px] sm:py-[100px] relative z-50">
-            <form onSubmit={(e) => e.preventDefault()} className="sm:w-[376px]">
+            <form onSubmit={handleLogin} className="sm:w-[376px]">
               <div className="text-start">
                 <label htmlFor="email" className="text-secondary block font-medium pb-3">
                   Correo
@@ -151,9 +182,16 @@ const Login = () => {
                 </Link>
               </div>
 
-              <button className="rounded bg-primary w-full text-white p-3 mt-11 font-medium">
+              <button className="rounded bg-primary w-full text-white p-3 mt-11 font-medium"
+              type="submit"
+              >
                 Iniciar Sesión
               </button>
+              {error && (
+                <div className="text-red-500 mt-4">
+                  {typeof error === "string" ? error : "Login failed. Try Again."}
+                </div>
+              )}
             </form>
           </div>
         </div>
