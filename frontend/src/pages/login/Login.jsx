@@ -79,12 +79,48 @@ const Login = () => {
         <div className="flex items-center text-center pt-16 pb-4">
           <div className="w-full m-2.5 sm:w-min sm:m-auto relative">
             <div className="hidden lg:inline">
-              <img src={bg} alt="bg" width={624} height={680} className="absolute max-w-min top-[-40px]"/>
-              <img src={man1} alt="man1" width={130} height={250} className="absolute top-1/2 start-[-200px]"/>
-              <img src={man2} alt="man2" width={100} height={123} className="absolute top-1/3 end-[-150px]"/>
-              <img src={dots} alt="dots" width={33} height={63} className="absolute bottom-3/4 right-[-60px]"/>
-              <img src={zigzag} alt="zigzag" width={32} height={17} className="absolute bottom-3/4 start-[-100px]"/>
-              <img src={circle} alt="circle" width={25} height={20} className="absolute top-10 right-[-100px]"/>
+              <img
+                src={bg}
+                alt="bg"
+                width={624}
+                height={680}
+                className="absolute max-w-min top-[-40px]"
+              />
+              <img
+                src={man1}
+                alt="man1"
+                width={130}
+                height={250}
+                className="absolute top-1/2 start-[-200px]"
+              />
+              <img
+                src={man2}
+                alt="man2"
+                width={100}
+                height={123}
+                className="absolute top-1/3 end-[-150px]"
+              />
+              <img
+                src={dots}
+                alt="dots"
+                width={33}
+                height={63}
+                className="absolute bottom-3/4 right-[-60px]"
+              />
+              <img
+                src={zigzag}
+                alt="zigzag"
+                width={32}
+                height={17}
+                className="absolute bottom-3/4 start-[-100px]"
+              />
+              <img
+                src={circle}
+                alt="circle"
+                width={25}
+                height={20}
+                className="absolute top-10 right-[-100px]"
+              />
             </div>
 
             <h2 className="text-[40px] font-bold mb-12">Iniciar Sesión</h2>
@@ -94,7 +130,15 @@ const Login = () => {
                   <label htmlFor="email" className="text-secondary block font-medium pb-3">
                     Correo
                   </label>
-                  <input type="text" id="email" name="email" placeholder="Ingresa tu correo" className="bg-[#F6F6F7] px-12 py-5 outline-none w-full rounded-md" onChange={handleChange} required/>
+                  <input
+                    type="text"
+                    id="email"
+                    name="email"
+                    placeholder="Ingresa tu correo"
+                    className="bg-[#F6F6F7] px-12 py-5 outline-none w-full rounded-md"
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
 
                 <div className="text-start mt-1">
@@ -102,22 +146,47 @@ const Login = () => {
                     Contraseña
                   </label>
                   <div className="relative">
-                    <input type={passwordVisible ? "text" : "password"} id="password" name="password" placeholder="Ingresa tu contraseña" className="bg-[#F6F6F7] px-12 py-5 outline-none w-full rounded-md" onChange={handleChange} required/>
+                    <input
+                      type={passwordVisible ? "text" : "password"}
+                      id="password"
+                      name="password"
+                      placeholder="Ingresa tu contraseña"
+                      className="bg-[#F6F6F7] px-12 py-5 outline-none w-full rounded-md"
+                      onChange={handleChange}
+                      required
+                    />
                     <button onClick={togglePasswordVisibility} className="absolute end-2 top-5 p-1">
-                      {passwordVisible ? (<img src={eye_hide} alt="hide password" height={24} width={24} />) : (<img src={eye} alt="show password" height={24} width={24} />)}
+                      {passwordVisible ? (
+                        <img src={eye_hide} alt="hide password" height={24} width={24} />
+                      ) : (
+                        <img src={eye} alt="show password" height={24} width={24} />
+                      )}
                     </button>
                   </div>
                 </div>
 
                 <div className="mt-2.5 flex justify-between">
                   <div className="flex items-center gap-1.5 text-[#6D6E75]">
-                    <input type="checkbox" id="remember" name="remember" checked={form.remember} onChange={handleChecked}/>
-                    <label htmlFor="remember" className="text-sm">Recuérdame</label>
+                    <input
+                      type="checkbox"
+                      id="remember"
+                      name="remember"
+                      checked={form.remember}
+                      onChange={handleChecked}
+                    />
+                    <label htmlFor="remember" className="text-sm">
+                      Recuérdame
+                    </label>
                   </div>
-                  <Link to="/a" className="text-primary">Olvidaste la contraseña?</Link>
+                  <Link to="/a" className="text-primary">
+                    Olvidaste la contraseña?
+                  </Link>
                 </div>
 
-                <button className="rounded bg-primary w-full text-white p-3 mt-11 font-medium" type="submit">
+                <button
+                  className="rounded bg-primary w-full text-white p-3 mt-11 font-medium"
+                  type="submit"
+                >
                   Iniciar Sesión
                 </button>
                 {error && (
