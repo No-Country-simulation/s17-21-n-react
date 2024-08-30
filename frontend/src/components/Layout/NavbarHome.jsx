@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { rightArrow } from "../assets";
+import { rightArrow } from "../../assets";
 
 const NavbarHome = () => {
   const [isOpen, setIsOpen] = useState(false);

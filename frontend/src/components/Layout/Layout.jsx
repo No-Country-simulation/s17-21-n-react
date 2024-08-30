@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useRef, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import Sidebar from "../Sidebar";
+import Sidebar from "./config/Sidebar";
 import { Menu } from "lucide-react";
 
 export default function Layout({ userRole }) {

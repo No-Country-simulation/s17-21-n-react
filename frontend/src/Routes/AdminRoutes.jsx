@@ -1,4 +1,4 @@
-import DashboardAdmin from "../Pages/Admin/DashboardAdmin";
+import DashboardAdmin from "../pages/admin/DashboardAdmin";
 
 import NestedRoutes from "./NestedRoutes";
 

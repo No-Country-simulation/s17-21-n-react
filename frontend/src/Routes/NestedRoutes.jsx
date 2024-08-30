@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Routes, Route } from "react-router-dom";
-import ErrorPage from "../components/ErrorPage";
+import ErrorPage from "../components/layout/ErrorPage";
 
 const NestedRoutes = ({ routes }) => {
   return (

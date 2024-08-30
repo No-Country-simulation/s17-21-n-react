@@ -1,4 +1,4 @@
-import DashboardStudents from "../Pages/Students/DashboardStudents";
+import DashboardStudents from "../pages/students/DashboardStudents";
 import NestedRoutes from "./NestedRoutes";
 
 const studentRoutes = [

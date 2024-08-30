@@ -1,4 +1,4 @@
-import DashboardTeachers from "../Pages/Teachers/DashboardTeachers";
+import DashboardTeachers from "../pages/teachers/DashboardTeachers";
 import NestedRoutes from "./NestedRoutes";
 
 const teacherRoutes = [

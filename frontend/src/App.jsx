@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home/Home";
-import { AdminRoutes, StudentsRoutes, TeachersRoutes } from "./Routes";
-import Layout from "./components/Layout/Layout";
-import ErrorPage from "./components/ErrorPage";
-import Login from "./Pages/Login/Login";
+import { AdminRoutes, StudentsRoutes, TeachersRoutes } from "./routes";
+import Layout from "./components/layout/Layout";
+import ErrorPage from "./components/layout/ErrorPage";
+import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
 
 const App = () => {
   return (

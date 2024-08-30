@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import { btn, facebook, pinterest, twitter } from "../assets";
-import footerLinks from "../utils/data";
+import { btn, facebook, pinterest, twitter } from "../../assets";
+import footerLinks from "../../data/data";
 
 const Footer = () => {
   const location = useLocation();

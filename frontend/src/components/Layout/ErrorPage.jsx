@@ -1,4 +1,4 @@
-import { errorImage, errorMan1, errorMan2 } from "../assets";
+import { errorImage, errorMan1, errorMan2 } from "../../assets";
 
 const ErrorPage = () => {
   return (

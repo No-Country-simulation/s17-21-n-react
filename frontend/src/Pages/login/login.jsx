@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { bg, circle, dots, eye, eye_hide, man1, man2, rightArrow, zigzag } from "../../assets";
 import { useState } from "react";
-import configureAxios from "../../Api/axios";
+import configureAxios from "../../api/axios";
 import useUserStore from "../../store/auth";
-import Footer from "../../components/Footer";
+import Footer from "../../components/layout/Footer";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);

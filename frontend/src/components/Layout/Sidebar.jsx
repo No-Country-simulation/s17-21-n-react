@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { SidebarConfig } from "./Layout/config/sidebarConfig";
-import useUserStore from "../store/auth";
+import { SidebarConfig } from "./config/sidebarConfig";
+import useUserStore from "../../store/auth";
 
 export default function Sidebar({ isOpen, sidebarRef, userRole }) {
   const location = useLocation();
