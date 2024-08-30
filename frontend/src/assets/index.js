@@ -17,6 +17,9 @@ import man1 from "./icons/man1.svg";
 import man2 from "./icons/man2.svg";
 import zigzag from "./icons/zigzag.svg";
 
+import quote from "./icons/quotes.svg";
+import triangle from "./icons/triangle.svg";
+
 export {
   facebook,
   pinterest,
@@ -34,4 +37,6 @@ export {
   man2,
   zigzag,
   eye_hide,
+  quote,
+  triangle,
 };
