@@ -42,18 +42,18 @@ const Footer = () => {
             </div>
           ))}
 
-          <div className="flex flex-col gap-5 w-80">
+          <div className="flex flex-col gap-5 ">
             <h1 className="font-bold text-xl">Suscribete</h1>
-            <div className="relative w-full">
+            <div className="relative w-[270px] lg:w-full flex flex-row items-center">
               <input
                 type="text"
                 id="subscribe"
-                className="block w-full max-w-72 h-[59px] px-8 py-4 text-sm text-black/50 outline-none bg-white rounded-l-[4px]"
+                className="block w-[269px] max-w-72 h-[59px] px-8 py-4 text-sm text-black/50 outline-none bg-white rounded-l-[4px]"
                 placeholder="Ingresa tu correo..."
                 required
               />
-              <button type="submit" className="absolute top-0 end-0">
-                <img src={btn} alt="button" width={70} height={60} />
+              <button type="submit" className="absolute end-0 w-[70px] h-[62px]">
+                <img src={btn} alt="button" width={70} height={62} />
                 <span className="sr-only">Subscribe</span>
               </button>
             </div>
@@ -63,7 +63,7 @@ const Footer = () => {
           </div>
         </div>
       </section>
-      <div className="flex flex-col md:flex-row py-10 items-center justify-center gap-1 leading-6 font-hind font-normal text-sm text-[#83848A] border-t border-[#1C1F3F]">
+      <div className="flex flex-col md:flex-row py-10 items-center justify-center gap-1 leading-6 font-hind font-normal text-xs sm:text-sm text-[#83848A] border-t border-[#1C1F3F]">
         <p>© {new Date().getFullYear()} EducaPro, Todos los derechos reservados.</p>
         <p>Equipo: s17-n-react-node</p>
       </div>
