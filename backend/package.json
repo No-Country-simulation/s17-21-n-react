@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development concurrently \"npm run watch-compile\" \"npm run watch-dev\"",
-    "watch-compile": "swc src -w --out-dir dist",
+    "watch-compile": "swc src index.ts -w --out-dir dist",
     "watch-dev": "nodemon --watch \"dist/**/*\" -e js dist/index.js",
     "build": "swc src index.ts -d dist",
     "start": "NODE_ENV=production node dist/index.js",
