@@ -20,3 +20,24 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #475569;
 }
+
+.swiper-slide, .swiper-slide-active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-pagination-bullet {
+  background-color: transparent; 
+  border: 3px solid #2b4eff; 
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #2b4eff;
+  border: none; 
+}
