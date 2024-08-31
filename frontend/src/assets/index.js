@@ -55,5 +55,5 @@ export {
   spanBlue,
   students1,
   students2,
-  students3
+  students3,
 };

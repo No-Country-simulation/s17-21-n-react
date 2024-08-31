@@ -8,16 +8,18 @@ import { forStudents } from "../data/forStudents";
 const ForStudents = () => {
   return (
     <>
-    <div className="container mx-auto max-w-7xl lg:px-10 p-2.5 flex flex-col items-center justify-center">
-      <div className="flex flex-col items-center gap-2">
-        <div className="flex flex-row items-center gap-2">
-          <div className="bg-primary size-3 rounded-full" />
-          <h2 className="text-primary uppercase font-semibold">Para Estudiantes</h2>
+      <div className="container mx-auto max-w-7xl lg:px-10 p-2.5 flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-row items-center gap-2">
+            <div className="bg-primary size-3 rounded-full" />
+            <h2 className="text-primary uppercase font-semibold">Para Estudiantes</h2>
+          </div>
+          <h1 className="text-[#1F2126] font-bold text-2xl md:text-4xl text-center capitalize">
+            Todo lo que Necesitas para Triunfar
+          </h1>
         </div>
-        <h1 className="text-[#1F2126] font-bold text-2xl md:text-4xl text-center capitalize">Todo lo que Necesitas para Triunfar</h1>
       </div>
-    </div>
-    <Swiper
+      <Swiper
         slidesPerView={1}
         spaceBetween={30}
         loop={true}
