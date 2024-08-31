@@ -52,7 +52,7 @@ const ForStudents = () => {
           <SwiperSlide key={student.id}>
             <div className="relative min-w-[290px] w-[330px] md:w-[350px] lg:w-[320px] xl:w-[370px] max-h-[490px] flex flex-col bg-white shadow-custom rounded-lg">
               <div className="">
-                <img src={student.photo} alt="foto" className="object-cover max-" />
+                <img src={student.photo} alt="foto" className="object-cover rounded-t-lg" />
               </div>
               <div className="icon absolute top-[45%] right-3 md:right-2 bg-[#242424] size-14 sm:size-[90px] rounded-full flex items-center justify-center border-[5px] border-primary">
                 <img src={student.icon} alt="icon" />
