@@ -7,7 +7,7 @@ import Login from "./pages/login/Login";
 
 const App = () => {
   return (
-    <div className="font-hind bg-white">
+    <div className="font-hind bg-background_primary">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

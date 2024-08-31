@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import Footer from "../../components/layout/Footer";
 import NavbarHome from "../../components/layout/NavbarHome";
+import ForStudents from "../../components/ForStudents";
+import TestimonialsCarrousel from "../../components/TestimonialsCarrousel";
 
 const Home = () => {
   return (
@@ -40,6 +42,12 @@ const Home = () => {
           </div>
         </section>
       </div>
+      <section className="w-full py-[50px] md:py-[110px]">
+      <ForStudents />
+      </section>
+      <section className="w-full py-[31px] md:py-[133px] bg-white">
+        <TestimonialsCarrousel />
+      </section>
       <Footer />
     </>
   );
