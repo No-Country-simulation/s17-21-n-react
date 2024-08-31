@@ -42,7 +42,8 @@
   border: none; 
 }
 
-.studentSwiper .swiper-wrapper{
+.studentSwiper .swiper-wrapper,
+.teacherSwiper .swiper-wrapper{
   padding-bottom: 40px;
 }
 

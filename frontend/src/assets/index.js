@@ -29,6 +29,16 @@ import students1 from "./images/students1.png";
 import students2 from "./images/students2.png";
 import students3 from "./images/students3.png";
 
+
+
+
+
+
+import teacher1 from "./images/teacher1.webp";
+import teacher2 from "./images/teacher2.webp";
+import teacher3 from "./images/teacher3.webp";
+import teacher4 from "./images/teacher4.webp";
+
 export {
   facebook,
   pinterest,
@@ -56,4 +66,12 @@ export {
   students1,
   students2,
   students3,
+
+
+
+
+  teacher1,
+  teacher2,
+  teacher3,
+  teacher4
 };
