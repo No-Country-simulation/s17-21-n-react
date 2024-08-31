@@ -1,8 +1,11 @@
 import express, { Request, Response, Application } from "express";
 import morgan from "morgan";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
 import { allowOrigins, MORGAN_FORMAT } from "./configs";
-import { errorResponse, successResponse } from "./utils";
+import { errorResponse, successResponse } from "./shared/utils";
+import { authRouter } from "./features/auth/auth.router";
+import { swaggerSpec } from "./shared/utils/swagger";
 
 const app: Application = express();
 
@@ -26,5 +29,8 @@ app.use((req: Request, res: Response) => {
     status : 404,
   });
 });
+
+app.use("/api/v1/auth", authRouter);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 export default app;
