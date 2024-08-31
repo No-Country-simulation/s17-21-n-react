@@ -20,6 +20,15 @@ import zigzag from "./icons/zigzag.svg";
 import quote from "./icons/quotes.svg";
 import triangle from "./icons/triangle.svg";
 
+import book from "./icons/book.svg";
+import list from "./icons/list.svg";
+import stats from "./icons/stats.svg";
+import spanGray from "./icons/SpanGray.svg";
+import spanBlue from "./icons/SpanBlue.svg";
+import students1 from "./images/students1.png";
+import students2 from "./images/students2.png";
+import students3 from "./images/students3.png";
+
 export {
   facebook,
   pinterest,
@@ -39,4 +48,12 @@ export {
   eye_hide,
   quote,
   triangle,
+  book,
+  list,
+  stats,
+  spanGray,
+  spanBlue,
+  students1,
+  students2,
+  students3
 };
