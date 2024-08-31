@@ -41,3 +41,13 @@
   background-color: #2b4eff;
   border: none; 
 }
+
+.studentSwiper .swiper-wrapper{
+  padding-bottom: 40px;
+}
+
+.studentSwiper .swiper-pagination{
+  display: flex;
+  left: 0;
+  padding: 0 0 10px 20px;
+}
