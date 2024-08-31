@@ -55,10 +55,10 @@ const Home = () => {
       <section className="w-full py-7 md:py-14">
         <OurTeacher />
       </section>
-      <section className="w-full py-7 md:py-14 bg-white">
+      <section className="w-full py-7 md:pt-14 bg-white">
         <StatsHighLight />
       </section>
-      <section className="w-full py-[31px] md:py-[133px] bg-white">
+      <section className="w-full py-[31px] md:pb-[133px] bg-white">
         <TestimonialsCarrousel />
       </section>
       <section className="w-full py-7 md:py-14">
