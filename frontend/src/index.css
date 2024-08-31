@@ -42,7 +42,8 @@
   border: none; 
 }
 
-.studentSwiper .swiper-wrapper{
+.studentSwiper .swiper-wrapper,
+.eventSwiper .swiper-wrapper{
   padding-bottom: 40px;
 }
 
@@ -51,3 +52,11 @@
   left: 0;
   padding: 0 0 10px 20px;
 }
+
+@media (max-width: 640px) {
+  .mySwiper .swiper-pagination{
+    position: relative;
+    margin: 10px 0px 0px 0px;
+  }
+}
+

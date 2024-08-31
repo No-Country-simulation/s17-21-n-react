@@ -6,7 +6,7 @@ export const events = [
     photo: event1,
     date: "15 de septiembre, 2024",
     event: "Taller",
-    title: "Innovaciones en la Educación: Taller de Tecnología",
+    title: "Innovaciones en la Educación",
     description: "Descubre las últimas innovaciones tecnológicas aplicadas a la educación.",
   },
   {
@@ -32,6 +32,6 @@ export const events = [
     event: "Taller",
     title: "Inteligencia Emocional en el Aula",
     description:
-      "Aprende a desarrollar habilidades socioemocionales en tus estudiantes y crea un ambiente de aprendizaje más positivo y colaborativo.",
+      "Aprende a desarrollar habilidades socioemocionales.",
   },
 ];
