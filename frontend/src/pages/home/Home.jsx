@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Footer from "../../components/layout/Footer";
 import NavbarHome from "../../components/layout/NavbarHome";
 import ForStudents from "../../components/ForStudents";
+import OurTeacher from "../../components/OurTeacher";
 import TestimonialsCarrousel from "../../components/TestimonialsCarrousel";
 
 const Home = () => {
@@ -43,7 +44,10 @@ const Home = () => {
         </section>
       </div>
       <section className="w-full py-[50px] md:py-[110px]">
-      <ForStudents />
+        <ForStudents />
+      </section>
+      <section className="w-full py-7 md:py-14">
+        <OurTeacher />
       </section>
       <section className="w-full py-[31px] md:py-[133px] bg-white">
         <TestimonialsCarrousel />
