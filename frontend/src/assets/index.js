@@ -25,9 +25,15 @@ import list from "./icons/list.svg";
 import stats from "./icons/stats.svg";
 import spanGray from "./icons/SpanGray.svg";
 import spanBlue from "./icons/SpanBlue.svg";
-import students1 from "./images/students1.png";
-import students2 from "./images/students2.png";
-import students3 from "./images/students3.png";
+import students1 from "./images/students1.webp";
+import students2 from "./images/students2.webp";
+import students3 from "./images/students3.webp";
+import students4 from "./images/students4.webp";
+
+import event1 from "./images/event1.webp";
+import event2 from "./images/event2.webp";
+import event3 from "./images/event3.webp";
+import event4 from "./images/event4.webp";
 
 export {
   facebook,
@@ -56,4 +62,9 @@ export {
   students1,
   students2,
   students3,
+  students4,
+  event1,
+  event2,
+  event3,
+  event4
 };

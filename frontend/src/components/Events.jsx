@@ -2,20 +2,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
-import { spanGray, spanBlue } from "../assets";
-import { forStudents } from "../data/forStudents";
+import { events } from "../data/events";
 
-const ForStudents = () => {
+const Events = () => {
   return (
     <>
       <div className="container mx-auto max-w-7xl lg:px-10 p-2.5 flex flex-col items-center justify-center">
         <div className="flex flex-col items-center gap-2">
           <div className="flex flex-row items-center gap-2">
             <div className="bg-primary size-3 rounded-full" />
-            <h2 className="text-primary uppercase font-semibold">Para Estudiantes</h2>
+            <h2 className="text-primary uppercase font-semibold">Nuestros eventos</h2>
           </div>
           <h1 className="text-[#1F2126] font-bold text-2xl md:text-4xl text-center capitalize">
-            Todo lo que Necesitas para Triunfar
+            Descubre nuestros próximos eventos educativos
           </h1>
         </div>
       </div>
@@ -46,28 +45,24 @@ const ForStudents = () => {
           },
         }}
         modules={[Pagination, Autoplay]}
-        className="studentSwiper container mx-auto max-w-7xl py-2.5"
+        className="eventSwiper container mx-auto max-w-7xl py-2.5"
       >
-        {forStudents.map((student) => (
-          <SwiperSlide key={student.id}>
-            <div className="relative min-w-[290px] w-[330px] md:w-[350px] lg:w-[320px] xl:w-[370px] max-h-[490px] flex flex-col bg-white shadow-custom rounded-lg">
+        {events.map((event) => (
+          <SwiperSlide key={event.id}>
+            <div className="relative min-w-[290px] w-[330px] md:w-[350px] lg:w-[320px] xl:w-[370px] min-h-[480px] max-h-[570px] flex flex-col bg-white shadow-custom rounded-lg">
               <div className="">
-                <img src={student.photo} alt="foto" className="object-cover rounded-t-lg" />
+                <img src={event.photo} alt="foto" className="object-cover rounded-t-lg" />
               </div>
-              <div className="icon absolute top-[45%] right-3 md:right-2 bg-[#242424] size-14 sm:size-[90px] rounded-full flex items-center justify-center border-[5px] border-primary">
-                <img src={student.icon} alt="icon" />
+              <div className="absolute top-0 left-7 bg-primary w-auto max-w-24 p-1 px-4 flex items-center justify-center rounded-b-md">
+                <span className="text-sm text-white text-center font-medium capitalize">
+                  {event.event}
+                </span>
               </div>
-              <div className="p-7 flex flex-col gap-4">
-                <h3 className="text-[#1F2126] font-bold text-lg">{student.title}</h3>
-                <ul className="text-[#7D7F85] font-normal text-base">
-                  {student.options.map((option) => (
-                    <li key={option}>{option}</li>
-                  ))}
-                </ul>
+              <div className="p-7 flex flex-col gap-2">
+                <span className="text-[#7D7F85] font-normal text-base">Fecha: {event.date}</span>
+                <h3 className="text-[#1F2126] font-bold text-lg">{event.title}</h3>
+                <p className="text-[#7D7F85] font-normal text-base">{event.description}</p>
                 <span className="text-[#1F2126] font-semibold text-base">Leer mas</span>
-
-                <img src={spanGray} alt="book" className="absolute bottom-0 right-0" />
-                <img src={spanBlue} alt="book" className="absolute bottom-0 right-0" />
               </div>
             </div>
           </SwiperSlide>
@@ -77,4 +72,4 @@ const ForStudents = () => {
   );
 };
 
-export default ForStudents;
+export default Events;
