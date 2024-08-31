@@ -1,4 +1,4 @@
-import { book, list, stats, students1, students2, students3 } from "../assets";
+import { book, list, stats, students1, students2, students3, students4 } from "../assets";
 
 export const forStudents = [
   {
@@ -33,12 +33,12 @@ export const forStudents = [
   {
     id: 4,
     icon: list,
-    photo: students2,
-    title: "otro otro",
+    photo: students4,
+    title: "Comunicación Directa",
     options: [
-      "Horario siempre disponible",
-      "Materiales educativos accesibles",
-      "Conéctate con compañeros",
+      "Mensajería directa con profesores",
+      "Foros de discusión para aclarar dudas",
+      "Reuniones virtuales programadas",
     ],
   },
 ];

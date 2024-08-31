@@ -4,6 +4,7 @@ import NavbarHome from "../../components/layout/NavbarHome";
 import ForStudents from "../../components/ForStudents";
 import OurTeacher from "../../components/OurTeacher";
 import TestimonialsCarrousel from "../../components/TestimonialsCarrousel";
+import Events from "../../components/Events";
 
 const Home = () => {
   return (
@@ -51,6 +52,9 @@ const Home = () => {
       </section>
       <section className="w-full py-[31px] md:py-[133px] bg-white">
         <TestimonialsCarrousel />
+      </section>
+      <section className="w-full py-7 md:py-14">
+        <Events />
       </section>
       <Footer />
     </>
