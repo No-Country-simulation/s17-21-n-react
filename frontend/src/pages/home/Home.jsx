@@ -6,6 +6,7 @@ import OurTeacher from "../../components/OurTeacher";
 import StatsHighLight from "../../components/StatsHighLight";
 import TestimonialsCarrousel from "../../components/TestimonialsCarrousel";
 import Events from "../../components/Events";
+import ForTeachers from "../../components/forTeachers";
 
 const Home = () => {
   return (
@@ -45,6 +46,9 @@ const Home = () => {
           </div>
         </section>
       </div>
+      <section className="w-full">
+        <ForTeachers />
+      </section>
       <section className="w-full py-[50px] md:py-[110px]">
         <ForStudents />
       </section>

@@ -33,7 +33,11 @@ import teacher1 from "./images/teacher1.webp";
 import teacher2 from "./images/teacher2.webp";
 import teacher3 from "./images/teacher3.webp";
 import teacher4 from "./images/teacher4.webp";
-
+import forTeachersBg from "./images/forTeachersBg.webp";
+import assignmentTurnedIn from "./icons/assignmentTurnedIn.svg";
+import checkCircle from "./icons/checkCircle.svg";
+import libraryBooks from "./icons/libraryBooks.svg";
+import visibility from "./icons/visibility.svg";
 export {
   facebook,
   pinterest,
@@ -69,5 +73,11 @@ export {
   teacher1,
   teacher2,
   teacher3,
-  teacher4
+  teacher4,
+  forTeachersBg,
+  assignmentTurnedIn,
+  checkCircle,
+  forTeachersBg,
+  libraryBooks,
+  visibility,
 };
