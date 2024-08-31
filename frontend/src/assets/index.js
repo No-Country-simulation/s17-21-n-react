@@ -77,7 +77,6 @@ export {
   forTeachersBg,
   assignmentTurnedIn,
   checkCircle,
-  forTeachersBg,
   libraryBooks,
   visibility,
 };

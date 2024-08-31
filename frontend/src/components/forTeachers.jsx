@@ -15,7 +15,7 @@ const ForTeachers = () => {
       </div>
       <div className="flex flex-col items-center gap-12 py-12 grid-cols-4 md:grid md:gap-7 max-w-[1200px] m-auto p-6 box-content md:relative md:top-[-180px] md:max-h-24 lg:max-h-18">
         {forTeachers.map((card) => (
-          <div className="bg-background_primary rounded-[5px] p-4 max-w-80 h-full">
+          <div key={card.id} className="bg-background_primary rounded-[5px] p-4 max-w-80 h-full">
             <div className="h-full rounded-[5px] border-b-[5px] border-primary relative">
               <h4 className="text-[#1F2126] font-bold text-center text-2xl leading-6">
                 {card.title}
