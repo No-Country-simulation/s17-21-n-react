@@ -43,6 +43,7 @@
 }
 
 .studentSwiper .swiper-wrapper,
+.teacherSwiper .swiper-wrapper,
 .eventSwiper .swiper-wrapper{
   padding-bottom: 40px;
 }
