@@ -19,6 +19,7 @@ import triangle from "./icons/triangle.svg";
 import book from "./icons/book.svg";
 import list from "./icons/list.svg";
 import stats from "./icons/stats.svg";
+import chat from "./icons/ChatBubbles.svg";
 import spanGray from "./icons/SpanGray.svg";
 import spanBlue from "./icons/SpanBlue.svg";
 import students1 from "./images/students1.webp";
@@ -74,6 +75,7 @@ export {
   book,
   list,
   stats,
+  chat,
   spanGray,
   spanBlue,
   students1,
