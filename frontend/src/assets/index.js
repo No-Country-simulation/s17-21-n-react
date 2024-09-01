@@ -40,7 +40,15 @@ import vectorBanner3 from "./icons/vectorBanner3.svg";
 import vectorBanner4 from "./icons/vectorBanner4.svg";
 import vectorBanner5 from "./icons/vectorBanner5.svg";
 import vectorBanner6 from "./icons/vectorBanner6.svg";
-
+import forTeachersBg from "./images/forTeachersBg.webp";
+import assignmentTurnedIn from "./icons/assignmentTurnedIn.svg";
+import checkCircle from "./icons/checkCircle.svg";
+import libraryBooks from "./icons/libraryBooks.svg";
+import visibility from "./icons/visibility.svg";
+import arrow from "./icons/arrow.svg";
+import whyUsBg from "./images/whyUs_bg.svg";
+import whyUsBgWeb from "./images/whyUsBg_web.png"
+import whyUs from "./images/whyUs.webp";
 
 export {
   facebook,
@@ -84,5 +92,14 @@ export {
   vectorBanner3,
   vectorBanner4,
   vectorBanner5,
-  vectorBanner6
+  vectorBanner6,
+  forTeachersBg,
+  assignmentTurnedIn,
+  checkCircle,
+  libraryBooks,
+  visibility,
+  arrow,
+  whyUsBg,
+  whyUsBgWeb,
+  whyUs,
 };

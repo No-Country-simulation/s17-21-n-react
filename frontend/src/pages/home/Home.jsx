@@ -7,12 +7,15 @@ import StatsHighLight from "../../components/StatsHighLight";
 import TestimonialsCarrousel from "../../components/TestimonialsCarrousel";
 import Events from "../../components/Events";
 import BannerHome from "../../components/BannerHome";
+import ForTeachers from "../../components/forTeachers";
+import WhyUs from "../../components/WhyUs";
+import { whyUsBg, whyUsBgWeb } from "../../assets";
 
 const Home = () => {
   return (
     <>
       <NavbarHome />
-      <BannerHome/>
+      <BannerHome />
       <div className="container mx-auto p-4">
         <header className="text-center mb-8">
           <h1 className="text-4xl font-bold">Welcome to Our Application!</h1>
@@ -47,16 +50,28 @@ const Home = () => {
           </div>
         </section>
       </div>
+      <section className="w-full">
+        <ForTeachers />
+      </section>
       <section className="w-full py-[50px] md:py-[110px]">
         <ForStudents />
+      </section>
+      <section className="w-full relative h-[1000px] lg:h-[600px] xl:h-[820px] flex lg:items-center justify-center xl:justify-normal overflow-hidden">
+        <WhyUs />
+        <img
+          src={whyUsBgWeb}
+          alt="Background"
+          className="hidden lg:block absolute top-0 -right-20 xl:right-0 lg:h-[590px] xl:h-[820px]"
+        />
+        <img src={whyUsBg} alt="Background m" className="md:hidden w-full absolute bottom-0" />
       </section>
       <section className="w-full py-7 md:py-14">
         <OurTeacher />
       </section>
-      <section className="w-full py-7 md:py-14 bg-white">
+      <section className="w-full py-7 md:pt-14 bg-white">
         <StatsHighLight />
       </section>
-      <section className="w-full py-[31px] md:py-[133px] bg-white">
+      <section className="w-full py-[31px] md:pb-[133px] bg-white">
         <TestimonialsCarrousel />
       </section>
       <section className="w-full py-7 md:py-14">
