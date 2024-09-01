@@ -30,7 +30,7 @@ const WhyUs = () => {
             </button>
           </div>
         </div>
-          <img src={whyUs} alt="Image" className="relative z-[1] w-72 md:w-96 lg:w-80 xl:w-auto" />
+        <img src={whyUs} alt="Image" className="relative z-[1] w-72 md:w-96 lg:w-80 xl:w-auto" />
       </div>
     </div>
   );
