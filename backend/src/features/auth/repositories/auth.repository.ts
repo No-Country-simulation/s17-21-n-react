@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import { PrismaClient } from "@prisma/client";
 import { User } from "../entities/user.entity";
-import { RegisterDto } from "../dtos/register.dto";
+import { RegisterAdminDto } from "../dtos/register.dto";
 
 export class AuthRepository {
     constructor(private prisma: PrismaClient) {}
@@ -10,7 +10,7 @@ export class AuthRepository {
         return this.prisma.user.findUnique({ where: { email } });
     }
 
-    async create(userData: RegisterDto): Promise<User> {
-        return this.prisma.user.create({ data: userData });
+    async create(userData: RegisterAdminDto): Promise<User> {
+        return this.prisma.user.create({ data: userData, omit: { password: true } } );
     }
 }

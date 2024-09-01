@@ -16,7 +16,9 @@ app.use(cors({
 }));
 
 app.use(express.json());
-
+app.disable("x-powered-by");
+app.use("/api/v1/auth", authRouter);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.get("/", (_: Request, res: Response) => {
   return successResponse({ data: { date: Date.now(), version: "v1" }, res });
 });
@@ -30,7 +32,6 @@ app.use((req: Request, res: Response) => {
   });
 });
 
-app.use("/api/v1/auth", authRouter);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 export default app;

@@ -4,6 +4,7 @@ import app from "./src/app";
 import { PORT } from "./src/configs";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
+import initializeRoles from "./src/shared/utils/initializeRoles";
 
 const prisma = new PrismaClient();
 
@@ -19,11 +20,11 @@ async function createInitialAdminUser() {
       data: {
         email: adminEmail,
         password: hashedPassword,
-        name: "Admin User",
+        dni: "99999999",
         role: {
           connectOrCreate: {
-            where: { name: "admin" },
-            create: { name: "admin" },
+            where: { name: "ADMIN" },
+            create: { name: "ADMIN" },
           },
         },
       },
@@ -34,6 +35,7 @@ async function createInitialAdminUser() {
 
 async function startServer() {
   try {
+    await initializeRoles();
     await createInitialAdminUser();
     app.listen(PORT, () => {
       console.log(`Server is listening on http://localhost:${PORT}`);
