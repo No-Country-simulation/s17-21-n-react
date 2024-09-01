@@ -48,12 +48,6 @@
   padding-bottom: 40px;
 }
 
-.studentSwiper .swiper-pagination{
-  display: flex;
-  left: 0;
-  padding: 0 0 10px 20px;
-}
-
 @media (max-width: 640px) {
   .mySwiper .swiper-pagination{
     position: relative;
