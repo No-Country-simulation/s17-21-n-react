@@ -6,6 +6,7 @@ import OurTeacher from "../../components/OurTeacher";
 import StatsHighLight from "../../components/StatsHighLight";
 import TestimonialsCarrousel from "../../components/TestimonialsCarrousel";
 import Events from "../../components/Events";
+import BannerHome from "../../components/BannerHome";
 import ForTeachers from "../../components/forTeachers";
 import Quotation from "../../components/quotation";
 import WhyUs from "../../components/WhyUs";
@@ -15,6 +16,7 @@ const Home = () => {
   return (
     <>
       <NavbarHome />
+      <BannerHome />
       <div className="container mx-auto p-4">
         <header className="text-center mb-8">
           <h1 className="text-4xl font-bold">Welcome to Our Application!</h1>
@@ -57,7 +59,11 @@ const Home = () => {
       </section>
       <section className="w-full relative h-[1000px] lg:h-[600px] xl:h-[820px] flex lg:items-center justify-center xl:justify-normal overflow-hidden">
         <WhyUs />
-        <img src={whyUsBgWeb} alt="Background" className="hidden lg:block absolute top-0 -right-20 xl:right-0 lg:h-[590px] xl:h-[820px]" />
+        <img
+          src={whyUsBgWeb}
+          alt="Background"
+          className="hidden lg:block absolute top-0 -right-20 xl:right-0 lg:h-[590px] xl:h-[820px]"
+        />
         <img src={whyUsBg} alt="Background m" className="md:hidden w-full absolute bottom-0" />
       </section>
       <section className="w-full py-7 md:py-14">

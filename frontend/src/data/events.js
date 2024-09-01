@@ -31,7 +31,6 @@ export const events = [
     date: "10 de diciembre, 2024",
     event: "Taller",
     title: "Inteligencia Emocional en el Aula",
-    description:
-      "Aprende a desarrollar habilidades socioemocionales.",
+    description: "Aprende a desarrollar habilidades socioemocionales.",
   },
 ];
