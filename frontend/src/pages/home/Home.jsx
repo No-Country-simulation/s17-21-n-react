@@ -7,6 +7,7 @@ import StatsHighLight from "../../components/StatsHighLight";
 import TestimonialsCarrousel from "../../components/TestimonialsCarrousel";
 import Events from "../../components/Events";
 import ForTeachers from "../../components/forTeachers";
+import Quotation from "../../components/quotation";
 
 const Home = () => {
   return (
@@ -54,6 +55,9 @@ const Home = () => {
       </section>
       <section className="w-full py-7 md:py-14">
         <OurTeacher />
+      </section>
+      <section className="w-full">
+        <Quotation />
       </section>
       <section className="w-full py-7 md:pt-14 bg-white">
         <StatsHighLight />
