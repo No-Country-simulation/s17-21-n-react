@@ -1,4 +1,4 @@
-import { book, list, stats, students1, students2, students3, students4 } from "../assets";
+import { book, list, stats, chat, students1, students2, students3, students4 } from "../assets";
 
 export const forStudents = [
   {
@@ -32,7 +32,7 @@ export const forStudents = [
   },
   {
     id: 4,
-    icon: list,
+    icon: chat,
     photo: students4,
     title: "Comunicación Directa",
     options: [
