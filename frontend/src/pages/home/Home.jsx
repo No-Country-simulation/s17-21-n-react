@@ -7,8 +7,8 @@ import StatsHighLight from "../../components/StatsHighLight";
 import TestimonialsCarrousel from "../../components/TestimonialsCarrousel";
 import Events from "../../components/Events";
 import BannerHome from "../../components/BannerHome";
-import ForTeachers from "../../components/forTeachers";
-import Quotation from "../../components/quotation";
+import ForTeachers from "../../components/ForTeachers";
+import Quotation from "../../components/Quotation";
 import WhyUs from "../../components/WhyUs";
 import { whyUsBg, whyUsBgWeb } from "../../assets";
 
