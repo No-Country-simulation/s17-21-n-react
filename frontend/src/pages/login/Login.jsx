@@ -64,17 +64,23 @@ const Login = () => {
   return (
     <>
       <div className="min-h-screen">
-        <nav className="bg-white flex justify-between w-full py-5 px-4 sm:px-12">
-          <Link to="/">
-            <h1 className="font-semibold text-secondary text-4xl">
-              Educa<span className="text-primary">Pro</span>
-            </h1>
-          </Link>
-          <button className="btn bg-primary text-white flex items-center gap-2.5 px-9 py-2 rounded">
-            Acceso
-            <img src={rightArrow} alt="button" width={14} height={14} />
-          </button>
-        </nav>
+        <section className="bg-white shadow-md">
+          <nav className="flex mx-auto justify-between w-full py-5 px-4 max-w-7xl">
+            <div className="text-3xl font-bold text_primary">
+              <Link to="/">
+                Educa<span className="text-primary">Pro</span>
+              </Link>
+            </div>
+            <div className="hidden md:flex items-center">
+              <Link to="/login">
+                <button className="btn bg-primary text-white flex items-center gap-2.5 px-9 py-2 rounded">
+                  Acceso
+                  <img src={rightArrow} alt="button" width={14} height={14} />
+                </button>
+              </Link>
+            </div>
+          </nav>
+        </section>
 
         <div className="flex items-center text-center pt-16 pb-4">
           <div className="w-full m-2.5 sm:w-min sm:m-auto relative">

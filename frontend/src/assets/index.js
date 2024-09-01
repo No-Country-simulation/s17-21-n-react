@@ -33,6 +33,14 @@ import teacher1 from "./images/teacher1.webp";
 import teacher2 from "./images/teacher2.webp";
 import teacher3 from "./images/teacher3.webp";
 import teacher4 from "./images/teacher4.webp";
+import banner_home from "./images/banner_home.webp";
+import vectorBanner1 from "./icons/vectorBanner1.svg";
+import vectorBanner2 from "./icons/vectorBanner2.svg";
+import vectorBanner3 from "./icons/vectorBanner3.svg";
+import vectorBanner4 from "./icons/vectorBanner4.svg";
+import vectorBanner5 from "./icons/vectorBanner5.svg";
+import vectorBanner6 from "./icons/vectorBanner6.svg";
+
 
 export {
   facebook,
@@ -69,5 +77,12 @@ export {
   teacher1,
   teacher2,
   teacher3,
-  teacher4
+  teacher4,
+  banner_home,
+  vectorBanner1,
+  vectorBanner2,
+  vectorBanner3,
+  vectorBanner4,
+  vectorBanner5,
+  vectorBanner6
 };

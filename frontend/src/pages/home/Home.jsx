@@ -6,11 +6,13 @@ import OurTeacher from "../../components/OurTeacher";
 import StatsHighLight from "../../components/StatsHighLight";
 import TestimonialsCarrousel from "../../components/TestimonialsCarrousel";
 import Events from "../../components/Events";
+import BannerHome from "../../components/BannerHome";
 
 const Home = () => {
   return (
     <>
       <NavbarHome />
+      <BannerHome/>
       <div className="container mx-auto p-4">
         <header className="text-center mb-8">
           <h1 className="text-4xl font-bold">Welcome to Our Application!</h1>
