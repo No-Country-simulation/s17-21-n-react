@@ -38,6 +38,11 @@ import assignmentTurnedIn from "./icons/assignmentTurnedIn.svg";
 import checkCircle from "./icons/checkCircle.svg";
 import libraryBooks from "./icons/libraryBooks.svg";
 import visibility from "./icons/visibility.svg";
+import arrow from "./icons/arrow.svg";
+import whyUsBg from "./images/whyUs_bg.svg";
+import whyUsBgWeb from "./images/whyUsBg_web.png"
+import whyUs from "./images/whyUs.webp";
+
 export {
   facebook,
   pinterest,
@@ -79,4 +84,8 @@ export {
   checkCircle,
   libraryBooks,
   visibility,
+  arrow,
+  whyUsBg,
+  whyUsBgWeb,
+  whyUs,
 };
