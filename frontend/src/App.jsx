@@ -16,7 +16,7 @@ const App = () => {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         {/* Layout para el rol según usuario (teacher, student, admin) */}
         <Route element={<Layout userRole="admin" />}>
-        <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/student/*" element={<StudentsRoutes />} />
           <Route path="/teacher/*" element={<TeachersRoutes />} />
           <Route path="/admin/*" element={<AdminRoutes />} />
