@@ -52,6 +52,7 @@ import arrow from "./icons/arrow.svg";
 import whyUsBg from "./images/whyUs_bg.svg";
 import whyUsBgWeb from "./images/whyUsBg_web.png";
 import whyUs from "./images/whyUs.webp";
+import profile from "./images/profile.png";
 
 export {
   facebook,
@@ -108,4 +109,5 @@ export {
   whyUsBg,
   whyUsBgWeb,
   whyUs,
+  profile,
 };
