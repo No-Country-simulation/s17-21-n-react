@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function LockScreen({ onUnlock }) { 
+export default function LockScreen({ onUnlock }) {
   const [password, setPassword] = useState("");
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [userData, setUserData] = useState({ name: "", profilePicture: profile });
@@ -26,8 +26,8 @@ export default function LockScreen({ onUnlock }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
-    if (password.trim() === "1234") { 
+
+    if (password.trim() === "1234") {
       setIsPasswordValid(true);
       onUnlock();
     } else {
@@ -77,7 +77,9 @@ export default function LockScreen({ onUnlock }) {
               required
             />
             {!isPasswordValid && (
-              <p className="text-warning text-xs mt-1">Contraseña incorrecta. Inténtalo de nuevo.</p>
+              <p className="text-warning text-xs mt-1">
+                Contraseña incorrecta. Inténtalo de nuevo.
+              </p>
             )}
           </div>
           <button

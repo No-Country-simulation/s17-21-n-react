@@ -11,8 +11,8 @@ import IdleTimer from "./components/IdleTimer/IdleTimer";
 const App = () => {
   return (
     <div className="font-hind bg-background_primary">
-          {/* Se aplicará solo a las rutas protegidas */}
-        <IdleTimer>
+      {/* Se aplicará solo a las rutas protegidas */}
+      <IdleTimer>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -27,8 +27,8 @@ const App = () => {
 
           <Route path="*" element={<ErrorPage />} />
         </Routes>
-    </IdleTimer>
-      </div>
+      </IdleTimer>
+    </div>
   );
 };
 

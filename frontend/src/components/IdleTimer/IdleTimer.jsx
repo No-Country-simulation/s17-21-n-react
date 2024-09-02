@@ -41,7 +41,7 @@ const IdleTimer = ({ children }) => {
         clearTimeout(timerRef.current);
       }
     };
-  }, );
+  });
 
   const handleUnlock = () => {
     setIsIdle(false);
