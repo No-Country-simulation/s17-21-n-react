@@ -143,7 +143,7 @@ const Login = () => {
                       id="email"
                       name="email"
                       placeholder="Ingresa tu correo"
-                      className="bg-[#F6F6F7] pl-12 pr-12 py-5 border-gray-300 outline-none w-full rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="bg-[#F6F6F7] px-12 py-5 border-gray-300 outline-none w-full rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       onChange={handleChange}
                       required
                     />
@@ -162,7 +162,7 @@ const Login = () => {
                       id="password"
                       name="password"
                       placeholder="Ingresa tu contraseña"
-                      className="bg-[#F6F6F7] pl-12 pr-12 py-5 border-gray-300 outline-none w-full rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="bg-[#F6F6F7] px-12 py-5 border-gray-300 outline-none w-full rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       onChange={handleChange}
                       required
                     />
