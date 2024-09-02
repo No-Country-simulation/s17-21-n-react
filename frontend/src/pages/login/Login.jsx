@@ -4,6 +4,7 @@ import { useState } from "react";
 import configureAxios from "../../api/axios";
 import useUserStore from "../../store/auth";
 import Footer from "../../components/layout/Footer";
+import { Mail, Lock } from "lucide-react";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -132,32 +133,36 @@ const Login = () => {
             <h2 className="text-[40px] font-bold mb-12">Iniciar Sesión</h2>
             <div className="bg-white rounded-[10px] px-4 py-12 sm:px-[70px] sm:py-[100px] relative z-50">
               <form onSubmit={handleLogin} className="sm:w-[376px]">
-                <div className="text-start">
+                <div className="text-start relative">
                   <label htmlFor="email" className="text-secondary block font-medium pb-3">
-                    Correo
+                    Correo electrónico
                   </label>
-                  <input
-                    type="text"
-                    id="email"
-                    name="email"
-                    placeholder="Ingresa tu correo"
-                    className="bg-[#F6F6F7] px-12 py-5 outline-none w-full rounded-md"
-                    onChange={handleChange}
-                    required
-                  />
+                  <div className="relative">
+                    <input
+                      type="text"
+                      id="email"
+                      name="email"
+                      placeholder="Ingresa tu correo"
+                      className="bg-[#F6F6F7] px-12 py-5 border-gray-300 outline-none w-full rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                      onChange={handleChange}
+                      required
+                    />
+                    <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                  </div>
                 </div>
 
-                <div className="text-start mt-1">
+                <div className="text-start relative mt-1">
                   <label htmlFor="password" className="text-secondary block font-medium pb-3">
                     Contraseña
                   </label>
                   <div className="relative">
+                    <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <input
                       type={passwordVisible ? "text" : "password"}
                       id="password"
                       name="password"
                       placeholder="Ingresa tu contraseña"
-                      className="bg-[#F6F6F7] px-12 py-5 outline-none w-full rounded-md"
+                      className="bg-[#F6F6F7] px-12 py-5 border-gray-300 outline-none w-full rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       onChange={handleChange}
                       required
                     />
@@ -184,7 +189,7 @@ const Login = () => {
                       Recuérdame
                     </label>
                   </div>
-                  <Link to="/a" className="text-primary">
+                  <Link to="/forgot-password" className="text-primary">
                     Olvidaste la contraseña?
                   </Link>
                 </div>
