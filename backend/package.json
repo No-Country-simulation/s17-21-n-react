@@ -8,7 +8,7 @@
     "dev": "cross-env NODE_ENV=development concurrently \"npm run watch-compile\" \"npm run watch-dev\"",
     "watch-compile": "swc src index.ts -w --out-dir dist",
     "watch-dev": "nodemon",
-    "build": "swc src index.ts -d api",
+    "build": "swc src index.ts -d dist",
     "start": "cross-env NODE_ENV=production node dist/index.js",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
