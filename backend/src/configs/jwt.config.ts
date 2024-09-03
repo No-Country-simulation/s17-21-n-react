@@ -1,4 +1,5 @@
 import { SignOptions } from "jsonwebtoken";
+import { JWT_SECRET } from "./envs";
 
 const jwtSignOptions: SignOptions = {
   expiresIn: "1d",
@@ -6,5 +7,5 @@ const jwtSignOptions: SignOptions = {
 
 export const jwtConfig = {
   options: jwtSignOptions,
-  secret : process.env.JWT_SECRET || "your-secret-key",
+  secret : JWT_SECRET,
 };
