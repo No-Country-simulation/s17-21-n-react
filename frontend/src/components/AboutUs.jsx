@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { arrowCircle, fabullseye, johnDoe, johnDoeSignature, mdvisibility, play, teachers1, teachers2 } from "../assets";
+import {
+  arrowCircle,
+  fabullseye,
+  johnDoe,
+  johnDoeSignature,
+  mdvisibility,
+  play,
+  teachers1,
+  teachers2,
+} from "../assets";
 
 const AboutUs = () => {
   const [selected, setSelected] = useState("mision");
@@ -14,7 +23,7 @@ const AboutUs = () => {
     vision:
       "Nos esforzamos por crear un entorno de aprendizaje inclusivo y accesible, donde la tecnología sea un puente hacia el conocimiento para todos, sin importar dónde se encuentren.",
   };
-  
+
   return (
     <div className="container mx-auto flex justify-center">
       <div className="flex flex-col md:flex-row  items-center gap-10">
