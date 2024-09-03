@@ -53,6 +53,12 @@ import whyUsBg from "./images/whyUs_bg.svg";
 import whyUsBgWeb from "./images/whyUsBg_web.png";
 import whyUs from "./images/whyUs.webp";
 import profile from "./images/profile.png";
+import teachers1 from "./images/teachers1.webp";
+import teachers2 from "./images/teachers2.webp";
+import play from "./images/play.png";
+import johnDoe from "./images/JohnDoe.webp";
+import johnDoeSignature from "./images/JohnDoe-signature.webp";
+import greaterThanIcon from "./icons/greaterThanIcon.svg";
 
 export {
   facebook,
@@ -110,4 +116,10 @@ export {
   whyUsBgWeb,
   whyUs,
   profile,
+  teachers1,
+  teachers2,
+  play,
+  johnDoe,
+  johnDoeSignature,
+  greaterThanIcon,
 };
