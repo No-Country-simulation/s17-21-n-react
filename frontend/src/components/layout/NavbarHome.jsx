@@ -11,7 +11,7 @@ const NavbarHome = () => {
 
   const navItems = [
     { id: 1, label: "Inicio", to: "#inicio" },
-    { id: 2, label: "Sobre Nosotros", to: "/aboutus" },
+    { id: 2, label: "Sobre Nosotros", to: "#nosotros" },
     { id: 3, label: "Ventajas", to: "#ventajas" },
     { id: 4, label: "Eventos", to: "#eventos" },
     { id: 5, label: "Contacto", to: "#contacto" },
