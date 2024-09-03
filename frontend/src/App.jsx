@@ -7,7 +7,6 @@ import Login from "./pages/login/Login";
 import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/resetpassword/ResetPassword";
 import IdleTimer from "./components/IdleTimer/IdleTimer";
-import AboutUs from "./components/AboutUs";
 
 const App = () => {
   return (
@@ -17,8 +16,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />        
           {/* Layout para el rol según usuario (teacher, student, admin) */}
           <Route element={<Layout userRole="admin" />}>
             <Route path="/reset-password" element={<ResetPassword />} />
