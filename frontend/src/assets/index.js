@@ -61,6 +61,7 @@ import johnDoeSignature from "./images/JohnDoe-signature.webp";
 import greaterThanIcon from "./icons/greaterThanIcon.svg";
 import fabullseye from "./icons/FaBullseye.svg";
 import mdvisibility from "./icons/MdVisibility.svg";
+import arrowCircle from "./icons/arrowcircle.svg";
 
 export {
   facebook,
@@ -126,4 +127,5 @@ export {
   greaterThanIcon,
   fabullseye,
   mdvisibility,
+  arrowCircle,
 };
