@@ -59,6 +59,8 @@ import play from "./images/play.png";
 import johnDoe from "./images/JohnDoe.webp";
 import johnDoeSignature from "./images/JohnDoe-signature.webp";
 import greaterThanIcon from "./icons/greaterThanIcon.svg";
+import fabullseye from "./icons/FaBullseye.svg";
+import mdvisibility from "./icons/MdVisibility.svg";
 
 export {
   facebook,
@@ -122,4 +124,6 @@ export {
   johnDoe,
   johnDoeSignature,
   greaterThanIcon,
+  fabullseye,
+  mdvisibility,
 };
