@@ -11,6 +11,7 @@ import ForTeachers from "../../components/ForTeachers";
 import Quotation from "../../components/Quotation";
 import WhyUs from "../../components/WhyUs";
 import { whyUsBg, whyUsBgWeb } from "../../assets";
+import AboutUsNew from "../../components/AboutUs";
 
 const Home = () => {
   return (
@@ -53,6 +54,9 @@ const Home = () => {
       </div>
       <section className="w-full">
         <ForTeachers />
+      </section>
+      <section className="w-full pt-20">
+        <AboutUsNew />
       </section>
       <section className="w-full py-[50px] md:py-[110px]">
         <ForStudents />
