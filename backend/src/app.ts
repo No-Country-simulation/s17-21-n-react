@@ -2,7 +2,7 @@ import express, { Request, Response, Application } from "express";
 import morgan from "morgan";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
-import { allowOrigins, MORGAN_FORMAT } from "./configs";
+import { corsConfig, MORGAN_FORMAT } from "./configs";
 import { errorResponse, successResponse } from "./shared/utils";
 import { authRouter } from "./features/auth/auth.router";
 import { swaggerSpec } from "./shared/utils/swagger";
@@ -10,10 +10,7 @@ import { swaggerSpec } from "./shared/utils/swagger";
 const app: Application = express();
 
 app.use(morgan(MORGAN_FORMAT));
-app.use(cors({
-  credentials: true,
-  origin     : allowOrigins(),
-}));
+app.use(cors(corsConfig));
 
 app.use(express.json());
 app.disable("x-powered-by");

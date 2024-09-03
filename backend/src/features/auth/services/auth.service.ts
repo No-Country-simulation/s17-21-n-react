@@ -1,12 +1,13 @@
-/* eslint-disable key-spacing */
-/* eslint-disable sort-keys-fix/sort-keys-fix */
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import { AuthRepository } from "../repositories/auth.repository";
 import { RoleRepository } from "../repositories/role.repository";
 import { LoginDto } from "../dtos/login.dto";
 import { RegisterAdminDto } from "../dtos/register.dto";
-import { jwtConfig } from "../../../shared/utils/jwt.util";
+import {
+  comparePassword,
+  generateJWT,
+  hashPassword,
+} from "../../../shared/utils";
+import { SystemRoles } from "../../../shared/constants";
 
 export class AuthService {
   constructor(
@@ -17,38 +18,46 @@ export class AuthService {
   async login(loginDto: LoginDto) {
     const user = await this.authRepository.findByEmail(loginDto.email);
     if (!user) throw new Error("User not found");
-    
-    const isPasswordValid = await bcrypt.compare(loginDto.password, user.password);
+
+    const isPasswordValid = await comparePassword(
+      loginDto.password,
+      user.password
+    );
     if (!isPasswordValid) throw new Error("Invalid password");
 
-    const token = jwt.sign({ userId: user.id }, jwtConfig.secret, { expiresIn: jwtConfig.expiresIn });
-    return { user, token };
+    const { id, email, name, last_name, roleId } = user;
+
+    const token = generateJWT({ userId: user.id });
+    return { token, user: { email, id, last_name, name, roleId } };
   }
 
   async registerAdmin(registerDto: RegisterAdminDto) {
-    const existingUser = await this.authRepository.findByEmail(registerDto.email);
+    const existingUser = await this.authRepository.findByEmail(
+      registerDto.email
+    );
     if (existingUser) throw new Error("User already exists");
 
-    const hashedPassword = await bcrypt.hash(registerDto.password, 10);
+    const hashedPassword = await hashPassword(registerDto.password);
 
     const existingRole = await this.roleRepository.findFirst("ADMIN");
     let roleId: string = "";
 
     if (!existingRole) {
       const role = await this.roleRepository.create({
-        name: "ADMIN",
+        name: SystemRoles.ADMIN,
       });
       roleId = role.id;
-    } else 
+    } else
       roleId = existingRole.id;
-    
+
     const user = await this.authRepository.create({
-      email: registerDto.email,
+      ...registerDto,
+      email   : registerDto.email,
       password: hashedPassword,
-      roleId: roleId,
+      roleId  : roleId,
     });
 
-    const token = jwt.sign({ userId: user.id }, jwtConfig.secret, { expiresIn: jwtConfig.expiresIn });
-    return { user, token };
+    const token = generateJWT({ userId: user.id });
+    return { token, user };
   }
 }

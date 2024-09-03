@@ -1,7 +1,10 @@
 export interface RegisterAdminDto {
     email: string;
     password: string;
-    roleId: string;
+    name: string;
+    last_name:string;
+    dni:string;
+    roleId : string;
 }
 
 export interface RegisterRolDto {

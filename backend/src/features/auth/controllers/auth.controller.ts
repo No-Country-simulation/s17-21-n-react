@@ -1,5 +1,3 @@
-/* eslint-disable sort-keys-fix/sort-keys-fix */
-/* eslint-disable indent */
 import { Request, Response } from "express";
 import { AuthService } from "../services/auth.service";
 import { LoginDto } from "../dtos/login.dto";
@@ -57,17 +55,17 @@ export class AuthController {
    */
   async login(req: Request, res: Response) {
     try {
-        const loginDto: LoginDto = req.body;
-        const result = await this.authService.login(loginDto);
-        successResponse({ res, status: HttpCodes.SUCCESS, data: result, message: "Login successfully" });
+      const loginDto: LoginDto = req.body;
+      const result = await this.authService.login(loginDto);
+      successResponse({ data: result, message: "Login successfully", res, status: HttpCodes.SUCCESS });
 
     } catch (error: any) {
-        console.error(error);
-        errorResponse({ res, status: HttpCodes.BAD_REQUEST, message: "Error creating user" });
+      console.error(error);
+      errorResponse({ message: "Error login user", res, status: HttpCodes.BAD_REQUEST });
     }
   }
 
-    /**
+  /**
    * @swagger
    * /api/auth/register:
    *   post:
@@ -115,12 +113,12 @@ export class AuthController {
    */
   async register(req: Request, res: Response) {
     try {
-        const registerDto: RegisterAdminDto = req.body;
-        const result = await this.authService.registerAdmin(registerDto);
-        successResponse({ res, status: HttpCodes.SUCCESS_CREATED, data: result, message: "Admin user created successfully" });
+      const registerDto: RegisterAdminDto = req.body;
+      const result = await this.authService.registerAdmin(registerDto);
+      successResponse({ data: result, message: "Admin user created successfully", res, status: HttpCodes.SUCCESS_CREATED });
     } catch (error: any) {
-        console.error(error);
-        errorResponse({ res, status: HttpCodes.BAD_REQUEST, message: "Failed to create user" });
+      console.error(error);
+      errorResponse({ message: "Failed to create user", res, status: HttpCodes.BAD_REQUEST });
     }
   }
 }
