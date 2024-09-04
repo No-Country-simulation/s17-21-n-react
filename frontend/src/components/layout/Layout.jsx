@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./config/Sidebar";
 import { Menu } from "lucide-react";
+import SessionNavbar from "./SessionNavbar";
 
 export default function Layout({ userRole }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -34,6 +35,7 @@ export default function Layout({ userRole }) {
     <div className="relative h-screen overflow-hidden">
       {/* Pasa userRole al Sidebar */}
       <Sidebar isOpen={isSidebarOpen} sidebarRef={sidebarRef} userRole={userRole} />
+      <SessionNavbar/>
 
       {isSidebarOpen && (
         <div

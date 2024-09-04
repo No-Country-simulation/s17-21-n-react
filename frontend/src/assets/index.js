@@ -70,6 +70,7 @@ import greaterThanIcon from "./icons/greaterThanIcon.svg";
 import fabullseye from "./icons/FaBullseye.svg";
 import mdvisibility from "./icons/MdVisibility.svg";
 import arrowCircle from "./icons/arrowcircle.svg";
+import bell from "./icons/bell.svg";
 
 export {
   facebook,
@@ -144,4 +145,5 @@ export {
   fabullseye,
   mdvisibility,
   arrowCircle,
+  bell,
 };
