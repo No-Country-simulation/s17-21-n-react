@@ -134,7 +134,6 @@ const AttendanceControl = () => {
                       type="text"
                       placeholder="Ej: Ausente por enfermedad"
                       className="w-full border border-gray-300 rounded-md p-2"
-                      value=""
                     />
                   </td>
                 </tr>
