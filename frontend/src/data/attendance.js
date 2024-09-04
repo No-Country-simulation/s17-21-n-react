@@ -5,7 +5,7 @@ export const attendance = [
       "foto": avatar,
       "nombre": "Anahía González",
       "correo": "agonzal@gmail.com",
-      "asistencia": "Presente",
+      "asistencia": "Ausente",
       "observaciones": null
     },
     {
@@ -13,7 +13,7 @@ export const attendance = [
       "foto": avatar,
       "nombre": "Juan Pérez",
       "correo": "jperez@example.com",
-      "asistencia": "Retrasado",
+      "asistencia": "Ausente",
       "observaciones": "Llegó 15 minutos tarde"
     },
     {
@@ -29,7 +29,7 @@ export const attendance = [
       "foto": avatar,
       "nombre": "Carlos Martínez",
       "correo": "cmartinez@example.com",
-      "asistencia": "Presente",
+      "asistencia": "Ausente",
       "observaciones": null
     },
     {
@@ -37,7 +37,7 @@ export const attendance = [
       "foto": avatar,
       "nombre": "Sofía López",
       "correo": "slopez@example.com",
-      "asistencia": "Retrasado",
+      "asistencia": "Ausente",
       "observaciones": "Llegó 10 minutos tarde"
     },
     {
@@ -53,7 +53,7 @@ export const attendance = [
       "foto": avatar,
       "nombre": "Ana García",
       "correo": "agarcia@example.com",
-      "asistencia": "Presente",
+      "asistencia": "Ausente",
       "observaciones": null
     },
     {
@@ -61,7 +61,7 @@ export const attendance = [
       "foto": avatar,
       "nombre": "Pablo Ruiz",
       "correo": "pruiz@example.com",
-      "asistencia": "Retrasado",
+      "asistencia": "Ausente",
       "observaciones": "Llegó 20 minutos tarde"
     },
     {
@@ -77,7 +77,7 @@ export const attendance = [
       "foto": avatar,
       "nombre": "David Castro",
       "correo": "dcastro@example.com",
-      "asistencia": "Presente",
+      "asistencia": "Ausente",
       "observaciones": null
     }
   ]

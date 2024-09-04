@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
 
-const AttendanceButton = ({ icon, status, backgroundColor }) => {
+const AttendanceButton = ({ children, className }) => {
   return (
     <button
       type="button"
-      className={`flex items-center justify-center space-x-1 px-4 py-2 text-gray-700 w-[18px] md:w-auto rounded-full md:rounded-md bg-${backgroundColor}`}
+      className={`flex items-center justify-center md:space-x-2 px-4 py-2 w-[18px] md:w-auto rounded-full md:rounded-md ${className}`}
     >
-      {icon}
-      {status}
+      {children}
     </button>
   );
 };
