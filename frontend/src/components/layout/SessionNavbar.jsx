@@ -11,7 +11,8 @@ const SessionNavbar = () => {
     }
   }, []);
 
-  const userName = user?.name || 'User';
+  const userName = user?.name || 'Name';
+  const userLastName = user?.name || 'LastName';
   const userPhoto = user?.photo || ''; // consultar: Si hay que agregar alguna imagen por defecto o el back ya la genera?
   const notifications = user?.notifications || 0;
 
@@ -33,7 +34,7 @@ const SessionNavbar = () => {
 
         <div className="flex items-center space-x-2">
           <img className="w-8 h-8 rounded-full" src={userPhoto} alt="Avatar" />
-          <span className="hidden lg:inline-block text-gray-700">{userName}</span>
+          <span className="hidden lg:inline-block text-gray-700">{userName} {userLastName}</span>
         </div>
       </div>
     </nav>
