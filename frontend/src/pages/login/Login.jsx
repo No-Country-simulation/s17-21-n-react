@@ -5,14 +5,19 @@ import configureAxios from "../../api/axios";
 import useUserStore from "../../store/auth";
 import Footer from "../../components/layout/Footer";
 import { Mail, Lock } from "lucide-react";
+import { useStore } from "../../context/useStore";
+
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [form, setForm] = useState({
+  const [form, setForm, initialState] = useState({
     email: "",
     password: "",
     remember: false,
   });
+
+  const {user, login} = useStore()
+
 
   const setTokenAndRole = useUserStore((state) => state.setTokenAndRole);
   const navigate = useNavigate();
@@ -32,6 +37,14 @@ const Login = () => {
       [e.target.name]: e.target.checked,
     });
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    login({id: 1, email: form.email})
+    setForm(initialState)
+    console.log(user);
+    
+  }
 
   const togglePasswordVisibility = (e) => {
     e.preventDefault(); // Evitar que el botón intente enviar el formulario
@@ -62,6 +75,7 @@ const Login = () => {
     }
   };
 
+  
   return (
     <>
       <div className="min-h-screen">
@@ -132,7 +146,7 @@ const Login = () => {
 
             <h2 className="text-[40px] font-bold mb-12">Iniciar Sesión</h2>
             <div className="bg-white rounded-[10px] px-4 py-12 sm:px-[70px] sm:py-[100px] relative z-50">
-              <form onSubmit={handleLogin} className="sm:w-[376px]">
+              <form onSubmit={handleLogin, handleSubmit} className="sm:w-[376px]">
                 <div className="text-start relative">
                   <label htmlFor="email" className="text-secondary block font-medium pb-3">
                     Correo electrónico
