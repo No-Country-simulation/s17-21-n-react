@@ -34,11 +34,11 @@ const StatsHighLight = () => {
         <div className="flex flex-col items-center gap-4">
           <div className="flex items-center gap-2">
             <div className="bg-primary size-3 rounded-full" />
-            <h2 className="text-primary uppercase font-semibold">
+            <h2 className="text-primary uppercase font-semibold md:text-2xl">
               Impacto educativo de excelencia
             </h2>
           </div>
-          <h1 className="text-[#1F2126] font-bold text-2xl md:text-4xl text-center capitalize">
+          <h1 className="text-[#1F2126] font-bold text-2xl md:text-[40px] text-center capitalize">
             Nuestros logros nos respaldan
           </h1>
         </div>

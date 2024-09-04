@@ -29,13 +29,13 @@ const NavbarHome = () => {
 
           <div className="hidden md:flex space-x-8 text_primary">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.id}
-                to={item.to}
+                href={item.to}
                 className="hover:text-primary transition duration-200"
               >
                 {item.label}
-              </Link>
+              </a>
             ))}
           </div>
 
@@ -72,13 +72,14 @@ const NavbarHome = () => {
       {isOpen && (
         <div className="md:hidden bg-white shadow-md mt-2 py-2">
           {navItems.map((item) => (
-            <Link
+            <a
               key={item.id}
-              to={item.to}
+              href={item.to}
               className="block px-4 py-2 text-gray-600 hover:bg-blue-500 hover:text-white transition duration-200"
+              onClick={toggleMenu}
             >
               {item.label}
-            </Link>
+            </a>
           ))}
         </div>
       )}
