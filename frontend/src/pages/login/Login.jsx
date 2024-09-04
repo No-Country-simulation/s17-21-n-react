@@ -53,7 +53,7 @@ const Login = () => {
       });
 
       const userData = getUserData.data;
-      sessionStorage.setItem("Data", JSON.stringify(userData))
+      sessionStorage.setItem("Data", JSON.stringify(userData));
 
       alert("User logged in successfully");
 
