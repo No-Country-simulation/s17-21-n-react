@@ -13,6 +13,7 @@ import WhyUs from "../../components/WhyUs";
 import { whyUsBg, whyUsBgWeb } from "../../assets";
 import ContactUs from "../../components/ContactUs";
 import AboutUs from "../../components/AboutUs";
+import BackToTopButton from "../../utils/BackToTopButton";
 
 const Home = () => {
   return (
@@ -92,6 +93,7 @@ const Home = () => {
       <section id="contacto">
         <ContactUs />
       </section>
+      <BackToTopButton/>
       <Footer />
     </>
   );
