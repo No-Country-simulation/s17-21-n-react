@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Response } from "express";
 
 interface ResponseArgs {
   res: Response;
   status?: number;
-  data?: any;
+  data?: unknown;
   message?: string;
 }
 
