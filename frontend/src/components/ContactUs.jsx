@@ -34,7 +34,7 @@ const ContactUs = () => {
           <div className="space-y-6">
             <div className="flex justify-center md:justify-start items-center space-x-3">
               <div className="w-3 h-3 bg-primary rounded-full" />
-              <div className=" text-primary text-lg lg:text-2xl font-semibold uppercase text-center">
+              <div className=" text-primary text-lg lg:text-2xl font-semibold uppercase">
                 Contáctanos ahora
               </div>
             </div>
@@ -141,9 +141,7 @@ const ContactInfo = ({ icon, title, details }) => (
     <div>
       <h3 className="text-xl font-bold">{title}</h3>
       {details.map((detail, index) => (
-        <p key={index} className="">
-          {detail}
-        </p>
+        <p key={index}>{detail}</p>
       ))}
     </div>
   </div>
