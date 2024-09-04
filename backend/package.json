@@ -10,6 +10,7 @@
     "watch-dev": "nodemon",
     "build": "swc src index.ts -d dist",
     "start": "cross-env NODE_ENV=production node dist/index.js",
+    "postinstall": "prisma generate",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "clean": "rm -rf dist",
