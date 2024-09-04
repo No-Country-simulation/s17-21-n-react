@@ -60,6 +60,7 @@ import contactusBg from "./images/contactus-bg.webp";
 import contactusShape1 from "./images/contactus-shape1.webp";
 import contactusShape2 from "./images/contactus-shape2.webp";
 import contactusShape3 from "./images/contactus-shape3.webp";
+import rings from "./icons/rings.svg";
 
 export {
   facebook,
@@ -124,4 +125,5 @@ export {
   contactusShape1,
   contactusShape2,
   contactusShape3,
+  rings,
 };
