@@ -1,18 +1,15 @@
-import PropTypes from "prop-types";
+/* eslint-disable react/prop-types */
 
-const AttendanceButton = ({ children, backgroundColor }) => {
+const AttendanceButton = ({ icon, status, backgroundColor }) => {
   return (
     <button
-      className={`w-[18px] md:w-auto max-w-20 h-auto md:px-1.5 text-xs lg:text-base font-normal text-white text-center rounded-full md:rounded-lg bg-${backgroundColor}`}
+      type="button"
+      className={`flex items-center justify-center space-x-1 px-4 py-2 text-gray-700 w-[18px] md:w-auto rounded-full md:rounded-md bg-${backgroundColor}`}
     >
-      {children}
+      {icon}
+      {status}
     </button>
   );
-};
-
-AttendanceButton.propTypes = {
-  children: PropTypes.string,
-  backgroundColor: PropTypes.string,
 };
 
 export default AttendanceButton;
