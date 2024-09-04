@@ -1,12 +1,9 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { SystemRoles } from "../../shared/constants/default-roles.enum";
+import prisma from "./prisma";
 
 const initializeRoles  = async () => {
 
-  const roles = [ "ADMIN", "STUDENT", "PROFESSOR" ];
-
-  for (const roleName of roles) {
+  for (const roleName of Object.values(SystemRoles)) {
     const roleExists = await prisma.role.findFirst({ where: { name: roleName } });
 
     if (!roleExists) {

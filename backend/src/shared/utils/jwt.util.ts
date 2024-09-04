@@ -1,9 +1,14 @@
-/* eslint-disable indent */
-import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+import { jwtConfig } from "../../configs";
 
-dotenv.config();
+export interface MyJwtPayload {
+  userId: string;
+}
 
-export const jwtConfig = {
-    expiresIn: "1d",
-    secret   : process.env.JWT_SECRET || "your-secret-key",
+export const generateJWT = (payload: MyJwtPayload) => {
+  return jwt.sign(payload, jwtConfig.secret, jwtConfig.options);
+};
+
+export const decodeJwt = (token: string) => {
+  return jwt.verify(token, jwtConfig.secret);
 };
