@@ -53,6 +53,14 @@ import whyUsBg from "./images/whyUs_bg.svg";
 import whyUsBgWeb from "./images/whyUsBg_web.png";
 import whyUs from "./images/whyUs.webp";
 import profile from "./images/profile.png";
+import telephone from "./icons/telephone.svg";
+import mail from "./icons/mail.svg";
+import location from "./icons/location.svg";
+import contactusBg from "./images/contactus-bg.webp";
+import contactusShape1 from "./images/contactus-shape1.webp";
+import contactusShape2 from "./images/contactus-shape2.webp";
+import contactusShape3 from "./images/contactus-shape3.webp";
+import rings from "./icons/rings.svg";
 import teachers1 from "./images/teachers1.webp";
 import teachers2 from "./images/teachers2.webp";
 import play from "./images/play.png";
@@ -119,6 +127,14 @@ export {
   whyUsBgWeb,
   whyUs,
   profile,
+  telephone,
+  mail,
+  location,
+  contactusBg,
+  contactusShape1,
+  contactusShape2,
+  contactusShape3,
+  rings,
   teachers1,
   teachers2,
   play,

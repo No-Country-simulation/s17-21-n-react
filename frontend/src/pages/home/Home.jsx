@@ -11,6 +11,7 @@ import ForTeachers from "../../components/ForTeachers";
 import Quotation from "../../components/Quotation";
 import WhyUs from "../../components/WhyUs";
 import { whyUsBg, whyUsBgWeb } from "../../assets";
+import ContactUs from "../../components/ContactUs";
 import AboutUs from "../../components/AboutUs";
 
 const Home = () => {
@@ -85,6 +86,7 @@ const Home = () => {
       <section className="w-full py-7 md:py-14">
         <Events />
       </section>
+      <ContactUs />
       <Footer />
     </>
   );
