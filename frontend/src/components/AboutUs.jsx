@@ -54,7 +54,7 @@ const AboutUs = () => {
         <div className="flex flex-col gap-6 max-w-[570px]">
           <div className="flex flex-row items-center justify-center md:justify-normal gap-2">
             <div className="bg-primary size-3 rounded-full" />
-            <h2 className="text-primary uppercase font-semibold text-base lg:text-3xl">
+            <h2 className="text-primary uppercase font-semibold text-base lg:text-2xl">
               acerca de nuestra compañia
             </h2>
           </div>
