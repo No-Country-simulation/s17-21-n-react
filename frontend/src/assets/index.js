@@ -61,6 +61,15 @@ import contactusShape1 from "./images/contactus-shape1.webp";
 import contactusShape2 from "./images/contactus-shape2.webp";
 import contactusShape3 from "./images/contactus-shape3.webp";
 import rings from "./icons/rings.svg";
+import teachers1 from "./images/teachers1.webp";
+import teachers2 from "./images/teachers2.webp";
+import play from "./images/play.png";
+import johnDoe from "./images/JohnDoe.webp";
+import johnDoeSignature from "./images/JohnDoe-signature.webp";
+import greaterThanIcon from "./icons/greaterThanIcon.svg";
+import fabullseye from "./icons/FaBullseye.svg";
+import mdvisibility from "./icons/MdVisibility.svg";
+import arrowCircle from "./icons/arrowcircle.svg";
 
 export {
   facebook,
@@ -126,4 +135,13 @@ export {
   contactusShape2,
   contactusShape3,
   rings,
+  teachers1,
+  teachers2,
+  play,
+  johnDoe,
+  johnDoeSignature,
+  greaterThanIcon,
+  fabullseye,
+  mdvisibility,
+  arrowCircle,
 };
