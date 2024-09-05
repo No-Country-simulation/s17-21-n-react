@@ -6,6 +6,7 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/resetpassword/ResetPassword";
+import DashboardSummary from "./components/DashboardSummary";
 // import IdleTimer from "./components/IdleTimer/IdleTimer";
 
 const App = () => {

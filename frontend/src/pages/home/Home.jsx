@@ -93,7 +93,7 @@ const Home = () => {
       <section id="contacto">
         <ContactUs />
       </section>
-      <BackToTopButton/>
+      <BackToTopButton />
       <Footer />
     </>
   );
