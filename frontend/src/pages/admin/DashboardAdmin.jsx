@@ -1,5 +1,3 @@
-import ActivityOverview from "../../components/ActivityOverview";
-
 const DashboardAdmin = () => {
   return (
     <div className="container mx-auto">
@@ -26,10 +24,6 @@ const DashboardAdmin = () => {
             <p className="mt-2">Configure application settings.</p>
           </div>
         </div>
-      </section>
-
-      <section>
-        <ActivityOverview />
       </section>
 
       <footer className="text-center mt-8">

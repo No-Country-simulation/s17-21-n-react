@@ -1,32 +1,32 @@
-import { useState, useEffect } from 'react'
-import { ArrowUp } from 'lucide-react'
+import { useState, useEffect } from "react";
+import { ArrowUp } from "lucide-react";
 
 export default function BackToTopButton() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.pageYOffset > 300) {
-        setIsVisible(true)
+        setIsVisible(true);
       } else {
-        setIsVisible(false)
+        setIsVisible(false);
       }
-    }
+    };
 
-    window.addEventListener('scroll', toggleVisibility)
+    window.addEventListener("scroll", toggleVisibility);
 
-    return () => window.removeEventListener('scroll', toggleVisibility)
-  }, [])
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
-    })
-  }
+      behavior: "smooth",
+    });
+  };
 
   if (!isVisible) {
-    return null
+    return null;
   }
 
   return (
@@ -40,16 +40,13 @@ export default function BackToTopButton() {
       </div>
       <div className="bg-white px-2 pb-2 rounded-b-full">
         <span className="text-gray-600 text-sm font-bold flex flex-col-reverse items-center">
-          {'BACK TO TOP'.split('').map((char, index) => (
-            <span
-              key={index}
-              className="transform -rotate-90"
-            >
+          {"BACK TO TOP".split("").map((char, index) => (
+            <span key={index} className="transform -rotate-90">
               {char}
             </span>
           ))}
         </span>
       </div>
     </button>
-  )
+  );
 }
