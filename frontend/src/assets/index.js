@@ -71,6 +71,8 @@ import fabullseye from "./icons/FaBullseye.svg";
 import mdvisibility from "./icons/MdVisibility.svg";
 import arrowCircle from "./icons/arrowcircle.svg";
 import avatar from "./images/avatar.png";
+import bell from "./icons/bell.svg";
+
 
 export {
   facebook,
@@ -146,4 +148,5 @@ export {
   mdvisibility,
   arrowCircle,
   avatar,
+  bell
 };

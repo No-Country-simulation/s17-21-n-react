@@ -45,7 +45,18 @@ const Login = () => {
       const res = await api.post("/login", { email: form.email, password: form.password });
       const { token, role, id } = res.data;
       setTokenAndRole(token, role, id);
+
+      const getUserData = await api.get(`/user/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const userData = getUserData.data;
+      sessionStorage.setItem("Data", JSON.stringify(userData));
+
       alert("User logged in successfully");
+
       if (role === "student") {
         navigate("/student/");
       } else if (role === "teacher") {
