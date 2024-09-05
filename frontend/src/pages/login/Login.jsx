@@ -1,23 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
 import { bg, circle, dots, eye, eye_hide, man1, man2, rightArrow, zigzag } from "../../assets";
 import { useState } from "react";
-import configureAxios from "../../api/axios";
-import useUserStore from "../../store/auth";
 import Footer from "../../components/layout/Footer";
 import { Mail, Lock } from "lucide-react";
+import { loginService } from "../../services/authService";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [form, setForm] = useState({
-    email: "",
-    password: "",
+    email: "administrador@test.com",
+    password: "adminPassword123#",
     remember: false,
   });
-
-  const setTokenAndRole = useUserStore((state) => state.setTokenAndRole);
-  const navigate = useNavigate();
   const [error, setError] = useState(null);
-  const api = configureAxios();
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({
@@ -34,45 +31,29 @@ const Login = () => {
   };
 
   const togglePasswordVisibility = (e) => {
-    e.preventDefault(); // Evitar que el botón intente enviar el formulario
+    e.preventDefault();
     setPasswordVisible(!passwordVisible);
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    console.log("Formulario de inicio de sesión enviado con:", form);
 
-    try {
-      const res = await api.post("/login", { email: form.email, password: form.password });
-      const { token, role, id } = res.data;
-      setTokenAndRole(token, role, id);
+    const result = await loginService(form.email, form.password);
 
-      const getUserData = await api.get(`/user/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const userData = getUserData.data;
-      sessionStorage.setItem("Data", JSON.stringify(userData));
-
-      alert("User logged in successfully");
-
-      if (role === "student") {
+    if (result.success) {
+      console.log("Respuesta de login exitosa:");
+      if (result.user.roleId === "student") {
         navigate("/student/");
-      } else if (role === "teacher") {
+      } else if (result.user.roleId === "teacher") {
         navigate("/teacher/");
-      } else if (role === "admin") {
+      } else if (result.user.roleId === "admin") {
         navigate("/admin/");
       }
-    } catch (error) {
-      if (error.response && error.response.status === 403) {
-        setError(error.response.data);
-      } else {
-        setError("Login failed.");
-      }
+    } else {
+      setError(result.message);
     }
   };
-
   return (
     <>
       <div className="min-h-screen">
@@ -153,6 +134,7 @@ const Login = () => {
                       type="text"
                       id="email"
                       name="email"
+                      value={form.email}
                       placeholder="Ingresa tu correo"
                       className="bg-[#F6F6F7] px-12 py-5 border-gray-300 outline-none w-full rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       onChange={handleChange}
@@ -172,6 +154,7 @@ const Login = () => {
                       type={passwordVisible ? "text" : "password"}
                       id="password"
                       name="password"
+                      value={form.password}
                       placeholder="Ingresa tu contraseña"
                       className="bg-[#F6F6F7] px-12 py-5 border-gray-300 outline-none w-full rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       onChange={handleChange}
@@ -196,9 +179,7 @@ const Login = () => {
                       checked={form.remember}
                       onChange={handleChecked}
                     />
-                    <label htmlFor="remember">
-                      Recuérdame
-                    </label>
+                    <label htmlFor="remember">Recuérdame</label>
                   </div>
                   <Link to="/forgot-password" className="text-primary">
                     Olvidaste la contraseña?

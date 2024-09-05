@@ -6,7 +6,8 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
 import ResetPassword from "./pages/resetpassword/ResetPassword";
-// import IdleTimer from "./components/IdleTimer/IdleTimer";
+// import IdleTimer from "./componekcnts/IdleTimer/IdleTimer";
+// import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -17,6 +18,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        {/* <Route element={<ProtectedRoute />}> */}
+        <Route path="/reset-password" element={<ResetPassword />} />
         {/* Layout para el rol según usuario (teacher, student, admin) */}
         <Route element={<Layout userRole="teacher" />}>
           <Route path="/reset-password" element={<ResetPassword />} />
@@ -24,6 +27,7 @@ const App = () => {
           <Route path="/teacher/*" element={<TeachersRoutes />} />
           <Route path="/admin/*" element={<AdminRoutes />} />
         </Route>
+        {/* </Route> */}
 
         <Route path="*" element={<ErrorPage />} />
       </Routes>
