@@ -31,7 +31,7 @@ export default function Layout({ userRole }) {
   }, [isSidebarOpen]);
 
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden bg-white">
       {/* Pasa userRole al Sidebar */}
       <Sidebar isOpen={isSidebarOpen} sidebarRef={sidebarRef} userRole={userRole} />
 
