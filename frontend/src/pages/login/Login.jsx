@@ -43,7 +43,7 @@ const Login = () => {
 
     if (result.success) {
       console.log("Respuesta de login exitosa:");
-      if (result.user.roleId === "student") {   
+      if (result.user.roleId === "student") {
         navigate("/student/");
       } else if (result.user.roleId === "teacher") {
         navigate("/teacher/");
@@ -179,9 +179,7 @@ const Login = () => {
                       checked={form.remember}
                       onChange={handleChecked}
                     />
-                    <label htmlFor="remember">
-                      Recuérdame
-                    </label>
+                    <label htmlFor="remember">Recuérdame</label>
                   </div>
                   <Link to="/forgot-password" className="text-primary">
                     Olvidaste la contraseña?
