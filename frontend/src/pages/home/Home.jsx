@@ -14,6 +14,7 @@ import { whyUsBg, whyUsBgWeb } from "../../assets";
 import ContactUs from "../../components/ContactUs";
 import AboutUs from "../../components/AboutUs";
 import BackToTopButton from "../../utils/BackToTopButton";
+import { handleUpClick } from "../../utils/handleUpClick";
 
 const Home = () => {
   return (
@@ -43,7 +44,7 @@ const Home = () => {
             <p className="text-lg mb-4">
               Manage courses, track students, and access teaching resources.
             </p>
-            <Link to="/teacher/dashboard" className="inline-block text-green-500 hover:underline">
+            <Link to="/teacher/dashboard" onClick={handleUpClick} className="inline-block text-green-500 hover:underline">
               Go to Teacher Dashboard
             </Link>
           </div>
