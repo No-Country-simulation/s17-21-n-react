@@ -1,37 +1,29 @@
+import ActivityOverview from "../../components/ActivityOverview";
+import AttendanceCardSVG from "../../components/AttendanceCardSVG";
+import EvaluationStatisticsSVG from "../../components/EvaluationStatisticsSVG";
+import LineChartSVG from "../../components/LineChartSVG";
+import { evaluationStatistics, exampleTaskData } from "../../data/dashboardTeachers";
+
 const DashboardTeachers = () => {
   return (
-    <div className="container mx-auto p-4">
+    <div className="container bg-white">
       <header className="text-center mb-8">
         <h1 className="text-4xl font-bold">Teacher Dashboard</h1>
-        <p className="text-lg mt-2">
-          Manage your courses, track student progress, and access teaching resources.
-        </p>
       </header>
 
-      <section className="mb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div className="bg-blue-100 p-4 rounded shadow-md">
-            <h2 className="text-2xl font-semibold mb-4">Course Management</h2>
-            <p className="text-lg">Create, edit, and manage your courses and assignments.</p>
-          </div>
-
-          <div className="bg-green-100 p-4 rounded shadow-md">
-            <h2 className="text-2xl font-semibold mb-4">Student Tracking</h2>
-            <p className="text-lg">
-              Monitor student performance and track their progress over time.
-            </p>
-          </div>
-
-          <div className="bg-yellow-100 p-4 rounded shadow-md">
-            <h2 className="text-2xl font-semibold mb-4">Teaching Resources</h2>
-            <p className="text-lg">Access resources, teaching materials, and guidelines.</p>
-          </div>
-        </div>
+      <section className="bg-white my-7 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <AttendanceCardSVG />
+        <EvaluationStatisticsSVG data={evaluationStatistics} />
+        <LineChartSVG data={exampleTaskData} />
       </section>
 
-      <footer className="text-center mt-8">
+      <section>
+        <ActivityOverview />
+      </section>
+
+      <footer className="text-center mt-8 border-t-2 pt-4">
         <p className="text-sm">
-          © {new Date().getFullYear()} Teacher Dashboard. All rights reserved.
+          © {new Date().getFullYear()} EducaPro, Todos los derechos reservados. Equipo: s17-n-react-node
         </p>
       </footer>
     </div>

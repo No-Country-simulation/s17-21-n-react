@@ -11,12 +11,18 @@ import ForTeachers from "../../components/ForTeachers";
 import Quotation from "../../components/Quotation";
 import WhyUs from "../../components/WhyUs";
 import { whyUsBg, whyUsBgWeb } from "../../assets";
+import ContactUs from "../../components/ContactUs";
+import AboutUs from "../../components/AboutUs";
+import BackToTopButton from "../../utils/BackToTopButton";
 
 const Home = () => {
   return (
     <>
       <NavbarHome />
-      <BannerHome />
+      <section id="inicio">
+        <BannerHome />
+      </section>
+
       <div className="container mx-auto p-4">
         <header className="text-center mb-8">
           <h1 className="text-4xl font-bold">Welcome to Our Application!</h1>
@@ -54,6 +60,9 @@ const Home = () => {
       <section className="w-full">
         <ForTeachers />
       </section>
+      <section className="w-full md:py-28" id="nosotros">
+        <AboutUs />
+      </section>
       <section className="w-full py-[50px] md:py-[110px]">
         <ForStudents />
       </section>
@@ -72,15 +81,19 @@ const Home = () => {
       <section className="w-full">
         <Quotation />
       </section>
-      <section className="w-full py-7 md:pt-14 bg-white">
+      <section className="w-full py-7 md:py-28 bg-white" id="ventajas">
         <StatsHighLight />
       </section>
       <section className="w-full py-[31px] md:pb-[133px] bg-white">
         <TestimonialsCarrousel />
       </section>
-      <section className="w-full py-7 md:py-14">
+      <section className="w-full py-7 md:py-28" id="eventos">
         <Events />
       </section>
+      <section id="contacto">
+        <ContactUs />
+      </section>
+      <BackToTopButton />
       <Footer />
     </>
   );

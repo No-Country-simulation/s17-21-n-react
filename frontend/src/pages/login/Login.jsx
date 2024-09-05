@@ -43,7 +43,7 @@ const Login = () => {
 
     if (result.success) {
       console.log("Respuesta de login exitosa:");
-      if (result.user.roleId === "student") {
+      if (result.user.roleId === "student") {   
         navigate("/student/");
       } else if (result.user.roleId === "teacher") {
         navigate("/teacher/");
@@ -123,7 +123,7 @@ const Login = () => {
             </div>
 
             <h2 className="text-[40px] font-bold mb-12">Iniciar Sesión</h2>
-            <div className="bg-white rounded-[10px] px-4 py-12 sm:px-[70px] sm:py-[100px] relative z-50">
+            <div className="rounded-[10px] px-4 py-12 sm:px-[70px] sm:py-[100px] relative z-50 shadow-md">
               <form onSubmit={handleLogin} className="sm:w-[376px]">
                 <div className="text-start relative">
                   <label htmlFor="email" className="text-secondary block font-medium pb-3">
@@ -179,7 +179,7 @@ const Login = () => {
                       checked={form.remember}
                       onChange={handleChecked}
                     />
-                    <label htmlFor="remember" className="text-sm">
+                    <label htmlFor="remember">
                       Recuérdame
                     </label>
                   </div>

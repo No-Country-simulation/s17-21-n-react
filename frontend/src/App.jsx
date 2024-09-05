@@ -11,21 +11,23 @@ import ResetPassword from "./pages/resetpassword/ResetPassword";
 
 const App = () => {
   return (
-    <div className="font-hind bg-background_primary">
+    <div className="font-hind">
+      {/* Se aplicará solo a las rutas protegidas */}
       {/* <IdleTimer> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-
         {/* <Route element={<ProtectedRoute />}> */}
         <Route path="/reset-password" element={<ResetPassword />} />
-        <Route element={<Layout userRole="admin" />}>
+        {/* Layout para el rol según usuario (teacher, student, admin) */}
+        <Route element={<Layout userRole="teacher" />}>
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/student/*" element={<StudentsRoutes />} />
           <Route path="/teacher/*" element={<TeachersRoutes />} />
           <Route path="/admin/*" element={<AdminRoutes />} />
         </Route>
-        {/* </Route> */}
+        {/* </Route> */}   
 
         <Route path="*" element={<ErrorPage />} />
       </Routes>

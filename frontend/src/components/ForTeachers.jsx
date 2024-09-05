@@ -6,10 +6,10 @@ const ForTeachers = () => {
     <div className="bg-white">
       <div className="h-[179px] md:h-[329px] flex flex-col items-center justify-center md:justify-start gap-2 relative">
         <img src={forTeachersBg} alt="image" className="absolute w-full h-full object-cover" />
-        <h4 className="relative z-5 text-primary font-semibold text-center md:mt-20 before:content-[''] before:w-1 before:h-1 before:inline-block before:bg-primary before:rounded-full flex items-center justify-center gap-2">
+        <h4 className="relative z-5 text-primary font-semibold text-center md:mt-20 before:content-[''] before:w-3 before:h-3 before:inline-block before:bg-primary before:rounded-full flex items-center justify-center gap-2 md:text-2xl">
           PARA DOCENTES
         </h4>
-        <h1 className="relative z-5 text-3xl font-bold text-white text-center">
+        <h1 className="relative z-5 text-3xl font-bold text-white text-center md:text-[40px]">
           Simplifica tu Labor, Maximiza el Impacto
         </h1>
       </div>
