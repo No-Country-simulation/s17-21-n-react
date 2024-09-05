@@ -26,7 +26,7 @@ const AboutUs = () => {
 
   return (
     <div className="container mx-auto flex justify-center">
-      <div className="flex flex-col md:flex-row  items-center gap-10">
+      <div className="flex flex-col md:flex-row items-center gap-10">
         <div className="flex flex-col gap-2.5">
           <div className="flex flex-col md:flex-row gap-14 md:gap-24 items-center">
             <div className="flex flex-row gap-1 relative items-center justify-center">
@@ -39,7 +39,7 @@ const AboutUs = () => {
               <div className="text-primary text-[26px] font-bold capitalize leading-8 pl-2">
                 Años de <br /> Experiencia
               </div>
-              <div className=" p-5 -rotate-90 w-[102px] h-[85px] bg-primary flex items-center justify-center">
+              <div className="p-5 -rotate-90 w-[102px] h-[85px] bg-primary flex items-center justify-center">
                 <div className="flex flex-row gap-2">
                   <span className="font-bold text-white text-3xl">+</span>
                   <h5 className="font-bold text-white text-3xl">10</h5>
@@ -54,7 +54,7 @@ const AboutUs = () => {
         <div className="flex flex-col gap-6 max-w-[570px]">
           <div className="flex flex-row items-center justify-center md:justify-normal gap-2">
             <div className="bg-primary size-3 rounded-full" />
-            <h2 className="text-primary uppercase font-semibold text-base lg:text-3xl">
+            <h2 className="text-primary uppercase font-semibold text-base lg:text-2xl">
               acerca de nuestra compañia
             </h2>
           </div>
@@ -73,10 +73,12 @@ const AboutUs = () => {
               <div className="flex flex-row justify-between px-4">
                 <div
                   id="mision"
-                  className={`relative max-w-[150px] h-[75px] bg-lightGray pb-6 px-5 flex flex-col items-center justify-center ${selected === "mision" ? "bg-gray-800" : "bg-gray-200"}`}
+                  className={`relative max-w-[150px] h-[75px] pb-6 px-5 flex flex-col items-center justify-center cursor-pointer ${
+                    selected === "mision" ? "bg-primary text-white" : "bg-lightGray text-[#1F2126]"
+                  }`}
                   onClick={() => handleButtonClick("mision")}
                 >
-                  <h5 className="text-[#1F2126] capitalize text-base font-bold">Nuestra misión</h5>
+                  <h5 className="capitalize text-base font-bold">Nuestra misión</h5>
                   <div className="bg-[#242424] size-[50px] rounded-full flex items-center justify-center absolute -bottom-6">
                     <img src={fabullseye} alt="Bull eyes icon" />
                   </div>
@@ -84,10 +86,12 @@ const AboutUs = () => {
 
                 <div
                   id="vision"
-                  className={`relative max-w-[150px] h-[75px] bg-lightGray pb-6 px-5 flex flex-col items-center justify-center ${selected === "vision" ? "bg-gray-800" : "bg-gray-200"}`}
+                  className={`relative max-w-[150px] h-[75px] pb-6 px-5 flex flex-col items-center justify-center cursor-pointer ${
+                    selected === "vision" ? "bg-primary text-white" : "bg-lightGray text-[#1F2126]"
+                  }`}
                   onClick={() => handleButtonClick("vision")}
                 >
-                  <h5 className="text-[#1F2126] capitalize text-base font-bold">Nuestra Visión</h5>
+                  <h5 className="capitalize text-base font-bold">Nuestra Visión</h5>
                   <div className="bg-[#242424] size-[50px] rounded-full flex items-center justify-center absolute -bottom-6">
                     <img src={mdvisibility} alt="Eye icon" />
                   </div>
