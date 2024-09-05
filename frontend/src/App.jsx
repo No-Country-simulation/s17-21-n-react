@@ -10,7 +10,7 @@ import ResetPassword from "./pages/resetpassword/ResetPassword";
 
 const App = () => {
   return (
-    <div className="font-hind bg-background_primary">
+    <div className="font-hind">
       {/* Se aplicará solo a las rutas protegidas */}
       {/* <IdleTimer> */}
       <Routes>
