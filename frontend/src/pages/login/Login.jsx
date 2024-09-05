@@ -1,28 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
 import { bg, circle, dots, eye, eye_hide, man1, man2, rightArrow, zigzag } from "../../assets";
 import { useState } from "react";
-import configureAxios from "../../api/axios";
-import useUserStore from "../../store/auth";
 import Footer from "../../components/layout/Footer";
 import { Mail, Lock } from "lucide-react";
-import { useStore } from "../../context/useStore";
-
+import { loginService } from "../../services/authService";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [form, setForm, initialState] = useState({
-    email: "",
-    password: "",
+  const [form, setForm] = useState({
+    email: "administrador@test.com",
+    password: "adminPassword123#",
     remember: false,
   });
-
-  const {user, login} = useStore()
-
-
-  const setTokenAndRole = useUserStore((state) => state.setTokenAndRole);
-  const navigate = useNavigate();
   const [error, setError] = useState(null);
-  const api = configureAxios();
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({
@@ -38,44 +30,30 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    login({id: 1, email: form.email})
-    setForm(initialState)
-    console.log(user);
-    
-  }
-
   const togglePasswordVisibility = (e) => {
-    e.preventDefault(); // Evitar que el botón intente enviar el formulario
+    e.preventDefault();
     setPasswordVisible(!passwordVisible);
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    console.log("Formulario de inicio de sesión enviado con:", form);
 
-    try {
-      const res = await api.post("/login", { email: form.email, password: form.password });
-      const { token, role, id } = res.data;
-      setTokenAndRole(token, role, id);
-      alert("User logged in successfully");
-      if (role === "student") {
+    const result = await loginService(form.email, form.password);
+
+    if (result.success) {
+      console.log("Respuesta de login exitosa:");
+      if (result.user.roleId === "student") {
         navigate("/student/");
-      } else if (role === "teacher") {
+      } else if (result.user.roleId === "teacher") {
         navigate("/teacher/");
-      } else if (role === "admin") {
+      } else if (result.user.roleId === "admin") {
         navigate("/admin/");
       }
-    } catch (error) {
-      if (error.response && error.response.status === 403) {
-        setError(error.response.data);
-      } else {
-        setError("Login failed.");
-      }
+    } else {
+      setError(result.message);
     }
   };
-
-  
   return (
     <>
       <div className="min-h-screen">
@@ -146,7 +124,7 @@ const Login = () => {
 
             <h2 className="text-[40px] font-bold mb-12">Iniciar Sesión</h2>
             <div className="bg-white rounded-[10px] px-4 py-12 sm:px-[70px] sm:py-[100px] relative z-50">
-              <form onSubmit={handleLogin, handleSubmit} className="sm:w-[376px]">
+              <form onSubmit={handleLogin} className="sm:w-[376px]">
                 <div className="text-start relative">
                   <label htmlFor="email" className="text-secondary block font-medium pb-3">
                     Correo electrónico
@@ -156,6 +134,7 @@ const Login = () => {
                       type="text"
                       id="email"
                       name="email"
+                      value={form.email}
                       placeholder="Ingresa tu correo"
                       className="bg-[#F6F6F7] px-12 py-5 border-gray-300 outline-none w-full rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       onChange={handleChange}
@@ -175,6 +154,7 @@ const Login = () => {
                       type={passwordVisible ? "text" : "password"}
                       id="password"
                       name="password"
+                      value={form.password}
                       placeholder="Ingresa tu contraseña"
                       className="bg-[#F6F6F7] px-12 py-5 border-gray-300 outline-none w-full rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       onChange={handleChange}
