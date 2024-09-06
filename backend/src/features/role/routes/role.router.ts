@@ -1,9 +1,9 @@
 import { Router, Request, Response } from "express";
-import { RoleRepository } from "./repositories/role.repository";
-import prisma from "../../infraestructure/database/prisma";
-import { RoleService } from "./services/role.service";
-import { RoleController } from "./controllers/role.controller";
-import { authMiddleware, roleMiddleware } from "../../shared/middlewares";
+import { RoleRepository } from "../repositories/role.repository";
+import prisma from "../../../infraestructure/database/prisma";
+import { RoleService } from "../services/role.service";
+import { RoleController } from "../controllers/role.controller";
+import { authMiddleware, roleMiddleware } from "../../../shared/middlewares";
 
 const roleRouter = Router();
 
@@ -23,4 +23,4 @@ roleRouter.get(
   (req: Request, res: Response) => roleController.getAll(req, res)
 );
 
-export default roleRouter;
+export { roleRouter };

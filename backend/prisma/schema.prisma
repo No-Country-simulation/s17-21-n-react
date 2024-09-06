@@ -33,3 +33,16 @@ model Role {
   name  String @unique
   users User[]
 }
+
+model Bulletin {
+  id          String    @id @default(uuid())
+  title       String    @db.VarChar(128)
+  description String    @db.VarChar(256)
+  scope       String    @db.VarChar(128)
+  eventDate   DateTime
+  isActived   Boolean   @default(true)
+  isDeleted   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+}

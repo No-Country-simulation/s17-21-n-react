@@ -3,17 +3,18 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 import { Schema } from "swagger-jsdoc";
 
-export const succesResponseSchema = (dataDataSchema:Schema) => {
+export const succesResponseSchema = (dataDataSchema:Schema, message?: string) => {
   return {
     type: "object",
     properties: {
       data: dataDataSchema,
       error: {
-        type: "null",
+        type: "boolean",
+        example: "false",
       },
       message: {
         type: "string",
-        example: "Login successfully"
+        example: message ?? "Request successfully"
       },
       success: {
         type: "boolean",
@@ -41,4 +42,25 @@ export const errorResponseSchema = (messageExample?:string) => {
       }
     }
   };
+};
+
+export const defaultErrorResponseSchemas = () => {
+  return {
+    400: {
+      content: {
+        "application/json": {
+          schema: errorResponseSchema(),
+        },
+      },
+      description: "Bad request, validation errors",
+    },
+    500: {
+      content: {
+        "application/json": {
+          schema: errorResponseSchema(),
+        },
+      },
+      description: "Internal server error",
+    },
+  }; 
 };

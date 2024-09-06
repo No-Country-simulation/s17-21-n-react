@@ -1,10 +1,10 @@
 import { Router, Request, Response } from "express";
-import { UserRepository } from "./repositories/user.repository";
-import prisma from "../../infraestructure/database/prisma";
-import { UserService } from "./services/user.service";
-import { UserController } from "./controllers/user.controller";
-import { authMiddleware, roleMiddleware } from "../../shared/middlewares";
-import { RoleRepository } from "../role/repositories/role.repository";
+import { UserRepository } from "../repositories/user.repository";
+import prisma from "../../../infraestructure/database/prisma";
+import { UserService } from "../services/user.service";
+import { UserController } from "../controllers/user.controller";
+import { authMiddleware, roleMiddleware } from "../../../shared/middlewares";
+import { RoleRepository } from "../../role/repositories/role.repository";
 
 const userRouter = Router();
 
@@ -19,4 +19,4 @@ userRouter.post(
   (req: Request, res: Response) => userController.registerNewUser(req, res)
 );
 
-export default userRouter;
+export { userRouter };
