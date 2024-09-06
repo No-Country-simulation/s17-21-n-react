@@ -6,6 +6,7 @@ import { corsConfig, MORGAN_FORMAT } from "./configs";
 import { errorResponse, successResponse } from "./shared/utils";
 import { authRouter } from "./features/auth/auth.router";
 import { swaggerSpec } from "./shared/utils/swagger";
+import { subjectRouter } from "./features/subject/routes/Subject.routes";
 
 const app: Application = express();
 
@@ -15,6 +16,7 @@ app.use(cors(corsConfig));
 app.use(express.json());
 app.disable("x-powered-by");
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/subject", subjectRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.get("/", (_: Request, res: Response) => {
   return successResponse({ data: { date: Date.now(), version: "v1" }, res });
@@ -25,10 +27,8 @@ app.use((req: Request, res: Response) => {
   return errorResponse({
     message: `[${req.method}]: ${req.originalUrl} not found`,
     res,
-    status : 404,
+    status: 404,
   });
 });
-
-
 
 export default app;

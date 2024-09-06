@@ -1,6 +1,6 @@
 import app from "./src/app";
 import { PORT } from "./src/configs";
-import { initializeDb } from "./src/infraestructure/database/initializeDb";
+import { initializeDb } from "./src/infrastructure/database/initializeDb";
 
 async function startServer() {
   try {

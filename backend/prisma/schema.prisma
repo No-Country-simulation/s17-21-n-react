@@ -14,22 +14,101 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  email     String    @unique
-  password  String    @db.VarChar(256)
-  name      String    @db.VarChar(128)
-  last_name String    @db.VarChar(128)
-  dni       String    @db.VarChar(56)
-  role      Role      @relation(fields: [roleId], references: [id])
-  roleId    String
-  isActive  Boolean   @default(true)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  id               String       @id @default(uuid())
+  email            String       @unique
+  password         String       @db.VarChar(256)
+  name             String       @db.VarChar(128)
+  last_name        String       @db.VarChar(128)
+  dni              String       @db.VarChar(56)
+  role             Role         @relation(fields: [roleId], references: [id])
+  roleId           String
+  isActive         Boolean      @default(true)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+  deletedAt        DateTime?
+  enrollments      Enrollment[]
+  teachingSubjects Subject[]    @relation("TeacherSubjects")
 }
 
 model Role {
   id    String @id @default(uuid())
   name  String @unique
   users User[]
+}
+
+model AcademicYear {
+  id          String       @id @default(uuid())
+  year        Int
+  subjects    Subject[]
+  enrollments Enrollment[]
+}
+
+model Grade {
+  id        String         @id @default(uuid())
+  name      String
+  subjects  GradeSubject[]
+  divisions Division[]
+}
+
+model GradeSubject {
+  id        String  @id @default(uuid())
+  grade     Grade   @relation(fields: [gradeId], references: [id])
+  gradeId   String
+  subject   Subject @relation(fields: [subjectId], references: [id])
+  subjectId String
+}
+
+model Subject {
+  id            String         @id @default(uuid())
+  name          String         @unique
+  gradeSubjects GradeSubject[]
+  teacher       User           @relation("TeacherSubjects", fields: [teacherId], references: [id])
+  teacherId     String
+  classes       Class[]
+  enrollments   Enrollment[]
+  year          AcademicYear   @relation(fields: [yearId], references: [id])
+  yearId        String
+  division      Division       @relation(fields: [divisionId], references: [id])
+  divisionId    String
+}
+
+model Enrollment {
+  id         String       @id @default(uuid())
+  student    User         @relation(fields: [studentId], references: [id])
+  studentId  String
+  division   Division     @relation(fields: [divisionId], references: [id])
+  divisionId String
+  year       AcademicYear @relation(fields: [yearId], references: [id])
+  yearId     String
+  subject    Subject      @relation(fields: [subjectId], references: [id])
+  subjectId  String
+}
+
+model Class {
+  id         String     @id @default(uuid())
+  date       DateTime
+  subject    Subject    @relation(fields: [subjectId], references: [id])
+  subjectId  String
+  division   Division   @relation(fields: [divisionId], references: [id])
+  divisionId String
+  activities Activity[]
+}
+
+model Division {
+  id          String       @id @default(uuid())
+  name        String
+  grade       Grade        @relation(fields: [gradeId], references: [id])
+  gradeId     String
+  enrollments Enrollment[]
+  subjects    Subject[]
+  classes     Class[]
+}
+
+// Temporal 
+model Activity {
+  id      Int      @id @default(autoincrement())
+  name    String
+  dueDate DateTime
+  class   Class    @relation(fields: [classId], references: [id])
+  classId String
 }
