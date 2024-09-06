@@ -4,7 +4,7 @@ import useUserStore from "../store/auth";
 export const loginService = async (email, password) => {
   try {
     const api = configureAxios();
-    
+
     const response = await api.post("/auth/login", { email, password });
 
     const { token, user } = response.data.data;

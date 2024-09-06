@@ -23,7 +23,7 @@ const App = () => {
 
         {/* Rutas protegidas dentro del layout */}
         <Route element={<Layout userRole={role} />}>
-        {/* Ruta protegida para resetear contraseña */}
+          {/* Ruta protegida para resetear contraseña */}
           <Route element={<ProtectedRoute allowedRoles={["student"]} />}>
             <Route path="/student/*" element={<StudentsRoutes />} />
           </Route>

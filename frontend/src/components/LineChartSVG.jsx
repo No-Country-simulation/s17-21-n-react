@@ -60,7 +60,9 @@ export default function LineChartSVG({ data }) {
       </div>
       <div className="flex justify-center gap-4 mt-4">
         <div className="text-center ">
-          <p className="text-xl font-bold text-gray-700">{data.reduce((acc, item) => acc + item.onTime, 0)}</p>
+          <p className="text-xl font-bold text-gray-700">
+            {data.reduce((acc, item) => acc + item.onTime, 0)}
+          </p>
           <p className="text-gray-700">Entregas a Tiempo</p>
         </div>
         <div className="text-center  text-[#ff4d4f]">

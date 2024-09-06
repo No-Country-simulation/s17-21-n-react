@@ -40,8 +40,8 @@ const useUserStore = create(
     {
       name: "auth",
       getStorage: () => sessionStorage,
-    }
-  )
+    },
+  ),
 );
 
 export default useUserStore;
