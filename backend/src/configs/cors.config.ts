@@ -9,6 +9,6 @@ const allowOrigins = (): string[] => {
 };
 
 export const corsConfig = {
-  credentials: true,
+  credentials: NODE_ENV == "production" ? true : false,
   origin     : allowOrigins(),
 };

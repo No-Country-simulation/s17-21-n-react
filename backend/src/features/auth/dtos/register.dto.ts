@@ -2,7 +2,7 @@ export interface RegisterAdminDto {
     email: string;
     password: string;
     name: string;
-    last_name:string;
+    lastName:string;
     dni:string;
     roleId : string;
 }
