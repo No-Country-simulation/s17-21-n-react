@@ -18,7 +18,7 @@ model User {
   email     String    @unique
   password  String    @db.VarChar(256)
   name      String    @db.VarChar(128)
-  last_name String    @db.VarChar(128)
+  lastName String    @db.VarChar(128)
   dni       String    @db.VarChar(56)
   role      Role      @relation(fields: [roleId], references: [id])
   roleId    String

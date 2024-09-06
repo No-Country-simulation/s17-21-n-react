@@ -6,7 +6,10 @@ export class AuthRepository {
   constructor(private prisma: PrismaClient) {}
 
   async findByEmail(email: string): Promise<User | null> {
-    return this.prisma.user.findUnique({ where: { email } });
+    return this.prisma.user.findUnique({
+      include: { role: { select: { name: true } } },
+      where  : { email },
+    });
   }
 
   async create(userData: RegisterAdminDto): Promise<User> {
