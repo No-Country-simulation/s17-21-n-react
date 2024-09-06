@@ -5,6 +5,7 @@ export interface CreateBulletinDto {
   description: string;
   scope: string;
   eventDate: Date;
+  isActived?: boolean;
 }
 
 export interface UpdateBulletinDto {
