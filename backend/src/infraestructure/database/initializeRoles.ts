@@ -1,9 +1,9 @@
-import { SystemRoles } from "../../shared/constants/default-roles.enum";
+import { SystemBaseRoles } from "../../shared/constants/default-roles.enum";
 import prisma from "./prisma";
 
 const initializeRoles  = async () => {
 
-  for (const roleName of Object.values(SystemRoles)) {
+  for (const roleName of Object.values(SystemBaseRoles)) {
     const roleExists = await prisma.role.findFirst({ where: { name: roleName } });
 
     if (!roleExists) {
