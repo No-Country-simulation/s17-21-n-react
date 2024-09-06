@@ -4,11 +4,11 @@ import { INITIAL_USER_PASSWORD } from "../../configs";
 import { hashPassword } from "../../shared/utils";
 
 const defaultUserData = {
-  dni      : "99999999",
-  email    : "administrador@test.com",
-  last_name: "EducaPro",
-  name     : "Admin",
-  password : INITIAL_USER_PASSWORD,
+  dni     : "99999999",
+  email   : "administrador@test.com",
+  lastName: "EducaPro",
+  name    : "Admin",
+  password: INITIAL_USER_PASSWORD,
 };
 
 const initializeDefaultUser = async () => {
