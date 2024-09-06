@@ -4,12 +4,19 @@ import { useState } from "react";
 import Footer from "../../components/layout/Footer";
 import { Mail, Lock } from "lucide-react";
 import { loginService } from "../../services/authService";
+import { handleUpClick } from "../../utils/handleUpClick";
+
+const users = [
+  { email: "administrador@test.com", password: "adminPassword123#", role: "admin" },
+  { email: "sarah.smith@educapro.edu", password: "OsWk26Dj", role: "teacher" },
+  { email: "john.doe@gmail.com", password: "5QLKCu8y", role: "student" },
+];
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [form, setForm] = useState({
-    email: "administrador@test.com",
-    password: "adminPassword123#",
+    email: "",
+    password: "",
     remember: false,
   });
   const [error, setError] = useState(null);
@@ -54,8 +61,29 @@ const Login = () => {
       } else {
         setError("Unknown role");
       }
-    } catch {
+    } catch (error) {
       setError("An error occurred during login");
+      console.error("Login error:", error);
+    }
+  };
+
+  const handleRoleChange = (e) => {
+    const selectedRole = e.target.value;
+    const selectedUser = users.find((user) => user.role === selectedRole);
+    if (selectedUser) {
+      setForm({
+        ...form,
+        email: selectedUser.email,
+        password: selectedUser.password,
+        role: selectedUser.role,
+      });
+    } else {
+      setForm({
+        ...form,
+        email: "",
+        password: "",
+        role: selectedRole,
+      });
     }
   };
 
@@ -130,7 +158,26 @@ const Login = () => {
             <h2 className="text-[40px] font-bold mb-12">Iniciar Sesión</h2>
             <div className="rounded-[10px] px-4 py-12 sm:px-[70px] sm:py-[100px] relative z-50 shadow-md">
               <form onSubmit={handleLogin} className="sm:w-[376px]">
-                <div className="text-start relative">
+                <div className="text-start relative mb-4">
+                  <label htmlFor="role" className="text-secondary block font-medium pb-3">
+                    Selecciona un rol (Apartado solo para pruebas)
+                  </label>
+                  <select
+                    id="role"
+                    value={form.role}
+                    onChange={handleRoleChange}
+                    className="bg-[#F6F6F7] px-4 py-2 border-gray-300 outline-none w-full rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                  >
+                    <option value="other">Other</option>
+                    {users.map((user, index) => (
+                      <option key={index} value={user.role}>
+                        {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="text-start relative mb-4">
                   <label htmlFor="email" className="text-secondary block font-medium pb-3">
                     Correo electrónico
                   </label>
@@ -194,6 +241,7 @@ const Login = () => {
                 <button
                   className="rounded bg-primary w-full text-white p-3 mt-11 font-medium"
                   type="submit"
+                  onClick={handleUpClick}
                 >
                   Iniciar Sesión
                 </button>
@@ -206,9 +254,8 @@ const Login = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
-
-      <Footer />
     </>
   );
 };

@@ -2,7 +2,7 @@ import { errorImage, errorMan1, errorMan2 } from "../../assets";
 
 const ErrorPage = () => {
   return (
-    <main className="relative grid h-screen place-items-center px-6 py-24 sm:py-32 lg:px-8 bg-gray-100">
+    <main className="relative grid h-screen place-items-center px-6 py-24 sm:py-32 lg:px-8">
       {/* Contenedor principal centrado */}
       <div className="text-center z-10">
         {/* Imagen principal centrada */}
@@ -28,21 +28,13 @@ const ErrorPage = () => {
       </div>
 
       {/* Imagen en la esquina izquierda (hombre apuntando) */}
-      <div className="absolute bottom-8 left-4 lg:bottom-4 lg:left-1/4 lg:w-[130px] lg:h-[250px] hidden lg:block">
-        <img
-          className="w-full h-full object-contain"
-          src={errorMan1}
-          alt="Hombre Apuntando"
-        />
+      <div className="absolute bottom-8 left-4 lg:bottom-4 lg:left-[16%] 2xl:left-[20%] lg:w-[130px] lg:h-[250px] hidden lg:block">
+        <img className="w-full h-full object-contain" src={errorMan1} alt="Hombre Apuntando" />
       </div>
 
       {/* Imagen en la esquina derecha (persona sentada con laptop) */}
-      <div className="absolute top-[40%] right-4 lg:top-[45%] lg:right-1/4 lg:w-[100px] lg:h-[125px] hidden lg:block">
-        <img
-          className="w-full h-full object-contain"
-          src={errorMan2}
-          alt="Hombre sentado"
-        />
+      <div className="absolute top-[40%] right-4 lg:top-[45%] lg:right-[20%] lg:w-[100px] lg:h-[125px] hidden lg:block">
+        <img className="w-full h-full object-contain" src={errorMan2} alt="Hombre sentado" />
       </div>
     </main>
   );

@@ -2,18 +2,23 @@ import { deniedImage, errorMan1, errorMan2 } from "../../assets";
 
 const AccessDeniedPage = () => {
   return (
-    <main className="relative grid h-screen place-items-center bg-gray-100">
+    <main className="relative grid h-screen place-items-center">
       {/* Contenedor principal centrado */}
       <div className="text-center z-10">
         {/* Imagen principal centrada */}
-        <img className="mx-auto mb-6 w-full h-auto max-w-[420px]" src={deniedImage} alt="Acceso Denegado" />
+        <img
+          className="mx-auto mb-6 w-full h-auto max-w-[420px]"
+          src={deniedImage}
+          alt="Acceso Denegado"
+        />
 
         {/* Texto centrado */}
         <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
           Acceso Denegado
         </h1>
-        <p className="mt-4 text-sm leading-6 text-gray-600 sm:text-base md:text-lg">
-          No tienes permiso para acceder a esta página.
+        <p className="mt-4 text-sm leading-6 text-gray-600 sm:text-base md:text-lg lg:max-w-screen-sm">
+          No tienes los permisos adecuados para ver este contenido. Contacta al administrador si
+          crees que esto es un error.{" "}
         </p>
 
         {/* Botón centrado */}

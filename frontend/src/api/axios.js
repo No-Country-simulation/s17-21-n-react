@@ -6,7 +6,7 @@ const configureAxios = (token) => {
   const api = axios.create({
     baseURL,
     withCredentials: false,
-    headers: token ? { Authorization: `Bearer ${token}` } : {}, 
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
   });
   return api;
 };

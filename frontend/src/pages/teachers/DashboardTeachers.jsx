@@ -23,7 +23,8 @@ const DashboardTeachers = () => {
 
       <footer className="text-center mt-8 border-t-2 pt-4">
         <p className="text-sm">
-          © {new Date().getFullYear()} EducaPro, Todos los derechos reservados. Equipo: s17-n-react-node
+          © {new Date().getFullYear()} EducaPro, Todos los derechos reservados. Equipo:
+          s17-n-react-node
         </p>
       </footer>
     </div>

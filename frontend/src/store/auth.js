@@ -5,28 +5,43 @@ const useUserStore = create(
   persist(
     (set) => ({
       token: "",
-      role: "",
-      id: null,
-      setTokenAndRole: (token, role, id) => {
-        console.log('Setting token and role:', { token, role, id });
-        
+      user: {
+        id: null,
+        role: "",
+        name: "",
+        lastName: "",
+      },
+      setTokenAndUser: (token, user) => {
         // Convertir el rol a minúsculas antes de almacenarlo
-        const normalizedRole = role.toLowerCase();
-        
-        set({ token, role: normalizedRole, id });
-        console.log('Current store state after setting:', useUserStore.getState());
+        const normalizedRole = user.role.toLowerCase();
+
+        set({
+          token,
+          user: {
+            id: user.id,
+            role: normalizedRole,
+            name: user.name,
+            lastName: user.lastName,
+          },
+        });
       },
       logout: () => {
-        console.log('Logging out');
-        set({ token: "", role: "", id: null });
-        console.log('Current store state after logout:', useUserStore.getState());
+        set({
+          token: "",
+          user: {
+            id: null,
+            role: "",
+            name: "",
+            lastName: "",
+          },
+        });
       },
     }),
     {
       name: "auth",
       getStorage: () => sessionStorage,
-    },
-  ),
+    }
+  )
 );
 
 export default useUserStore;

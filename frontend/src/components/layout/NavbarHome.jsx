@@ -61,7 +61,10 @@ const NavbarHome = () => {
 
           <div className="hidden md:flex items-center">
             <Link to="/login">
-              <button className="btn bg-primary text-white flex items-center gap-2.5 px-9 py-2 rounded" onClick={handleUpClick}>
+              <button
+                className="btn bg-primary text-white flex items-center gap-2.5 px-9 py-2 rounded"
+                onClick={handleUpClick}
+              >
                 Acceso
                 <img src={rightArrow} alt="button" width={14} height={14} />
               </button>
