@@ -37,23 +37,28 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Formulario de inicio de sesión enviado con:", form);
 
-    const result = await loginService(form.email, form.password);
+    try {
+      const result = await loginService(form.email, form.password);
+      const role = result.user?.role.toLowerCase();
 
-    if (result.success) {
-      console.log("Respuesta de login exitosa:");
-      if (result.user.roleId === "student") {
-        navigate("/student/");
-      } else if (result.user.roleId === "teacher") {
-        navigate("/teacher/");
-      } else if (result.user.roleId === "admin") {
-        navigate("/admin/");
+      const routes = {
+        student: "/student/dashboard",
+        teacher: "/teacher/dashboard",
+        admin: "/admin/dashboard",
+      };
+
+      const route = routes[role];
+      if (route) {
+        setTimeout(() => navigate(route), 300);
+      } else {
+        setError("Unknown role");
       }
-    } else {
-      setError(result.message);
+    } catch {
+      setError("An error occurred during login");
     }
   };
+
   return (
     <>
       <div className="min-h-screen">

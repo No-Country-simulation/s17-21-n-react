@@ -9,6 +9,8 @@ export default function Layout({ userRole }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
 
+  console.log('Layout rendered with role:', userRole);
+
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };

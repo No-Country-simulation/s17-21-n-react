@@ -18,7 +18,7 @@ export const loginService = async (email, password) => {
 
     // Usamos el store para almacenar el token y el role_id
     const { setTokenAndRole } = useUserStore.getState();
-    setTokenAndRole(token, user.roleId, user.id);
+    setTokenAndRole(token, user.role, user.id);
 
     console.log("Token y datos del usuario almacenados en el store:", { token, user });
 

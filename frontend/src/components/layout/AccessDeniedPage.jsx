@@ -1,19 +1,19 @@
-import { errorImage, errorMan1, errorMan2 } from "../../assets";
+import { deniedImage, errorMan1, errorMan2 } from "../../assets";
 
-const ErrorPage = () => {
+const AccessDeniedPage = () => {
   return (
-    <main className="relative grid h-screen place-items-center px-6 py-24 sm:py-32 lg:px-8 bg-gray-100">
+    <main className="relative grid h-screen place-items-center bg-gray-100">
       {/* Contenedor principal centrado */}
       <div className="text-center z-10">
         {/* Imagen principal centrada */}
-        <img className="mx-auto mb-6 w-full h-auto max-w-[420px]" src={errorImage} alt="Error" />
+        <img className="mx-auto mb-6 w-full h-auto max-w-[420px]" src={deniedImage} alt="Acceso Denegado" />
 
         {/* Texto centrado */}
         <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
-          Página no encontrada
+          Acceso Denegado
         </h1>
         <p className="mt-4 text-sm leading-6 text-gray-600 sm:text-base md:text-lg">
-          Por favor, intenta buscar otra página.{" "}
+          No tienes permiso para acceder a esta página.
         </p>
 
         {/* Botón centrado */}
@@ -32,7 +32,7 @@ const ErrorPage = () => {
         <img
           className="w-full h-full object-contain"
           src={errorMan1}
-          alt="Hombre Apuntando"
+          alt="Representación de acceso denegado"
         />
       </div>
 
@@ -41,11 +41,11 @@ const ErrorPage = () => {
         <img
           className="w-full h-full object-contain"
           src={errorMan2}
-          alt="Hombre sentado"
+          alt="Representación de acceso denegado"
         />
       </div>
     </main>
   );
 };
 
-export default ErrorPage;
+export default AccessDeniedPage;
