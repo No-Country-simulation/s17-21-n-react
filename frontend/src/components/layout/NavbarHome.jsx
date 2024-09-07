@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { rightArrow } from "../../assets";
 import { handleUpClick } from "../../utils/handleUpClick";
 
 const NavbarHome = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -18,24 +19,48 @@ const NavbarHome = () => {
     { id: 5, label: "Contacto", to: "#contacto" },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="sticky w-full mx-auto bg-white shadow-md top-0 z-50">
+    <nav
+      className={`sticky w-full mx-auto top-0 z-50 my-[-50px] transition-colors duration-300 ${
+        isScrolled ? "bg-white text-gray-800 shadow-md" : "bg-transparent text-white"
+      }`}
+    >
       <section className="max-w-7xl mx-auto">
         <div className="mx-auto px-4 py-5 flex justify-between items-center">
-          <div className="text-3xl font-bold text_primary">
+          <div className="text-4xl font-bold">
             <Link to="/">
               Educa<span className="text-primary">Pro</span>
             </Link>
           </div>
 
-          <div className="hidden md:flex space-x-8 text_primary">
+          <div className="hidden md:flex space-x-8 text-xl">
             {navItems.map((item) => (
               <a
                 key={item.id}
                 href={item.to}
-                className="hover:text-primary transition duration-200"
+                className={`relative group ${
+                  isScrolled ? "hover:text-primary text-gray-800" : "hover:text-white text-white"
+                }`}
               >
                 {item.label}
+                <span
+                  className={`absolute -bottom-1 left-0 w-full h-0.5 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${
+                    isScrolled ? "bg-primary" : "bg-white"
+                  }`}
+                ></span>
               </a>
             ))}
           </div>
@@ -74,7 +99,7 @@ const NavbarHome = () => {
       </section>
 
       {isOpen && (
-        <div className="md:hidden bg-white shadow-md mt-2 py-2">
+        <div className="md:hidden text-center bg-background_primary text-gray-700 shadow-md mt-2 py-2">
           {navItems.map((item) => (
             <a
               key={item.id}
