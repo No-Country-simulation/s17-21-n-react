@@ -1,7 +1,10 @@
+import { Activity } from "@prisma/client";
+
 export interface Classes {
-  id: number;
+  id: string;
+  name: string;
   date: Date;
-  subjectId: number;
-  divisionId: number;
-  activities: string[];
+  subjectId: string;
+  divisionId: string;
+  activities?: Activity[];
 }

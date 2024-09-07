@@ -1,30 +1,56 @@
 import { ISubjectRepository } from "./ISubject.repository";
 import prisma from "../../../infrastructure/database/prisma";
 import { Subject } from "@prisma/client";
+import { ErrorHandler } from "../../../shared/utils/ErrorHandler";
 
 export class SubjectRepository implements ISubjectRepository {
   async findMany(skip: number, take: number): Promise<Subject[]> {
-    return prisma.subject.findMany({
-      skip,
-      take,
-    });
+    try {
+      return await prisma.subject.findMany({ skip, take });
+    } catch (error) {
+      ErrorHandler.handleError(error);
+    }
   }
   async findById(id: string): Promise<Subject | null> {
-    return prisma.subject.findUnique({ where: { id } });
+    try {
+      return await prisma.subject.findUnique({ where: { id } });
+    } catch (error) {
+      ErrorHandler.handleError(error);
+    }
   }
   async findByName(name: string): Promise<Subject | null> {
-    return prisma.subject.findUnique({ where: { name } });
+    try {
+      return await prisma.subject.findUnique({ where: { name } });
+    } catch (error) {
+      ErrorHandler.handleError(error);
+    }
   }
   async create(subject: Subject): Promise<Subject> {
-    return prisma.subject.create({ data: subject });
+    try {
+      return await prisma.subject.create({ data: subject });
+    } catch (error) {
+      ErrorHandler.handleError(error);
+    }
   }
   async update(id: string, subject: Subject): Promise<Subject> {
-    return prisma.subject.update({ data: subject, where: { id } });
+    try {
+      return await prisma.subject.update({ where: { id }, data: subject });
+    } catch (error) {
+      ErrorHandler.handleError(error);
+    }
   }
   async delete(id: string): Promise<Subject> {
-    return prisma.subject.delete({ where: { id } });
+    try {
+      return await prisma.subject.delete({ where: { id } });
+    } catch (error) {
+      ErrorHandler.handleError(error);
+    }
   }
   async count(): Promise<number> {
-    return prisma.subject.count();
+    try {
+      return await prisma.subject.count();
+    } catch (error) {
+      ErrorHandler.handleError(error);
+    }
   }
 }

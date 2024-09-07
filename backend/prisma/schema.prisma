@@ -86,6 +86,7 @@ model Enrollment {
 
 model Class {
   id         String     @id @default(uuid())
+  name       String     @unique
   date       DateTime
   subject    Subject    @relation(fields: [subjectId], references: [id])
   subjectId  String

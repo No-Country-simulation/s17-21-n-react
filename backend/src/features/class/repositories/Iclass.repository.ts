@@ -1,6 +1,6 @@
 import { Class } from "@prisma/client";
 
-interface IClassRepository {
+export interface IClassRepository {
   findMany(skip: number, take: number): Promise<Class[]>;
   findById(id: string): Promise<Class | null>;
   findByName(name: string): Promise<Class | null>;

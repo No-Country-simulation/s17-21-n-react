@@ -9,7 +9,7 @@ import { Paginated } from "../../../shared/interfaces/Paginated";
 import prisma from "../../../infrastructure/database/prisma";
 
 export class SubjectService implements ISubjectService {
-  private _subjectRepository: ISubjectRepository;
+  private readonly _subjectRepository: ISubjectRepository;
 
   constructor(private subjectRepository: ISubjectRepository) {
     this._subjectRepository = subjectRepository;
