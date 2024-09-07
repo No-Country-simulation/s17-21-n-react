@@ -46,7 +46,7 @@ const NavbarHome = () => {
             </Link>
           </div>
 
-          <div className="hidden md:flex space-x-8 text-xl">
+          <div className="hidden lg:flex space-x-8 text-xl">
             {navItems.map((item) => (
               <a
                 key={item.id}
@@ -64,8 +64,19 @@ const NavbarHome = () => {
               </a>
             ))}
           </div>
+          <div className="flex items-center">
+            <Link to="/login">
+              <button
+                className="btn bg-primary text-white flex items-center gap-2.5 px-9 py-2 rounded h-10"
+                onClick={handleUpClick}
+              >
+                <p className=" hidden md:block">Acceso</p>
+                <img src={rightArrow} alt="button" width={14} height={14} />
+              </button>
+            </Link>
+          </div>
 
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button onClick={toggleMenu} className="text_primary focus:outline-none">
               <svg
                 className="w-6 h-6"
@@ -83,28 +94,16 @@ const NavbarHome = () => {
               </svg>
             </button>
           </div>
-
-          <div className="hidden md:flex items-center">
-            <Link to="/login">
-              <button
-                className="btn bg-primary text-white flex items-center gap-2.5 px-9 py-2 rounded"
-                onClick={handleUpClick}
-              >
-                Acceso
-                <img src={rightArrow} alt="button" width={14} height={14} />
-              </button>
-            </Link>
-          </div>
         </div>
       </section>
 
       {isOpen && (
-        <div className="md:hidden text-center bg-background_primary text-gray-700 shadow-md mt-2 py-2">
+        <div className="lg:hidden text-gray-700 bg-red-500">
           {navItems.map((item) => (
             <a
               key={item.id}
               href={item.to}
-              className="block px-4 py-2 text-gray-600 hover:bg-blue-500 hover:text-white transition duration-200"
+              className="block px-4 py-2 bg-white z-50 text-gray-600 hover:bg-blue-500 hover:text-white transition duration-200"
               onClick={toggleMenu}
             >
               {item.label}
