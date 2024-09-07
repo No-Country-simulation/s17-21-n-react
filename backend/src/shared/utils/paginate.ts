@@ -3,10 +3,12 @@ import { Paginated } from "../interfaces/Paginated";
 import prisma from "../../infrastructure/database/prisma";
 
 type PrismaModel = keyof PrismaClient;
+
 export const Paginate = async <T>(
   model: PrismaModel,
   page: number,
   pageSize: number,
+  filter?: any,
   orderBy?: any
 ): Promise<Paginated<T>> => {
   const skip = (page - 1) * pageSize;
@@ -24,6 +26,7 @@ export const Paginate = async <T>(
       orderBy,
       skip,
       take,
+      where: filter,
     });
 
     return buildPaginated<T>(content, total, page, pageSize);

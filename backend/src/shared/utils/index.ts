@@ -7,4 +7,4 @@ export * from "./swagger";
 export * from "./validate";
 export * from "./HTTPCode.utils";
 export * from "./generatePassword.utils";
-
+export * from "./ErrorHandler";

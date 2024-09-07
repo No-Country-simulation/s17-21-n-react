@@ -1,4 +1,8 @@
-import { errorResponse, successResponse } from "../../../shared/utils";
+import {
+  errorResponse,
+  HttpCodes,
+  successResponse,
+} from "../../../shared/utils";
 import { IClassService } from "../services/IClass.service";
 import { Request, Response } from "express";
 
@@ -9,12 +13,18 @@ export class ClassController {
     this._classService = classService;
   }
 
-  private handleClassError(error: unknown, message: string, res: Response) {
+  private handleClassError(
+    error: unknown,
+    message: string,
+    res: Response,
+    status?: number
+  ) {
     if (error instanceof Error)
-      return errorResponse({ message: error.message, res });
+      return errorResponse({ res, status, message: error.message });
     return errorResponse({
-      message: message,
       res,
+      status,
+      message: message,
     });
   }
 
@@ -31,6 +41,65 @@ export class ClassController {
         error,
         "An error occurred while fetching classes",
         res
+      );
+    }
+  }
+
+  async getAllClassesByTeacherIdAndYear(req: Request, res: Response) {
+    try {
+      const { page, size, yearNum = 0 } = req.query;
+      const { teacherId } = req.params;
+      const classes = await this._classService.getAllClasses(
+        parseInt(page as string),
+        parseInt(size as string),
+        {
+          teacherId: teacherId,
+          year: yearNum !== 0 ? { year: yearNum } : undefined,
+        }
+      );
+      if (!classes) {
+        return errorResponse({
+          message: "Classes not found",
+          res,
+          status: 404,
+        });
+      }
+      return successResponse({ data: classes, res });
+    } catch (error) {
+      return this.handleClassError(
+        error,
+        "An error occurred while fetching classes",
+        res
+      );
+    }
+  }
+
+  async getAllClassesBySubjectIdOrYear(req: Request, res: Response) {
+    try {
+      const { page, size } = req.query;
+      const { subjectId, yearNum = 0 } = req.query;
+      const classes = await this._classService.getAllClasses(
+        parseInt(page as string),
+        parseInt(size as string),
+        {
+          subjectId: subjectId,
+          year: yearNum !== 0 ? { year: yearNum } : undefined,
+        }
+      );
+      if (!classes) {
+        return errorResponse({
+          message: "Classes not found",
+          res,
+          status: 404,
+        });
+      }
+      return successResponse({ data: classes, res });
+    } catch (error) {
+      return this.handleClassError(
+        error,
+        "An error occurred while fetching classes",
+        res,
+        HttpCodes.NOT_FOUND
       );
     }
   }
@@ -105,5 +174,4 @@ export class ClassController {
       );
     }
   }
-  
 }

@@ -2,6 +2,7 @@ import { Class } from "@prisma/client";
 
 export interface IClassRepository {
   findMany(skip: number, take: number): Promise<Class[]>;
+  findByUniqueCombination(classData: Class): Promise<Class | null>;
   findById(id: string): Promise<Class | null>;
   findByName(name: string): Promise<Class | null>;
   create(classData: Class): Promise<Class>;

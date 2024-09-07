@@ -11,6 +11,8 @@ const classController = new ClassController(classService);
 
 router.get("/", (req, res) => classController.getAllClasses(req, res));
 router.get("/:id", (req, res) => classController.getClassById(req, res));
+router.get("/teacher/:id", (req, res) => classController.getAllClassesByTeacherIdAndYear(req, res));
+router.get("/subject", (req, res) => classController.getAllClassesBySubjectIdOrYear(req, res));
 router.post("/", (req, res) => classController.createClass(req, res));
 router.put("/:id", (req, res) => classController.updateClass(req, res));
 router.delete("/:id", (req, res) => classController.deleteClass(req, res));
