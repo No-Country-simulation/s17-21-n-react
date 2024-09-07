@@ -1,5 +1,5 @@
-export enum SystemRoles {
+export enum SystemBaseRoles {
   ADMIN = "ADMIN",
   STUDENT = "STUDENT",
-  PROFESSOR = "PROFESSOR",
+  TEACHER = "TEACHER",
 }

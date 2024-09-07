@@ -1,5 +1,5 @@
 import prisma from "./prisma";
-import { SystemRoles } from "../../shared/constants";
+import { SystemBaseRoles } from "../../shared/constants";
 import { INITIAL_USER_PASSWORD } from "../../configs";
 import { hashPassword } from "../../shared/utils";
 
@@ -24,8 +24,8 @@ const initializeDefaultUser = async () => {
         password: hashedPassword,
         role    : {
           connectOrCreate: {
-            create: { name: SystemRoles.ADMIN },
-            where : { name: SystemRoles.ADMIN },
+            create: { name: SystemBaseRoles.ADMIN },
+            where : { name: SystemBaseRoles.ADMIN },
           },
         },
       },
