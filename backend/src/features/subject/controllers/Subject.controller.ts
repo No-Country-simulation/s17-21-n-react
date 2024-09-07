@@ -37,7 +37,15 @@ export class SubjectController {
     try {
       const { id } = req.params;
       const subject = await this._subjectService.getSubjectById(id);
-      successResponse({
+      if (!subject) {
+        return errorResponse({
+          data: {},
+          message: "Subject not found",
+          res,
+          status: HttpCodes.NOT_FOUND,
+        });
+      }
+      return successResponse({
         data: subject,
         message: "Subject retrieved successfully",
         res,
@@ -45,7 +53,7 @@ export class SubjectController {
       });
     } catch (error: Error | any) {
       console.log(error);
-      errorResponse({
+      return errorResponse({
         message: error.message,
         res,
         status: HttpCodes.INTERNAL_SERVER_ERROR,
@@ -57,7 +65,7 @@ export class SubjectController {
     try {
       const { body } = req;
       const subject = await this._subjectService.create(body);
-      successResponse({
+      return successResponse({
         data: subject,
         message: "Subject created successfully",
         res,
@@ -65,7 +73,7 @@ export class SubjectController {
       });
     } catch (error: Error | any) {
       console.log(error);
-      errorResponse({
+      return errorResponse({
         message: error.message,
         res,
         status: HttpCodes.INTERNAL_SERVER_ERROR,
@@ -78,7 +86,7 @@ export class SubjectController {
       const { id } = req.params;
       const { body } = req;
       const subject = await this._subjectService.update(id, body);
-      successResponse({
+      return successResponse({
         data: subject,
         message: "Subject updated successfully",
         res,
@@ -86,7 +94,7 @@ export class SubjectController {
       });
     } catch (error: Error | any) {
       console.log(error);
-      errorResponse({
+      return errorResponse({
         message: error.message,
         res,
         status: HttpCodes.INTERNAL_SERVER_ERROR,
