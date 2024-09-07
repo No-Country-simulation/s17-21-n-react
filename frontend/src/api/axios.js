@@ -5,8 +5,8 @@ const baseURL = import.meta.env.VITE_BASE_URL;
 const configureAxios = (token) => {
   const api = axios.create({
     baseURL,
-    withCredentials: true,
-    headers: token ? { Authorization: `Bearer ${token}` } : {}, // Solo incluye el token si existe
+    withCredentials: false,
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
   });
   return api;
 };

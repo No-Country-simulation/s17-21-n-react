@@ -72,6 +72,7 @@ import mdvisibility from "./icons/MdVisibility.svg";
 import arrowCircle from "./icons/arrowcircle.svg";
 import avatar from "./images/avatar.png";
 import bell from "./icons/bell.svg";
+import deniedImage from "./images/403.webp";
 
 export {
   facebook,
@@ -79,6 +80,7 @@ export {
   twitter,
   btn,
   errorImage,
+  deniedImage,
   errorMan1,
   errorMan2,
   rightArrow,

@@ -1,15 +1,19 @@
 /* eslint-disable react/prop-types */
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import useUserStore from "../store/auth";
 
-const ProtectedRoute = ({ children }) => {
-  const { user } = useUserStore();
+const ProtectedRoute = ({ allowedRoles }) => {
+  const { token, role } = useUserStore((state) => ({ token: state.token, role: state.user?.role }));
 
-  if (!user) {
+  if (!token) {
     return <Navigate to="/login" />;
   }
 
-  return <>{children}</>;
+  if (!allowedRoles.includes(role)) {
+    return <Navigate to="/access-denied" />;
+  }
+
+  return <Outlet />;
 };
 
 export default ProtectedRoute;

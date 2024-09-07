@@ -1,19 +1,21 @@
-import { useEffect, useState } from "react";
-import { bell, profile } from "../../assets";
+import { bell } from "../../assets";
+import useUserStore from "../../store/auth";
+import { generateAvatar } from "../../utils/avatar";
 
 const SessionNavbar = () => {
-  const [user, setUser] = useState(null);
+  const { user } = useUserStore((state) => ({
+    user: state.user,
+  }));
 
-  useEffect(() => {
-    const storedUserData = sessionStorage.getItem("userData");
-    if (storedUserData) {
-      setUser(JSON.parse(storedUserData));
-    }
-  }, []);
+  const userName = user?.name;
+  const userLastName = user?.lastName;
+  const userPhoto = user?.photo;
 
-  const userName = user?.name || "Sara";
-  const userLastName = user?.lastName || "Smith";
-  const userPhoto = user?.photo || profile; // consultar: Si hay que agregar alguna imagen por defecto o el back ya la genera?
+  // Generar avatar si no hay foto de perfil
+  const { initials, backgroundColor } = userPhoto
+    ? { initials: "", backgroundColor: "" }
+    : generateAvatar(userName, userLastName);
+
   const notifications = user?.notifications || 3;
 
   return (
@@ -33,7 +35,16 @@ const SessionNavbar = () => {
         </div>
 
         <div className="flex items-center space-x-2">
-          <img className="w-9 h-9 rounded-full" src={userPhoto} alt="Avatar" />
+          {userPhoto ? (
+            <img className="w-9 h-9 rounded-full" src={userPhoto} alt="Avatar" />
+          ) : (
+            <div
+              className="w-9 h-9 rounded-full flex items-center justify-center"
+              style={{ backgroundColor }}
+            >
+              <span className="text-white font-bold text-sm">{initials}</span>
+            </div>
+          )}
           <span className="hidden lg:inline-block text-gray-700 font-semibold">
             {userName} {userLastName}
           </span>
