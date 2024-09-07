@@ -4,9 +4,9 @@ import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import { corsConfig, MORGAN_FORMAT } from "./configs";
 import { errorResponse, successResponse } from "./shared/utils";
-import { authRouter } from "./features/auth/auth.router";
-import { swaggerSpec } from "./shared/utils/swagger";
-import { subjectRouter } from "./features/subject/routes/Subject.routes";
+import { mainRouter } from "./shared/routes";
+import { swaggerOptions, swaggerSpec, swaggerUiSpecs } from "./infraestructure/swagger";
+
 
 const app: Application = express();
 
@@ -15,9 +15,11 @@ app.use(cors(corsConfig));
 
 app.use(express.json());
 app.disable("x-powered-by");
-app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/subject", subjectRouter);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+//apply main router
+app.use("/api/v1", mainRouter);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerUiSpecs, swaggerOptions));
+
 app.get("/", (_: Request, res: Response) => {
   return successResponse({ data: { date: Date.now(), version: "v1" }, res });
 });

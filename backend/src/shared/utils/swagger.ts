@@ -22,4 +22,15 @@ const options: swaggerJsdoc.Options = {
   apis: ["./src/features/**/*.ts"],
 };
 
+export const swaggerUiSpecs = {
+  customJs: [
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.17.14/swagger-ui-standalone-preset.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.17.14/swagger-ui-bundle.min.js",
+  ],
+  customCssUrl: [
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.17.14/swagger-ui-standalone-preset.min.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.17.14/swagger-ui.min.css",
+  ],
+};
+
 export const swaggerSpec = swaggerJsdoc(options);

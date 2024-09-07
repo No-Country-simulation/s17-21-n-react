@@ -1,9 +1,10 @@
 import express from "express";
-import { AuthController } from "./controllers/auth.controller";
-import { AuthService } from "./services/auth.service";
-import { AuthRepository } from "./repositories/auth.repository";
-import prisma from "../../infrastructure/database/prisma";
-import { RoleRepository } from "./repositories/role.repository";
+
+import prisma from "../../../infraestructure/database/prisma";
+import { AuthController } from "../controllers/auth.controller";
+import { AuthService } from "../services/auth.service";
+import { AuthRepository } from "../repositories/auth.repository";
+import { RoleRepository } from "../repositories/role.repository";
 
 const router = express.Router();
 

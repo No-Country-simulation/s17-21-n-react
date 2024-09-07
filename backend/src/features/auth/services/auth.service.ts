@@ -25,10 +25,10 @@ export class AuthService {
     );
     if (!isPasswordValid) throw new Error("Invalid password");
 
-    const { id, email, name, last_name, roleId } = user;
+    const { id, email, name, lastName, roleId } = user;
 
     const token = generateJWT({ userId: user.id });
-    return { token, user: { email, id, last_name, name, roleId } };
+    return { token, user: { email, id, lastName, name, role: user.role?.name, roleId } };
   }
 
   async registerAdmin(registerDto: RegisterAdminDto) {
