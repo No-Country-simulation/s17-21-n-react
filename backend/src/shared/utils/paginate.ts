@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Paginated } from "../interfaces/Paginated";
-import prisma from "../../infraestructure/database/prisma";
+import prisma from "../../infrastructure/database/prisma";
 
 type PrismaModel = keyof PrismaClient;
 export const Paginate = async <T>(

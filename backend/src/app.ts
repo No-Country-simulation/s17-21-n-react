@@ -5,7 +5,7 @@ import swaggerUi from "swagger-ui-express";
 import { corsConfig, MORGAN_FORMAT } from "./configs";
 import { errorResponse, successResponse } from "./shared/utils";
 import { mainRouter } from "./shared/routes";
-import { swaggerOptions, swaggerSpec, swaggerUiSpecs } from "./infraestructure/swagger";
+import { swaggerOptions, swaggerSpec, swaggerUiSpecs } from "./infrastructure/swagger";
 
 
 const app: Application = express();
