@@ -120,7 +120,7 @@ const AboutUs = () => {
             <hr className="border border-border max-w-[570px]" />
             <div className="flex flex-row items-center justify-center md:justify-start md:gap-2">
               <div className="flex flex-row items-center justify-center gap-2">
-                <img className="size-20 object-cover border-4 border-primary" src={johnDoe} />
+                <img className="size-20 object-cover border-4 border-primary" src={johnDoe} alt="profile" />
                 <div className="flex flex-col gap-2">
                   <h4 className="text-[#1F2126] font-bold text-xl">Jhon Doe</h4>
                   <span className="text-[#7D7F85] text-sm font-normal">Fundador Visionario</span>

@@ -97,10 +97,10 @@ const Login = () => {
                 Educa<span className="text-primary">Pro</span>
               </Link>
             </div>
-            <div className="hidden md:flex items-center">
+            <div className="flex items-center">
               <Link to="/login">
-                <button className="btn bg-primary text-white flex items-center gap-2.5 px-9 py-2 rounded">
-                  Acceso
+                <button className="btn bg-primary text-white flex items-center gap-2.5 px-9 py-2 rounded h-10">
+                  <p className="hidden md:block">Acceso</p>
                   <img src={rightArrow} alt="button" width={14} height={14} />
                 </button>
               </Link>

@@ -20,8 +20,8 @@ export default function BannerHome() {
 
       <div className="absolute inset-0 bg-gray-900 bg-opacity-80"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 h-full flex flex-col justify-center">
-        <div className="flex bg-white text-primary text-2xl font-bold py-1 px-3 mb-4 max-w-[212px] items-center gap-2">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 h-full flex flex-col justify-center mt-28">
+        <div className="flex bg-white text-primary text-2xl font-bold px-3 mb-4 max-w-[212px] items-center gap-2">
           <div className="bg-primary size-3 rounded-full" />
           BIENVENIDO
         </div>
