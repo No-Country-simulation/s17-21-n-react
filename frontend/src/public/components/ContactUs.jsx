@@ -27,7 +27,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="flex justify-center items-center bg-white py-12 md:py-60">
+    <div className="flex justify-center items-center bg-white">
       <div className="max-w-7xl w-full h-auto flex flex-col md:flex-row gap-7 px-4">
         {/* Left Section */}
         <div className="w-full lg:w-2/3">
