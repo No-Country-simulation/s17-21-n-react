@@ -24,7 +24,7 @@ const Home = () => {
       <section className="w-full">
         <ForTeachers />
       </section>
-      <section className="w-full" id="nosotros">
+      <section className="w-full pt-20" id="nosotros">
         <AboutUs />
       </section>
       <section className="w-full py-9 md:py-16">
@@ -45,16 +45,16 @@ const Home = () => {
       <section className="w-full">
         <Quotation />
       </section>
-      <section className="w-full py-7 md:py-14 bg-white" id="ventajas">
+      <section className="w-full pt-20 md:py-20 bg-white" id="ventajas">
         <StatsHighLight />
       </section>
       <section className="w-full bg-white">
         <TestimonialsCarrousel />
       </section>
-      <section className="w-full md:py-7" id="eventos">
+      <section className="w-full pt-20 md:py-7" id="eventos">
         <Events />
       </section>
-      <section className="py-7 md:py-14" id="contacto">
+      <section className="pt-20 pb-7 md:py-24" id="contacto">
         <ContactUs />
       </section>
       <BackToTopButton />
