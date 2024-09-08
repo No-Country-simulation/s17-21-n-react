@@ -39,7 +39,7 @@ const NavbarHome = () => {
       }`}
     >
       <section className="max-w-7xl mx-auto">
-        <div className="mx-auto px-4 py-2.5 flex justify-between items-center">
+        <div className="mx-auto px-4 py-5 flex justify-between items-center">
           <div className="text-3xl font-bold">
             <Link to="/">
               Educa<span className="text-primary">Pro</span>
