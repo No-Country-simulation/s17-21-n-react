@@ -51,7 +51,7 @@ const Home = () => {
       <section className="w-full bg-white">
         <TestimonialsCarrousel />
       </section>
-      <section className="w-full pt-20 md:py-7" id="eventos">
+      <section className="w-full pt-20 md:pb-7" id="eventos">
         <Events />
       </section>
       <section className="pt-20 pb-7 md:py-24" id="contacto">
