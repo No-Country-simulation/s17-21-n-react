@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import { AdminRoutes, StudentsRoutes, TeachersRoutes } from "./routes";
-import Layout from "./components/layout/Layout";
-import ErrorPage from "./components/layout/ErrorPage";
-import Home from "./pages/home/Home";
-import Login from "./pages/login/Login";
-import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
-import ProtectedRoute from "./components/ProtectedRoute";
+import { AdminRoutes, StudentsRoutes, TeachersRoutes } from "./public/routes/index";
+import Layout from "./common/components/layout/Layout";
+import ErrorPage from "./public/pages/ErrorPage";
+import Home from "./public/pages/Home";
+import Login from "./public/pages/Login";
+import ForgotPassword from "./public/pages/ForgotPassword";
+import ProtectedRoute from "./common/components/ProtectedRoute";
 import useUserStore from "./store/auth";
-import AccessDeniedPage from "./components/layout/AccessDeniedPage";
+import AccessDeniedPage from "./common/components/layout/AccessDeniedPage";
 
 const App = () => {
   const { role } = useUserStore((state) => state.user || { role: "" });
