@@ -1,52 +1,67 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ArrowUp } from "lucide-react";
 
 export default function BackToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+
+      setScrollProgress(progress);
+      setIsVisible(scrollTop > 300);
     };
 
-    window.addEventListener("scroll", toggleVisibility);
+    const optimizedHandleScroll = () => requestAnimationFrame(handleScroll);
+    window.addEventListener("scroll", optimizedHandleScroll);
 
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", optimizedHandleScroll);
   }, []);
 
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-  };
+  }, []);
 
-  if (!isVisible) {
-    return null;
-  }
+  const radius = 25;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (scrollProgress / 100) * circumference;
+
+  if (!isVisible) return null;
 
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-4 right-4 flex flex-col items-center bg-white rounded-full shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all duration-300 z-30 animate-bounce"
+      className="fixed bottom-6 right-6 flex items-center justify-center bg-white rounded-full shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all duration-300 z-30"
       aria-label="Back to top"
     >
-      <div className="bg-gray-200 p-3 rounded-full mb-4">
-        <ArrowUp className="h-6 w-6 text-gray-600" />
-      </div>
-      <div className="bg-white px-2 pb-2 rounded-b-full">
-        <span className="text-gray-600 text-sm font-bold flex flex-col-reverse items-center">
-          {"BACK TO TOP".split("").map((char, index) => (
-            <span key={index} className="transform -rotate-90">
-              {char}
-            </span>
-          ))}
-        </span>
-      </div>
+      <svg
+        width="80"
+        height="80"
+        viewBox="0 0 80 80"
+        xmlns="http://www.w3.org/2000/svg"
+        className="absolute"
+      >
+        <circle
+          cx="40"
+          cy="40"
+          r={radius}
+          stroke="#00ADDE"
+          strokeWidth="4"
+          fill="transparent"
+          style={{
+            strokeDasharray: circumference,
+            strokeDashoffset: strokeDashoffset,
+            transition: "stroke-dashoffset 0.35s",
+          }}
+        />
+      </svg>
+      <ArrowUp className="h-10 w-10 text-gray-600" />
     </button>
   );
 }
