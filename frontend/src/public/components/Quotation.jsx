@@ -1,6 +1,6 @@
 import { quotationBg, quotationBg2, rightArrow } from "../../common/assets";
 
-const Quotation = () => {
+export function Quotation() {
   return (
     <div className="h-screen relative bg-black flex justify-center items-center md:h-[70vh] md:min-h-[600px]">
       <div className="absolute top-0 end-0 w-full h-full bg-black opacity-80 z-20"></div>
@@ -24,11 +24,9 @@ const Quotation = () => {
         <p className="text-white font-medium text-2xl md:mb-6">Llámanos al: (+54)5445400555</p>
         <button className="text-white bg-primary rounded p-3 font-medium">
           Leer más
-          <img src={rightArrow} alt="leer más" className="inline ms-4" />
+          <img src={rightArrow} alt="" className="inline ms-4" />
         </button>
       </div>
     </div>
   );
-};
-
-export default Quotation;
+}

@@ -9,7 +9,7 @@ import {
   vectorBanner6,
 } from "../../common/assets";
 
-export default function BannerHome() {
+export function BannerHome() {
   return (
     <div className="relative w-full h-screen md:max-h-[890px] overflow-hidden bg-black">
       <img

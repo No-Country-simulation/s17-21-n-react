@@ -3,9 +3,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { testimonials } from "../data/testimonials";
-import Testimonials from "./Testimonials";
+import { Testimonials } from "./Testimonials";
 
-const TestimonialsCarrousel = () => {
+export function TestimonialsCarrousel() {
   return (
     <div className="container mx-auto my-10">
       <Swiper
@@ -31,6 +31,4 @@ const TestimonialsCarrousel = () => {
       </Swiper>
     </div>
   );
-};
-
-export default TestimonialsCarrousel;
+}

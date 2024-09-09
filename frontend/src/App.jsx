@@ -2,12 +2,12 @@ import { Routes, Route } from "react-router-dom";
 import { AdminRoutes, StudentsRoutes, TeachersRoutes } from "./public/routes/index";
 import Layout from "./common/components/layout/Layout";
 import ErrorPage from "./public/pages/ErrorPage";
-import Home from "./public/pages/Home";
 import Login from "./public/pages/Login";
 import ForgotPassword from "./public/pages/ForgotPassword";
 import ProtectedRoute from "./common/components/ProtectedRoute";
 import useUserStore from "./store/auth";
 import AccessDeniedPage from "./common/components/layout/AccessDeniedPage";
+import { Home } from "./public/pages/Home";
 
 const App = () => {
   const { role } = useUserStore((state) => state.user || { role: "" });

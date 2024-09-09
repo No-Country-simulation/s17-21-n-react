@@ -12,11 +12,11 @@ const NavbarHome = () => {
   };
 
   const navItems = [
-    { id: 1, label: "Inicio", to: "#inicio" },
-    { id: 2, label: "Sobre Nosotros", to: "#nosotros" },
-    { id: 3, label: "Ventajas", to: "#ventajas" },
-    { id: 4, label: "Eventos", to: "#eventos" },
-    { id: 5, label: "Contacto", to: "#contacto" },
+    { id: 1, label: "Inicio", to: "#home" },
+    { id: 2, label: "Sobre Nosotros", to: "#about" },
+    { id: 3, label: "Ventajas", to: "#advantages" },
+    { id: 4, label: "Eventos", to: "#events" },
+    { id: 5, label: "Contacto", to: "#contact" },
   ];
 
   useEffect(() => {
@@ -77,7 +77,11 @@ const NavbarHome = () => {
           </div>
 
           <div className="lg:hidden">
-            <button onClick={toggleMenu} className="text_primary focus:outline-none">
+            <button
+              onClick={toggleMenu}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              className="text_primary focus:outline-none"
+            >
               <svg
                 className="w-6 h-6"
                 fill="none"
