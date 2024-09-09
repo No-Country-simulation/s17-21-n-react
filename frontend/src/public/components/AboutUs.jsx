@@ -10,7 +10,7 @@ import {
   teachers2,
 } from "../../common/assets";
 
-const AboutUs = () => {
+export function AboutUs() {
   const [selected, setSelected] = useState("mision");
 
   const handleButtonClick = (section) => {
@@ -58,11 +58,11 @@ const AboutUs = () => {
               acerca de nuestra compañia
             </h2>
           </div>
-          <h1 className="text-[#1F2126] font-bold text-2xl lg:text-[40px] text-center md:text-left lg:leading-[48px] capitalize max-w-[570px]">
+          <h1 className="font-bold text-2xl lg:text-[40px] text-center md:text-left lg:leading-[48px] capitalize max-w-[570px]">
             Impulsando el Futuro de la Educación
           </h1>
 
-          <p className="font-normal text-[#7D7F85] text-pretty lg:text-left text-base px-2 leading-7 max-w-[570px]">
+          <p className="font-normal text-pretty lg:text-left text-base px-2 leading-7 max-w-[570px]">
             En EducaPro, estamos comprometidos con transformar la manera en que se enseña y se
             aprende. Nuestro objetivo es proporcionar una plataforma intuitiva y poderosa que
             facilite el proceso educativo para docentes y estudiantes por igual.
@@ -74,7 +74,7 @@ const AboutUs = () => {
                 <div
                   id="mision"
                   className={`relative max-w-[150px] h-[75px] pb-6 px-5 flex flex-col items-center justify-center cursor-pointer ${
-                    selected === "mision" ? "bg-primary text-white" : "bg-lightGray text-[#1F2126]"
+                    selected === "mision" ? "bg-primary text-white" : "bg-gray-200 text-[#1F2126]"
                   }`}
                   onClick={() => handleButtonClick("mision")}
                 >
@@ -87,7 +87,7 @@ const AboutUs = () => {
                 <div
                   id="vision"
                   className={`relative max-w-[150px] h-[75px] pb-6 px-5 flex flex-col items-center justify-center cursor-pointer ${
-                    selected === "vision" ? "bg-primary text-white" : "bg-lightGray text-[#1F2126]"
+                    selected === "vision" ? "bg-primary text-white" : "bg-gray-200 text-[#1F2126]"
                   }`}
                   onClick={() => handleButtonClick("vision")}
                 >
@@ -97,7 +97,7 @@ const AboutUs = () => {
                   </div>
                 </div>
               </div>
-              <p className="text-[#242424] text-base font-normal text-pretty p-2 leading-4 h-[85px]">
+              <p className="text-base font-normal text-pretty p-2 leading-4 h-[85px]">
                 {contentMap[selected]}
               </p>
             </div>
@@ -106,7 +106,7 @@ const AboutUs = () => {
                 <h4 className="text-white font-bold">Oferta de trabajo</h4>
               </div>
               <div className="bg-gray-200 p-5 h-[158px]">
-                <span className="text-lg text-[#7D7F85] font-normal leading-7">
+                <span className="text-gray-700 text-lg font-normal leading-7">
                   ¡Únete a nosotros y marca la diferencia!
                 </span>
                 <div className="bg-primary size-10 rounded-full flex items-center justify-center">
@@ -126,8 +126,8 @@ const AboutUs = () => {
                   alt="profile"
                 />
                 <div className="flex flex-col gap-2">
-                  <h4 className="text-[#1F2126] font-bold text-xl">Jhon Doe</h4>
-                  <span className="text-[#7D7F85] text-sm font-normal">Fundador Visionario</span>
+                  <h4 className="font-bold text-xl">Jhon Doe</h4>
+                  <span className="text-sm font-normal">Fundador Visionario</span>
                 </div>
               </div>
               <img
@@ -141,6 +141,4 @@ const AboutUs = () => {
       </div>
     </div>
   );
-};
-
-export default AboutUs;
+}

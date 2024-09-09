@@ -1,30 +1,32 @@
 import Footer from "../../common/components/layout/Footer";
 import NavbarHome from "../../common/components/layout/NavbarHome";
-import ForStudents from "../../public/components/ForStudents";
-import OurTeacher from "../../public/components/OurTeacher";
-import StatsHighLight from "../../public/components/StatsHighLight";
-import TestimonialsCarrousel from "../../public/components/TestimonialsCarrousel";
-import Events from "../../public/components/Events";
-import BannerHome from "../../public/components/BannerHome";
-import ForTeachers from "../../public/components/ForTeachers";
-import Quotation from "../../public/components/Quotation";
-import WhyUs from "../../public/components/WhyUs";
 import { whyUsBg, whyUsBgWeb } from "./../../common/assets";
-import ContactUs from "../../public/components/ContactUs";
-import AboutUs from "../../public/components/AboutUs";
 import BackToTopButton from "../../common/utils/BackToTopButton";
+import {
+  AboutUs,
+  ContactUs,
+  Events,
+  BannerHome,
+  ForTeachers,
+  ForStudents,
+  WhyUs,
+  OurTeacher,
+  Quotation,
+  StatsHighLight,
+  TestimonialsCarrousel,
+} from "@public";
 
-const Home = () => {
+export function Home() {
   return (
     <>
       <NavbarHome />
-      <section id="inicio">
+      <section id="home">
         <BannerHome />
       </section>
       <section className="w-full">
         <ForTeachers />
       </section>
-      <section className="w-full" id="nosotros">
+      <section className="w-full" id="about">
         <AboutUs />
       </section>
       <section className="w-full py-9 md:py-16">
@@ -45,22 +47,20 @@ const Home = () => {
       <section className="w-full">
         <Quotation />
       </section>
-      <section className="w-full py-7 md:py-14 bg-white" id="ventajas">
+      <section className="w-full py-7 md:py-14 bg-inherit" id="advantages">
         <StatsHighLight />
       </section>
-      <section className="w-full bg-white">
+      <section className="w-full bg-inherit">
         <TestimonialsCarrousel />
       </section>
-      <section className="w-full md:py-7" id="eventos">
+      <section className="w-full md:py-7" id="events">
         <Events />
       </section>
-      <section className="py-7 md:py-14" id="contacto">
+      <section className="py-7 md:py-14" id="contact">
         <ContactUs />
       </section>
       <BackToTopButton />
       <Footer />
     </>
   );
-};
-
-export default Home;
+}

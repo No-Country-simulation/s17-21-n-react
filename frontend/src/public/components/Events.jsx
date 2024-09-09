@@ -4,16 +4,16 @@ import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { events } from "../data/events";
 
-const Events = () => {
+export function Events() {
   return (
     <>
       <div className="container mx-auto max-w-7xl lg:px-10 p-2.5 flex flex-col items-center justify-center">
         <div className="flex flex-col items-center gap-2">
           <div className="flex flex-row items-center gap-2">
             <div className="bg-primary size-3 rounded-full" />
-            <h2 className="text-primary uppercase font-semibold md:text-2xl">Nuestros eventos</h2>
+            <h2 className="text-primary uppercase font-semibold md:text-xl">Nuestros eventos</h2>
           </div>
-          <h1 className="text-[#1F2126] font-bold text-2xl md:text-[40px] text-center capitalize">
+          <h1 className="font-bold text-2xl md:text-[40px] text-center capitalize">
             Descubre nuestros próximos eventos educativos
           </h1>
         </div>
@@ -70,6 +70,4 @@ const Events = () => {
       </Swiper>
     </>
   );
-};
-
-export default Events;
+}

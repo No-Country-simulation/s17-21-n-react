@@ -4,7 +4,7 @@ import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import { teacher1, teacher2, teacher3, teacher4 } from "../../common/assets";
 
-const OurTeacher = () => {
+export function OurTeacher() {
   const teachers = [
     {
       id: 1,
@@ -35,7 +35,7 @@ const OurTeacher = () => {
             <div className="bg-primary size-3 rounded-full" />
             <h2 className="text-primary uppercase font-semibold md:text-2xl">nuestros docentes</h2>
           </div>
-          <h1 className="text-[#1F2126] font-bold text-2xl md:text-[40px] text-center capitalize">
+          <h1 className="font-bold text-2xl md:text-[40px] text-center capitalize">
             Empoderando a Nuestros Docentes para un Impacto Duradero
           </h1>
         </div>
@@ -83,6 +83,4 @@ const OurTeacher = () => {
       </Swiper>
     </>
   );
-};
-
-export default OurTeacher;
+}

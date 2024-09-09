@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { quote, triangle } from "../../common/assets";
 
-const Testimonials = ({ testimonial }) => {
+export function Testimonials({ testimonial }) {
   return (
     <>
       <div className="flex flex-col lg:flex-row items-center w-[300px] lg:w-[935px] z-[1]">
@@ -42,6 +42,4 @@ const Testimonials = ({ testimonial }) => {
       </div>
     </>
   );
-};
-
-export default Testimonials;
+}

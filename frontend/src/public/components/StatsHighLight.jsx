@@ -27,7 +27,7 @@ const stats = [
   },
 ];
 
-const StatsHighLight = () => {
+export function StatsHighLight() {
   return (
     <div className=" w-full h-full">
       <div className="max-w-7xl mx-auto">
@@ -38,7 +38,7 @@ const StatsHighLight = () => {
               Impacto educativo de excelencia
             </h2>
           </div>
-          <h1 className="text-[#1F2126] font-bold text-2xl md:text-[40px] text-center capitalize">
+          <h1 className="font-bold text-2xl md:text-[40px] text-center capitalize">
             Nuestros logros nos respaldan
           </h1>
         </div>
@@ -47,7 +47,7 @@ const StatsHighLight = () => {
           {stats.map(({ id, title, value, icon }) => (
             <div
               key={id}
-              className="relative bg-background_primary flex flex-col items-center text-center py-8 mb-2 rounded-lg shadow-lg"
+              className="relative bg-background_primary text-text_primary flex flex-col items-center text-center py-8 mb-2 rounded-lg shadow-lg"
             >
               <div className="flex flex-col justify-between h-full">
                 <div>
@@ -64,6 +64,4 @@ const StatsHighLight = () => {
       </div>
     </div>
   );
-};
-
-export default StatsHighLight;
+}

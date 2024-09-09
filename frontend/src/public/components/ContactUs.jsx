@@ -11,7 +11,7 @@ import {
 } from "../../common/assets";
 import { useState } from "react";
 
-const ContactUs = () => {
+export function ContactUs() {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -27,21 +27,19 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="flex justify-center items-center bg-white">
+    <div className="flex justify-center items-center bg-inherit">
       <div className="max-w-7xl w-full h-auto flex flex-col md:flex-row gap-7 px-4">
         {/* Left Section */}
         <div className="w-full lg:w-2/3">
           <div className="space-y-6">
             <div className="flex justify-center md:justify-start items-center space-x-3">
               <div className="w-3 h-3 bg-primary rounded-full" />
-              <div className=" text-primary text-lg lg:text-2xl font-semibold uppercase">
+              <div className=" text-primary text-lg lg:text-xl font-semibold uppercase">
                 Contáctanos ahora
               </div>
             </div>
-            <h1 className="text-[#1f2126] text-3xl lg:text-[40px] font-bold capitalize">
-              Estamos Para Asistirte
-            </h1>
-            <p className="text-[#7d7f85] text-base lg:text-lg leading-7">
+            <h1 className="text-3xl lg:text-[40px] font-bold capitalize">Estamos Para Asistirte</h1>
+            <p className="text-base lg:text-lg leading-7">
               Conéctate con nuestro equipo para obtener asistencia personalizada, resolver dudas o
               recibir soporte en tiempo real. Estamos aquí para ayudarte en cada paso del camino.
             </p>
@@ -56,7 +54,7 @@ const ContactUs = () => {
                   value={form.name}
                   onChange={handleChange}
                   placeholder="Ingresa tu nombre"
-                  className="w-full p-4 bg-white border border-[#dddddd] rounded-md  text-[#7d7f85] focus:outline-none focus:border-[#2b4eff]"
+                  className="w-full p-4 bg-inherit border border-[#dddddd] rounded-md  focus:outline-none focus:border-[#2b4eff]"
                   required
                 />
               </div>
@@ -67,7 +65,7 @@ const ContactUs = () => {
                   value={form.email}
                   onChange={handleChange}
                   placeholder="Ingresa tu correo"
-                  className="w-full p-4 bg-white border border-[#dddddd] rounded-md  text-[#7d7f85] focus:outline-none focus:border-[#2b4eff]"
+                  className="w-full p-4 bg-inherit border border-[#dddddd] rounded-md focus:outline-none focus:border-[#2b4eff]"
                   required
                 />
               </div>
@@ -78,7 +76,7 @@ const ContactUs = () => {
                 value={form.message}
                 onChange={handleChange}
                 placeholder="Escribe tu mensaje"
-                className="w-full h-36 p-4 bg-white border border-[#dddddd] rounded-md  text-[#7d7f85] focus:outline-none focus:border-[#2b4eff]"
+                className="w-full h-36 p-4 bg-inherit border border-[#dddddd] rounded-md focus:outline-none focus:border-[#2b4eff]"
                 required
               />
             </div>
@@ -131,7 +129,7 @@ const ContactUs = () => {
       </div>
     </div>
   );
-};
+}
 
 const ContactInfo = ({ icon, title, details }) => (
   <div className="flex items-start space-x-4">
@@ -146,5 +144,3 @@ const ContactInfo = ({ icon, title, details }) => (
     </div>
   </div>
 );
-
-export default ContactUs;

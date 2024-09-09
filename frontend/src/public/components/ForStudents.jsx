@@ -5,7 +5,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import { spanGray, spanBlue } from "../../common/assets";
 import { forStudents } from "../data/forStudents";
 
-const ForStudents = () => {
+export function ForStudents() {
   return (
     <>
       <div className="container mx-auto max-w-7xl lg:px-10 p-2.5 flex flex-col items-center justify-center">
@@ -14,7 +14,7 @@ const ForStudents = () => {
             <div className="bg-primary size-3 rounded-full" />
             <h2 className="text-primary uppercase font-semibold md:text-2xl">Para Estudiantes</h2>
           </div>
-          <h1 className="text-[#1F2126] font-bold text-2xl md:text-[40px] text-center capitalize">
+          <h1 className="font-bold text-2xl md:text-[40px] text-center capitalize">
             Todo lo que Necesitas para Triunfar
           </h1>
         </div>
@@ -75,6 +75,4 @@ const ForStudents = () => {
       </Swiper>
     </>
   );
-};
-
-export default ForStudents;
+}

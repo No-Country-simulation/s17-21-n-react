@@ -1,0 +1,12 @@
+export { AboutUs } from "./AboutUs";
+export { BannerHome } from "./BannerHome";
+export { ContactUs } from "./ContactUs";
+export { Events } from "./Events";
+export { ForStudents } from "./ForStudents";
+export { ForTeachers } from "./ForTeachers";
+export { OurTeacher } from "./OurTeacher";
+export { Quotation } from "./Quotation";
+export { StatsHighLight } from "./StatsHighLight";
+export { Testimonials } from "./Testimonials";
+export { TestimonialsCarrousel } from "./TestimonialsCarrousel";
+export { WhyUs } from "./WhyUs";
