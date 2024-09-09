@@ -25,17 +25,12 @@ export function Testimonials({ testimonial }) {
         <div className="w-[300px] md:w-[600px] lg:w-[670px] lg:h-[380px] p-5 lg:p-10 bg-background_primary rounded-xl md:rounded-r-xl lg:rounded-l-none relative">
           <div className="flex flex-col gap-5 lg:gap-[30px]">
             <img src={quote} alt="quote" className="lg:w-16" width={44} height={44} />
-            <p
-              id="testimonial-quote"
-              className="text-pretty text-[#7D7F85] text-sm md:text-xl lg:text-2xl"
-            >
+            <p id="testimonial-quote" className="text-pretty text-sm md:text-xl lg:text-2xl">
               {testimonial.testimonial}
             </p>
             <div id="testimonial-person" className="flex flex-col">
-              <h3 className="font-bold text-sm lg:text-lg">{testimonial.fullName}</h3>
-              <span className="text-[#7D7F85] text-xs lg:text-base font-normal">
-                {testimonial.specialty}
-              </span>
+              <h5 className="font-bold text-sm lg:text-lg">{testimonial.fullName}</h5>
+              <span className="text-xs lg:text-base font-normal">{testimonial.specialty}</span>
             </div>
           </div>
         </div>

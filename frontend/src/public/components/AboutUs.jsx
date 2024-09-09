@@ -25,44 +25,41 @@ export function AboutUs() {
   };
 
   return (
-    <div className="container mx-auto flex justify-center">
-      <div className="flex flex-col md:flex-row items-center gap-10">
-        <div className="flex flex-col gap-2.5">
-          <div className="flex flex-col md:flex-row gap-14 md:gap-24 items-center">
-            <div className="flex flex-row gap-1 relative items-center justify-center">
-              <div className="bg-[#242424] size-[95px] rounded-full border-2 border-white flex items-center justify-center absolute md:-right-11">
-                <img src={play} alt="Play icon" />
-              </div>
-              <img src={teachers1} alt="Imagen de Profesores" className="object-cover" />
+    <div className="grid md:grid-cols-2 items-center gap-10 max-w-7xl px-4 mx-auto">
+      <div className="flex flex-col gap-2">
+        <div className="flex flex-col md:flex-row gap-14 items-center">
+          <div className="flex flex-row gap-1 relative items-center justify-center">
+            <div className="bg-[#242424] size-[95px] rounded-full border-2 border-white flex items-center justify-center absolute md:-right-11">
+              <img src={play} alt="Play icon" />
             </div>
-            <div className="flex flex-row md:flex-col items-center md:items-start gap-8">
-              <div className="text-primary text-[26px] font-bold capitalize leading-8 pl-2">
-                Años de <br /> Experiencia
-              </div>
-              <div className="p-5 -rotate-90 w-[102px] h-[85px] bg-primary flex items-center justify-center">
-                <div className="flex flex-row gap-2">
-                  <span className="font-bold text-white text-3xl">+</span>
-                  <h5 className="font-bold text-white text-3xl">10</h5>
-                </div>
-              </div>
-            </div>
+            <img src={teachers1} alt="Imagen de Profesores" className="object-cover" />
           </div>
-          <div className="w-full pt-14">
-            <img src={teachers2} alt="Imagen de Profesores" className="object-cover p-2 md:p-0" />
+          <div className="flex flex-row md:flex-col items-center md:items-start gap-8">
+            <div className="text-primary text-[26px] font-bold capitalize leading-8 pl-2">
+              Años de <br /> Experiencia
+            </div>
+            <div className="p-5 -rotate-90 w-[102px] h-[85px] bg-primary flex items-center justify-center">
+              <div className="flex flex-row gap-2">
+                <span className="font-bold text-white text-3xl">+</span>
+                <h5 className="font-bold text-white text-3xl">10</h5>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="flex flex-col gap-6 max-w-[570px]">
-          <div className="flex flex-row items-center justify-center md:justify-normal gap-2">
-            <div className="bg-primary size-3 rounded-full" />
-            <h2 className="text-primary uppercase font-semibold text-base lg:text-2xl">
-              acerca de nuestra compañia
-            </h2>
-          </div>
-          <h1 className="font-bold text-2xl lg:text-[40px] text-center md:text-left lg:leading-[48px] capitalize max-w-[570px]">
+        <div className="w-full pt-14">
+          <img src={teachers2} alt="Imagen de Profesores" className="object-cover p-2 md:p-0" />
+        </div>
+      </div>
+      <section className="gap-2">
+        <h3 className="flex text-primary font-semibold justify-center md:justify-start before:content-[''] before:w-3 before:h-3 before:inline-block before:bg-primary before:rounded-full items-center gap-2 md:text-xl uppercase">
+          acerca de nuestra compañia
+        </h3>
+        <div className="flex flex-col gap-4">
+          <h4 className="font-bold text-2xl lg:text-[40px] text-center md:text-left lg:leading-[48px] capitalize ">
             Impulsando el Futuro de la Educación
-          </h1>
+          </h4>
 
-          <p className="font-normal text-pretty lg:text-left text-base px-2 leading-7 max-w-[570px]">
+          <p className="font-normal text-pretty lg:text-left text-base px-2 leading-7">
             En EducaPro, estamos comprometidos con transformar la manera en que se enseña y se
             aprende. Nuestro objetivo es proporcionar una plataforma intuitiva y poderosa que
             facilite el proceso educativo para docentes y estudiantes por igual.
@@ -97,7 +94,7 @@ export function AboutUs() {
                   </div>
                 </div>
               </div>
-              <p className="text-base font-normal text-pretty p-2 leading-4 h-[85px]">
+              <p className="text-base font-normal text-pretty p-2 leading-6 h-28">
                 {contentMap[selected]}
               </p>
             </div>
@@ -115,9 +112,8 @@ export function AboutUs() {
               </div>
             </div>
           </div>
-
           <div className="flex flex-col gap-4">
-            <hr className="border border-border max-w-[570px]" />
+            <hr className="border border-border " />
             <div className="flex flex-row items-center justify-center md:justify-start md:gap-2">
               <div className="flex flex-row items-center justify-center gap-2">
                 <img
@@ -138,7 +134,7 @@ export function AboutUs() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

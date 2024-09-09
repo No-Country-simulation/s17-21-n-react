@@ -29,12 +29,12 @@ const stats = [
 
 export function StatsHighLight() {
   return (
-    <div className=" w-full h-full">
-      <div className="max-w-7xl mx-auto">
+    <div className="w-full h-full">
+      <div className="max-w-7xl mx-auto p-4">
         <div className="flex flex-col items-center gap-4">
           <div className="flex items-center gap-2">
             <div className="bg-primary size-3 rounded-full" />
-            <h2 className="text-primary uppercase font-semibold md:text-2xl">
+            <h2 className="text-primary uppercase font-semibold md:text-xl">
               Impacto educativo de excelencia
             </h2>
           </div>
@@ -43,24 +43,20 @@ export function StatsHighLight() {
           </h1>
         </div>
 
-        <dl className="my-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="my-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map(({ id, title, value, icon }) => (
             <div
               key={id}
-              className="relative bg-background_primary text-text_primary flex flex-col items-center text-center py-8 mb-2 rounded-lg shadow-lg"
+              className="relative bg-background_primary text-center py-8 mb-2 rounded-lg shadow-lg"
             >
-              <div className="flex flex-col justify-between h-full">
-                <div>
-                  <dd className="text-4xl font-extrabold">{value}</dd>
-                  <dt className="mt-2 text-lg font-medium">{title}</dt>
-                </div>
-                <div className="absolute inset-x-0 bottom-[-30px] flex justify-center">
-                  <div className="bg-base_black rounded-full p-4 shadow-lg">{icon}</div>
-                </div>
+              <div className="text-5xl font-extrabold">{value}</div>
+              <div className="m-2 text-lg font-medium">{title}</div>
+              <div className="absolute inset-x-0 bottom-[-30px] flex justify-center">
+                <span className="bg-base_black rounded-full p-4 shadow-lg">{icon}</span>
               </div>
             </div>
           ))}
-        </dl>
+        </div>
       </div>
     </div>
   );
