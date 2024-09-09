@@ -26,7 +26,8 @@ export function Home() {
       <section className="w-full">
         <ForTeachers />
       </section>
-      <section className="w-full" id="about">
+
+      <section className="w-full pt-20" id="about">
         <AboutUs />
       </section>
       <section className="w-full py-9 md:py-16">
@@ -47,16 +48,16 @@ export function Home() {
       <section className="w-full">
         <Quotation />
       </section>
-      <section className="w-full py-7 md:py-14 bg-inherit" id="advantages">
+      <section className="w-full py-7 md:py-20 bg-inherit" id="advantages">
         <StatsHighLight />
       </section>
       <section className="w-full bg-inherit">
         <TestimonialsCarrousel />
       </section>
-      <section className="w-full md:py-7" id="events">
+      <section className="w-full pt-20 md:py-7" id="events">
         <Events />
       </section>
-      <section className="py-7 md:py-14" id="contact">
+      <section className="pt-20 pb-7 md:py-24" id="contact">  
         <ContactUs />
       </section>
       <BackToTopButton />
