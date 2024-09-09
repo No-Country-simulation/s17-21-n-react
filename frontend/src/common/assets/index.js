@@ -50,7 +50,7 @@ import quotationBg from "./images/quotationBg.webp";
 import quotationBg2 from "./images/quotationBg2.webp";
 import arrow from "./icons/arrow.svg";
 import whyUsBg from "./images/whyUs_bg.svg";
-import whyUsBgWeb from "./images/whyUsBg_web.png";
+import whyUsBgWeb from "./images/whyUsBg_web.webp";
 import whyUs from "./images/whyUs.webp";
 import profile from "./images/profile.png";
 import telephone from "./icons/telephone.svg";

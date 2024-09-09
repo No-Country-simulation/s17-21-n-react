@@ -26,7 +26,6 @@ export function Home() {
       <section className="w-full">
         <ForTeachers />
       </section>
-
       <section className="w-full pt-20" id="about">
         <AboutUs />
       </section>
@@ -54,10 +53,10 @@ export function Home() {
       <section className="w-full bg-inherit">
         <TestimonialsCarrousel />
       </section>
-      <section className="w-full pt-20 md:py-7" id="events">
+      <section className="w-full pt-20 md:py-20" id="events">
         <Events />
       </section>
-      <section className="pt-20 pb-7 md:py-24" id="contact">  
+      <section className="pt-20 pb-7 md:py-20" id="contact">
         <ContactUs />
       </section>
       <BackToTopButton />

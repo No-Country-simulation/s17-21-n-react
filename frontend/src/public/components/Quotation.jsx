@@ -18,9 +18,9 @@ export function Quotation() {
       />
 
       <div className="flex flex-col items-center gap-4 p-5 relative z-20">
-        <h4 className="text-white font-bold text-3xl md:text-[40px] text-center">
+        <h5 className="text-white font-bold text-3xl md:text-[40px] text-center">
           Solicita tu Cotización Ahora
-        </h4>
+        </h5>
         <p className="text-white font-medium text-2xl md:mb-6">Llámanos al: (+54)5445400555</p>
         <button className="text-white bg-primary rounded p-3 font-medium">
           Leer más

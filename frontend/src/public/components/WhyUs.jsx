@@ -7,7 +7,7 @@ export function WhyUs() {
         <div className="flex flex-col gap-2 max-w-[570px]">
           <div className="flex flex-row items-center justify-center lg:justify-start gap-2">
             <div className="bg-primary size-3 rounded-full" />
-            <h2 className="text-primary uppercase font-semibold md:text-2xl">porque elegirnos?</h2>
+            <h2 className="text-primary uppercase font-semibold md:text-xl">porque elegirnos?</h2>
           </div>
           <h1 className="text-[#1F2126] font-bold text-3xl md:text-[40px] md:leading-[48px] text-center lg:text-left capitalize">
             La Solución Ideal para la Educación Moderna

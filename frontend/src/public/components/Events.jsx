@@ -7,7 +7,7 @@ import { events } from "../data/events";
 export function Events() {
   return (
     <>
-      <div className="container mx-auto max-w-7xl lg:px-10 p-2.5 flex flex-col items-center justify-center">
+      <div className="container mx-auto max-w-7xl p-4 flex flex-col items-center">
         <div className="flex flex-col items-center gap-2">
           <div className="flex flex-row items-center gap-2">
             <div className="bg-primary size-3 rounded-full" />
@@ -59,10 +59,10 @@ export function Events() {
                 </span>
               </div>
               <div className="p-7 flex flex-col gap-2">
-                <span className="text-[#7D7F85] font-normal text-base">Fecha: {event.date}</span>
-                <h3 className="text-[#1F2126] font-bold text-lg">{event.title}</h3>
-                <p className="text-[#7D7F85] font-normal text-base">{event.description}</p>
-                <span className="text-[#1F2126] font-semibold text-base">Leer mas</span>
+                <span className="font-normal text-base">Fecha: {event.date}</span>
+                <h5 className="font-bold text-lg">{event.title}</h5>
+                <p className="font-normal text-base">{event.description}</p>
+                <span className="font-semibold text-base">Leer mas</span>
               </div>
             </div>
           </SwiperSlide>

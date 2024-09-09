@@ -33,7 +33,7 @@ export function OurTeacher() {
         <div className="flex flex-col items-center gap-2">
           <div className="flex flex-row items-center gap-2">
             <div className="bg-primary size-3 rounded-full" />
-            <h2 className="text-primary uppercase font-semibold md:text-2xl">nuestros docentes</h2>
+            <h2 className="text-primary uppercase font-semibold md:text-xl">nuestros docentes</h2>
           </div>
           <h1 className="font-bold text-2xl md:text-[40px] text-center capitalize">
             Empoderando a Nuestros Docentes para un Impacto Duradero

@@ -48,7 +48,7 @@ const Footer = () => {
               <input
                 type="text"
                 id="subscribe"
-                className="block w-[269px] max-w-72 h-[59px] px-8 py-4 text-sm text-black/50 outline-none bg-white rounded-l-[4px]"
+                className="block w-[269px] max-w-72 h-[59px] px-4 py-4 text-sm md:base text-gray-600 outline-none bg-white rounded-l-[4px]"
                 placeholder="Ingresa tu correo..."
                 required
               />
@@ -57,7 +57,7 @@ const Footer = () => {
                 <span className="sr-only">Subscribe</span>
               </button>
             </div>
-            <p className="max-w-72 text-[#83848A] text-sm leading-5">
+            <p className="max-w-72 text-sm leading-5">
               Recibe las últimas noticias y actualizaciones directamente en tu bandeja.
             </p>
           </div>
