@@ -11,8 +11,9 @@ export const Paginate = async <T>(
   filter?: any,
   orderBy?: any
 ): Promise<Paginated<T>> => {
-  const skip = (page - 1) * pageSize;
-  const take = pageSize;
+  const currentPage = Number.isNaN(page) ? 1 : page;
+  const take = Number.isNaN(pageSize) ? 10 : pageSize;
+  const skip = (currentPage - 1) * take;
 
   if (
     model in prisma &&
@@ -29,7 +30,7 @@ export const Paginate = async <T>(
       where: filter,
     });
 
-    return buildPaginated<T>(content, total, page, pageSize);
+    return buildPaginated<T>(content, total, currentPage, take);
   } else {
     throw new Error("Model not found");
   }

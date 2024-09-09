@@ -1,24 +1,56 @@
 import { Grade } from "@prisma/client";
 import { Paginated } from "../../../shared/interfaces/Paginated";
 import { IGradeRepository } from "./IGrade.repository";
+import { ErrorHandler } from "../../../shared/utils";
+import prisma from "../../../infrastructure/database/prisma";
 
 export class GradeRepository implements IGradeRepository {
-    findMany(skip: number, take: number): Promise<Paginated<Grade>> {
-        throw new Error("Method not implemented.");
+  async findMany(skip: number, take: number): Promise<Grade[]> {
+    try {
+      if (skip < 0 || take < 0) {
+        throw new Error("skip and take must be greater than 0");
+      }
+      return await prisma.grade.findMany({ skip, take });
+    } catch (error) {
+      ErrorHandler.handleError(error);
     }
-    findById(id: string): Promise<Grade | null> {
-        throw new Error("Method not implemented.");
+  }
+  async findById(id: string): Promise<Grade | null> {
+    try {
+      if (!id) {
+        throw new Error("id cannot be empty");
+      }
+      return prisma.grade.findUnique({ where: { id } });
+    } catch (error) {
+      ErrorHandler.handleError(error);
     }
-    create(grade: Grade): Promise<Grade> {
-        throw new Error("Method not implemented.");
+  }
+  async create(grade: Grade): Promise<Grade> {
+    try {
+      return await prisma.grade.create({ data: grade });
+    } catch (error) {
+      ErrorHandler.handleError(error);
     }
-    update(id: string, grade: Grade): Promise<Grade | null> {
-        throw new Error("Method not implemented.");
+  }
+  async update(id: string, grade: Grade): Promise<Grade | null> {
+    try {
+      return await prisma.grade.update({ where: { id }, data: grade });
+    } catch (error) {
+      ErrorHandler.handleError(error);
     }
-    delete(id: string): Promise<void> {
-        throw new Error("Method not implemented.");
+  }
+  async delete(id: string): Promise<void> {
+    try {
+      await prisma.grade.update({ where: { id }, data: { isDeleted: true } });
+    } catch (error) {
+      ErrorHandler.handleError(error);
     }
-    count(): Promise<number> {
-        throw new Error("Method not implemented.");
+  }
+  async count(): Promise<number> {
+    try {
+      return await prisma.grade.count();
+    } catch (error) {
+      ErrorHandler.handleError(error);
     }
+  }
 }

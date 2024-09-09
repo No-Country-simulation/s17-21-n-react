@@ -20,13 +20,14 @@ export class SubjectRepository implements ISubjectRepository {
   }
   async findByName(name: string): Promise<Subject | null> {
     try {
-      return await prisma.subject.findUnique({ where: { name } });
+      return await prisma.subject.findFirst({ where: { name } });
     } catch (error) {
       ErrorHandler.handleError(error);
     }
   }
   async create(subject: Subject): Promise<Subject> {
     try {
+      if (!subject) throw new Error("Data to create cannot be empty");
       return await prisma.subject.create({ data: subject });
     } catch (error) {
       ErrorHandler.handleError(error);

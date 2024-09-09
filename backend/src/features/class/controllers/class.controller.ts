@@ -58,11 +58,8 @@ export class ClassController {
         }
       );
       if (!classes) {
-        return errorResponse({
-          message: "Classes not found",
-          res,
-          status: 404,
-        });
+         return successResponse({ data: classes, res ,status: HttpCodes.SUCCESS_DELETED});
+
       }
       return successResponse({ data: classes, res });
     } catch (error) {

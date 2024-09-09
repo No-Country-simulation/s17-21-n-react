@@ -40,16 +40,20 @@ model Role {
 model AcademicYear {
   id              String           @id @default(uuid())
   year            Int
+  grades          Grade[]
   enrollments     Enrollment[]
   subjectTeachers SubjectTeacher[]
   classes         Class[]
 }
 
 model Grade {
-  id        String         @id @default(uuid())
-  name      String
-  subjects  GradeSubject[]
-  divisions Division[]
+  id           String         @id @default(uuid())
+  name         String
+  academicYear AcademicYear   @relation(fields: [yearId], references: [id])
+  yearId       String
+  isDeleted    Boolean        @default(false)
+  subjects     GradeSubject[]
+  divisions    Division[]
 }
 
 model GradeSubject {
@@ -62,7 +66,7 @@ model GradeSubject {
 
 model Subject {
   id              String           @id @default(uuid())
-  name            String           
+  name            String
   gradeSubjects   GradeSubject[]
   classes         Class[]
   enrollments     Enrollment[]
