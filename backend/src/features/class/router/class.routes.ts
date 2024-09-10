@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { ClassController } from "../controllers/class.controller";
 import { ClassRepository } from "../repositories/class.repository";
-import { ClassService } from "../services/Class.service";
+import { ClassService } from "../services/class.service";
 
 const router = Router();
 
