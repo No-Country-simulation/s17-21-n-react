@@ -20,4 +20,8 @@ export class RoleRepository {
   async findById(roleId:string){
     return this.prisma.role.findUnique({ where: { id: roleId } });
   }
+
+  async countByRole(roleName:string){
+    return this.prisma.role.count({ where: { name: roleName } });
+  }
 }

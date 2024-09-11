@@ -14,7 +14,7 @@ import { bulletinPaths, bulletinSchemas } from "./bulletin";
 export const swaggerOptions:SwaggerOptions = {
   swaggerOptions: {
     requestInterceptor: (req: Request) => {
-      const token = localStorage.getItem("token"); // Supongamos que tienes un token almacenado
+      const token = localStorage.getItem("token");
       if (token) 
         req.headers.set("Authorization", `Bearer ${token}`);
       
