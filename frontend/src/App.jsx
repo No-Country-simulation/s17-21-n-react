@@ -7,7 +7,8 @@ import ForgotPassword from "./public/pages/ForgotPassword";
 import ProtectedRoute from "./common/components/ProtectedRoute";
 import useUserStore from "./store/auth";
 import AccessDeniedPage from "./common/components/layout/AccessDeniedPage";
-import { Home } from "./public/pages/Home";
+// import { Home } from "./public/pages/Home";
+import StudentsByTeacher from "./teachers/components/MyStudents";
 
 const App = () => {
   const { role } = useUserStore((state) => state.user || { role: "" });
@@ -16,7 +17,7 @@ const App = () => {
     <div className="font-hind">
       <Routes>
         {/* Rutas públicas */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<StudentsByTeacher />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/access-denied" element={<AccessDeniedPage />} />
