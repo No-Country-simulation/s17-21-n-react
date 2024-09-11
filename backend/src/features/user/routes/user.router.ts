@@ -35,7 +35,11 @@ userRouter.post(
 
 userRouter.get(
   "/",
-  [ validateMidlleware({ querySchema: getUserQuerySchema }) ],
+  [
+    authMiddleware,
+    roleMiddleware([ SystemBaseRoles.ADMIN ]),
+    validateMidlleware({ querySchema: getUserQuerySchema }),
+  ],
   (req: Request, res: Response) => userController.getUsers(req, res)
 );
 
