@@ -12,7 +12,7 @@ const subjectController = new SubjectController(subjectService);
 router.get("/", (req, res) => subjectController.getAllSubjects(req, res));
 router.get("/:id", (req, res) => subjectController.getSubjectById(req, res));
 router.post("/", (req, res) => subjectController.createSubject(req, res));
-router.put("/:id", (req, res) => subjectController.update(req, res));
-router.delete("/:id", (req, res) => subjectController.delete(req, res));
+router.put("/:id", (req, res) => subjectController.updateSubject(req, res));
+router.delete("/:id", (req, res) => subjectController.deleteSubject(req, res));
 
 export { router as subjectRouter };
