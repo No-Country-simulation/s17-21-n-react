@@ -155,5 +155,5 @@ export {
   bell,
   save,
   excel,
-  pdf
+  pdf,
 };
