@@ -44,10 +44,10 @@ export class GradeController {
       const { id } = req.params;
       const grade = await this._gradeService.getGradeById(id);
       if (!grade) {
-        return successResponse({
-          data: grade,
+        return errorResponse({
           res,
-          status: HttpCodes.SUCCESS_DELETED,
+          status: HttpCodes.NOT_FOUND,
+          message: ERROR_MESSAGES.NOT_FOUND
         });
       }
       return successResponse({ data: grade, res, status: HttpCodes.SUCCESS });

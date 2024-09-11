@@ -48,7 +48,7 @@ export class GradeRepository implements IGradeRepository {
   }
   async count(): Promise<number> {
     try {
-      return await prisma.grade.count();
+      return await prisma.grade.count({ where: { isDeleted: false } });
     } catch (error) {
       ErrorHandler.handleError(error);
     }

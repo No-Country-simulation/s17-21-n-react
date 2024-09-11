@@ -1,5 +1,5 @@
 import { Class } from "@prisma/client";
-import { IClassRepository } from "./IClass.repository";
+import { IClassRepository } from "./Iclass.repository";
 import prisma from "../../../infrastructure/database/prisma";
 import { ErrorHandler } from "../../../shared/utils/ErrorHandler";
 
@@ -78,7 +78,7 @@ export class ClassRepository implements IClassRepository {
 
   async count(): Promise<number> {
     try {
-      return await prisma.class.count();
+      return await prisma.class.count({ where: { isDeleted: false } });
     } catch (error) {
       ErrorHandler.handleError(error);
     }

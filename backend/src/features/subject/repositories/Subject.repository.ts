@@ -49,7 +49,7 @@ export class SubjectRepository implements ISubjectRepository {
   }
   async count(): Promise<number> {
     try {
-      return await prisma.subject.count();
+      return await prisma.subject.count({ where: { isDeleted: false } });
     } catch (error) {
       ErrorHandler.handleError(error);
     }

@@ -151,7 +151,7 @@ model Bulletin {
   description String    @db.VarChar(256)
   scope       String    @db.VarChar(128)
   eventDate   DateTime
-  isActived   Boolean   @default(true)
+  isActivated   Boolean   @default(true)
   isDeleted   Boolean   @default(false)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt

@@ -4,7 +4,7 @@ export interface ReturnBulletin {
   description: string;
   eventDate: Date;
   scope: string;
-  isActived: boolean;
+  isActivated: boolean;
 }
 
 export interface Bulletin extends ReturnBulletin {

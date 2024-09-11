@@ -1,12 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import { CreateBulletinDto, FindManyBulletinDto, UpdateBulletinDto } from "../dtos/bulletin.dto";
-import { getPaginateOptions, } from "../../../shared/utils/paginate";
+import { Paginate } from "../../../shared/utils/paginate";
 import { SystemScopes } from "../../../shared/constants";
 import { ReturnBulletin } from "../entities";
 import { getSelectKeys } from "../../../shared/utils";
+import { Paginated } from "../../../shared/interfaces/Paginated";
 
 
-const keys: Array<keyof ReturnBulletin> = [ "id", "title", "description", "eventDate", "scope", "isActived" ];
+const keys: Array<keyof ReturnBulletin> = [ "id", "title", "description", "eventDate", "scope", "isActivated" ];
 
 const select = getSelectKeys(keys);
 
@@ -27,7 +28,7 @@ export class BulletinRepository {
     return this.prisma.bulletin.update({
       data: {
         deletedAt: new Date(),
-        isActived: false,
+        isActivated: false,
         isDeleted: false
       },
       select,
@@ -37,19 +38,16 @@ export class BulletinRepository {
 
   async findUnique(id: string): Promise<ReturnBulletin | null> {
     return this.prisma.bulletin.findUnique({
-      select, where: { deletedAt: null, id, isActived: true, }
+      select, where: { deletedAt: null, id, isActivated: true, }
     });
   }
 
-  async findMany(data: FindManyBulletinDto): Promise<ReturnBulletin[]> {
+  async findMany(data: FindManyBulletinDto): Promise<Paginated<ReturnBulletin>> {
     const { limit, page, orderBy, sort, scope = SystemScopes.ALL } = data;
 
-    const options = getPaginateOptions({ limit, orderBy, page, sort });
-
-    return this.prisma.bulletin.findMany({
-      where: { deletedAt: null, isActived: true, scope },
-      ...options,
-      select
-    });
+    return await Paginate<ReturnBulletin>("bulletin", Number(page), Number(limit), 
+      { deletedAt: null, isActivated: true, scope },
+      { orderBy: sort }
+    );
   }
 }
