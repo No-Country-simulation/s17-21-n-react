@@ -15,19 +15,26 @@ export class EnrollmentService implements IEnrollmentService {
   async getAllEnrollments(
     page: number, 
     size: number, 
-    filter?: any, 
+    filter?: {
+      yearId?: number;
+      divisionId?: number;
+      studentId?: number;
+    }, 
     sort?: any
   ): Promise<Paginated<Enrollments>> {
     //return await this._enrollmentRepository.findMany(page, size, filter);
+    let queryFilter: any = {};
+
+    if (filter) {
+      if (filter.yearId) queryFilter.yearId = filter.yearId;
+      if (filter.divisionId) queryFilter.divisionId = filter.divisionId;
+      if (filter.studentId) queryFilter.studentId = filter.studentId;
+    }
     return await Paginate<Enrollments>("enrollment", page, size, filter, sort);
   }
 
   async getEnrollmentById(id: string): Promise<Enrollments | null> {
     return await this._enrollmentRepository.findById(id);
-  }
-
-  async getEnrollmentByName(name: string): Promise<Enrollments | null> {
-    throw new Error("Method not implemented.");
   }
 
   async create(createDto: Enrollments): Promise<Enrollments> {

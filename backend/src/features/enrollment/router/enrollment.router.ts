@@ -11,7 +11,8 @@ const enrollmentController = new EnrollmentController(enrollmentService);
 
 router.get("/", (req, res) => enrollmentController.getAllEnrollments(req, res));
 router.get("/:id", (req, res) => enrollmentController.getEnrollmentById(req, res));
-router.post("/", (req, res) => enrollmentController.createEnrollment(req, res));
-router.put("/:id", (req, res) => enrollmentController.updateEnrollment(req, res));
+router.get("/students/:studentId/", (req, res) => enrollmentController.getEnrollmentsByStudentAndYear(req,res));
+router.post("/create-enrollment", (req, res) => enrollmentController.createEnrollment(req, res));
+router.patch("/:id/update-enrollment", (req, res) => enrollmentController.updateEnrollment(req, res));
 
 export { router as enrollmentRouter };

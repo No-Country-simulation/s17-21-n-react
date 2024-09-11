@@ -21,6 +21,29 @@ export class EnrollmentController {
       return errorResponse({message: "An error ocurred while fetching enrollments ",res, status: HttpCodes.INTERNAL_SERVER_ERROR});
     }
   }
+
+  async getEnrollmentsByStudentAndYear(req: Request, res: Response) {
+    try {
+      const { page, size, yearNum = 0 } = req.query;
+      const { studentId } = req.params;
+      const year = parseInt(req.query.year as string);
+      let filter: any = { studentId };
+      if (!isNaN(year)) {
+        filter.year = year;
+      }
+      const enrollments = await this._enrollmentService.getAllEnrollments(
+        parseInt(page as string),
+        parseInt(size as string),
+        filter
+      );
+      if (!enrollments) {
+         return successResponse({ data: enrollments, res ,status: HttpCodes.SUCCESS_DELETED});
+      }
+      return successResponse({ data: enrollments, res });
+    } catch (error) {
+      return errorResponse({message: "An error ocurred while fetching enrollments", res});
+    }
+  }
     
   async getEnrollmentById(req: Request, res: Response) {
     try {
