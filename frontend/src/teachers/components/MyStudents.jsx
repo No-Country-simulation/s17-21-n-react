@@ -23,8 +23,8 @@ const StudentsByTeacher = () => {
       date: "2023-02-10",
     },
     {
-      name: "Marioneta",
-      lastName: "Ledesma",
+      name: "Juan",
+      lastName: "Ledes",
       codigo: "014",
       photo: "https://randomuser.me/api/portraits/women/3.jpg",
       email: "MarioLede@edupro.com",
@@ -174,7 +174,7 @@ const StudentsByTeacher = () => {
                     />
                   </td>
                 )}
-                <td className="py-2 px-4 text-center" style={borderStyle}>
+                <td className="py-2 px-4 text-center min-w-[150px]" style={borderStyle}>
                   {`${student.name} ${student.lastName}`}
                 </td>
                 <td className="py-2 px-4 text-center" style={borderStyle}>
@@ -183,7 +183,7 @@ const StudentsByTeacher = () => {
                 <td className="py-2 px-4 text-center" style={borderStyle}>
                   {student.grade}
                 </td>
-                <td className="py-2 px-4 text-center" style={borderStyle}>
+                <td className="py-2 px-4 text-center min-w-[146px]" style={borderStyle}>
                   {student.date}
                 </td>
               </tr>
