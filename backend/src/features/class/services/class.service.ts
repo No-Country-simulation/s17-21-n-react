@@ -14,8 +14,8 @@ export class ClassService implements IClassService {
   async getAllClasses(
     page: number,
     size: number,
-    filter?: any,
-    sort?: any
+    filter?: Record<string, any>,
+    sort?: Record<string, "asc" | "desc">
   ): Promise<Paginated<Classes>> {
     return await Paginate<Classes>("class", page, size, filter, sort);
   }

@@ -7,7 +7,7 @@ import {
   generateJWT,
   hashPassword,
 } from "../../../shared/utils";
-import { SystemRoles } from "../../../shared/constants";
+import { SystemBaseRoles } from "../../../shared/constants";
 
 export class AuthService {
   constructor(
@@ -44,7 +44,7 @@ export class AuthService {
 
     if (!existingRole) {
       const role = await this.roleRepository.create({
-        name: SystemRoles.ADMIN,
+        name: SystemBaseRoles.ADMIN,
       });
       roleId = role.id;
     } else

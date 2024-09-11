@@ -1,12 +1,10 @@
 /* eslint-disable key-spacing */
-import { PageSubject } from "../dto/PageSubject";
 import { SubjectEntity } from "../entities/Subject.entity";
 import { ISubjectRepository } from "../repositories/ISubject.repository";
 import { ISubjectService } from "./ISubject.service";
 import { Paginate } from "../../../shared/utils/paginate";
 import { Subject } from "@prisma/client";
 import { Paginated } from "../../../shared/interfaces/Paginated";
-import prisma from "../../../infrastructure/database/prisma";
 
 export class SubjectService implements ISubjectService {
   private readonly _subjectRepository: ISubjectRepository;

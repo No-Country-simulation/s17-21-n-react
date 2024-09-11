@@ -8,8 +8,8 @@ export const Paginate = async <T>(
   model: PrismaModel,
   page: number,
   pageSize: number,
-  filter?: any,
-  orderBy?: any
+  filter?: Record<string, any>,
+  orderBy?: Record<string, "asc" | "desc">
 ): Promise<Paginated<T>> => {
   const currentPage = Number.isNaN(page) ? 1 : page;
   const take = Number.isNaN(pageSize) ? 10 : pageSize;
@@ -32,7 +32,9 @@ export const Paginate = async <T>(
 
     return buildPaginated<T>(content, total, currentPage, take);
   } else {
-    throw new Error("Model not found");
+    throw new Error(
+      `Modelo "${model.toString()}" no encontrado o no tiene los métodos requeridos`
+    );
   }
 };
 

@@ -1,49 +1,45 @@
 import { Request, Response } from "express";
-import { errorResponse, successResponse } from "../../../shared/utils";
-import { HttpCodes } from "../../../shared/utils/HTTPCode.utils";
+import { errorResponse, HttpCodes, successResponse } from "../../../shared/utils";
 import { IGradeService } from "../services/IGrade.service";
 
+const ERROR_MESSAGES = {
+  FETCH: "Ocurrió un error al obtener el grado",
+  CREATE: "Ocurrió un error al crear el grado",
+  UPDATE: "Ocurrió un error al actualizar el grado",
+  DELETE: "Ocurrió un error al eliminar el grado",
+  NOT_FOUND: "Grado no encontrado",
+};
+
 export class GradeController {
-  private readonly _gradeService: IGradeService;
 
-  constructor(gradeService: IGradeService) {
-    this._gradeService = gradeService;
-  }
+  constructor(private readonly _gradeService: IGradeService) {}
 
-  private handleClassError(
+  private handleGradeError = (
     error: unknown,
     message: string,
     res: Response,
-    status?: number
-  ) {
-    if (error instanceof Error)
-      return errorResponse({ res, status, message: error.message });
-    return errorResponse({
-      res,
-      status,
-      message: message,
-    });
-  }
+    status: number = HttpCodes.INTERNAL_SERVER_ERROR
+  ) => {
+    const errorMessage = error instanceof Error ? error.message : message;
+    return errorResponse({ res, status, message: errorMessage });
+  };
 
-  async getAllGrades(req: Request, res: Response) {
+  private parseQueryParams = (page?: string, size?: string) => ({
+    page: page ? parseInt(page, 10) : 1,
+    size: size ? parseInt(size, 10) : 10,
+  });
+
+  public getAllGrades = async (req: Request, res: Response) => {
     try {
-      const { page, size } = req.query;
-      const grades = await this._gradeService.getAllGrades(
-        parseInt(page as string) || 1,
-        parseInt(size as string) || 10
-      );
-      successResponse({ data: grades, res, status: HttpCodes.SUCCESS });
+      const { page, size } = this.parseQueryParams(req.query.page as string, req.query.size as string);
+      const grades = await this._gradeService.getAllGrades(page, size);
+      return successResponse({ data: grades, res, status: HttpCodes.SUCCESS });
     } catch (error) {
-      console.log(error);
-      return this.handleClassError(
-        error,
-        "An error occurred while fetching grades",
-        res
-      );
+      return this.handleGradeError(error, ERROR_MESSAGES.FETCH, res);
     }
-  }
+  };
 
-  async getGradeById(req: Request, res: Response) {
+  public getGradeById = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
       const grade = await this._gradeService.getGradeById(id);
@@ -54,56 +50,40 @@ export class GradeController {
           status: HttpCodes.SUCCESS_DELETED,
         });
       }
-      successResponse({ data: grade, res, status: HttpCodes.SUCCESS });
+      return successResponse({ data: grade, res, status: HttpCodes.SUCCESS });
     } catch (error) {
-      return this.handleClassError(
-        error,
-        "An error occurred while fetching grade",
-        res
-      );
+      return this.handleGradeError(error, ERROR_MESSAGES.FETCH, res);
     }
-  }
+  };
 
-  async createGrade(req: Request, res: Response) {
+  public createGrade = async (req: Request, res: Response) => {
     try {
       const createDto = req.body;
       const grade = await this._gradeService.create(createDto);
-      successResponse({ data: grade, res, status: HttpCodes.SUCCESS_CREATED });
+      return successResponse({ data: grade, res, status: HttpCodes.SUCCESS_CREATED });
     } catch (error) {
-      return this.handleClassError(
-        error,
-        "An error occurred while creating grade",
-        res
-      );
+      return this.handleGradeError(error, ERROR_MESSAGES.CREATE, res);
     }
-  }
+  };
 
-  async updateGrade(req: Request, res: Response) {
+  public updateGrade = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
       const updateDto = req.body;
       const grade = await this._gradeService.update(id, updateDto);
-      successResponse({ data: grade, res, status: HttpCodes.SUCCESS_CREATED });
+      return successResponse({ data: grade, res, status: HttpCodes.SUCCESS });
     } catch (error) {
-      return this.handleClassError(
-        error,
-        "An error occurred while updating grade",
-        res
-      );
+      return this.handleGradeError(error, ERROR_MESSAGES.UPDATE, res);
     }
-  }
+  };
 
-  async deleteGrade(req: Request, res: Response) {
+  public deleteGrade = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
       const grade = await this._gradeService.delete(id);
-      successResponse({ data: grade, res, status: HttpCodes.SUCCESS_DELETED });
+      return successResponse({ data: grade, res, status: HttpCodes.SUCCESS_DELETED });
     } catch (error) {
-      return this.handleClassError(
-        error,
-        "An error occurred while deleting grade",
-        res
-      );
+      return this.handleGradeError(error, ERROR_MESSAGES.DELETE, res);
     }
-  }
+  };
 }
