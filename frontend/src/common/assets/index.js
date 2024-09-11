@@ -73,6 +73,9 @@ import arrowCircle from "./icons/arrowcircle.svg";
 import avatar from "./images/avatar.png";
 import bell from "./icons/bell.svg";
 import deniedImage from "./images/403.webp";
+import profileLarge from "./images/profile-large.webp";
+import trash from "./icons/trash.svg";
+import upload from "./icons/upload.svg";
 
 export {
   facebook,
@@ -150,4 +153,7 @@ export {
   arrowCircle,
   avatar,
   bell,
+  profileLarge,
+  trash,
+  upload,
 };
