@@ -10,112 +10,113 @@ export class SubjectController {
     this._subjectService = subjectServices;
   }
 
-  async getAllSubjects(req: Request, res: Response) {
+  public getAllSubjects = async (req: Request, res: Response): Promise<void> => {
     try {
-      const { page = 1, size = 10 } = req.query;
+      const { page = '1', size = '10' } = req.query;
       const subjects = await this._subjectService.getAllSubjects(
-        Number(page),
-        Number(size)
+        parseInt(page as string),
+        parseInt(size as string)
       );
       successResponse({
         data: subjects,
-        message: "Subjects retrieved successfully",
+        message: "Asignaturas recuperadas exitosamente",
         res,
         status: HttpCodes.SUCCESS,
       });
-    } catch (error: Error | any) {
-      console.log(error);
+    } catch (error) {
       errorResponse({
-        message: error.message,
+        message: "Ocurrió un error al recuperar las asignaturas",
         res,
         status: HttpCodes.INTERNAL_SERVER_ERROR,
       });
     }
   }
 
-  async getSubjectById(req: Request, res: Response) {
+  public getSubjectById = async (req: Request, res: Response): Promise<void> => {
     try {
       const { id } = req.params;
       const subject = await this._subjectService.getSubjectById(id);
       if (!subject) {
-        return errorResponse({
-          data: {},
-          message: "Subject not found",
+        errorResponse({
+          message: "Asignatura no encontrada",
           res,
           status: HttpCodes.NOT_FOUND,
         });
-      }
-      return successResponse({
-        data: subject,
-        message: "Subject retrieved successfully",
-        res,
-        status: HttpCodes.SUCCESS,
-      });
-    } catch (error: Error | any) {
-      console.log(error);
-      return errorResponse({
-        message: error.message,
-        res,
-        status: HttpCodes.INTERNAL_SERVER_ERROR,
-      });
-    }
-  }
-
-  async createSubject(req: Request, res: Response) {
-    try {
-      const { body } = req;
-      const subject = await this._subjectService.create(body);
-      return successResponse({
-        data: subject,
-        message: "Subject created successfully",
-        res,
-        status: HttpCodes.SUCCESS,
-      });
-    } catch (error: Error | any) {
-      console.log(error);
-      return errorResponse({
-        message: error.message,
+        return
+      } 
+        successResponse({
+          data: subject,
+          message: "Asignatura recuperada exitosamente",
+          res,
+          status: HttpCodes.SUCCESS,
+        });
+    } catch (error) {
+      errorResponse({
+        message: "Ocurrió un error al recuperar la asignatura",
         res,
         status: HttpCodes.INTERNAL_SERVER_ERROR,
       });
     }
   }
-
-  async update(req: Request, res: Response) {
+  
+  public createSubject = async (req: Request, res: Response): Promise<void> => {
     try {
-      const { id } = req.params;
-      const { body } = req;
-      const subject = await this._subjectService.update(id, body);
-      return successResponse({
-        data: subject,
-        message: "Subject updated successfully",
-        res,
-        status: HttpCodes.SUCCESS,
-      });
-    } catch (error: Error | any) {
-      console.log(error);
-      return errorResponse({
-        message: error.message,
-        res,
-        status: HttpCodes.INTERNAL_SERVER_ERROR,
-      });
-    }
-  }
-
-  async delete(req: Request, res: Response) {
-    try {
-      const { id } = req.params;
-      const subject = await this._subjectService.delete(id);
+      const subject = await this._subjectService.create(req.body);
       successResponse({
         data: subject,
-        message: "Subject deleted successfully",
+        message: "Asignatura creada exitosamente",
         res,
         status: HttpCodes.SUCCESS,
       });
-    } catch (error: Error | any) {
-      console.log(error);
+    } catch (error) {
       errorResponse({
-        message: error.message,
+        message: "Ocurrió un error al crear la asignatura",
+        res,
+        status: HttpCodes.INTERNAL_SERVER_ERROR,
+      });
+    }
+  }
+
+  public updateSubject = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { id } = req.params;
+      const subject = req.body;
+      const updatedSubject = await this._subjectService.update(id, subject);
+      if (!updatedSubject) {
+         errorResponse({
+          message: "Asignatura no encontrada",
+          res,
+          status: HttpCodes.NOT_FOUND,
+        });
+        return
+      } 
+        successResponse({
+          data: updatedSubject,
+          message: "Asignatura actualizada exitosamente",
+          res,
+          status: HttpCodes.SUCCESS,
+      });
+    } catch (error) {
+      errorResponse({
+        message: "Ocurrió un error al actualizar la asignatura",
+        res,
+        status: HttpCodes.INTERNAL_SERVER_ERROR,
+      });
+    }
+  }
+
+  public deleteSubject = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { id } = req.params;
+      await this._subjectService.delete(id);
+      successResponse({
+        message: "Asignatura eliminada exitosamente",
+        res,
+        status: HttpCodes.SUCCESS,
+      });
+    } catch (error) {
+      errorResponse({
+        message: "Ocurrió un error al eliminar la asignatura",
         res,
         status: HttpCodes.INTERNAL_SERVER_ERROR,
       });

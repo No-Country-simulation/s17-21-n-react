@@ -73,9 +73,17 @@ model Subject {
   subjectTeachers SubjectTeacher[]
   division        Division         @relation(fields: [divisionId], references: [id])
   divisionId      String
+  category        SubjectCategory  @relation(fields: [categoryId], references: [id])
+  categoryId      String
   isDeleted       Boolean          @default(false)
 
   @@unique([name, divisionId])
+}
+
+model SubjectCategory {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  subjects Subject[]
 }
 
 model SubjectTeacher {
