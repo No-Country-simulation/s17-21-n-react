@@ -133,7 +133,7 @@ const StudentsByTeacher = () => {
   return (
     <div name="Students" className="container mx-auto p-4">
       <div name="Tittle" className="mb-4">
-        <h1 className="text-lg font-bold pb-4">Mis Alumnos</h1>
+        <h1 className="text-lg font-bold pb-4">Mis alumnos</h1>
         <h2 className="text-lg font-semibold"> Filtrar datos</h2>
       </div>
 
