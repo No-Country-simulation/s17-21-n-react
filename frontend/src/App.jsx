@@ -8,7 +8,6 @@ import ProtectedRoute from "./common/components/ProtectedRoute";
 import useUserStore from "./store/auth";
 import AccessDeniedPage from "./common/components/layout/AccessDeniedPage";
 import { Home } from "./public/pages/Home";
-import ActivitiesList from "./teachers/components/ActivitiesList";
 
 const App = () => {
   const { role } = useUserStore((state) => state.user || { role: "" });
@@ -16,7 +15,6 @@ const App = () => {
   return (
     <div className="font-hind">
       <Routes>
-      <Route path='/ActivitiesList' element={<ActivitiesList/>} />
         {/* Rutas públicas */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
