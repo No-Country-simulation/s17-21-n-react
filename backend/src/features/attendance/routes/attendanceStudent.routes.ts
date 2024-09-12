@@ -18,5 +18,4 @@ router.patch(
   (req, res) => attendanceStudentController.update(req, res)
 );
 
-
 export { router as attendanceStudentRouter };

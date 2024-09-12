@@ -9,5 +9,3 @@ export interface UpdateAttendanceStudentDto {
   observation: string;
   status     : string;
 }
-
-
