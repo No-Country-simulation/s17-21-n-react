@@ -55,3 +55,22 @@
   }
 }
 
+.rbc-header {
+  text-transform: capitalize;
+}
+
+.rbc-toolbar-label{
+    text-transform: uppercase; 
+}
+
+.rbc-day-slot .rbc-events-container{
+  margin-right: 0px !important;
+}
+
+.rbc-event, .rbc-day-slot .rbc-background-event{
+  background-color: transparent;
+}
+
+td.rbc-agenda-date-cell{
+  text-transform: capitalize;
+}
