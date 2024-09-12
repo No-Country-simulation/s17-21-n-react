@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { save, excel, pdf } from "../../common/assets";
 
 const GradesByTeacher = () => {
-  //comida para perro:
   const cursos = ["A1", "B1", "C1"];
   const clases = ["mago", "luchador", "tirador", "defensor"];
   const students = [
@@ -115,8 +114,7 @@ const GradesByTeacher = () => {
 
       <div className="overflow-x-auto">
         <table
-          className="table-auto w-full text-left border-separate text-xs"
-          style={{ borderSpacing: isMobile ? "0" : "0 0.7em" }}
+          className="table-auto w-full text-left text-sm"
         >
           <thead className="bg-[#0B0E29] text-white font-semibold">
             <tr>
@@ -141,7 +139,7 @@ const GradesByTeacher = () => {
                   {student.nota}
                 </td>
                 <td className="py-2 px-4 text-center border border-[#9C9898] border-l-0">
-                  <button className="bg-primary text-white px-4 py-1 rounded text-xs">
+                  <button className="bg-primary text-white px-4 py-1 rounded text-sm">
                     Guardar
                   </button>
                 </td>
