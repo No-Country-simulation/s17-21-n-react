@@ -1,0 +1,31 @@
+export const courses = [
+  {
+    id: 1,
+    name: "Matemáticas 1° Grado",
+    code: "12345",
+    description: "Curso de matemáticas para primer grado",
+    startDate: "05/03/2024",
+    duration: "3 meses",
+    image: "/course_cover.webp",
+    category: "Matemáticas",
+    rating: 4.5,
+    reviews: 44,
+    lessons: 12,
+    instructor: "Sarah Smith",
+  },
+
+  {
+    id: 2,
+    name: "Matemáticas 2° Grado",
+    code: "54321",
+    description: "Curso de matemáticas para segundo grado",
+    startDate: "05/03/2024",
+    duration: "3 meses",
+    image: "/course_cover.webp",
+    category: "Matemáticas",
+    rating: 4.8,
+    reviews: 50,
+    lessons: 12,
+    instructor: "Sarah Smith",
+  },
+];
