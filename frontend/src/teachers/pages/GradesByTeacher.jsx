@@ -113,9 +113,7 @@ const GradesByTeacher = () => {
       </div>
 
       <div className="overflow-x-auto">
-        <table
-          className="table-auto w-full text-left text-sm"
-        >
+        <table className="table-auto w-full text-left text-sm">
           <thead className="bg-[#0B0E29] text-white font-semibold">
             <tr>
               <th className="py-2 px-4 text-center border border-[#0B0E29] ">Código</th>
