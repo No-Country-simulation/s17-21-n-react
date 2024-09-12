@@ -13,7 +13,6 @@
   "dependencies": {
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.5",
-    "frontend": "file:",
     "lucide-react": "^0.436.0",
     "postcss": "^8.4.41",
     "react": "^18.3.1",
