@@ -64,11 +64,11 @@ userRouter.patch(
   (req: Request, res: Response) => userController.updateUser(req, res)
 );
 
-userRouter.delete("/:userId", [], (req: Request, res: Response) =>
+userRouter.delete("/:userId", [ authMiddleware, roleMiddleware([ "ADMIN" ]) ], (req: Request, res: Response) =>
   userController.softDeleteUser(req, res)
 );
 
-userRouter.get("/:userId", [], (req: Request, res: Response) =>
+userRouter.get("/:userId", [ authMiddleware, roleMiddleware([ "ADMIN" ]) ], (req: Request, res: Response) =>
   userController.getUserById(req, res)
 );
 
