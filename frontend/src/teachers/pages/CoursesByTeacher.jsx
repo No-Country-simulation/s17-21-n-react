@@ -1,4 +1,4 @@
-import { Plus } from "lucide-react";
+import { CirclePlus } from "lucide-react";
 import CardCourse from "../components/CardCourse";
 import { courses } from "../data/coursesData";
 import Pagination from "../../common/components/Pagination";
@@ -8,15 +8,12 @@ export default function CoursesByTeacher() {
     <div className="relative w-full mx-auto bg-white">
       <h1 className="text-[#495057] text-2xl mb-6 font-bold">Mis Cursos</h1>
 
-      <section className="flex justify-end mb-4 sm:mb-6">
-        <button
-          type="button"
-          className="flex items-center text-white border bg-primary rounded-md px-3 py-2 hover:bg-secondary_hover"
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          Añadir Curso
+      <div className="flex justify-end py-5">
+        <button className="flex justify-center bg-primary p-4 w-56 h-10 text-white rounded-md items-center">
+          <CirclePlus />
+          <p className="p-4">Añadir Curso</p>
         </button>
-      </section>
+      </div>
 
       <ul className="grid space-y-6">
         {courses.map((course) => (
