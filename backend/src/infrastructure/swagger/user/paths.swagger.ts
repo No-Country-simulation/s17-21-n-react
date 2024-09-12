@@ -4,8 +4,8 @@
 
 import { PathItem } from "swagger-jsdoc";
 import { SystemBaseRoles } from "../../../shared/constants";
-import { succesResponseSchema } from "../responses.swagger";
-import { successUsersGet, userSchemas } from "./schemas.swagger";
+import { paginationSchema, succesResponseSchema } from "../responses.swagger";
+import { userSchemas } from "./schemas.swagger";
 import { orders } from "../../../features/user/dtos/select.dto";
 
 const authLoginPath:PathItem = {
@@ -291,7 +291,7 @@ const usersGetPath:PathItem = {
       200: {
         content: {
           "application/json": {
-            schema: succesResponseSchema(successUsersGet)
+            schema: succesResponseSchema(paginationSchema("#/components/schemas/User:GET"))
           },
         },
         description: "list of users",

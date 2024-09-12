@@ -94,7 +94,7 @@ export class UserService {
         page   : isNaN(parseInt(page)) ? 1 : parseInt(page),
         sort   : !sort && orderBy ? "asc" : sort =="asc" || sort == "desc" ? sort : undefined
       },
-      role       : role ? role as SystemBaseRoles : undefined,
+      role       : role ? role.toUpperCase() as SystemBaseRoles : undefined,
       searchParam: s?s:undefined
     };
 
