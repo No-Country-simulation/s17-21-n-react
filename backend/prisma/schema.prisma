@@ -68,8 +68,8 @@ model Subject {
   id              String           @id @default(uuid())
   name            String
   description     String           @db.VarChar(256)
-  schedule_init   String           @db.VarChar(128)
-  schedule_end    String           @db.VarChar(128)
+  scheduleInit    String           @db.VarChar(128)
+  scheduleEnd     String           @db.VarChar(128)
   gradeSubjects   GradeSubject[]
   classes         Class[]
   enrollments     Enrollment[]
