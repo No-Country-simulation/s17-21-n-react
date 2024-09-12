@@ -6,6 +6,8 @@ import MyProfile from "../pages/MyProfile";
 import StudentsByTeacher from "../pages/StudentsByTeacher";
 import GradesByTeacher from "../pages/GradesByTeacher";
 import CoursesByTeacher from "../pages/CoursesByTeacher";
+import CalendarByTeacher from "../pages/CalendarByTeacher";
+
 
 const teacherRoutes = [
   { path: "dashboard", element: <DashboardTeachers /> },
@@ -15,7 +17,7 @@ const teacherRoutes = [
   { path: "grades", element: <GradesByTeacher /> },
   { path: "students", element: <StudentsByTeacher /> },
   { path: "courses", element: <CoursesByTeacher /> },
-
+  { path: "calendar", element: <CalendarByTeacher />},
   // Otras rutas específicas para maestros
 ];
 
