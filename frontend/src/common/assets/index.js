@@ -76,6 +76,9 @@ import deniedImage from "./images/403.webp";
 import profileLarge from "./images/profile-large.webp";
 import trash from "./icons/trash.svg";
 import upload from "./icons/upload.svg";
+import save from "./icons/save.svg";
+import excel from "./icons/excel.svg";
+import pdf from "./icons/pdf.svg";
 
 export {
   facebook,
@@ -156,4 +159,7 @@ export {
   profileLarge,
   trash,
   upload,
+  save,
+  excel,
+  pdf,
 };
