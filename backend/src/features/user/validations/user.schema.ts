@@ -16,9 +16,9 @@ const allowedOrder: string[] = userKeys as string[];
 
 export const getUserQuerySchema = z.object({
   isActive: z.enum([ "0", "1" ]).optional(),
-  limit   : z.number().optional(),
+  limit   : z.number().min(1).max(100).optional(),
   orderBy : z.enum([ "", ...allowedOrder ]).optional(),
-  page    : z.number().optional(),
+  page    : z.number().min(1).optional(),
   role    : z.enum([ "ADMIN", "TEACHER", "STUDENT" ]).optional(),
   s       : z.string().max(64).optional(),
   sort    : z.enum([ "asc", "desc" ]).optional()

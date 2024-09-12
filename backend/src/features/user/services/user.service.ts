@@ -1,12 +1,13 @@
 import { User } from "@prisma/client";
 import { SystemBaseRoles } from "../../../shared/constants";
-import { comparePassword, hashPassword, SortOrderType } from "../../../shared/utils";
+import { comparePassword, hashPassword } from "../../../shared/utils";
 import generatePassword from "../../../shared/utils/generatePassword.utils";
 import { RoleRepository } from "../../role/repositories/role.repository";
 import { RegisterUserDto } from "../dtos/create.dto";
 import { FilterUsers, FindUsersOptionsDto, orders, SelectUserDto } from "../dtos/select.dto";
 import { UpdateEmailDto, UpdatePasswordDto, UpdateUserDataDto } from "../dtos/update.dto";
 import { UserRepository } from "../repositories/user.repository";
+import { Paginated } from "../../../shared/interfaces/Paginated";
 
 export class UserService {
   constructor(
@@ -78,7 +79,7 @@ export class UserService {
     return { ...user, password: undefined } as SelectUserDto;
   }
 
-  async getUsers(findOptions: FindUsersOptionsDto) {
+  async getUsers(findOptions: FindUsersOptionsDto): Promise<Paginated<SelectUserDto>> {
     const { isActive, page, limit, orderBy, role, s, sort } = findOptions;
     
     const filterOptions:FilterUsers = {
@@ -91,7 +92,7 @@ export class UserService {
         limit  : (limit && isNaN(parseInt(limit))) || !limit ? 15 : parseInt(limit),
         orderBy: orderBy && orders.includes(orderBy) ? orderBy as keyof User : undefined,
         page   : isNaN(parseInt(page)) ? 1 : parseInt(page),
-        sort   : sort =="asc" || sort == "desc" ? sort as SortOrderType : undefined
+        sort   : !sort && orderBy ? "asc" : sort =="asc" || sort == "desc" ? sort : undefined
       },
       role       : role ? role as SystemBaseRoles : undefined,
       searchParam: s?s:undefined
@@ -102,13 +103,13 @@ export class UserService {
       return { ...user, password: undefined, role: user.role.name };
     });
     return {
-      meta: {
+      content: usersData,
+      meta   : {
         currentPage: filterOptions.pagOptions.page!,
-        pageSize   : filterOptions.pagOptions.limit,
+        pageSize   : filterOptions.pagOptions.limit as number,
         total      : users.count,
         totalPages : Math.ceil(users.count / filterOptions.pagOptions.limit!),
       },
-      users: usersData,
     };
   }
 

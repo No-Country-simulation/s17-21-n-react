@@ -246,7 +246,7 @@ const usersGetPath:PathItem = {
       {
         name: "isActive",
         in: "query",
-        description:"Filter to get active users or not. If no present get all",
+        description:"Filter to get active users or not. If no present get all. 0 is false.",
         schema: {
           type: "string",
           enum: [ "0", "1" ]
@@ -271,7 +271,7 @@ const usersGetPath:PathItem = {
       {
         name: "orderBy",
         in: "query",
-        description:"Page number",
+        description:"Attribute to order by, not all allowed.",
         schema: {
           type: "string",
           enum: orders
@@ -280,7 +280,7 @@ const usersGetPath:PathItem = {
       {
         name: "sort",
         in: "query",
-        description:"Page number",
+        description:"asc or desc. By default, it's asc if orderBy is set and sort isn't",
         schema: {
           type: "string",
           enum: [ "asc", "desc" ]

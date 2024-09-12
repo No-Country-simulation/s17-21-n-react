@@ -1,5 +1,4 @@
 import { SystemBaseRoles } from "../../../shared/constants";
-import { SortOrderType } from "../../../shared/utils";
 import { User } from "../entities/user.entity";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
@@ -21,7 +20,7 @@ export interface PaginateOptionsArgs <U>{
   page?: number;
   limit?: number;
   orderBy?: keyof U;
-  sort?: SortOrderType;
+  sort?: "asc" | "desc";
 }
 
 export type FilterUsers = {

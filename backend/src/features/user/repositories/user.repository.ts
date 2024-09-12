@@ -8,6 +8,16 @@ import { SystemBaseRoles } from "../../../shared/constants";
 export class UserRepository {
   constructor(private prisma: PrismaClient) {}
 
+  private paginate <U>({ page=1, limit=15, orderBy, sort }:PaginateOptionsArgs<U>){
+    const currentPage = Number.isNaN(page) || page < 1 ? 1 : page;
+    const take = Number.isNaN(limit) ? 15 : limit;
+    const skip = (currentPage - 1) * take;
+    const order = orderBy ? { [orderBy as string]: sort } : undefined;
+  
+    return { orderBy: order, skip, take };
+  
+  }
+
   async createUser(createDto: CreateUserDto) {
     return this.prisma.user.create({ data: createDto });
   }
@@ -67,7 +77,7 @@ export class UserRepository {
       ];
 
     const count = await this.prisma.user.count({ where: whereClause });
-    const pag = paginate<User>(pagOptions);
+    const pag = this.paginate<User>(pagOptions);
     const data = await this.prisma.user.findMany({
       include: { role: { select: { name: true } } },
       where  : whereClause,
@@ -85,12 +95,3 @@ export class UserRepository {
   }
 }
 
-const paginate = <U>({ page=1, limit=15, orderBy, sort }:PaginateOptionsArgs<U>) => {
-  const currentPage = Number.isNaN(page) || page < 1 ? 1 : page;
-  const take = Number.isNaN(limit) ? 15 : limit;
-  const skip = (currentPage - 1) * take;
-  const order = orderBy ? { [orderBy as string]: sort } : undefined;
-
-  return { orderBy: order, skip, take };
-
-};

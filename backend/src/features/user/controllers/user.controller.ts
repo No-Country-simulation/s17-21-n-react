@@ -12,9 +12,12 @@ export class UserController {
       const userDto = req.body;
       const result = await this.userService.createUser(userDto);
       successResponse({ data: result, res, status: HttpCodes.SUCCESS_CREATED });
-    } catch (error:any) {
+    } catch (error:unknown) {
       console.log(error);
-      errorResponse({ message: error.message, res, status: HttpCodes.BAD_REQUEST });
+      if(error instanceof Error)
+        return errorResponse({ message: error.message, res, status: HttpCodes.BAD_REQUEST });
+      
+      return errorResponse({ message: "Internal server error", res, status: HttpCodes.INTERNAL_SERVER_ERROR });
     }
   }
 
