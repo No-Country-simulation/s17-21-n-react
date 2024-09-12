@@ -14,18 +14,20 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  email     String    @unique
-  password  String    @db.VarChar(256)
-  name      String    @db.VarChar(128)
-  lastName String    @db.VarChar(128)
-  dni       String    @db.VarChar(56)
-  role      Role      @relation(fields: [roleId], references: [id])
-  roleId    String
-  isActive  Boolean   @default(true)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
+  id              String           @id @default(uuid())
+  email           String           @unique
+  password        String           @db.VarChar(256)
+  name            String           @db.VarChar(128)
+  lastName        String           @db.VarChar(128)
+  dni             String           @db.VarChar(56)
+  role            Role             @relation(fields: [roleId], references: [id])
+  roleId          String
+  isActive        Boolean          @default(true)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  deletedAt       DateTime?
+  enrollments     Enrollment[]
+  subjectTeachers SubjectTeacher[]
 }
 
 model Role {
@@ -34,13 +36,124 @@ model Role {
   users User[]
 }
 
+// guarda el hiostorial por año de quien fue inscrito a la asignatura
+model AcademicYear {
+  id              String           @id @default(uuid())
+  year            Int
+  grades          Grade[]
+  enrollments     Enrollment[]
+  subjectTeachers SubjectTeacher[]
+  classes         Class[]
+}
+
+model Grade {
+  id           String         @id @default(uuid())
+  name         String
+  academicYear AcademicYear   @relation(fields: [yearId], references: [id])
+  yearId       String
+  isDeleted    Boolean        @default(false)
+  subjects     GradeSubject[]
+  divisions    Division[]
+}
+
+model GradeSubject {
+  id        String  @id @default(uuid())
+  grade     Grade   @relation(fields: [gradeId], references: [id])
+  gradeId   String
+  subject   Subject @relation(fields: [subjectId], references: [id])
+  subjectId String
+}
+
+model Subject {
+  id              String           @id @default(uuid())
+  name            String
+  description     String           @db.VarChar(256)
+  scheduleInit    String           @db.VarChar(128)
+  scheduleEnd     String           @db.VarChar(128)
+  gradeSubjects   GradeSubject[]
+  classes         Class[]
+  enrollments     Enrollment[]
+  subjectTeachers SubjectTeacher[]
+  division        Division         @relation(fields: [divisionId], references: [id])
+  divisionId      String
+  category        SubjectCategory  @relation(fields: [categoryId], references: [id])
+  categoryId      String
+  isDeleted       Boolean          @default(false)
+
+}
+
+model SubjectCategory {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  subjects Subject[]
+}
+
+model SubjectTeacher {
+  id           String       @id @default(uuid())
+  subject      Subject      @relation(fields: [subjectId], references: [id])
+  subjectId    String
+  teacher      User         @relation(fields: [teacherId], references: [id])
+  teacherId    String
+  academicYear AcademicYear @relation(fields: [yearId], references: [id])
+  yearId       String
+}
+
+//me permite rastrear en que materia se encuentra un estudiante y su division
+model Enrollment {
+  id         String       @id @default(uuid())
+  student    User         @relation(fields: [studentId], references: [id])
+  studentId  String
+  division   Division     @relation(fields: [divisionId], references: [id])
+  divisionId String
+  year       AcademicYear @relation(fields: [yearId], references: [id])
+  yearId     String
+  subject    Subject      @relation(fields: [subjectId], references: [id])
+  subjectId  String
+}
+
+//las clases pertenecen a una materia,división y a un año escolar especifico
+model Class {
+  id         String       @id @default(uuid())
+  name       String
+  date       DateTime
+  subject    Subject      @relation(fields: [subjectId], references: [id])
+  subjectId  String
+  year       AcademicYear @relation(fields: [yearId], references: [id])
+  yearId     String
+  division   Division     @relation(fields: [divisionId], references: [id])
+  divisionId String
+  activities Activity[]
+  isDeleted  Boolean      @default(false)
+
+  @@unique([name, subjectId, divisionId, yearId])
+}
+
+model Division {
+  id          String       @id @default(uuid())
+  name        String
+  grade       Grade        @relation(fields: [gradeId], references: [id])
+  gradeId     String
+  enrollments Enrollment[]
+  subjects    Subject[]
+  classes     Class[]
+}
+
+// Temporal 
+model Activity {
+  id      Int      @id @default(autoincrement())
+  name    String
+  dueDate DateTime
+  class   Class    @relation(fields: [classId], references: [id])
+  classId String
+}
+
 model Bulletin {
   id          String    @id @default(uuid())
   title       String    @db.VarChar(128)
   description String    @db.VarChar(256)
   scope       String    @db.VarChar(128)
   eventDate   DateTime
-  isActived   Boolean   @default(true)
+  isActivated Boolean   @default(true)
   isDeleted   Boolean   @default(false)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt

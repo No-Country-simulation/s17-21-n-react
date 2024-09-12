@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 import { UserRepository } from "../repositories/user.repository";
-import prisma from "../../../infraestructure/database/prisma";
+import prisma from "../../../infrastructure/database/prisma";
 import { UserService } from "../services/user.service";
 import { UserController } from "../controllers/user.controller";
 import { authMiddleware, roleMiddleware } from "../../../shared/middlewares";

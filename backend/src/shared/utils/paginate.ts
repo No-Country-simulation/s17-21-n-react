@@ -1,38 +1,56 @@
-export type SortOrderType = "asc" | "desc";
+import { PrismaClient } from "@prisma/client";
+import { Paginated } from "../interfaces/Paginated";
+import prisma from "../../infrastructure/database/prisma";
 
-interface GetPaginateOptionsArgs {
-  page?: number;
-  limit?: number;
-  orderBy?: string;
-  sort?: SortOrderType;
-}
+type PrismaModel = keyof PrismaClient;
 
-export interface PaginateOptionsType {
-  skip: number;
-  take: number;
-  orderBy?: Record<string, SortOrderType>;
-}
+export const Paginate = async <T>(
+  model: PrismaModel,
+  page: number,
+  pageSize: number,
+  filter?: Record<string, any>,
+  orderBy?: Record<string, "asc" | "desc">
+): Promise<Paginated<T>> => {
+  const currentPage = Number.isNaN(page) ? 1 : page;
+  const take = Number.isNaN(pageSize) ? 10 : pageSize;
+  const skip = (currentPage - 1) * take;
 
-export const getPaginateOptions = ({
-  page = 1,
-  limit = 15,
-  orderBy,
-  sort = "desc"
-}: GetPaginateOptionsArgs): PaginateOptionsType => {
-  const pageNumber = Number(page);
-  const limitNumber = Number(limit);
+  if (
+    model in prisma &&
+    "count" in prisma[model] &&
+    "findMany" in prisma[model]
+  ) {
+    const total = await (prisma[model].count as () => Promise<number>)();
+    const content = await (
+      prisma[model].findMany as (args: any) => Promise<T[]>
+    )({
+      orderBy,
+      skip,
+      take,
+      where: filter,
+    });
 
-  if (pageNumber <= 0) throw new Error("Page number must be greater than 0");
+    return buildPaginated<T>(content, total, currentPage, take);
+  } else 
+    throw new Error(
+      `Modelo "${model.toString()}" no encontrado o no tiene los métodos requeridos`
+    );
+  
+};
 
-  const skip = (pageNumber - 1) * limitNumber;
-
-  const options: PaginateOptionsType = {
-    skip,
-    take: limitNumber,
+export const buildPaginated = <T>(
+  content: T[],
+  total: number,
+  currentPage: number,
+  pageSize: number
+): Paginated<T> => {
+  return {
+    content,
+    meta: {
+      currentPage,
+      pageSize,
+      total,
+      totalPages: Math.ceil(total / pageSize),
+    },
   };
-
-  if (orderBy) 
-    options.orderBy = { [orderBy]: sort };
-
-  return options;
 };

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import prisma from "../../../infraestructure/database/prisma";
+import prisma from "../../../infrastructure/database/prisma";
 import { BulletinRepository } from "../repositories";
 import { BulletinService } from "../services";
 import { BulletinController } from "../controllers";
