@@ -85,6 +85,70 @@ const updateUserPath: PathItem ={
   }
 };
 
+const updatePasswordPath: PathItem = {
+  patch:{
+    summary: "Update user password. Allowed roles ALL (registered)",
+    tags:[ "User" ],
+    security:[
+      {
+        bearerAuth:[]
+      }
+    ],
+    requestBody: {
+      content: {
+        "application/json": {
+          schema: {
+            $ref: "#/components/schemas/User:Password:PATCH"
+          }
+        },
+      },
+      required: true,
+    },
+    responses:{
+      200: {
+        content: {
+          "application/json": {
+            schema: succesResponseSchema(undefined, "Contraseña actualizada")
+          },
+        },
+        description: "Updated User",
+      },
+    }
+  }
+};
+
+const updateEmailPath: PathItem = {
+  patch:{
+    summary: "Update user email. Allowed roles ALL (registered)",
+    tags:[ "User" ],
+    security:[
+      {
+        bearerAuth:[]
+      }
+    ],
+    requestBody: {
+      content: {
+        "application/json": {
+          schema: {
+            $ref: "#/components/schemas/User:Email:PATCH"
+          }
+        },
+      },
+      required: true,
+    },
+    responses:{
+      200: {
+        content: {
+          "application/json": {
+            schema: succesResponseSchema(undefined, "Email actualizado")
+          },
+        },
+        description: "Updated User",
+      },
+    }
+  }
+};
+
 const deleteUserPath: PathItem = {
   delete:{
     summary: "Delete(soft) a user. Allowed roles ['ADMIN']",
@@ -238,5 +302,7 @@ const usersGetPath:PathItem = {
 
 export const userPaths = {
   "/user":{ ...authLoginPath, ...usersGetPath },
-  "/user/{userId}":{ ...updateUserPath,...deleteUserPath, ...getUserPath }
+  "/user/{userId}":{ ...updateUserPath,...deleteUserPath, ...getUserPath },
+  "/user/password":{ ...updatePasswordPath },
+  "/user/email":{ ...updateEmailPath }
 };

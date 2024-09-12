@@ -23,3 +23,17 @@ export const getUserQuerySchema = z.object({
   s       : z.string().max(64).optional(),
   sort    : z.enum([ "asc", "desc" ]).optional()
 });
+
+export const updatePasswordSchema = z.object({
+  newPassword       : z.string().max(256),
+  newPasswordConfirm: z.string().max(256),
+  password          : z.string().max(256)
+}).refine((data) => data.newPassword === data.newPasswordConfirm, {
+  message: "Las contraseñas no coinciden",
+  path   : [ "newPasswordConfirm" ],
+});
+
+export const updateEmailSchema = z.object({
+  newEmail: z.string().email(),
+  password: z.string().max(256)
+});

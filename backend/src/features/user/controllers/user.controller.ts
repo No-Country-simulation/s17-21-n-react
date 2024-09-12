@@ -70,8 +70,36 @@ export class UserController {
       const userId = req.params["userId"];
       if(!userId)
         throw Error(":userId required");
-      const user = await this.userService.getUserByIdOrThrow(userId);
+      const user = await this.userService.getUserById(userId);
       return successResponse({ data: user, res, status: HttpCodes.SUCCESS });
+    } catch (error) {
+      console.log(error);
+      if(error instanceof Error)
+        return errorResponse({ message: error.message, res, status: HttpCodes.BAD_REQUEST });
+      
+      return errorResponse({ message: "Internal server error", res, status: HttpCodes.INTERNAL_SERVER_ERROR });
+    }
+  }
+
+  async updatePassword(req:Request, res:Response){
+    try {
+      const newData = req.body;
+      await this.userService.updatePassword(req.user!.userId!, newData);
+      return successResponse({ message: "Contraseña actualizada", res, status: HttpCodes.SUCCESS });
+    } catch (error) {
+      console.log(error);
+      if(error instanceof Error)
+        return errorResponse({ message: error.message, res, status: HttpCodes.BAD_REQUEST });
+      
+      return errorResponse({ message: "Internal server error", res, status: HttpCodes.INTERNAL_SERVER_ERROR });
+    }
+  }
+
+  async updateEmail(req:Request, res:Response){
+    try {
+      const newData = req.body;
+      await this.userService.updateEmail(req.user!.userId!, newData);
+      return successResponse({ message: "Email actualizado", res, status: HttpCodes.SUCCESS });
     } catch (error) {
       console.log(error);
       if(error instanceof Error)

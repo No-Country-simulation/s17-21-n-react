@@ -13,3 +13,14 @@ export interface UpdateUserDto {
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface UpdateUserDataDto extends Omit<UpdateUserDto, "deletedAt" | "updatedAt" | "password">{
 }
+
+export interface UpdatePasswordDto {
+    newPassword: string;
+    newPasswordConfirm: string;
+    password: string;
+}
+
+export interface UpdateEmailDto {
+    newEmail:string;
+    password: string;
+}

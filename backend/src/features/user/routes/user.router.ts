@@ -13,6 +13,7 @@ import { SystemBaseRoles } from "../../../shared/constants";
 import {
   getUserQuerySchema,
   registerUserSchema,
+  updateEmailSchema,
   updateUserSchema,
 } from "../validations";
 
@@ -41,6 +42,16 @@ userRouter.get(
     validateMidlleware({ querySchema: getUserQuerySchema }),
   ],
   (req: Request, res: Response) => userController.getUsers(req, res)
+);
+
+userRouter.patch("/password", [ authMiddleware ], (req: Request, res: Response) =>
+  userController.updatePassword(req, res)
+);
+
+userRouter.patch(
+  "/email",
+  [ authMiddleware, validateMidlleware({ bodySchema: updateEmailSchema }) ],
+  (req: Request, res: Response) => userController.updateEmail(req, res)
 );
 
 userRouter.patch(

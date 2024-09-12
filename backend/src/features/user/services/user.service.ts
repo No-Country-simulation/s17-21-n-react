@@ -1,11 +1,11 @@
 import { User } from "@prisma/client";
 import { SystemBaseRoles } from "../../../shared/constants";
-import { hashPassword, SortOrderType } from "../../../shared/utils";
+import { comparePassword, hashPassword, SortOrderType } from "../../../shared/utils";
 import generatePassword from "../../../shared/utils/generatePassword.utils";
 import { RoleRepository } from "../../role/repositories/role.repository";
 import { RegisterUserDto } from "../dtos/create.dto";
 import { FilterUsers, FindUsersOptionsDto, orders, SelectUserDto } from "../dtos/select.dto";
-import { UpdateUserDataDto } from "../dtos/update.dto";
+import { UpdateEmailDto, UpdatePasswordDto, UpdateUserDataDto } from "../dtos/update.dto";
 import { UserRepository } from "../repositories/user.repository";
 
 export class UserService {
@@ -42,7 +42,7 @@ export class UserService {
         existingUser.role == SystemBaseRoles.ADMIN &&
         existingRole.id != dto.roleId
       ) {
-        const countAdmins = await this.roleRepository.countByRole(
+        const countAdmins = await this.userRepository.countActivesByRole(
           SystemBaseRoles.ADMIN
         );
         if (countAdmins <= 1) throw Error("Cannot change this user role");
@@ -60,18 +60,22 @@ export class UserService {
     } as SelectUserDto;
   }
 
-  async getUserByIdOrThrow(
+  private async getUserByIdOrThrow(
     userId: string,
     isActive?: boolean
-  ): Promise<SelectUserDto> {
+  ): Promise<SelectUserDto & {password:string}> {
     const user = await this.userRepository.findUserById(userId, isActive);
     if (!user) throw Error("User not found");
 
     return {
       ...user,
-      password: undefined,
-      role    : user.role?.name,
-    } as SelectUserDto;
+      role: user.role!.name,
+    };
+  }
+
+  async getUserById(userId:string):Promise<SelectUserDto>{
+    const user = await this.getUserByIdOrThrow(userId, true);
+    return { ...user, password: undefined } as SelectUserDto;
   }
 
   async getUsers(findOptions: FindUsersOptionsDto) {
@@ -122,6 +126,30 @@ export class UserService {
       password : "#deleted",
     });
     return updatedUser;
+  }
+
+  async updatePassword(userId:string, updatePassDto: UpdatePasswordDto) {
+    if(updatePassDto.newPassword != updatePassDto.newPasswordConfirm)
+      throw Error("Las nuevas contraseñas no coinciden");
+    const user = await this.getUserByIdOrThrow(userId, true);
+    const isPassword = await comparePassword(updatePassDto.password, user.password);
+    if(!isPassword)
+      throw Error("Contraseña incorrecta");
+    const newHash = await hashPassword(updatePassDto.newPassword);
+    await this.userRepository.updateUser(userId, { password: newHash });
+    return true;
+  }
+
+  async updateEmail(userId:string, updateEmailDto: UpdateEmailDto){
+    const user = await this.getUserByIdOrThrow(userId, true);
+    console.log(updateEmailDto);
+    const isPassword = await comparePassword(updateEmailDto.password, user.password);
+    if(!isPassword)
+      throw Error("Contraseña incorrecta");
+    await this.validateEmailOrThrow(updateEmailDto.newEmail, userId);
+
+    await this.userRepository.updateUser(userId, { email: updateEmailDto.newEmail });
+    return true;
   }
 
   private async validateDniOrThrow(userDni?: string, userId?: string) {

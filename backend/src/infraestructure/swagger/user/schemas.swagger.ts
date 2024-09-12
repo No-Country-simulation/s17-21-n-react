@@ -111,14 +111,55 @@ const getUserSchema = {
 };
 
 export const successUsersGet = {
-  type:"array",
+  type: "array",
   items: {
-    $ref:"#/components/schemas/User:GET"
-  }
+    $ref: "#/components/schemas/User:GET",
+  },
+};
+
+const updatePasswordShema: Schema = {
+  type: "object",
+  properties: {
+    newPassword: {
+      type: "string",
+      description: "The new password the user wants to set.",
+      example: "NewStrongPassword123!",
+    },
+    newPasswordConfirm: {
+      type: "string",
+      description: "Must match the new password.",
+      example: "NewStrongPassword123!",
+    },
+    password: {
+      type: "string",
+      description: "The current password of the user.",
+      example: "OldPassword456!",
+    },
+  },
+  required: [ "newPassword", "newPasswordConfirm", "password" ],
+};
+
+const updateEmailSchema: Schema = {
+  type: "object",
+  properties: {
+    newEmail:{
+      type: "string",
+      description: "New email",
+      example:"new@email.com"
+    },
+    password: {
+      type: "string",
+      description: "The current password of the user.",
+      example: "OldPassword456!",
+    },
+  },
+  required: [ "newPassword", "newPasswordConfirm", "password" ],
 };
 
 export const userSchemas = {
   "User:POST": createUserSchema,
   "User:PATCH": updateUserSchema,
-  "User:GET": getUserSchema
+  "User:GET": getUserSchema,
+  "User:Password:PATCH": updatePasswordShema,
+  "User:Email:PATCH": updateEmailSchema,
 };

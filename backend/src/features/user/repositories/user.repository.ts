@@ -3,6 +3,7 @@ import { CreateUserDto } from "../dtos/create.dto";
 import { User } from "../entities/user.entity";
 import { UpdateUserDto } from "../dtos/update.dto";
 import { FilterUsers, PaginateOptionsArgs } from "../dtos/select.dto";
+import { SystemBaseRoles } from "../../../shared/constants";
 
 export class UserRepository {
   constructor(private prisma: PrismaClient) {}
@@ -77,6 +78,10 @@ export class UserRepository {
 
   async countAllUsers() {
     return this.prisma.user.count();
+  }
+
+  async countActivesByRole(roleName:string|SystemBaseRoles){
+    return this.prisma.user.count({ where: { deletedAt: null, isActive: true,role: { name: roleName as string } } });
   }
 }
 
