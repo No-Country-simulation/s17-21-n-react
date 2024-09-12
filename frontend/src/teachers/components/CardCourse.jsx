@@ -84,7 +84,7 @@ export default function CardCourse({
           </div>
 
           <div className="flex justify-start items-center gap-4">
-            <Link to={`/courses/${courseId}/classes`}>
+            <Link to={`${courseId}/classes`}>
               <button className="font font-semibold text-base border border-blue-500 text-blue-500 px-4 py-2 rounded hover:bg-blue-50 flex items-center">
                 <BookOpen className="h-4 w-4 mr-2" />
                 Ver Actividades

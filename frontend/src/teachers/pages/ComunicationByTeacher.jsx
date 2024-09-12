@@ -8,9 +8,7 @@ const ComunicationByTeacher = () => {
       <div>
         <button className="bg-[#4E6BFF] text-white font-semibold rounded py-2 px-4">
           <img src={add} alt="add icon" width={24} height={24} className="inline" />
-          <span className="hidden sm:inline ms-4">
-            Correo Nuevo
-          </span>
+          <span className="hidden sm:inline ms-4">Correo Nuevo</span>
         </button>
 
         <div className="flex flex-col gap-2 mt-4">
@@ -23,9 +21,7 @@ const ComunicationByTeacher = () => {
                 height={20}
                 className="inline"
               />
-              <span className="hidden sm:inline ms-3">
-                {option.label}
-              </span>
+              <span className="hidden sm:inline ms-3">{option.label}</span>
             </button>
           ))}
         </div>
@@ -44,8 +40,11 @@ const ComunicationByTeacher = () => {
 
         <div className="flex flex-col gap-4 h-96 flex-grow overflow-y-auto bg-red-500a p-4 w-full">
           {emails.map((email) => (
-            <div className="border-[1px] border-border rounded-lg shadow-custom p-4 pe-4 md:pe-16 flex items-start gap-4">
-              <img src={email.image} alt="image" width={48} height={48} className="" />
+            <div
+              key={email.id}
+              className="border-[1px] border-border rounded-lg shadow-custom p-4 pe-4 md:pe-16 flex items-start gap-4"
+            >
+              <img src={email.image} alt="image" width={48} height={48}/>
               <div className="flex-grow w-1">
                 <h5 className="font-semibold text-[#1F2937] truncate">{email.title}</h5>
                 <p className="text-[#374151] truncate">{email.description}</p>
@@ -58,7 +57,7 @@ const ComunicationByTeacher = () => {
 
         <div className="me-8">
           <button className="bg-[#4E6BFF] rounded-full p-4">
-            <img src={add} alt="add" width={24} height={24} classNeme="" />
+            <img src={add} alt="add" width={24} height={24} />
           </button>
         </div>
       </div>
