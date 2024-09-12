@@ -16,7 +16,7 @@
     "@typescript-eslint/no-explicit-any": "warn",
     "sort-keys-fix/sort-keys-fix": "error",
     "key-spacing": [2, { "align": "colon" }],
-    "object-curly-spacing": ["error","always"],
-    "array-bracket-spacing": ["error","always"]
+    "object-curly-spacing": ["error", "always"],
+    "array-bracket-spacing": ["error", "always"]
   }
 }

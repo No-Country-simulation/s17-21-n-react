@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from "express";
 import { decodeJwt, errorResponse } from "../utils";
 import { HttpCodes } from "../utils/HTTPCode.utils";
 import { JwtPayload } from "jsonwebtoken";
-import prisma from "../../infraestructure/database/prisma";
+import prisma from "../../infrastructure/database/prisma";
 
 export const authMiddleware = async (
   req: Request,
