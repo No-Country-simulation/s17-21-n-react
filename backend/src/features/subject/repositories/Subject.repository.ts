@@ -35,7 +35,7 @@ export class SubjectRepository implements ISubjectRepository {
   }
   async update(id: string, subject: Subject): Promise<Subject> {
     try {
-      return await prisma.subject.update({ where: { id }, data: subject });
+      return await prisma.subject.update({ data: subject, where: { id } });
     } catch (error) {
       ErrorHandler.handleError(error);
     }

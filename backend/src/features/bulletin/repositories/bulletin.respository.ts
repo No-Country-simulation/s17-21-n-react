@@ -27,9 +27,9 @@ export class BulletinRepository {
   async delete(id: string): Promise<ReturnBulletin>  {
     return this.prisma.bulletin.update({
       data: {
-        deletedAt: new Date(),
+        deletedAt  : new Date(),
         isActivated: false,
-        isDeleted: false
+        isDeleted  : false
       },
       select,
       where: { id }
@@ -43,7 +43,7 @@ export class BulletinRepository {
   }
 
   async findMany(data: FindManyBulletinDto): Promise<Paginated<ReturnBulletin>> {
-    const { limit, page, orderBy, sort, scope = SystemScopes.ALL } = data;
+    const { limit, page, sort, scope = SystemScopes.ALL } = data;
 
     return await Paginate<ReturnBulletin>("bulletin", Number(page), Number(limit), 
       { deletedAt: null, isActivated: true, scope },

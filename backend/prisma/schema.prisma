@@ -67,6 +67,9 @@ model GradeSubject {
 model Subject {
   id              String           @id @default(uuid())
   name            String
+  description     String           @db.VarChar(256)
+  schedule_init   String           @db.VarChar(128)
+  schedule_end    String           @db.VarChar(128)
   gradeSubjects   GradeSubject[]
   classes         Class[]
   enrollments     Enrollment[]
@@ -77,7 +80,6 @@ model Subject {
   categoryId      String
   isDeleted       Boolean          @default(false)
 
-  @@unique([name, divisionId])
 }
 
 model SubjectCategory {
@@ -151,7 +153,7 @@ model Bulletin {
   description String    @db.VarChar(256)
   scope       String    @db.VarChar(128)
   eventDate   DateTime
-  isActivated   Boolean   @default(true)
+  isActivated Boolean   @default(true)
   isDeleted   Boolean   @default(false)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt

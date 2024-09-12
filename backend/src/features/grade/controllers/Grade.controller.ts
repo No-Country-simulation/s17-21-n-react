@@ -3,11 +3,11 @@ import { errorResponse, HttpCodes, successResponse } from "../../../shared/utils
 import { IGradeService } from "../services/IGrade.service";
 
 const ERROR_MESSAGES = {
-  FETCH: "Ocurrió un error al obtener el grado",
-  CREATE: "Ocurrió un error al crear el grado",
-  UPDATE: "Ocurrió un error al actualizar el grado",
-  DELETE: "Ocurrió un error al eliminar el grado",
+  CREATE   : "Ocurrió un error al crear el grado",
+  DELETE   : "Ocurrió un error al eliminar el grado",
+  FETCH    : "Ocurrió un error al obtener el grado",
   NOT_FOUND: "Grado no encontrado",
+  UPDATE   : "Ocurrió un error al actualizar el grado",
 };
 
 export class GradeController {
@@ -21,7 +21,7 @@ export class GradeController {
     status: number = HttpCodes.INTERNAL_SERVER_ERROR
   ) => {
     const errorMessage = error instanceof Error ? error.message : message;
-    return errorResponse({ res, status, message: errorMessage });
+    return errorResponse({ message: errorMessage, res, status });
   };
 
   private parseQueryParams = (page?: string, size?: string) => ({
@@ -43,13 +43,13 @@ export class GradeController {
     try {
       const { id } = req.params;
       const grade = await this._gradeService.getGradeById(id);
-      if (!grade) {
+      if (!grade) 
         return errorResponse({
+          message: ERROR_MESSAGES.NOT_FOUND,
           res,
-          status: HttpCodes.NOT_FOUND,
-          message: ERROR_MESSAGES.NOT_FOUND
+          status : HttpCodes.NOT_FOUND
         });
-      }
+      
       return successResponse({ data: grade, res, status: HttpCodes.SUCCESS });
     } catch (error) {
       return this.handleGradeError(error, ERROR_MESSAGES.FETCH, res);

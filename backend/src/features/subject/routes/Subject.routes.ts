@@ -12,31 +12,31 @@ const subjectController = new SubjectController(subjectService);
 
 router.get(
   "/",
-  [authMiddleware, roleMiddleware(["ADMIN", "TEACHER"])],
+  [ authMiddleware, roleMiddleware([ "ADMIN", "TEACHER" ]) ],
   (req: Request, res: Response) => subjectController.getAllSubjects(req, res)
 );
 
 router.get(
   "/:id",
-  [authMiddleware, roleMiddleware(["ADMIN", "TEACHER"])],
+  [ authMiddleware, roleMiddleware([ "ADMIN", "TEACHER" ]) ],
   (req: Request, res: Response) => subjectController.getSubjectById(req, res)
 );
 
 router.post(
   "/",
-  [authMiddleware, roleMiddleware(["ADMIN"])],
+  [ authMiddleware, roleMiddleware([ "ADMIN" ]) ],
   (req: Request, res: Response) => subjectController.createSubject(req, res)
 );
 
 router.put(
   "/:id",
-  [authMiddleware, roleMiddleware(["ADMIN"])],
+  [ authMiddleware, roleMiddleware([ "ADMIN" ]) ],
   (req: Request, res: Response) => subjectController.updateSubject(req, res)
 );
 
 router.delete(
   "/:id",
-  [authMiddleware, roleMiddleware(["ADMIN"])],
+  [ authMiddleware, roleMiddleware([ "ADMIN" ]) ],
   (req: Request, res: Response) => subjectController.deleteSubject(req, res)
 );
 

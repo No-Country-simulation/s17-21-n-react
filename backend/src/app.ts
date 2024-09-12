@@ -29,7 +29,7 @@ app.use((req: Request, res: Response) => {
   return errorResponse({
     message: `[${req.method}]: ${req.originalUrl} not found`,
     res,
-    status: 404,
+    status : 404,
   });
 });
 

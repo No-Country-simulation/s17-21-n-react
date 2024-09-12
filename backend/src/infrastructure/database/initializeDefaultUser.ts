@@ -4,10 +4,10 @@ import { INITIAL_USER_PASSWORD } from "../../configs";
 import { hashPassword } from "../../shared/utils";
 
 const defaultUserData = {
-  dni: "99999999",
-  email: "administrador@test.com",
+  dni     : "99999999",
+  email   : "administrador@test.com",
   lastName: "EducaPro",
-  name: "Admin",
+  name    : "Admin",
   password: INITIAL_USER_PASSWORD,
 };
 
@@ -22,10 +22,10 @@ const initializeDefaultUser = async () => {
       data: {
         ...defaultUserData,
         password: hashedPassword,
-        role: {
+        role    : {
           connectOrCreate: {
             create: { name: SystemBaseRoles.ADMIN },
-            where: { name: SystemBaseRoles.ADMIN },
+            where : { name: SystemBaseRoles.ADMIN },
           },
         },
       },

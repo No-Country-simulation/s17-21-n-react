@@ -1,5 +1,4 @@
 import { Grade } from "@prisma/client";
-import { Paginated } from "../../../shared/interfaces/Paginated";
 
 export interface IGradeRepository {
   findMany(skip: number, take: number): Promise<Grade[]>;

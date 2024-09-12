@@ -2,21 +2,21 @@ import { Prisma } from "@prisma/client";
 
 export class ErrorHandler {
   static handleError(error: unknown, message?: string): never {
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) 
       switch (error.code) {
-        case "P2002":
-          throw new Error(
-            "Unique constraint failed. The value already exists."
-          );
-        case "P2025":
-          throw new Error("Record not found.");
-        default:
-          throw new Error(`Prisma error: ${error.message}`);
+      case "P2002":
+        throw new Error(
+          `Unique constraint failed. The value already exists. ${message}`
+        );
+      case "P2025":
+        throw new Error(`Record not found. ${message}`);
+      default:
+        throw new Error(`Prisma error: ${error.message} ${message}`);
       }
-    } else if (error instanceof Error) {
+    else if (error instanceof Error) 
       throw new Error(`Unexpected error: ${error.message}`);
-    } else {
+    else 
       throw new Error("Unexpected error");
-    }
+    
   }
 }

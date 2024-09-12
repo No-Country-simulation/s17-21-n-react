@@ -12,31 +12,31 @@ const gradeController = new GradeController(gradeService);
 
 router.get(
   "/",
-  [authMiddleware, roleMiddleware(["ADMIN", "TEACHER"])],
+  [ authMiddleware, roleMiddleware([ "ADMIN", "TEACHER" ]) ],
   (req: Request, res: Response) => gradeController.getAllGrades(req, res)
 );
 
 router.get(
   "/:id",
-  [authMiddleware, roleMiddleware(["ADMIN"])],
+  [ authMiddleware, roleMiddleware([ "ADMIN" ]) ],
   (req: Request, res: Response) => gradeController.getGradeById(req, res)
 );
 
 router.post(
   "/",
-  [authMiddleware, roleMiddleware(["ADMIN"])],
+  [ authMiddleware, roleMiddleware([ "ADMIN" ]) ],
   (req: Request, res: Response) => gradeController.createGrade(req, res)
 );
 
 router.put(
   "/:id",
-  [authMiddleware, roleMiddleware(["ADMIN"])],
+  [ authMiddleware, roleMiddleware([ "ADMIN" ]) ],
   (req: Request, res: Response) => gradeController.updateGrade(req, res)
 );
 
 router.delete(
   "/:id",
-  [authMiddleware, roleMiddleware(["ADMIN"])],
+  [ authMiddleware, roleMiddleware([ "ADMIN" ]) ],
   (req: Request, res: Response) => gradeController.deleteGrade(req, res)
 );
 
