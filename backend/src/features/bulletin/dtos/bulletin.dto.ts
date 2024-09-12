@@ -1,5 +1,3 @@
-import { SortOrderType } from "../../../shared/utils";
-
 export interface CreateBulletinDto {
   title: string;
   description: string;
@@ -20,6 +18,6 @@ export interface FindManyBulletinDto {
   page?: number;
   limit?: number;
   orderBy?: string;
-  sort?: SortOrderType;
+  sort?: "asc" | "desc";
   scope?: string;
 }
