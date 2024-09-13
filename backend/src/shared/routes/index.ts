@@ -17,7 +17,7 @@ router.use("/user", userRouter);
 router.use("/subject", subjectRouter);
 router.use("/class", classRouter);
 router.use("/grade", gradeRouter);
-router.use("/attendanceRouter", attendanceRouter);
-router.use("/attendanceStudentRouter", attendanceStudentRouter);
+router.use("/attendance", attendanceRouter);
+router.use("/attendanceStudent", attendanceStudentRouter);
 
 export { router as mainRouter };

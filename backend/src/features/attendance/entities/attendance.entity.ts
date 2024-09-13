@@ -13,5 +13,6 @@ export interface Attendance extends ReturnAttendance {
 
 export enum AttendanceStatusEnum {
   Pending = "PENDING",
+  Doing = "DOING",
   Finished = "FINISHED",
 }

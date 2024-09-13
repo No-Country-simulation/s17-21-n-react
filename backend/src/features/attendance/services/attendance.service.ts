@@ -48,7 +48,7 @@ export class AttendanceService {
     attendance = await this.attendanceRepository.create({
       classId,
       eventDate: dateParsed,
-      status   : AttendanceStatusEnum.Pending
+      status   : AttendanceStatusEnum.Doing
     });
 
     const firstClass = await this.classRepository.findFirst(classId);
