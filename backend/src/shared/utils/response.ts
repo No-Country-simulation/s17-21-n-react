@@ -4,7 +4,7 @@ interface ResponseArgs {
   res: Response;
   status?: number;
   data?: unknown;
-  message?: string;
+  message?: string | unknown;
 }
 
 const MESSAGE_ERROR_DEFAULT = "Internal server error";

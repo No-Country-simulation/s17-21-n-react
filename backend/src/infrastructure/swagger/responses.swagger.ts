@@ -1,9 +1,11 @@
-
 /* eslint-disable key-spacing */
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 import { Schema } from "swagger-jsdoc";
 
-export const succesResponseSchema = (dataDataSchema:Schema, message?: string) => {
+export const succesResponseSchema = (
+  dataDataSchema?: Schema,
+  message?: string
+) => {
   return {
     type: "object",
     properties: {
@@ -14,33 +16,33 @@ export const succesResponseSchema = (dataDataSchema:Schema, message?: string) =>
       },
       message: {
         type: "string",
-        example: message ?? "Request successfully"
+        example: message ?? "Request successfully",
       },
       success: {
         type: "boolean",
-        example: "true"
-      }
-    }
+        example: "true",
+      },
+    },
   };
 };
 
-export const errorResponseSchema = (messageExample?:string) => {
+export const errorResponseSchema = (messageExample?: string) => {
   return {
     type: "object",
     properties: {
       error: {
         type: "boolean",
-        example: "true"
+        example: "true",
       },
       message: {
         type: "string",
-        example: messageExample || "It's something ¯\\_(ツ)_/¯"
+        example: messageExample || "It's something ¯\\_(ツ)_/¯",
       },
       success: {
         type: "boolean",
-        example: "false"
-      }
-    }
+        example: "false",
+      },
+    },
   };
 };
 
@@ -62,42 +64,42 @@ export const defaultErrorResponseSchemas = () => {
       },
       description: "Internal server error",
     },
-  }; 
+  };
 };
 
-export const PaginateResponseSchema = (dataDataSchema:Schema, message?: string) => {
-  return succesResponseSchema({
+export const paginationSchema = (contentSchema: Schema | string) => {
+  return {
     type: "object",
     properties: {
       content: {
-        items: dataDataSchema,
-        type: "array"
+        type: "array",
+        items: typeof contentSchema == "string"
+          ? {
+            $ref: contentSchema,
+          }
+          : contentSchema,
       },
       meta: {
         type: "object",
         properties: {
+          total: {
+            type: "integer",
+            format: "int32",
+          },
           currentPage: {
-            type: "number",
-            description: "current page of paginate",
-            example: 1
+            type: "integer",
+            format: "int32",
           },
           pageSize: {
-            type: "number",
-            description: "items by page",
-            example: 15
-          },
-          total: {
-            type: "number",
-            description: "total items",
-            example: 30
+            type: "integer",
+            format: "int32",
           },
           totalPages: {
-            type: "number",
-            description: "total pages",
-            example: 1
-          }
-        }
-      }
-    }
-  }, message);
+            type: "integer",
+            format: "int32",
+          },
+        },
+      },
+    },
+  };
 };
