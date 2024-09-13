@@ -3,7 +3,7 @@ export interface CreateBulletinDto {
   description: string;
   scope: string;
   eventDate: Date;
-  isActived?: boolean;
+  isActivated?: boolean;
 }
 
 export interface UpdateBulletinDto {
@@ -11,7 +11,7 @@ export interface UpdateBulletinDto {
   description?: string;
   scope?: string;
   eventDate?: Date;
-  isActived?: boolean;
+  isActivated?: boolean;
 }
 
 export interface FindManyBulletinDto {

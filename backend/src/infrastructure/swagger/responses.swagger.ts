@@ -64,3 +64,40 @@ export const defaultErrorResponseSchemas = () => {
     },
   }; 
 };
+
+export const PaginateResponseSchema = (dataDataSchema:Schema, message?: string) => {
+  return succesResponseSchema({
+    type: "object",
+    properties: {
+      content: {
+        items: dataDataSchema,
+        type: "array"
+      },
+      meta: {
+        type: "object",
+        properties: {
+          currentPage: {
+            type: "number",
+            description: "current page of paginate",
+            example: 1
+          },
+          pageSize: {
+            type: "number",
+            description: "items by page",
+            example: 15
+          },
+          total: {
+            type: "number",
+            description: "total items",
+            example: 30
+          },
+          totalPages: {
+            type: "number",
+            description: "total pages",
+            example: 1
+          }
+        }
+      }
+    }
+  }, message);
+};

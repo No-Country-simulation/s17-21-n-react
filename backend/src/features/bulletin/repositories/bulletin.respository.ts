@@ -29,7 +29,7 @@ export class BulletinRepository {
       data: {
         deletedAt  : new Date(),
         isActivated: false,
-        isDeleted  : false
+        isDeleted  : true
       },
       select,
       where: { id }
