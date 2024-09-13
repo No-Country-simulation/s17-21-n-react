@@ -1,7 +1,7 @@
 /* eslint-disable key-spacing */
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 import { PathItem } from "swagger-jsdoc";
-import { succesResponseSchema } from "../responses.swagger";
+import { successResponseSchema } from "../responses.swagger";
 import { roleSchema } from "./schemas.swagger";
 
 const getAllRoles: PathItem = {
@@ -54,7 +54,7 @@ const createRole: PathItem = {
         description: "New Role data",
         content: {
           "application/json": {
-            schema: succesResponseSchema(roleSchema)
+            schema: successResponseSchema(roleSchema)
           },
         },
       }

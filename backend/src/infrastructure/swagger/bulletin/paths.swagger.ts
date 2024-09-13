@@ -3,7 +3,7 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 
 import { PathItem } from "swagger-jsdoc";
-import { defaultErrorResponseSchemas, succesResponseSchema } from "../responses.swagger";
+import { defaultErrorResponseSchemas, successResponseSchema } from "../responses.swagger";
 import { BulletinSchema } from "./schemas.swagger";
 
 const createBulletinPath: PathItem = {
@@ -29,7 +29,7 @@ const createBulletinPath: PathItem = {
       200: {
         content: {
           "application/json": {
-            schema: succesResponseSchema(BulletinSchema, "Bulletin created successfully"),
+            schema: successResponseSchema(BulletinSchema, "Bulletin created successfully"),
           },
         },
         description: "Bulletin created successfully, bulletin data returned",
@@ -73,7 +73,7 @@ const updateBulletinPath: PathItem = {
       200: {
         content: {
           "application/json": {
-            schema: succesResponseSchema(BulletinSchema, "Bulletin updated successfully"),
+            schema: successResponseSchema(BulletinSchema, "Bulletin updated successfully"),
           },
         },
         description: "Bulletin updated successfully, bulletin data returned",
@@ -131,7 +131,7 @@ const findUniqueBulletinPath: PathItem = {
       200: {
         content: {
           "application/json": {
-            schema: succesResponseSchema(BulletinSchema),
+            schema: successResponseSchema(BulletinSchema),
           },
         },
         description: "Bulletin finded successfully, bulletin data returned",
@@ -196,7 +196,7 @@ const findManyBulletinPath: PathItem = {
       200: {
         content: {
           "application/json": {
-            schema: succesResponseSchema({
+            schema: successResponseSchema({
               items: BulletinSchema,
               type: "array"
             }),

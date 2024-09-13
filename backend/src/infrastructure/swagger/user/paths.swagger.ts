@@ -4,7 +4,7 @@
 
 import { PathItem } from "swagger-jsdoc";
 import { SystemBaseRoles } from "../../../shared/constants";
-import { paginationSchema, succesResponseSchema } from "../responses.swagger";
+import { paginationSchema, successResponseSchema } from "../responses.swagger";
 import { userSchemas } from "./schemas.swagger";
 import { orders } from "../../../features/user/dtos/select.dto";
 
@@ -76,7 +76,7 @@ const updateUserPath: PathItem ={
       200: {
         content: {
           "application/json": {
-            schema: succesResponseSchema(userSchemas["User:GET"])
+            schema: successResponseSchema(userSchemas["User:GET"])
           },
         },
         description: "Updated User",
@@ -108,7 +108,7 @@ const updatePasswordPath: PathItem = {
       200: {
         content: {
           "application/json": {
-            schema: succesResponseSchema(undefined, "Contraseña actualizada")
+            schema: successResponseSchema(undefined, "Contraseña actualizada")
           },
         },
         description: "Updated User",
@@ -140,7 +140,7 @@ const updateEmailPath: PathItem = {
       200: {
         content: {
           "application/json": {
-            schema: succesResponseSchema(undefined, "Email actualizado")
+            schema: successResponseSchema(undefined, "Email actualizado")
           },
         },
         description: "Updated User",
@@ -173,7 +173,7 @@ const deleteUserPath: PathItem = {
       200:{
         content:{
           "application/json": {
-            schema: succesResponseSchema({},"User deleted")
+            schema: successResponseSchema({},"User deleted")
           }
         }
       }
@@ -205,7 +205,7 @@ const getUserPath = {
       200: {
         content: {
           "application/json": {
-            schema: succesResponseSchema(userSchemas["User:GET"])
+            schema: successResponseSchema(userSchemas["User:GET"])
           },
         },
         description: "Users list",
@@ -291,7 +291,7 @@ const usersGetPath:PathItem = {
       200: {
         content: {
           "application/json": {
-            schema: succesResponseSchema(paginationSchema("#/components/schemas/User:GET"))
+            schema: successResponseSchema(paginationSchema("#/components/schemas/User:GET"))
           },
         },
         description: "list of users",
