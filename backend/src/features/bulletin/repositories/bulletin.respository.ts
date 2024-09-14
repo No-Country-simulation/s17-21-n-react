@@ -29,7 +29,7 @@ export class BulletinRepository {
       data: {
         deletedAt  : new Date(),
         isActivated: false,
-        isDeleted  : false
+        isDeleted  : true
       },
       select,
       where: { id }
@@ -43,11 +43,11 @@ export class BulletinRepository {
   }
 
   async findMany(data: FindManyBulletinDto): Promise<Paginated<ReturnBulletin>> {
-    const { limit, page, sort, scope = SystemScopes.ALL } = data;
+    const { limit, page, sort, orderBy, scope = SystemScopes.ALL } = data;
 
     return await Paginate<ReturnBulletin>("bulletin", Number(page), Number(limit), 
       { deletedAt: null, isActivated: true, scope },
-      { orderBy: sort }
+      ...orderBy ? [ { [orderBy]: sort! } ] : []
     );
   }
 }

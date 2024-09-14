@@ -1,11 +1,9 @@
-import { SortOrderType } from "../../../shared/utils";
-
 export interface CreateBulletinDto {
   title: string;
   description: string;
   scope: string;
   eventDate: Date;
-  isActived?: boolean;
+  isActivated?: boolean;
 }
 
 export interface UpdateBulletinDto {
@@ -13,13 +11,13 @@ export interface UpdateBulletinDto {
   description?: string;
   scope?: string;
   eventDate?: Date;
-  isActived?: boolean;
+  isActivated?: boolean;
 }
 
 export interface FindManyBulletinDto {
   page?: number;
   limit?: number;
   orderBy?: string;
-  sort?: SortOrderType;
+  sort?: "asc" | "desc";
   scope?: string;
 }

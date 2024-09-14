@@ -13,8 +13,17 @@ export const omitKeys = <T, K extends keyof T>(obj: T, keysToOmit: K[]): OmitKey
   for (const key of keysToOmit) 
     delete result[key];
   
-
   return result as OmitKeys<T, K>;
+};
+
+export const pickKeys = <T extends object, K extends keyof T>(obj: T, keysToPick: K[]): Pick<T, K> => {
+  const result = {} as Pick<T, K>;
+
+  for (const key of keysToPick) 
+    if (key in obj) 
+      result[key] = obj[key];
+
+  return result;
 };
 
 export const getSelectKeys = <T extends string>(arrayKeys: T[] = []): Record<T, boolean> => {

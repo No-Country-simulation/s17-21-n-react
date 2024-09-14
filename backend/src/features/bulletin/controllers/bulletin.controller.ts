@@ -3,9 +3,24 @@ import { CreateBulletinDto, FindManyBulletinDto, UpdateBulletinDto } from "../dt
 import { BulletinService } from "../services";
 import { errorResponse, HttpCodes, successResponse } from "../../../shared/utils";
 
+interface HandleErrorArgs {
+  error: unknown;
+  res: Response;
+}
+
 export class BulletinController {
   constructor(private bulletinService: BulletinService) {}
   
+  private handleError({ error, res }: HandleErrorArgs) {
+    if (error instanceof Error) return errorResponse({
+      message: error.message,
+      res,
+      status : HttpCodes.BAD_REQUEST
+    });
+
+    return errorResponse({ res, status: HttpCodes.INTERNAL_SERVER_ERROR });
+  }
+
   async create(req: Request, res: Response) {
     try {
       const data: CreateBulletinDto = req.body;
@@ -19,13 +34,7 @@ export class BulletinController {
         status : HttpCodes.SUCCESS_CREATED
       });
     } catch (error) {
-      if (error instanceof Error) return errorResponse({
-        message: error.message,
-        res,
-        status : HttpCodes.BAD_REQUEST
-      });
-
-      return errorResponse({ res, status: HttpCodes.INTERNAL_SERVER_ERROR });
+      return this.handleError({ error, res });
     }
   }
 
@@ -43,13 +52,7 @@ export class BulletinController {
         status : HttpCodes.SUCCESS
       });
     } catch (error) {
-      if (error instanceof Error) return errorResponse({
-        message: error.message,
-        res,
-        status : HttpCodes.BAD_REQUEST
-      });
-
-      return errorResponse({ res, status: HttpCodes.INTERNAL_SERVER_ERROR });
+      return this.handleError({ error, res });
     }
   }
 
@@ -64,13 +67,7 @@ export class BulletinController {
         status: HttpCodes.SUCCESS_DELETED
       });
     } catch (error) {
-      if (error instanceof Error) return errorResponse({
-        message: error.message,
-        res,
-        status : HttpCodes.BAD_REQUEST
-      });
-
-      return errorResponse({ res, status: HttpCodes.INTERNAL_SERVER_ERROR });
+      return this.handleError({ error, res });
     }
   }
 
@@ -86,13 +83,7 @@ export class BulletinController {
         status: HttpCodes.SUCCESS
       });
     } catch (error) {
-      if (error instanceof Error) return errorResponse({
-        message: error.message,
-        res,
-        status : HttpCodes.BAD_REQUEST
-      });
-
-      return errorResponse({ res, status: HttpCodes.INTERNAL_SERVER_ERROR });
+      return this.handleError({ error, res });
     }
   }
 
@@ -108,13 +99,7 @@ export class BulletinController {
         status: HttpCodes.SUCCESS
       });
     } catch (error) {
-      if (error instanceof Error) return errorResponse({
-        message: error.message,
-        res,
-        status : HttpCodes.BAD_REQUEST
-      });
-
-      return errorResponse({ res, status: HttpCodes.INTERNAL_SERVER_ERROR });
+      return this.handleError({ error, res });
     }
   }
 }
