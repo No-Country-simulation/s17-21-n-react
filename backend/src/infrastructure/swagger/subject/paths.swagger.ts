@@ -152,6 +152,6 @@ const subjectGetPath: PathItem = {
 };
 
 export const subjectPaths = {
-  "/subject": { ...subjectGetPath },
+  "/subject": { ...createSubjectPath, ...subjectGetPath },
   "/subject/{id}": { ...getSubjectPath },
 };

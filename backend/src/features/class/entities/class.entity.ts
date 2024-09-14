@@ -5,7 +5,6 @@ export interface Classes {
   name: string;
   date: Date;
   subjectId: string;
-  divisionId: string;
   yearId: string;
   activities?: Activity[];
   isDeleted: boolean;

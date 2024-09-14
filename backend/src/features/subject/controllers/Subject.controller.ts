@@ -34,7 +34,9 @@ export class SubjectController {
     const { page, size, sort, name, divisionId } = query;
     const filter: FindSubjectOptions = {};
     
-    if (typeof name === "string") filter.name = name;
+    if (typeof name === "string") 
+      filter.name = { contains: name, mode: "insensitive" };
+    
     if (typeof divisionId === "string") filter.divisionId = divisionId;
     return {
       filter,

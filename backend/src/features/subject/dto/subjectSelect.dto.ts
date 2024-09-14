@@ -1,5 +1,5 @@
 export interface FindSubjectOptions {
-    name?: string;
+    name?: { contains: string, mode: "insensitive" | "default" };
     divisionId?: string;
     categoryId?: string;
 }

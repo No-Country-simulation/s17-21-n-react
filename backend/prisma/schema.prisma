@@ -53,7 +53,8 @@ model Grade {
   yearId       String
   isDeleted    Boolean        @default(false)
   subjects     GradeSubject[]
-  divisions    Division[]
+
+  @@unique([name, yearId])
 }
 
 model GradeSubject {
@@ -120,22 +121,18 @@ model Class {
   subjectId  String
   year       AcademicYear @relation(fields: [yearId], references: [id])
   yearId     String
-  division   Division     @relation(fields: [divisionId], references: [id])
-  divisionId String
   activities Activity[]
   isDeleted  Boolean      @default(false)
 
-  @@unique([name, subjectId, divisionId, yearId])
+  @@unique([name, subjectId, yearId, date])
 }
 
 model Division {
   id          String       @id @default(uuid())
   name        String
-  grade       Grade        @relation(fields: [gradeId], references: [id])
-  gradeId     String
+  isDeleted   Boolean      @default(false)
   enrollments Enrollment[]
   subjects    Subject[]
-  classes     Class[]
 }
 
 // Temporal 

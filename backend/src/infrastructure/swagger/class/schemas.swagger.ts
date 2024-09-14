@@ -12,18 +12,13 @@ export const createClassSchema: Schema = {
       example: "Clase 1",
     },
     date: {
-      type: "string",
+      type: "date",
       description: "Fecha de la clase",
-      example: "2024-09-06",
+      example: "2024-09-06T08:00:00",
     },
     subjectId: {
       type: "string",
       description: "ID del materia",
-      example: "27d8dafa-8207-4878-bed8-9af291563df7",
-    },
-    divisionId: {
-      type: "string",
-      description: "ID de la división",
       example: "27d8dafa-8207-4878-bed8-9af291563df7",
     },
     yearId: {

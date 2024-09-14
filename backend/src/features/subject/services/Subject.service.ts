@@ -15,8 +15,15 @@ export class SubjectService implements ISubjectService {
     this._subjectRepository = subjectRepository;
   }
 
-  async getAllSubjects(page = 1, pageSize = 10, filter: FindSubjectOptions): Promise<Paginated<Subject>> {
-    return await Paginate<Subject>("subject", page, pageSize, filter);
+  async getAllSubjects(page = 1, pageSize = 10, filter: FindSubjectOptions, sort: Record<string, "asc" | "desc">): Promise<Paginated<Subject>> {
+    return await Paginate<Subject>(
+      "subject",
+      page,
+      pageSize,
+      filter,
+      sort,
+      { category: { select: { id: true, name: true } }, division: { select: { id: true, name: true } } } 
+    );
   }
 
   async getSubjectById(id: string): Promise<SubjectEntity | null> {
