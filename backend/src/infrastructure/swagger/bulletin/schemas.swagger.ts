@@ -23,7 +23,7 @@ export const BulletinSchema = {
     },
     scope: {
       type: "string",
-      description: "Publico objetivo del bulletin ('PROFESSOR', 'STUDENT', 'ALL'",
+      description: "Publico objetivo del bulletin ('TEACHER', 'STUDENT', 'ALL'",
       example: "STUDENT"
     },
     eventDate: {
@@ -31,7 +31,7 @@ export const BulletinSchema = {
       description: "Fecha limite evento del bulletin",
       example: "2024-09-06T01:10:31.006Z"
     },
-    isActived: {
+    isActivated: {
       type: "boolean",
       description: "Estado que representa si un bulletin se muestra o no",
       example: true

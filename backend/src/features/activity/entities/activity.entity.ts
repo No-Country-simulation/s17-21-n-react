@@ -8,5 +8,6 @@ export interface Activity {
   status: ActivityStatus;
   startDate?: Date;
   dueDate: Date;
+  files?: string[];
   classId: string;
 }

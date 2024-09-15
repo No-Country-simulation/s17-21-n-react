@@ -20,7 +20,9 @@ export const Paginate = async <T>(
     "count" in prisma[model] &&
     "findMany" in prisma[model]
   ) {
-    const total = await (prisma[model].count as () => Promise<number>)();
+    const total = await (prisma[model].count as (args: any) => Promise<number>)({
+      where: { isDeleted: false }
+    });
     const content = await (
       prisma[model].findMany as (args: any) => Promise<T[]>
     )({
