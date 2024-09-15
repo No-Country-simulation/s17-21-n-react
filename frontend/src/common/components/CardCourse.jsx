@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Star, Clipboard, CheckCircle, BookOpen, UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
 import useUserStore from "../../store/auth";
+import { profile } from "../../common/assets";
 
 export default function CardCourse({
   name,
@@ -73,7 +74,7 @@ export default function CardCourse({
               alt="Instructor avatar"
               className="rounded-full"
               height="40"
-              src={image}
+              src={profile}
               style={{ aspectRatio: "1 / 1", objectFit: "cover" }}
               width="40"
             />
