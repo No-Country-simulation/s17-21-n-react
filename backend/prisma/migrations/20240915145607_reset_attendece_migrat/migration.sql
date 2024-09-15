@@ -1,18 +1,19 @@
 /*
   Warnings:
 
-  - Added the required column `description` to the `Subject` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `scheduleEnd` to the `Subject` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `scheduleInit` to the `Subject` table without a default value. This is not possible if the table is not empty.
+  - You are about to drop the column `divisionId` on the `Class` table. All the data in the column will be lost.
+  - A unique constraint covering the columns `[name,subjectId,yearId,date]` on the table `Class` will be added. If there are existing duplicate values, this will fail.
+  - A unique constraint covering the columns `[name,yearId]` on the table `Grade` will be added. If there are existing duplicate values, this will fail.
 
 */
+-- DropForeignKey
+ALTER TABLE "Class" DROP CONSTRAINT "Class_divisionId_fkey";
+
 -- DropIndex
-DROP INDEX "Subject_name_divisionId_key";
+DROP INDEX "Class_name_subjectId_divisionId_yearId_key";
 
 -- AlterTable
-ALTER TABLE "Subject" ADD COLUMN     "description" VARCHAR(256) NOT NULL,
-ADD COLUMN     "scheduleEnd" VARCHAR(128) NOT NULL,
-ADD COLUMN     "scheduleInit" VARCHAR(128) NOT NULL;
+ALTER TABLE "Class" DROP COLUMN "divisionId";
 
 -- CreateTable
 CREATE TABLE "Attendance" (
@@ -42,6 +43,12 @@ CREATE TABLE "AttendanceStudent" (
 
     CONSTRAINT "AttendanceStudent_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Class_name_subjectId_yearId_date_key" ON "Class"("name", "subjectId", "yearId", "date");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Grade_name_yearId_key" ON "Grade"("name", "yearId");
 
 -- AddForeignKey
 ALTER TABLE "Attendance" ADD CONSTRAINT "Attendance_classId_fkey" FOREIGN KEY ("classId") REFERENCES "Class"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

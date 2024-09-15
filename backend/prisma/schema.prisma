@@ -14,17 +14,17 @@ datasource db {
 }
 
 model User {
-  id                 String           @id @default(uuid())
-  email              String           @unique
-  password           String           @db.VarChar(256)
-  name               String           @db.VarChar(128)
-  lastName           String           @db.VarChar(128)
-  dni                String           @db.VarChar(56)
-  role               Role             @relation(fields: [roleId], references: [id])
+  id                 String              @id @default(uuid())
+  email              String              @unique
+  password           String              @db.VarChar(256)
+  name               String              @db.VarChar(128)
+  lastName           String              @db.VarChar(128)
+  dni                String              @db.VarChar(56)
+  role               Role                @relation(fields: [roleId], references: [id])
   roleId             String
-  isActive           Boolean          @default(true)
-  createdAt          DateTime         @default(now())
-  updatedAt          DateTime         @updatedAt
+  isActive           Boolean             @default(true)
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
   deletedAt          DateTime?
   enrollments        Enrollment[]
   subjectTeachers    SubjectTeacher[]
@@ -81,7 +81,6 @@ model Subject {
   category        SubjectCategory  @relation(fields: [categoryId], references: [id])
   categoryId      String
   isDeleted       Boolean          @default(false)
-
 }
 
 model SubjectCategory {
@@ -160,15 +159,15 @@ model Bulletin {
 }
 
 model Attendance {
-  id                String    @id @default(uuid())
-  class             Class     @relation(fields: [classId], references: [id])
+  id                String              @id @default(uuid())
+  class             Class               @relation(fields: [classId], references: [id])
   classId           String
   eventDate         DateTime
-  status            String    @db.VarChar(128)
+  status            String              @db.VarChar(128)
   attendanceStudent AttendanceStudent[]
-  isDeleted         Boolean   @default(false)
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  isDeleted         Boolean             @default(false)
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
   deletedAt         DateTime?
 }
 
