@@ -1,4 +1,3 @@
-import { Activity } from "@prisma/client";
 
 export interface Classes {
   id: string;
@@ -6,6 +5,8 @@ export interface Classes {
   date: Date;
   subjectId: string;
   yearId: string;
-  activities?: Activity[];
+  _count?: {
+    activities: number;
+  };
   isDeleted: boolean;
 }

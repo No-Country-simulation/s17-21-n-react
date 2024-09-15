@@ -3,7 +3,7 @@ import { SubjectEntity } from "../entities/Subject.entity";
 import { ISubjectRepository } from "../repositories/ISubject.repository";
 import { ISubjectService } from "./ISubject.service";
 import { Paginate } from "../../../shared/utils/paginate";
-import { Subject } from "@prisma/client";
+import { Prisma, Subject } from "@prisma/client";
 import { Paginated } from "../../../shared/interfaces/Paginated";
 import { FindSubjectOptions } from "../dto/subjectSelect.dto";
 import { SubjectCreate } from "../dto/subjectCreate.dto";
@@ -15,6 +15,12 @@ export class SubjectService implements ISubjectService {
     this._subjectRepository = subjectRepository;
   }
 
+  private readonly includeOptions: Prisma.SubjectInclude = {
+    _count: { select: { classes: true } },
+    category: { select: { id: true, name: true } },
+    division: { select: { id: true, name: true } },
+  };
+
   async getAllSubjects(page = 1, pageSize = 10, filter: FindSubjectOptions, sort: Record<string, "asc" | "desc">): Promise<Paginated<Subject>> {
     return await Paginate<Subject>(
       "subject",
@@ -22,7 +28,7 @@ export class SubjectService implements ISubjectService {
       pageSize,
       filter,
       sort,
-      { category: { select: { id: true, name: true } }, division: { select: { id: true, name: true } } } 
+      this.includeOptions
     );
   }
 

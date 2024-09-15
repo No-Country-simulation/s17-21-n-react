@@ -3,6 +3,7 @@ import { Classes } from "../entities/class.entity";
 import { IClassService } from "./IClass.service";
 import { Paginate } from "../../../shared/utils";
 import { IClassRepository } from "../repositories/Iclass.repository";
+import { Prisma } from "@prisma/client";
 
 export class ClassService implements IClassService {
   private readonly _classRepository: IClassRepository;
@@ -10,7 +11,8 @@ export class ClassService implements IClassService {
   constructor(classRepository: IClassRepository) {
     this._classRepository = classRepository;
   }
-  private readonly includeOptions = {
+  private readonly includeOptions: Prisma.ClassInclude = {
+    _count : { select: { activities: true } },
     subject: {
       select: { division: { select: { name: true } }, name: true },
     },

@@ -38,6 +38,89 @@ const createSubjectPath: PathItem = {
   },
 };
 
+const updateSubjectPath: PathItem = {
+  patch: {
+    parameters: [
+      {
+        description: "Subject ID",
+        in: "path",
+        name: "id",
+        required: true,
+        schema: {
+          format: "uuid",
+          type: "string",
+        },
+      },
+    ],
+    requestBody: {
+      content: {
+        "application/json": {
+          schema: {
+            $ref: "#/components/schemas/Subject:PATCH",
+          },
+        },
+      },
+      required: true,
+    },
+
+    responses: { 
+      200: {
+        content: {
+          "application/json": {
+            schema: successResponseSchema(subjectSchemas["Subject:PATCH"]),
+          },
+        },
+        description: "Subject updated successfully",
+      },
+      ...defaultErrorResponseSchemas()
+    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
+    summary: "Update a subject. Allowed roles 'ADMIN' ",
+    tags: [ "Subject" ],
+  },
+};
+
+const deleteSubjectPath: PathItem = {
+  delete: {
+    parameters: [
+      {
+        description: "Subject ID",
+        in: "path",
+        name: "id",
+        required: true,
+        schema: {
+          format: "uuid",
+          type: "string",
+        },
+      },
+    ],
+    responses: {
+      200: {
+        content: {
+          "application/json": {
+            schema: successResponseSchema(),
+          },
+        },
+        description: "Subject deleted successfully",
+      },
+      ...defaultErrorResponseSchemas()
+    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
+    summary: "Delete a subject. Allowed roles 'ADMIN' ",
+    tags: [ "Subject" ],
+  },
+};
+
+
+
 const getSubjectPath: PathItem = {
   get: {
     parameters: [
@@ -153,5 +236,5 @@ const subjectGetPath: PathItem = {
 
 export const subjectPaths = {
   "/subject": { ...createSubjectPath, ...subjectGetPath },
-  "/subject/{id}": { ...getSubjectPath },
+  "/subject/{id}": { ...getSubjectPath, ...updateSubjectPath, ...deleteSubjectPath },
 };

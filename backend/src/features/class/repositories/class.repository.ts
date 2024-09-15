@@ -4,9 +4,10 @@ import prisma from "../../../infrastructure/database/prisma";
 import { ErrorHandler } from "../../../shared/utils/ErrorHandler";
 
 export class ClassRepository implements IClassRepository {
-  async findMany(skip: number, take: number): Promise<Class[]> {
+  async findMany(skip: number, take: number, include?: Prisma.ClassInclude): Promise<Class[]> {
     try {
       return await prisma.class.findMany({
+        include,
         skip,
         take,
         where: { isDeleted: false },

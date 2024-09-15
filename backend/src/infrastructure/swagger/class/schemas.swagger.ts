@@ -67,11 +67,16 @@ const getClassSchema = {
       format: "uuid",
       example: "daf21204-e875-4bca-b1bd-83aa5379d744",
     },
-    activities: {
-      type: "array",
-      items: {
-        $ref: "#/components/schemas/Activity:GET",
-      },
+    _count: { 
+      type: "object",
+      properties: {
+        activities: {
+          type: "integer",
+          format: "int32",
+          description: "Cantidad de actividades asociadas a la clase",
+          example: 4,
+        }
+      }
     },
     isDeleted: {
       type: "boolean",
@@ -85,7 +90,7 @@ const getClassSchema = {
     "subjectId",
     "divisionId",
     "yearId",
-    "activities",
+    "_count",
     "isDeleted",
   ],
 };

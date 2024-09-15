@@ -278,6 +278,6 @@ const classesGetPath:PathItem = {
 
 export const classPaths = {
   "/class":{ ...createClassPath, ...classesGetPath },
-  "/class/{classId}":{ ...updateClassPath,...deleteClassPath, ...getClassPath },
   "/class/teacher/{teacherId}":{ ...getAllClassesByTeacherIdAndYearPath },
+  "/class/{classId}":{ ...getClassPath, ...updateClassPath, ...deleteClassPath, },
 };

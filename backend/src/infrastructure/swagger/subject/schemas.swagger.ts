@@ -50,6 +50,12 @@ export const updateSubjectSchema: Schema = {
 
 export const getSubjectSchema: Schema = {
   properties: {
+    _count: {
+      example: {
+        classes: 1,
+      },
+      type: "object",
+    },
     categoryId: {
       example: "933e9ea3-cbd2-45d3-8bd3-90f341e2fb26",
       format : "uuid",

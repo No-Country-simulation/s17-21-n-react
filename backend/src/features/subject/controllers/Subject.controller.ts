@@ -93,7 +93,7 @@ export class SubjectController {
         data   : subject,
         message: "Asignatura creada exitosamente",
         res,
-        status : HttpCodes.SUCCESS,
+        status : HttpCodes.SUCCESS_CREATED,
       });
     } catch (error) {
       this.handleSubjectError(error, this.ERROR_MESSAGES.CREATE, res);
@@ -131,7 +131,7 @@ export class SubjectController {
       successResponse({
         message: "Asignatura eliminada exitosamente",
         res,
-        status : HttpCodes.SUCCESS,
+        status : HttpCodes.SUCCESS_DELETED,
       });
     } catch (error) {
       this.handleSubjectError(error, this.ERROR_MESSAGES.DELETE, res);
