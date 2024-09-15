@@ -139,9 +139,26 @@ model Division {
 }
 
 // Temporal 
+
+enum ActivityType {
+  ASSIGNMENT,
+  EXAM,
+  OTHER
+}
+
+enum ActivityStatus {
+  PENDING,
+  COMPLETED,
+  OVERDUE
+}
+
 model Activity {
-  id      Int      @id @default(autoincrement())
-  name    String
+  id      String    @id @default(uuid())
+  name    String    @db.VarChar(128)
+  description String?  @db.VarChar(256)
+  activityType   ActivityType  @db.VarChar(128)
+  status   ActivityStatus @default(PENDING)
+  startDate   DateTime  @default(now())
   dueDate DateTime
   class   Class    @relation(fields: [classId], references: [id])
   classId String
