@@ -44,7 +44,7 @@ const ComunicationByTeacher = () => {
               key={email.id}
               className="border-[1px] border-border rounded-lg shadow-custom p-4 pe-4 md:pe-16 flex items-start gap-4"
             >
-              <img src={email.image} alt="image" width={48} height={48}/>
+              <img src={email.image} alt="image" width={48} height={48} />
               <div className="flex-grow w-1">
                 <h5 className="font-semibold text-[#1F2937] truncate">{email.title}</h5>
                 <p className="text-[#374151] truncate">{email.description}</p>
