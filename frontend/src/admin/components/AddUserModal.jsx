@@ -3,7 +3,7 @@ import { useState } from "react";
 import { TextInput } from "./TextInput";
 import { Modal } from "./Modal";
 import { roleTranslations } from "../../common/utils/roleTranslations";
-import { addUser } from "../../common/services/teachersService";
+import { addUser } from "../../common/services/userService";
 
 export default function AddUserModal({ isOpen, onClose, role }) {
   const [newUser, setNewUser] = useState({
@@ -25,15 +25,13 @@ export default function AddUserModal({ isOpen, onClose, role }) {
   const handleAddUser = async () => {
     try {
       const response = await addUser(newUser);
-      console.log("Datos de la respuesta en handleAddUser:", response);
 
       if (response.data && response.data.password) {
         setPassword(response.data.password);
-        setShowPasswordModal(true); // Mostrar el modal con la contraseña
+        setShowPasswordModal(true);
       } else {
         console.error("Contraseña no encontrada en la respuesta");
       }
-      console.log("Usuario agregado exitosamente");
     } catch (error) {
       console.error("Error al agregar el usuario:", error);
     }
@@ -119,8 +117,8 @@ export default function AddUserModal({ isOpen, onClose, role }) {
             </div>
             <p className="mt-2 text-sm text-gray-600">
               <strong>Recomendación:</strong> Guarda esta contraseña en un lugar seguro y no la
-              compartas con otras personas. Utiliza un administrador de contraseñas para mantener tus
-              credenciales seguras.
+              compartas con otras personas. Utiliza un administrador de contraseñas para mantener
+              tus credenciales seguras.
             </p>
           </div>
         </Modal>

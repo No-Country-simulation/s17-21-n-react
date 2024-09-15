@@ -25,15 +25,14 @@ const AccordionItem = ({ title, date, user }) => {
       <span className="text-gray-500 mb-8">{date}</span>
       {isOpen && (
         <div className="p-4 text-black">
-          <ClassDetail role={user.role} />  
+          <ClassDetail role={user.role} />
         </div>
       )}
     </div>
   );
 };
 
-
-export default function ActivitiesList  () {
+export default function ActivitiesList() {
   const { user } = useUserStore((state) => state);
 
   return (
@@ -59,10 +58,10 @@ export default function ActivitiesList  () {
             title={activity.title}
             date={activity.date}
             content={activity.content}
-            user={user} 
+            user={user}
           />
         ))}
       </div>
     </div>
   );
-};
+}

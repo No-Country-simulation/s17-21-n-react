@@ -3,7 +3,7 @@ import { X } from "lucide-react";
 
 export function Modal({ isOpen, onClose, title, onSubmit, submitText, cancelText, children }) {
   if (!isOpen) return null;
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (onSubmit) onSubmit(e);

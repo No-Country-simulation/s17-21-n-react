@@ -18,7 +18,7 @@ export default function CardCourse({
   courseId,
   inviteLink = "https://example.com/invite",
 }) {
-  const { user } = useUserStore((state) => state); 
+  const { user } = useUserStore((state) => state);
   const [copied, setCopied] = useState(false);
   const [showInvite, setShowInvite] = useState(false);
 
@@ -105,9 +105,7 @@ export default function CardCourse({
                 Comparte este enlace con tus alumnos para que se unan al curso:
               </p>
               <div className="flex items-center justify-between">
-                <span className="text-blue-600 font-semibold break-all">
-                  {inviteLink}
-                </span>
+                <span className="text-blue-600 font-semibold break-all">{inviteLink}</span>
                 <button
                   onClick={handleInviteClick}
                   className="ml-4 font-semibold py-1 px-3 rounded flex items-center bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200"

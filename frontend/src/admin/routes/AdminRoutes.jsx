@@ -11,8 +11,6 @@ const adminRoutes = [
   { path: "courses", element: <CoursesByAdmin /> },
   { path: "courses/:id/classes", element: <ActivitiesList /> },
 
-  
-
   // Otras rutas específicas para administradores
 ];
 

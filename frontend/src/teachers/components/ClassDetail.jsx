@@ -34,7 +34,8 @@ export default function ClassDetail({ role }) {
         <div className="border-t pt-4 mt-4">
           <h5 className="text-md font-semibold">Tarea 1: Límites y Continuidad</h5>
           <p className="text-gray-500">
-            <strong>Descripción:</strong> Resolver los problemas del libro de texto sobre límites y continuidad.
+            <strong>Descripción:</strong> Resolver los problemas del libro de texto sobre límites y
+            continuidad.
           </p>
           <p className="text-gray-500">
             <strong>Fecha de Entrega:</strong> 3/9/2024

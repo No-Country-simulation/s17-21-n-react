@@ -17,7 +17,7 @@ const generateRoutes = (role, routes) =>
 
 // Rutas comunes a todos los roles
 const commonRoutes = [
-  { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" }, 
+  { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" },
   { icon: BookOpen, label: "Cursos", path: "/courses" },
   { icon: ClipboardList, label: "Calificaciones", path: "/grades" },
   { icon: Calendar, label: "Calendario", path: "/calendar", notification: 1 },
@@ -28,7 +28,7 @@ const commonRoutes = [
 const roleSpecificRoutes = {
   admin: [
     { icon: GraduationCap, label: "Alumnos", path: "/students" },
-    { icon: Users, label: "Docentes", path: "/teachers" }, 
+    { icon: Users, label: "Docentes", path: "/teachers" },
     { icon: UserCheck, label: "Reporte de Asistencias", path: "/attendance-summary" },
     { icon: BookOpen, label: "Material Educativo", path: "/resources" },
     { icon: BarChart2, label: "Informes", path: "/reports" },

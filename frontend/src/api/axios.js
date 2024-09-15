@@ -6,7 +6,7 @@ const baseURL = import.meta.env.VITE_BASE_URL;
 const configureAxios = () => {
   const api = axios.create({
     baseURL,
-    withCredentials: false, 
+    withCredentials: false,
   });
 
   api.interceptors.request.use(
@@ -21,7 +21,7 @@ const configureAxios = () => {
     },
     (error) => {
       return Promise.reject(error);
-    }
+    },
   );
 
   return api;

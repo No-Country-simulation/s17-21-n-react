@@ -8,7 +8,6 @@ const studentRoutes = [
   { path: "courses", element: <CoursesByStudent /> },
   { path: "courses/:id/classes", element: <ActivitiesList /> },
 
-
   // Otras rutas específicas para estudiantes
 ];
 
