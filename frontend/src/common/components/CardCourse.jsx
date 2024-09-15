@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Star, Clipboard, CheckCircle, BookOpen, UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
-import { profile } from "../../common/assets";
+import useUserStore from "../../store/auth";
 
 export default function CardCourse({
   name,
@@ -18,6 +18,7 @@ export default function CardCourse({
   courseId,
   inviteLink = "https://example.com/invite",
 }) {
+  const { user } = useUserStore((state) => state); 
   const [copied, setCopied] = useState(false);
   const [showInvite, setShowInvite] = useState(false);
 
@@ -56,7 +57,6 @@ export default function CardCourse({
 
           <h3 className="text-2xl font-bold mt-2 mb-2">{name}</h3>
 
-          {/* Nueva sección para la fecha de inicio y duración */}
           <div className="text-gray-600 text-sm mb-4">
             <p>
               <strong>Fecha de inicio:</strong> {startDate}
@@ -73,11 +73,8 @@ export default function CardCourse({
               alt="Instructor avatar"
               className="rounded-full"
               height="40"
-              src={profile}
-              style={{
-                aspectRatio: "1 / 1",
-                objectFit: "cover",
-              }}
+              src={image}
+              style={{ aspectRatio: "1 / 1", objectFit: "cover" }}
               width="40"
             />
             <span className="font-medium">{instructor}</span>
@@ -90,13 +87,16 @@ export default function CardCourse({
                 Ver Actividades
               </button>
             </Link>
-            <button
-              onClick={() => setShowInvite(!showInvite)}
-              className="font font-semibold text-base border border-green-500 text-green-500 px-4 py-2 rounded hover:bg-green-50 flex items-center"
-            >
-              <UserPlus className="h-4 w-4 mr-2" />
-              Invitar Alumnos
-            </button>
+
+            {(user.role === "admin" || user.role === "teacher") && (
+              <button
+                onClick={() => setShowInvite(!showInvite)}
+                className="font font-semibold text-base border border-green-500 text-green-500 px-4 py-2 rounded hover:bg-green-50 flex items-center"
+              >
+                <UserPlus className="h-4 w-4 mr-2" />
+                Invitar Alumnos
+              </button>
+            )}
           </div>
 
           {showInvite && (
@@ -105,7 +105,9 @@ export default function CardCourse({
                 Comparte este enlace con tus alumnos para que se unan al curso:
               </p>
               <div className="flex items-center justify-between">
-                <span className="text-blue-600 font-semibold break-all">{inviteLink}</span>
+                <span className="text-blue-600 font-semibold break-all">
+                  {inviteLink}
+                </span>
                 <button
                   onClick={handleInviteClick}
                   className="ml-4 font-semibold py-1 px-3 rounded flex items-center bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200"

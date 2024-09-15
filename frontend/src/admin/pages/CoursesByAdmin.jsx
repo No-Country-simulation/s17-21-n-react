@@ -1,11 +1,19 @@
-import { courses } from "../data/coursesData";
+import { CirclePlus } from "lucide-react";
 import Pagination from "../../common/components/Pagination";
 import CardCourse from "../../common/components/CardCourse";
+import { courses } from "../../teachers/data/coursesData";
 
-export default function CoursesByTeacher() {
+export default function CoursesByAdmin() {
   return (
     <div className="relative w-full mx-auto bg-white">
       <h1 className="text-[#495057] text-2xl mb-6 font-bold">Mis Cursos</h1>
+
+      <div className="flex justify-end py-5">
+        <button className="flex justify-center bg-primary p-4 w-56 h-10 text-white rounded-md items-center">
+          <CirclePlus />
+          <p className="p-4">Añadir Curso</p>
+        </button>
+      </div>
 
       <ul className="grid space-y-6">
         {courses.map((course) => (
@@ -27,7 +35,6 @@ export default function CoursesByTeacher() {
           </li>
         ))}
       </ul>
-      {/* Controles de Paginación */}
       <section className="mt-6 flex justify-end">
         <Pagination />
       </section>

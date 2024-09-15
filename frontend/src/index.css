@@ -21,7 +21,8 @@
   background: #475569;
 }
 
-.swiper-slide, .swiper-slide-active {
+.swiper-slide,
+.swiper-slide-active {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,8 +30,8 @@
 }
 
 .swiper-pagination-bullet {
-  background-color: transparent; 
-  border: 3px solid #2b4eff; 
+  background-color: transparent;
+  border: 3px solid #2b4eff;
   border-radius: 50%;
   width: 18px;
   height: 18px;
@@ -39,17 +40,17 @@
 
 .swiper-pagination-bullet-active {
   background-color: #2b4eff;
-  border: none; 
+  border: none;
 }
 
 .studentSwiper .swiper-wrapper,
 .teacherSwiper .swiper-wrapper,
-.eventSwiper .swiper-wrapper{
+.eventSwiper .swiper-wrapper {
   padding-bottom: 40px;
 }
 
 @media (max-width: 640px) {
-  .mySwiper .swiper-pagination{
+  .mySwiper .swiper-pagination {
     position: relative;
     margin: 10px 0px 0px 0px;
   }
@@ -59,18 +60,15 @@
   text-transform: capitalize;
 }
 
-.rbc-toolbar-label{
-    text-transform: uppercase; 
+.rbc-toolbar-label {
+  text-transform: uppercase;
 }
 
-.rbc-day-slot .rbc-events-container{
-  margin-right: 0px !important;
-}
-
-.rbc-event, .rbc-day-slot .rbc-background-event{
+.rbc-event,
+.rbc-day-slot .rbc-background-event {
   background-color: transparent;
 }
 
-td.rbc-agenda-date-cell{
+td.rbc-agenda-date-cell {
   text-transform: capitalize;
 }

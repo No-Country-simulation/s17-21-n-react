@@ -32,7 +32,7 @@ export default function Layout({ userRole }) {
   }, [isSidebarOpen]);
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative">
       {/* Pasa userRole al Sidebar */}
       <Sidebar isOpen={isSidebarOpen} sidebarRef={sidebarRef} userRole={userRole} />
       <SessionNavbar />

@@ -1,5 +1,6 @@
 import {
-  Home,
+  LayoutDashboard,
+  Users,
   GraduationCap,
   ClipboardList,
   UserCheck,
@@ -16,7 +17,7 @@ const generateRoutes = (role, routes) =>
 
 // Rutas comunes a todos los roles
 const commonRoutes = [
-  { icon: Home, label: "Dashboard", path: "/dashboard" },
+  { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" }, 
   { icon: BookOpen, label: "Cursos", path: "/courses" },
   { icon: ClipboardList, label: "Calificaciones", path: "/grades" },
   { icon: Calendar, label: "Calendario", path: "/calendar", notification: 1 },
@@ -27,11 +28,8 @@ const commonRoutes = [
 const roleSpecificRoutes = {
   admin: [
     { icon: GraduationCap, label: "Alumnos", path: "/students" },
-    {
-      icon: UserCheck,
-      label: "Reporte de Asistencias",
-      path: "/attendance-summary",
-    },
+    { icon: Users, label: "Docentes", path: "/teachers" }, 
+    { icon: UserCheck, label: "Reporte de Asistencias", path: "/attendance-summary" },
     { icon: BookOpen, label: "Material Educativo", path: "/resources" },
     { icon: BarChart2, label: "Informes", path: "/reports" },
     { icon: Settings, label: "Configuración", path: "/settings" },
@@ -43,7 +41,6 @@ const roleSpecificRoutes = {
   student: [],
 };
 
-// Configuración de Sidebar final
 export const SidebarConfig = Object.fromEntries(
   Object.entries(roleSpecificRoutes).map(([role, specificRoutes]) => [
     role,
