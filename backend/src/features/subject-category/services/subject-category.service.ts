@@ -7,8 +7,8 @@ import { ISubjectCategoryRepository } from "../repositories/Isubject-category.re
 export class SubjectCategoryService implements ISubjectCategoryService {
   private readonly _subjectCategoryRepository: ISubjectCategoryRepository;
 
-  constructor(academicYearRepository: ISubjectCategoryRepository) {
-    this._subjectCategoryRepository = academicYearRepository;
+  constructor(subjectCategoryRepository: ISubjectCategoryRepository) {
+    this._subjectCategoryRepository = subjectCategoryRepository;
   }
 
   async getAllSubjectCategories(
