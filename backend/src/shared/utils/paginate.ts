@@ -31,11 +31,11 @@ export const Paginate = async <T>(
     });
 
     return buildPaginated<T>(content, total, currentPage, take);
-  } else {
+  } else 
     throw new Error(
       `Modelo "${model.toString()}" no encontrado o no tiene los métodos requeridos`
     );
-  }
+  
 };
 
 export const buildPaginated = <T>(

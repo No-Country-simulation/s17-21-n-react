@@ -6,6 +6,7 @@ import { userRouter } from "../../features/user/routes";
 import { subjectRouter } from "../../features/subject/routes/Subject.routes";
 import { classRouter } from "../../features/class/router/class.routes";
 import { gradeRouter } from "../../features/grade/routes/Grade.routes";
+import { academicYearRouter } from "../../features/academic_year/routes/academic-year.routes";
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.use("/user", userRouter);
 router.use("/subject", subjectRouter);
 router.use("/class", classRouter);
 router.use("/grade", gradeRouter);
+router.use("/academic-year",academicYearRouter);
 
 export { router as mainRouter };

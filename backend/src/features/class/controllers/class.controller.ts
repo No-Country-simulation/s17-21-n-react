@@ -1,13 +1,17 @@
 import { Request, Response } from "express";
-import { errorResponse, HttpCodes, successResponse } from "../../../shared/utils";
+import {
+  errorResponse,
+  HttpCodes,
+  successResponse,
+} from "../../../shared/utils";
 import { IClassService } from "../services/IClass.service";
 
 const ERROR_MESSAGES = {
-  FETCH: "Ocurrió un error al obtener las clases",
-  CREATE: "Ocurrió un error al crear la clase",
-  UPDATE: "Ocurrió un error al actualizar la clase",
-  DELETE: "Ocurrió un error al eliminar la clase",
+  CREATE   : "Ocurrió un error al crear la clase",
+  DELETE   : "Ocurrió un error al eliminar la clase",
+  FETCH    : "Ocurrió un error al obtener las clases",
   NOT_FOUND: "Clase no encontrada",
+  UPDATE   : "Ocurrió un error al actualizar la clase",
 };
 
 export class ClassController {
@@ -20,7 +24,7 @@ export class ClassController {
     status: number = HttpCodes.INTERNAL_SERVER_ERROR
   ) => {
     const errorMessage = error instanceof Error ? error.message : message;
-    return errorResponse({ res, status, message: errorMessage });
+    return errorResponse({ message: errorMessage, res, status });
   };
 
   private parseQueryParams = (page?: string, size?: string) => ({
@@ -30,7 +34,10 @@ export class ClassController {
 
   public getAllClasses = async (req: Request, res: Response) => {
     try {
-      const { page, size } = this.parseQueryParams(req.query.page as string, req.query.size as string);
+      const { page, size } = this.parseQueryParams(
+        req.query.page as string,
+        req.query.size as string
+      );
       const classes = await this._classService.getAllClasses(page, size);
       return successResponse({ data: classes, res });
     } catch (error) {
@@ -38,43 +45,65 @@ export class ClassController {
     }
   };
 
-  public getAllClassesByTeacherIdAndYear = async (req: Request, res: Response) => {
+  public getAllClassesByTeacherIdAndYear = async (
+    req: Request,
+    res: Response
+  ) => {
     try {
-      const { page, size } = this.parseQueryParams(req.query.page as string, req.query.size as string);
+      const { page, size } = this.parseQueryParams(
+        req.query.page as string,
+        req.query.size as string
+      );
       const { teacherId } = req.params;
       const yearNum = parseInt(req.query.yearNum as string, 10) || 0;
-      
+
       const classes = await this._classService.getAllClasses(page, size, {
         teacherId,
         year: yearNum !== 0 ? { year: yearNum } : undefined,
       });
 
-      return successResponse({ 
-        data: classes, 
-        res, 
-        status: classes ? HttpCodes.SUCCESS : HttpCodes.SUCCESS_DELETED 
+      return successResponse({
+        data  : classes,
+        res,
+        status: classes ? HttpCodes.SUCCESS : HttpCodes.SUCCESS_DELETED,
       });
     } catch (error) {
       return this.handleClassError(error, ERROR_MESSAGES.FETCH, res);
     }
   };
 
-  public getAllClassesBySubjectIdOrYear = async (req: Request, res: Response) => {
+  public getAllClassesBySubjectIdOrYear = async (
+    req: Request,
+    res: Response
+  ) => {
     try {
-      const { page, size } = this.parseQueryParams(req.query.page as string, req.query.size as string);
-      const { subjectId, yearNum = '0' } = req.query;
-      
+      const { page, size } = this.parseQueryParams(
+        req.query.page as string,
+        req.query.size as string
+      );
+      const { subjectId, yearNum = "0" } = req.query;
+
       const classes = await this._classService.getAllClasses(page, size, {
         subjectId: subjectId as string,
-        year: parseInt(yearNum as string, 10) !== 0 ? { year: parseInt(yearNum as string, 10) } : undefined,
+        year:
+          parseInt(yearNum as string, 10) !== 0
+            ? { year: parseInt(yearNum as string, 10) }
+            : undefined,
       });
 
-      if (!classes) {
-        return errorResponse({ message: ERROR_MESSAGES.NOT_FOUND, res, status: HttpCodes.NOT_FOUND });
-      }
+      if (!classes)
+        return errorResponse({
+          message: ERROR_MESSAGES.NOT_FOUND,
+          res,
+        });
       return successResponse({ data: classes, res });
     } catch (error) {
-      return this.handleClassError(error, ERROR_MESSAGES.FETCH, res, HttpCodes.NOT_FOUND);
+      return this.handleClassError(
+        error,
+        ERROR_MESSAGES.FETCH,
+        res,
+        HttpCodes.NOT_FOUND
+      );
     }
   };
 
@@ -82,9 +111,13 @@ export class ClassController {
     try {
       const { id } = req.params;
       const classData = await this._classService.getClassById(id);
-      if (!classData) {
-        return errorResponse({ message: ERROR_MESSAGES.NOT_FOUND, res, status: HttpCodes.NOT_FOUND });
-      }
+      if (!classData) 
+        return errorResponse({
+          message: ERROR_MESSAGES.NOT_FOUND,
+          res,
+          status : HttpCodes.NOT_FOUND,
+        });
+      
       return successResponse({ data: classData, res });
     } catch (error) {
       return this.handleClassError(error, ERROR_MESSAGES.FETCH, res);
@@ -95,7 +128,11 @@ export class ClassController {
     try {
       const createDto = req.body;
       const newClass = await this._classService.create(createDto);
-      return successResponse({ data: newClass, res, status: HttpCodes.SUCCESS_CREATED });
+      return successResponse({
+        data  : newClass,
+        res,
+        status: HttpCodes.SUCCESS_CREATED,
+      });
     } catch (error) {
       return this.handleClassError(error, ERROR_MESSAGES.CREATE, res);
     }
@@ -106,9 +143,13 @@ export class ClassController {
       const { id } = req.params;
       const updateDto = req.body;
       const updatedClass = await this._classService.update(id, updateDto);
-      if (!updatedClass) {
-        return errorResponse({ message: ERROR_MESSAGES.NOT_FOUND, res, status: HttpCodes.NOT_FOUND });
-      }
+      if (!updatedClass) 
+        return errorResponse({
+          message: ERROR_MESSAGES.NOT_FOUND,
+          res,
+          status : HttpCodes.NOT_FOUND,
+        });
+      
       return successResponse({ data: updatedClass, res });
     } catch (error) {
       return this.handleClassError(error, ERROR_MESSAGES.UPDATE, res);
