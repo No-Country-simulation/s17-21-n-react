@@ -14,20 +14,21 @@ datasource db {
 }
 
 model User {
-  id              String           @id @default(uuid())
-  email           String           @unique
-  password        String           @db.VarChar(256)
-  name            String           @db.VarChar(128)
-  lastName        String           @db.VarChar(128)
-  dni             String           @db.VarChar(56)
-  role            Role             @relation(fields: [roleId], references: [id])
-  roleId          String
-  isActive        Boolean          @default(true)
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt
-  deletedAt       DateTime?
-  enrollments     Enrollment[]
-  subjectTeachers SubjectTeacher[]
+  id                 String           @id @default(uuid())
+  email              String           @unique
+  password           String           @db.VarChar(256)
+  name               String           @db.VarChar(128)
+  lastName           String           @db.VarChar(128)
+  dni                String           @db.VarChar(56)
+  role               Role             @relation(fields: [roleId], references: [id])
+  roleId             String
+  isActive           Boolean          @default(true)
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+  deletedAt          DateTime?
+  enrollments        Enrollment[]
+  subjectTeachers    SubjectTeacher[]
+  attendanceStudents AttendanceStudent[]
 }
 
 model Role {
@@ -114,15 +115,16 @@ model Enrollment {
 
 //las clases pertenecen a una materia,división y a un año escolar especifico
 model Class {
-  id         String       @id @default(uuid())
-  name       String
-  date       DateTime
-  subject    Subject      @relation(fields: [subjectId], references: [id])
-  subjectId  String
-  year       AcademicYear @relation(fields: [yearId], references: [id])
-  yearId     String
-  activities Activity[]
-  isDeleted  Boolean      @default(false)
+  id          String       @id @default(uuid())
+  name        String
+  date        DateTime
+  subject     Subject      @relation(fields: [subjectId], references: [id])
+  subjectId   String
+  year        AcademicYear @relation(fields: [yearId], references: [id])
+  yearId      String
+  activities  Activity[]
+  isDeleted   Boolean      @default(false)
+  attendances Attendance[]
 
   @@unique([name, subjectId, yearId, date])
 }
@@ -155,4 +157,31 @@ model Bulletin {
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   deletedAt   DateTime?
+}
+
+model Attendance {
+  id                String    @id @default(uuid())
+  class             Class     @relation(fields: [classId], references: [id])
+  classId           String
+  eventDate         DateTime
+  status            String    @db.VarChar(128)
+  attendanceStudent AttendanceStudent[]
+  isDeleted         Boolean   @default(false)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  deletedAt         DateTime?
+}
+
+model AttendanceStudent {
+  id           String     @id @default(uuid())
+  student      User       @relation(fields: [studentId], references: [id])
+  studentId    String
+  attendance   Attendance @relation(fields: [attendanceId], references: [id])
+  attendanceId String
+  status       String     @db.VarChar(128)
+  observation  String     @db.VarChar(256)
+  isDeleted    Boolean    @default(false)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  deletedAt    DateTime?
 }

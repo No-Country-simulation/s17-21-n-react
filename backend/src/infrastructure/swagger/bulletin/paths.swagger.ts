@@ -3,7 +3,7 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 
 import { PathItem } from "swagger-jsdoc";
-import { defaultErrorResponseSchemas, successResponseSchema } from "../responses.swagger";
+import { defaultErrorResponseSchemas, paginationSchema, successResponseSchema } from "../responses.swagger";
 import { BulletinSchema } from "./schemas.swagger";
 
 const createBulletinPath: PathItem = {
@@ -167,7 +167,7 @@ const findManyBulletinPath: PathItem = {
       {
         name: "scope",
         in: "query",
-        description: "Publico objetivo ('ALL', 'STUDENT', 'PROFESSOR')",
+        description: "Publico objetivo ('ALL', 'STUDENT', 'TEACHER')",
         schema: {
           type: "string"
         },
@@ -196,10 +196,7 @@ const findManyBulletinPath: PathItem = {
       200: {
         content: {
           "application/json": {
-            schema: successResponseSchema({
-              items: BulletinSchema,
-              type: "array"
-            }),
+            schema: successResponseSchema(paginationSchema(BulletinSchema)),
           },
         },
         description: "Bulletines finded successfully, bulletines data returned",
