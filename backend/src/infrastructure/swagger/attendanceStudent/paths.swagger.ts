@@ -1,7 +1,7 @@
 /* eslint-disable key-spacing */
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 import { PathItem } from "swagger-jsdoc";
-import { defaultErrorResponseSchemas, succesResponseSchema } from "../responses.swagger";
+import { defaultErrorResponseSchemas, successResponseSchema } from "../responses.swagger";
 import { AttendanceStudentSchema } from "./schemas.swagger";
 
 const updateAttendanceStudentPath: PathItem = {
@@ -38,7 +38,7 @@ const updateAttendanceStudentPath: PathItem = {
       200: {
         content: {
           "application/json": {
-            schema: succesResponseSchema(AttendanceStudentSchema),
+            schema: successResponseSchema(AttendanceStudentSchema),
           },
         },
         description: "Attendance Student updated successfully, attendance Student data returned",
