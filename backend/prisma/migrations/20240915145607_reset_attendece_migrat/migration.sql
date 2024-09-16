@@ -16,7 +16,7 @@ DROP INDEX "Class_name_subjectId_divisionId_yearId_key";
 ALTER TABLE "Class" DROP COLUMN "divisionId";
 
 -- CreateTable
-CREATE TABLE "Attendance" (
+CREATE TABLE IF NOT EXISTS "Attendance" (
     "id" TEXT NOT NULL,
     "classId" TEXT NOT NULL,
     "eventDate" TIMESTAMP(3) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE "Attendance" (
 );
 
 -- CreateTable
-CREATE TABLE "AttendanceStudent" (
+CREATE TABLE IF NOT EXISTS "AttendanceStudent" (
     "id" TEXT NOT NULL,
     "studentId" TEXT NOT NULL,
     "attendanceId" TEXT NOT NULL,
@@ -45,16 +45,45 @@ CREATE TABLE "AttendanceStudent" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Class_name_subjectId_yearId_date_key" ON "Class"("name", "subjectId", "yearId", "date");
+CREATE UNIQUE INDEX IF NOT EXISTS "Class_name_subjectId_yearId_date_key" ON "Class"("name", "subjectId", "yearId", "date");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Grade_name_yearId_key" ON "Grade"("name", "yearId");
+CREATE UNIQUE INDEX IF NOT EXISTS "Grade_name_yearId_key" ON "Grade"("name", "yearId");
+DO $$
+BEGIN
+    -- Verificar y crear foreign key constraint en Attendance
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pg_constraint
+        WHERE conname = 'Attendance_classId_fkey'
+    ) THEN
+        ALTER TABLE "Attendance"
+        ADD CONSTRAINT "Attendance_classId_fkey"
+        FOREIGN KEY ("classId") REFERENCES "Class"("id")
+        ON DELETE RESTRICT ON UPDATE CASCADE;
+    END IF;
 
--- AddForeignKey
-ALTER TABLE "Attendance" ADD CONSTRAINT "Attendance_classId_fkey" FOREIGN KEY ("classId") REFERENCES "Class"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+    -- Verificar y crear foreign key constraint en AttendanceStudent (studentId)
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pg_constraint
+        WHERE conname = 'AttendanceStudent_studentId_fkey'
+    ) THEN
+        ALTER TABLE "AttendanceStudent"
+        ADD CONSTRAINT "AttendanceStudent_studentId_fkey"
+        FOREIGN KEY ("studentId") REFERENCES "User"("id")
+        ON DELETE RESTRICT ON UPDATE CASCADE;
+    END IF;
 
--- AddForeignKey
-ALTER TABLE "AttendanceStudent" ADD CONSTRAINT "AttendanceStudent_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "AttendanceStudent" ADD CONSTRAINT "AttendanceStudent_attendanceId_fkey" FOREIGN KEY ("attendanceId") REFERENCES "Attendance"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+    -- Verificar y crear foreign key constraint en AttendanceStudent (attendanceId)
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pg_constraint
+        WHERE conname = 'AttendanceStudent_attendanceId_fkey'
+    ) THEN
+        ALTER TABLE "AttendanceStudent"
+        ADD CONSTRAINT "AttendanceStudent_attendanceId_fkey"
+        FOREIGN KEY ("attendanceId") REFERENCES "Attendance"("id")
+        ON DELETE RESTRICT ON UPDATE CASCADE;
+    END IF;
+END $$;
