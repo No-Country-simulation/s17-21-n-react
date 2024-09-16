@@ -87,7 +87,6 @@ export class SubjectController {
   public createSubject = async (req: Request, res: Response): Promise<void> => {
     try {
       const data = req.body as SubjectCreate;
-      console.log(data);
       const subject = await this._subjectService.create(data);
       successResponse({
         data   : subject,

@@ -26,7 +26,6 @@ export class UserService {
     const password = await hashPassword(generatedPassword);
 
     const birthDate = dto.birthDate ? new Date(dto.birthDate) : new Date();
-    console.log(dto);
     const newUser = await this.userRepository.createUser({ ...dto, birthDate, password });
 
     return { ...newUser, password: generatedPassword };
@@ -145,7 +144,6 @@ export class UserService {
 
   async updateEmail(userId:string, updateEmailDto: UpdateEmailDto){
     const user = await this.getUserByIdOrThrow(userId, true);
-    console.log(updateEmailDto);
     const isPassword = await comparePassword(updateEmailDto.password, user.password);
     if(!isPassword)
       throw Error("Contraseña incorrecta");
