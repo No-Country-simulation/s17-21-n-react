@@ -1,7 +1,10 @@
 import { Subject } from "@prisma/client";
 
 export interface ISubjectRepository {
-  findMany(skip: number, take: number): Promise<Subject[]>;
+  findMany(skip: number, take: number, user: {
+    userId?: string;
+    role?: string;
+  }): Promise<Subject[]>;
   findById(id: string): Promise<Subject | null>;
   findByName(name: string): Promise<Subject | null>;
   create(subject: Subject): Promise<Subject>;

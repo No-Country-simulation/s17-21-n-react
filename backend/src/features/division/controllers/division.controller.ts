@@ -38,7 +38,7 @@ export class DivisionController {
         req.query.page as string,
         req.query.size as string
       );
-      const divisions = await this._divisionService.getAllActivities(page, size);
+      const divisions = await this._divisionService.getAllDivisions(page, size);
       return successResponse({ data: divisions, res });
     } catch (error) {
       return this.handleClassError(error, ERROR_MESSAGES.FETCH, res);

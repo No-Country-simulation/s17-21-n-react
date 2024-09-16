@@ -36,7 +36,8 @@ export class SubjectController {
   public getAllSubjects = async (req: Request, res: Response): Promise<void> => {
     try {
       const { page, size } = this.parseQueryParams(req.query.page as string, req.query.size as string);
-      const subjects = await this._subjectService.getAllSubjects(page, size);
+      if (!req.user) throw new Error("Usuario no autenticado");
+      const subjects = await this._subjectService.getAllSubjects(page, size, req.user);
       successResponse({
         data   : subjects,
         message: "Asignaturas recuperadas exitosamente",
