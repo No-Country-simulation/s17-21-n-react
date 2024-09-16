@@ -2,11 +2,15 @@
 
 Descubre una nueva forma de enseñar y aprender, con herramientas diseñadas para facilitar cada paso en el proceso educativo.
 
+<p align="center">
+  <img src="public/cover_readme.webp" alt="Portada de EducaPro" width="600" />
+</p>
+
 ## Demo
 
 Explora cómo funciona EducaPro en nuestra demo en vivo:
 
-- [Ver Demo en Vivo](https://educapro-latam.vercel.app/)
+[![Vercel](https://img.shields.io/badge/website-deployed-brightgreen)](https://educapro-latam.vercel.app/)
 
 ## Principales funcionalidades
 
