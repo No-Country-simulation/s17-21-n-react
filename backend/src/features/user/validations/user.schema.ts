@@ -2,11 +2,13 @@ import { z } from "zod";
 import { User } from "../entities/user.entity";
 
 export const registerUserSchema = z.object({
-  dni     : z.string().max(56),
-  email   : z.string().email(),
-  lastName: z.string().min(1, "Last Name is required").max(256, "Too large"),
-  name    : z.string().min(1, "Name is required").max(256, "Too large"),
-  roleId  : z.string().uuid()
+  birthDate: z.string().optional(),
+  dni      : z.string().max(56),
+  email    : z.string().email(),
+  lastName : z.string().min(1, "Last Name is required").max(256, "Too large"),
+  name     : z.string().min(1, "Name is required").max(256, "Too large"),
+  phone    : z.string().optional(),
+  roleId   : z.string().uuid()
 });
 
 export const updateUserSchema = registerUserSchema.partial();

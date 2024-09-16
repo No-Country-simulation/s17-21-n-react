@@ -25,7 +25,9 @@ export class UserService {
     const generatedPassword = generatePassword();
     const password = await hashPassword(generatedPassword);
 
-    const newUser = await this.userRepository.createUser({ ...dto, password });
+    const birthDate = dto.birthDate ? new Date(dto.birthDate) : new Date();
+    console.log(dto);
+    const newUser = await this.userRepository.createUser({ ...dto, birthDate, password });
 
     return { ...newUser, password: generatedPassword };
   }

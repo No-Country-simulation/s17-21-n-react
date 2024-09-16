@@ -20,6 +20,8 @@ model User {
   name               String              @db.VarChar(128)
   lastName           String              @db.VarChar(128)
   dni                String              @db.VarChar(56)
+  phone              String              @db.VarChar(128) @default("sin teléfono")
+  birthDate          DateTime            @default(now())
   role               Role                @relation(fields: [roleId], references: [id])
   roleId             String
   isActive           Boolean             @default(true)
@@ -154,16 +156,16 @@ enum ActivityStatus {
 }
 
 model Activity {
-  id      String    @id @default(uuid())
-  name    String    @db.VarChar(128)
-  description String?  @db.VarChar(256)
-  activityType   ActivityType
-  status   ActivityStatus @default(PENDING)
-  startDate   DateTime  @default(now())
-  dueDate DateTime
-  files   String[]
-  class   Class    @relation(fields: [classId], references: [id])
-  classId String
+  id           String         @id @default(uuid())
+  name         String         @db.VarChar(128)
+  description  String?        @db.VarChar(256)
+  activityType ActivityType
+  status       ActivityStatus @default(PENDING)
+  startDate    DateTime       @default(now())
+  dueDate      DateTime
+  files        String[]
+  class        Class          @relation(fields: [classId], references: [id])
+  classId      String
 }
 
 model Bulletin {
