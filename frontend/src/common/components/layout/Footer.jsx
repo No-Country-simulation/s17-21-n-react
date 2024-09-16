@@ -1,6 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import { btn, facebook, pinterest, twitter } from "../../assets";
 import footerLinks from "../../../public/data/data";
+import { handleUpClick } from "../../utils/handleUpClick";
+import { Info } from "lucide-react";
 
 const Footer = () => {
   const location = useLocation();
@@ -63,9 +65,16 @@ const Footer = () => {
           </div>
         </div>
       </section>
-      <div className="flex flex-col md:flex-row py-10 items-center justify-center gap-1 leading-6 font-hind font-normal text-xs sm:text-sm text-[#83848A] border-t border-[#1C1F3F]">
+      <div className="flex flex-col md:flex-row py-10 items-center justify-center gap-4 leading-6 font-hind font-normal text-xs sm:text-sm text-[#83848A] border-t border-[#1C1F3F]">
         <p>© {new Date().getFullYear()} EducaPro, Todos los derechos reservados.</p>
-        <p>Equipo: s17-n-react-node</p>
+        <Link
+          to="/team"
+          onClick={handleUpClick}
+          className="flex items-center gap-2 text-[#83848A] hover:text-white transition-colors duration-300"
+        >
+          <Info className="w-4 h-4" aria-label="Ver equipo de desarrollo" />
+          <p>Equipo: s17-n-react-node</p>
+        </Link>
       </div>
     </footer>
   );

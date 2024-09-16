@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import configureAxios from '../api/axios';
+import { create } from "zustand";
+import configureAxios from "../api/axios";
 
 const api = configureAxios();
 
@@ -10,7 +10,7 @@ const dataUserStore = create((set) => ({
       const res = await api.get(`/users/${userId}`);
       set({ data: res.data });
     } catch (error) {
-      console.error('Error loading user by ID:', error);
+      console.error("Error loading user by ID:", error);
     }
   },
 }));

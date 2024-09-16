@@ -6,7 +6,7 @@ function generateTeamCards(data) {
 `;
 
   data.forEach(({ name, surname, linkedin, github, photoUrl, country }) => {
-    const flagUrl = `https://flagcdn.com/64x48/${country}.png`; 
+    const flagUrl = `https://flagcdn.com/64x48/${country}.png`;
 
     cardsMarkdown += `
 <div style="display: flex; align-items: center; border: 1px solid #e1e4e8; border-radius: 8px; padding: 10px; margin: 10px; width: 350px;">
@@ -27,7 +27,7 @@ function generateTeamCards(data) {
     `;
   });
 
-  cardsMarkdown += `</div>`; 
+  cardsMarkdown += `</div>`;
   return cardsMarkdown;
 }
 
@@ -80,8 +80,47 @@ const team = [
     photoUrl: "https://ca.slack-edge.com/T02KS88FB0E-U06QCQFPK5J-9b6c03d59878-512",
     country: "ar",
   },
+  {
+    name: "Jorge",
+    surname: "Trujillo",
+    linkedin: "jorge-trujillo-ch",
+    github: "xiriuxb",
+    photoUrl: "https://ca.slack-edge.com/T02KS88FB0E-U06BYGF5W78-eb90ad6de349-512", 
+    country: "ec", 
+  },
+  {
+    name: "Sonny",
+    surname: "Pimentel",
+    linkedin: "sonny-pimentel", 
+    github: "spimentel1201",
+    photoUrl: "https://ca.slack-edge.com/T02KS88FB0E-U049AS024R3-67f666b96b70-512",
+    country: "pe", 
+  },
+  {
+    name: "Miguel",
+    surname: "Chavez",
+    linkedin: "miguelangelchavez-",
+    github: "MiguelAChavez",
+    photoUrl: "https://ca.slack-edge.com/T02KS88FB0E-U06PVMSJU95-60f01e3082ff-512", 
+    country: "ar", 
+  },
+  {
+    name: "Brayian",
+    surname: "Ramírez",
+    linkedin: "brayian-ramirez-aguayo",
+    github: "bramireza",
+    photoUrl: "https://ca.slack-edge.com/T02KS88FB0E-U0530FRPG4E-6264bf184b86-512", 
+    country: "pe", 
+  },
+  {
+    name: "Natalin",
+    surname: "Inchauspe",
+    linkedin: "natalin-inchauspe-86121b289",
+    github: "natuinchauspe",
+    photoUrl: "https://ca.slack-edge.com/T02KS88FB0E-U079D0ZD2NN-2af306305cf4-512", 
+    country: "ar",
+  },
 ];
-
 
 
 const markdownContent = generateTeamCards(team);

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import useUserStore from "../../store/auth";
-import { upload, trash} from "../../common/assets";
+import { upload, trash } from "../../common/assets";
 import dataUserStore from "../../store/data";
 import imgStore from "../../store/imgPhoto";
 import { generateAvatar } from "../../common/utils/avatar";
@@ -8,20 +8,20 @@ import { generateAvatar } from "../../common/utils/avatar";
 const MyProfile = () => {
   const { user } = useUserStore();
   const { data } = dataUserStore();
-  const { loadImgs, resetImgs} = imgStore();
+  const { loadImgs, resetImgs } = imgStore();
 
   const [form, setForm] = useState({
-      name: "",
-      lastname: "",
-      phone: "",
-      dni: "",
-      photo: "",
-      birthdate: "",
-      gender: "",
-      email: "",
-    });
-    
-    const { initials, backgroundColor } = generateAvatar(form.name, form.lastname);
+    name: "",
+    lastname: "",
+    phone: "",
+    dni: "",
+    photo: "",
+    birthdate: "",
+    gender: "",
+    email: "",
+  });
+
+  const { initials, backgroundColor } = generateAvatar(form.name, form.lastname);
 
   const handleUpload = () => {
     try {
@@ -29,7 +29,7 @@ const MyProfile = () => {
       if (user.photo) alert("Imagen cargada correctamente!");
     } catch (error) {
       console.error("Error uploading image:", error);
-      alert("Ups!.. algo salió mal", error)
+      alert("Ups!.. algo salió mal", error);
     }
   };
 
@@ -38,12 +38,12 @@ const MyProfile = () => {
       resetImgs(user.id);
       setForm((prevForm) => ({
         ...prevForm,
-        photo: "", 
+        photo: "",
       }));
-      alert("Imagen borrada correctamente")
+      alert("Imagen borrada correctamente");
     } catch (error) {
       console.error("Error deleting image:", error);
-      alert("Ups!.. algo salió mal", error)
+      alert("Ups!.. algo salió mal", error);
     }
   };
 
@@ -66,14 +66,9 @@ const MyProfile = () => {
 
       <div className="py-4 flex flex-col items-center sm:flex-row">
         {form.photo ? (
-          <img
-            src={form.photo}
-            width={128}
-            height={128}
-            className="rounded-full"
-          />
+          <img src={form.photo} width={128} height={128} className="rounded-full" />
         ) : (
-            <div
+          <div
             className="w-[128px] h-[128px] rounded-full flex items-center justify-center"
             style={{ backgroundColor }}
           >
@@ -83,7 +78,7 @@ const MyProfile = () => {
 
         <div className="mt-8 sm:mt-0 sm:ms-8">
           <div className="grid grid-cols-2 gap-2 max-w-80 m-auto mb-4 sm:mx-0 max-[360px]:grid-cols-1 max-[360px]:max-w-40">
-          <label className="bg-[#4E6BFF] rounded-lg py-2 px-4 text-white cursor-pointer">
+            <label className="bg-[#4E6BFF] rounded-lg py-2 px-4 text-white cursor-pointer">
               <img src={upload} alt="img" className="inline me-2" />
               Subir imagen
               <input
@@ -166,7 +161,9 @@ const MyProfile = () => {
         </div>
 
         <div className="py-3">
-          <label htmlFor="genero" className="block">Género</label>
+          <label htmlFor="genero" className="block">
+            Género
+          </label>
           <input
             id="birthdate"
             type="text"
