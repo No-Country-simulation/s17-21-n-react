@@ -9,7 +9,8 @@ export const Paginate = async <T>(
   page: number,
   pageSize: number,
   filter?: Record<string, any>,
-  orderBy?: Record<string, "asc" | "desc">
+  orderBy?: Record<string, "asc" | "desc">,
+  include?: Record<string, any>
 ): Promise<Paginated<T>> => {
   const currentPage = Number.isNaN(page) ? 1 : page;
   const take = Number.isNaN(pageSize) ? 10 : pageSize;
@@ -21,17 +22,18 @@ export const Paginate = async <T>(
     "findMany" in prisma[model]
   ) {
     const total = await (prisma[model].count as (args: any) => Promise<number>)({
-      where: { isDeleted: false }
+      where: filter
     });
     const content = await (
       prisma[model].findMany as (args: any) => Promise<T[]>
     )({
+      include: include,
       orderBy,
       skip,
       take,
-      where: filter,
+      where  : filter,
     });
-
+    console.log(content[0]);
     return buildPaginated<T>(content, total, currentPage, take);
   } else 
     throw new Error(

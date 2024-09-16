@@ -5,6 +5,8 @@ export interface User {
     name: string;
     lastName: string;
     dni: string;
+    phone?: string;
+    birthDate : Date; 
     roleId: string;
     isActive: boolean;
     createdAt: Date;
