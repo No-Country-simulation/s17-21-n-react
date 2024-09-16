@@ -3146,5 +3146,9 @@ z-schema@^5.0.1:
 
 zod@^3.23.8:
   version "3.23.8"
+<<<<<<< HEAD
+  resolved "https://registry.npmjs.org/zod/-/zod-3.23.8.tgz"
+=======
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.23.8.tgz#e37b957b5d52079769fb8097099b592f0ef4067d"
+>>>>>>> 7a146acd840225a7f46da1b84f57a9aa945e32b6
   integrity sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==
