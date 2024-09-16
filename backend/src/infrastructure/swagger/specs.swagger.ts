@@ -13,16 +13,22 @@ import { bulletinPaths, bulletinSchemas } from "./bulletin";
 import { classPaths, classSchemas } from "./class";
 import { subjectPaths, subjectSchemas } from "./subject";
 import { attendancePaths, attendanceSchemas } from "./attendance";
-import { attendanceStudentPaths, attendanceStudentSchemas } from "./attendanceStudent";
+import {
+  attendanceStudentPaths,
+  attendanceStudentSchemas,
+} from "./attendanceStudent";
+import {
+  subjectCategoryPaths,
+  subjectCategorySchemas,
+} from "./subject-category";
+import { divisionPaths, divisionSchemas } from "./division";
 
-
-export const swaggerOptions:SwaggerOptions = {
+export const swaggerOptions: SwaggerOptions = {
   swaggerOptions: {
     requestInterceptor: (req: Request) => {
       const token = localStorage.getItem("token");
-      if (token) 
-        req.headers.set("Authorization", `Bearer ${token}`);
-      
+      if (token) req.headers.set("Authorization", `Bearer ${token}`);
+
       return req;
     },
   },
@@ -43,8 +49,8 @@ const options: swaggerJsdoc.OAS3Options = {
       },
       {
         url: `${API_URL}/api/v1`,
-        description: "Servidor de prod"
-      }
+        description: "Servidor de prod",
+      },
     ],
     paths: {
       ...authPaths,
@@ -53,8 +59,10 @@ const options: swaggerJsdoc.OAS3Options = {
       ...bulletinPaths,
       ...classPaths,
       ...subjectPaths,
+      ...subjectCategoryPaths,
+      ...divisionPaths,
       ...attendancePaths,
-      ...attendanceStudentPaths
+      ...attendanceStudentPaths,
     },
     components: {
       securitySchemes: {
@@ -62,7 +70,8 @@ const options: swaggerJsdoc.OAS3Options = {
           type: "http",
           scheme: "bearer",
           bearerFormat: "JWT",
-          description: "Introduce el token JWT en el encabezado 'Authorization' como 'Bearer <token>'"
+          description:
+            "Introduce el token JWT en el encabezado 'Authorization' como 'Bearer <token>'",
         },
       },
       schemas: {
@@ -73,8 +82,10 @@ const options: swaggerJsdoc.OAS3Options = {
         ...bulletinSchemas,
         ...subjectSchemas,
         ...classSchemas,
+        ...subjectCategorySchemas,
+        ...divisionSchemas,
         ...attendanceSchemas,
-        ...attendanceStudentSchemas
+        ...attendanceStudentSchemas,
       },
     },
   },

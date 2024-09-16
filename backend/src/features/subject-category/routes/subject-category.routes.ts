@@ -28,6 +28,12 @@ router.post(
   (req: Request, res: Response) => subjectCategoryController.createSubjectCategory(req, res)
 );
 
+router.put(
+  "/:id",
+  [ authMiddleware, roleMiddleware([ "ADMIN" ]) ],
+  (req: Request, res: Response) => subjectCategoryController.updateSubjectCategory(req, res)
+);
+
 /*router.delete(
   "/:id",
   [ authMiddleware, roleMiddleware([ "ADMIN" ]) ],

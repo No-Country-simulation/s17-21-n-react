@@ -44,8 +44,10 @@ export const updateSubjectSchema: Schema = {
   properties: {
     ...createSubjectSchema.properties,
   },
-  required: [],
-  type    : "object",
+  required: [
+    "id",
+  ],
+  type: "object",
 };
 
 export const getSubjectSchema: Schema = {
@@ -96,7 +98,7 @@ export const getSubjectSchema: Schema = {
 };
 
 export const subjectSchemas = {
-  "Subject:GET"  : getSubjectSchema,
-  "Subject:PATCH": updateSubjectSchema,
-  "Subject:POST" : createSubjectSchema,
+  "Subject:GET" : getSubjectSchema,
+  "Subject:POST": createSubjectSchema,
+  "Subject:PUT" : updateSubjectSchema,
 };

@@ -110,6 +110,9 @@ model Enrollment {
   yearId     String
   subject    Subject      @relation(fields: [subjectId], references: [id])
   subjectId  String
+  isDeleted  Boolean      @default(false)
+
+  @@unique([studentId, subjectId, divisionId, yearId])
 }
 
 //las clases pertenecen a una materia,división y a un año escolar especifico

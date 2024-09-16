@@ -3,16 +3,16 @@
 
 import { PathItem } from "swagger-jsdoc";
 import { defaultErrorResponseSchemas, paginationSchema, successResponseSchema } from "../responses.swagger";
-import { subjectSchemas } from "./schemas.swagger";
+import { subjectCategorySchemas } from "./schemas.swagger";
 
 
-const createSubjectPath: PathItem = {
+const createSubjectCategoryPath: PathItem = {
   post: {
     requestBody: {
       content: {
         "application/json": {
           schema: {
-            $ref: "#/components/schemas/Subject:POST"
+            $ref: "#/components/schemas/SubjectCategory:POST"
           }
         }
       }
@@ -21,7 +21,7 @@ const createSubjectPath: PathItem = {
       200: {
         content: {
           "application/json": {
-            schema: successResponseSchema(subjectSchemas["Subject:POST"]),
+            schema: successResponseSchema(subjectCategorySchemas["SubjectCategory:POST"]),
           },
         },
         description: "Subject created successfully",
@@ -33,16 +33,16 @@ const createSubjectPath: PathItem = {
         bearerAuth: [],
       },
     ],
-    summary: "Create a new subject. Allowed roles 'ADMIN' ",
-    tags: [ "Subject" ],
+    summary: "Create a new subject category. Allowed roles 'ADMIN' ",
+    tags: [ "Subject Category" ],
   },
 };
 
-const updateSubjectPath: PathItem = {
+const updateSubjectCategoryPath: PathItem = {
   put: {
     parameters: [
       {
-        description: "Subject ID",
+        description: "Subject category ID",
         in: "path",
         name: "id",
         required: true,
@@ -56,7 +56,7 @@ const updateSubjectPath: PathItem = {
       content: {
         "application/json": {
           schema: {
-            $ref: "#/components/schemas/Subject:PUT",
+            $ref: "#/components/schemas/SubjectCategory:PUT",
           },
         },
       },
@@ -67,10 +67,10 @@ const updateSubjectPath: PathItem = {
       200: {
         content: {
           "application/json": {
-            schema: successResponseSchema(subjectSchemas["Subject:PUT"]),
+            schema: successResponseSchema(subjectCategorySchemas["SubjectCategory:GET"]),
           },
         },
-        description: "Subject updated successfully",
+        description: "Subject category updated successfully",
       },
       ...defaultErrorResponseSchemas()
     },
@@ -79,16 +79,16 @@ const updateSubjectPath: PathItem = {
         bearerAuth: [],
       },
     ],
-    summary: "Update a subject. Allowed roles 'ADMIN' ",
-    tags: [ "Subject" ],
+    summary: "Update a subject category. Allowed roles 'ADMIN' ",
+    tags: [ "Subject Category" ],
   },
 };
 
-const deleteSubjectPath: PathItem = {
+const deleteSubjectCategoryPath: PathItem = {
   delete: {
     parameters: [
       {
-        description: "Subject ID",
+        description: "Subject category ID",
         in: "path",
         name: "id",
         required: true,
@@ -105,7 +105,7 @@ const deleteSubjectPath: PathItem = {
             schema: successResponseSchema(),
           },
         },
-        description: "Subject deleted successfully",
+        description: "Subject category deleted successfully",
       },
       ...defaultErrorResponseSchemas()
     },
@@ -114,18 +114,18 @@ const deleteSubjectPath: PathItem = {
         bearerAuth: [],
       },
     ],
-    summary: "Delete a subject. Allowed roles 'ADMIN' ",
-    tags: [ "Subject" ],
+    summary: "Delete a subject category. Allowed roles 'ADMIN' ",
+    tags: [ "Subject Category" ],
   },
 };
 
 
 
-const getSubjectPath: PathItem = {
+const getSubjectCategoryPath: PathItem = {
   get: {
     parameters: [
       {
-        description: "Subject ID",
+        description: "Subject category ID",
         in: "path",
         name: "id",
         required: true,
@@ -139,10 +139,10 @@ const getSubjectPath: PathItem = {
       200: {
         content: {
           "application/json": {
-            schema: successResponseSchema(subjectSchemas["Subject:GET"]),
+            schema: successResponseSchema(subjectCategorySchemas["SubjectCategory:GET"]),
           },
         },
-        description: "Subject",
+        description: "Subject category",
       },
     },
     security: [
@@ -150,36 +150,18 @@ const getSubjectPath: PathItem = {
         bearerAuth: [],
       },
     ],
-    summary: "Get a subject by id. Allowed roles 'ADMIN' or 'TEACHER'",
-    tags: [ "Subject" ],
+    summary: "Get a subject category by id. Allowed roles 'ADMIN' or 'TEACHER'",
+    tags: [ "Subject Category" ],
   },
 };
 
-const subjectGetPath: PathItem = {
+const subjectCategoryGetPath: PathItem = {
   get: {
     parameters: [
       {
         description: "Search term",
         in: "query",
         name: "name",
-        required: false,
-        schema: {
-          type: "string",
-        },
-      },
-      {
-        description: "Division id",
-        in: "query",
-        name: "divisionId",
-        required: false,
-        schema: {
-          type: "string",
-        },
-      },
-      {
-        description: "Category id",
-        in: "query",
-        name: "categoryId",
         required: false,
         schema: {
           type: "string",
@@ -217,11 +199,11 @@ const subjectGetPath: PathItem = {
         content: {
           "application/json": {
             schema: successResponseSchema(
-              paginationSchema("#/components/schemas/Subject:GET")
+              paginationSchema("#/components/schemas/SubjectCategory:GET")
             ),
           },
         },
-        description: "List of subjects",
+        description: "List of subject categories",
       },
     },
     security: [
@@ -229,12 +211,12 @@ const subjectGetPath: PathItem = {
         bearerAuth: [],
       },
     ],
-    summary: "Get all subjects",
-    tags: [ "Subject" ],
+    summary: "Get all subject categories",
+    tags: [ "Subject Category" ],
   },
 };
 
-export const subjectPaths = {
-  "/subject": { ...createSubjectPath, ...subjectGetPath },
-  "/subject/{id}": { ...getSubjectPath, ...updateSubjectPath, ...deleteSubjectPath },
+export const subjectCategoryPaths = {
+  "/subject-category": { ...createSubjectCategoryPath, ...subjectCategoryGetPath },
+  "/subject-category/{id}": { ...getSubjectCategoryPath, ...updateSubjectCategoryPath, ...deleteSubjectCategoryPath },
 };

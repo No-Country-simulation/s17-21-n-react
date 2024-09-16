@@ -37,6 +37,22 @@ export class SubjectCategoryRepository implements ISubjectCategoryRepository {
     }
   }
 
+  async update(id: string, updateDto: SubjectCategory): Promise<SubjectCategory> {
+    try {
+      const existingSubjectCategory = await prisma.subjectCategory.findFirst({
+        where: { name: updateDto.name }
+      });
+      if (existingSubjectCategory) 
+        throw new Error("Subject Category already exists");
+
+      return await prisma.subjectCategory.update({
+        data : updateDto,
+        where: { id }
+      });
+    } catch (error) {
+      ErrorHandler.handleError(error);
+    }
+  }
   /*async delete(id: string): Promise<SubjectCategory> {
     try {
       return await prisma.subjectCategory.update({

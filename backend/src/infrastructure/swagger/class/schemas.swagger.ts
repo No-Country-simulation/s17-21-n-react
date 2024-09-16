@@ -33,7 +33,7 @@ const updateClassSchema = {
   type: "object",
   required: [],
   properties: {
-    ...createClassSchema.properties
+    ...createClassSchema.properties,
   },
 };
 
@@ -104,6 +104,6 @@ export const successClassesGet = {
 
 export const classSchemas = {
   "Class:POST": createClassSchema,
-  "Class:PATCH": updateClassSchema,
+  "Class:PUT": updateClassSchema,
   "Class:GET": getClassSchema,
 };

@@ -4,6 +4,6 @@ export interface ISubjectCategoryRepository {
   findMany(skip: number, take: number): Promise<SubjectCategory[]>;
   findById(id: string): Promise<SubjectCategory | null>;
   create(subjectCategoryData: SubjectCategory): Promise<SubjectCategory>;
-  //delete(id: string): Promise<SubjectCategory>;
+  update(id: string, updateDto: SubjectCategory): Promise<SubjectCategory>;
   count(): Promise<number>;
 }

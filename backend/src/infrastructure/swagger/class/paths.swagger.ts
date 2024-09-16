@@ -38,7 +38,7 @@ const createClassPath: PathItem = {
 };
 
 const updateClassPath: PathItem ={
-  patch:{
+  put:{
     summary: "Update a class. Allowed roles 'ADMIN' or 'TEACHER'",
     tags   : [ "Class" ],
     security: [
@@ -62,7 +62,7 @@ const updateClassPath: PathItem ={
       content: {
         "application/json": {
           schema: {
-            $ref: "#/components/schemas/Class:PATCH"
+            $ref: "#/components/schemas/Class:PUT"
           }
         },
       },

@@ -27,18 +27,20 @@ export class DivisionController {
     return errorResponse({ message: errorMessage, res, status });
   };
 
-  private parseQueryParams = (page?: string, size?: string) => ({
+  private parseQueryParams = (page?: string, size?: string, sort?: "asc" | "desc") => ({
     page: page ? parseInt(page, 10) : 1,
     size: size ? parseInt(size, 10) : 10,
+    sort: sort ? { name: sort as "asc" | "desc" } : undefined,
   });
 
   public getAllDivisions = async (req: Request, res: Response) => {
     try {
-      const { page, size } = this.parseQueryParams(
+      const { page, size, sort } = this.parseQueryParams(
         req.query.page as string,
-        req.query.size as string
+        req.query.size as string,
+        req.query.sort as "asc" | "desc"
       );
-      const divisions = await this._divisionService.getAllActivities(page, size);
+      const divisions = await this._divisionService.getAllDivisions(page, size, undefined, sort);
       return successResponse({ data: divisions, res });
     } catch (error) {
       return this.handleClassError(error, ERROR_MESSAGES.FETCH, res);
