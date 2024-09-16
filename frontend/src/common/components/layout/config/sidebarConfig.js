@@ -40,7 +40,9 @@ const roleSpecificRoutes = {
     { icon: GraduationCap, label: "Alumnos", path: "/students" },
     { icon: Settings, label: "Configuración", path: "/settings" },
   ],
-  student: [],
+  student: [
+    { icon: Settings, label: "Configuración", path: "/settings" }
+  ],
 };
 
 // Configuración de Sidebar final
