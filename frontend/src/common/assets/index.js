@@ -79,6 +79,7 @@ import upload from "./icons/upload.svg";
 import save from "./icons/save.svg";
 import excel from "./icons/excel.svg";
 import pdf from "./icons/pdf.svg";
+import userDefault from "./icons/userDefault.svg"
 
 export {
   facebook,
@@ -162,4 +163,5 @@ export {
   save,
   excel,
   pdf,
+  userDefault,
 };

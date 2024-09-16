@@ -1,57 +1,96 @@
 import { useState, useEffect } from "react";
 import useUserStore from "../../store/auth";
-import { upload, trash} from "../../common/assets";
+import { upload, trash , userDefault } from "../../common/assets";
+import dataUserStore from "../../store/data";
+import imgStore from "../../store/imgPhoto";
 
 const MyProfile = () => {
   const { user } = useUserStore();
+  const { data } = dataUserStore();
+  const { loadImgs, resetImgs } = imgStore();
 
   const [form, setForm] = useState({
     name: "",
     lastname: "",
     phone: "",
     dni: "",
-    photo:"",
+    photo: "",
     birthdate: "",
     gender: "",
     email: "",
   });
 
-  const handleUpload =() =>{
+  const [defaultPhoto] = useState(`${userDefault}`);
 
-  }
+  const handleUpload = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      try {
+        await loadImgs(user.id, file);
+        setForm((prev) => ({
+          ...prev,
+          photo: URL.createObjectURL(file),
+        }));
+      } catch (error) {
+        console.error("Error al cargar la imagen", error);
+      }
+    }
+  };
 
-  const handleDelete =() =>{
+  const handleDelete = async () => {
+    try {
+      await resetImgs(user.id);
+      setForm((prev) => ({
+        ...prev,
+        photo: defaultPhoto, 
+      }));
+    } catch (error) {
+      console.error("Error al eliminar la imagen", error);
+    }
+  };
 
-  }
-  
   useEffect(() => {
     setForm({
       name: user.name || "",
       lastname: user.lastName || "",
-      phone: "",
-      dni: "",
-      photo:"",
-      birthdate: "",
-      gender: "",
-      email: "",
+      phone: data.phone || "",
+      dni: data.dni || "",
+      photo: data.photo || defaultPhoto,
+      birthdate: data.birthdate || "",
+      gender: data.gender || "",
+      email: user.email || "",
     });
-  }, [user]);
+  }, [user, data]);
 
   return (
     <div>
       <h2 className="text-2xl font-bold py-4">Mi Cuenta</h2>
 
       <div className="py-4 flex flex-col items-center sm:flex-row">
-        <img src={form.photo} alt={form.name + " "+ form.lastname} width={128} height={128} />
+        <img
+          src={form.photo}
+          alt={form.name + " " + form.lastname}
+          width={128}
+          height={128}
+        />
         <div className="mt-8 sm:mt-0 sm:ms-8">
           <div className="grid grid-cols-2 gap-2 max-w-80 m-auto mb-4 sm:mx-0 max-[360px]:grid-cols-1 max-[360px]:max-w-40">
-            <button className="bg-[#4E6BFF] rounded-lg py-2 px-4 text-white" onClick={handleUpload}>
+            <label className="bg-[#4E6BFF] rounded-lg py-2 px-4 text-white cursor-pointer">
               <img src={upload} alt="img" className="inline me-2" />
-              Upload image
-            </button>
-            <button className="bg-warning rounded-lg py-2 px-4 text-white" onClick={handleDelete}>
+              Subir imagen
+              <input
+                type="file"
+                accept="image/png, image/jpeg, image/webp"
+                onChange={handleUpload}
+                className="hidden"
+              />
+            </label>
+            <button
+              className="bg-warning rounded-lg py-2 px-4 text-white"
+              onClick={handleDelete}
+            >
               <img src={trash} alt="" className="inline me-2" />
-              Remove
+              Eliminar
             </button>
           </div>
           <p className="opacity-60 text-center">
@@ -60,8 +99,8 @@ const MyProfile = () => {
         </div>
       </div>
 
+      {/* Aquí continúan los inputs deshabilitados para el perfil */}
       <div className="sm:grid grid-cols-2 gap-x-4 max-w-screen-lg">
-
         <div className="py-3">
           <label htmlFor="name">Nombre</label>
           <input
@@ -147,9 +186,9 @@ const MyProfile = () => {
         </div>
       </div>
       <p className="text-warning font-medium text-sm cursor-pointer">Solicitar cambio de correo</p>
+
     </div>
   );
 };
 
 export default MyProfile;
-
