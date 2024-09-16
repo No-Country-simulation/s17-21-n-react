@@ -96,4 +96,84 @@
     <img src="https://flagcdn.com/64x48/ar.png" alt="ar flag" style="width: 32px; height: 24px; margin-top: 5px;">
   </div>
 </div>
+    
+<div style="display: flex; align-items: center; border: 1px solid #e1e4e8; border-radius: 8px; padding: 10px; margin: 10px; width: 350px;">
+  <img src="https://ca.slack-edge.com/T02KS88FB0E-U06BYGF5W78-eb90ad6de349-512" alt="Jorge Trujillo" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover; margin-right: 15px;">
+  <div>
+    <h3 style="margin: 0; font-size: 1.2em;">Jorge Trujillo</h3>
+    <p style="margin: 5px 0;">
+      <a href="https://www.linkedin.com/in/jorge-trujillo-ch" style="text-decoration: none;">
+        <img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white" alt="LinkedIn">
+      </a>
+      <a href="https://github.com/xiriuxb" style="text-decoration: none; margin-left: 10px;">
+        <img src="https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white" alt="GitHub">
+      </a>
+    </p>
+    <img src="https://flagcdn.com/64x48/ec.png" alt="ec flag" style="width: 32px; height: 24px; margin-top: 5px;">
+  </div>
+</div>
+    
+<div style="display: flex; align-items: center; border: 1px solid #e1e4e8; border-radius: 8px; padding: 10px; margin: 10px; width: 350px;">
+  <img src="https://ca.slack-edge.com/T02KS88FB0E-U049AS024R3-67f666b96b70-512" alt="Sonny Pimentel" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover; margin-right: 15px;">
+  <div>
+    <h3 style="margin: 0; font-size: 1.2em;">Sonny Pimentel</h3>
+    <p style="margin: 5px 0;">
+      <a href="https://www.linkedin.com/in/sonny-pimentel" style="text-decoration: none;">
+        <img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white" alt="LinkedIn">
+      </a>
+      <a href="https://github.com/spimentel1201" style="text-decoration: none; margin-left: 10px;">
+        <img src="https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white" alt="GitHub">
+      </a>
+    </p>
+    <img src="https://flagcdn.com/64x48/pe.png" alt="pe flag" style="width: 32px; height: 24px; margin-top: 5px;">
+  </div>
+</div>
+    
+<div style="display: flex; align-items: center; border: 1px solid #e1e4e8; border-radius: 8px; padding: 10px; margin: 10px; width: 350px;">
+  <img src="https://ca.slack-edge.com/T02KS88FB0E-U06PVMSJU95-60f01e3082ff-512" alt="Miguel Chavez" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover; margin-right: 15px;">
+  <div>
+    <h3 style="margin: 0; font-size: 1.2em;">Miguel Chavez</h3>
+    <p style="margin: 5px 0;">
+      <a href="https://www.linkedin.com/in/miguelangelchavez-" style="text-decoration: none;">
+        <img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white" alt="LinkedIn">
+      </a>
+      <a href="https://github.com/MiguelAChavez" style="text-decoration: none; margin-left: 10px;">
+        <img src="https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white" alt="GitHub">
+      </a>
+    </p>
+    <img src="https://flagcdn.com/64x48/ar.png" alt="ar flag" style="width: 32px; height: 24px; margin-top: 5px;">
+  </div>
+</div>
+    
+<div style="display: flex; align-items: center; border: 1px solid #e1e4e8; border-radius: 8px; padding: 10px; margin: 10px; width: 350px;">
+  <img src="https://ca.slack-edge.com/T02KS88FB0E-U0530FRPG4E-6264bf184b86-512" alt="Brayian Ramírez" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover; margin-right: 15px;">
+  <div>
+    <h3 style="margin: 0; font-size: 1.2em;">Brayian Ramírez</h3>
+    <p style="margin: 5px 0;">
+      <a href="https://www.linkedin.com/in/brayian-ramirez-aguayo" style="text-decoration: none;">
+        <img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white" alt="LinkedIn">
+      </a>
+      <a href="https://github.com/bramireza" style="text-decoration: none; margin-left: 10px;">
+        <img src="https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white" alt="GitHub">
+      </a>
+    </p>
+    <img src="https://flagcdn.com/64x48/pe.png" alt="pe flag" style="width: 32px; height: 24px; margin-top: 5px;">
+  </div>
+</div>
+    
+<div style="display: flex; align-items: center; border: 1px solid #e1e4e8; border-radius: 8px; padding: 10px; margin: 10px; width: 350px;">
+  <img src="https://ca.slack-edge.com/T02KS88FB0E-U079D0ZD2NN-2af306305cf4-512" alt="Natalin Inchauspe" style="border-radius: 50%; width: 80px; height: 80px; object-fit: cover; margin-right: 15px;">
+  <div>
+    <h3 style="margin: 0; font-size: 1.2em;">Natalin Inchauspe</h3>
+    <p style="margin: 5px 0;">
+      <a href="https://www.linkedin.com/in/natalin-inchauspe-86121b289" style="text-decoration: none;">
+        <img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white" alt="LinkedIn">
+      </a>
+      <a href="https://github.com/natuinchauspe" style="text-decoration: none; margin-left: 10px;">
+        <img src="https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white" alt="GitHub">
+      </a>
+    </p>
+    <img src="https://flagcdn.com/64x48/ar.png" alt="ar flag" style="width: 32px; height: 24px; margin-top: 5px;">
+  </div>
+</div>
     </div>
