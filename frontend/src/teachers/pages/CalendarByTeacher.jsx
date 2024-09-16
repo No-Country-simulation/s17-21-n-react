@@ -1,11 +1,11 @@
-import CalendarComponent from "../components/Calendar"
+import CalendarComponent from "../components/Calendar";
 
 const CalendarByTeacher = () => {
   return (
     <div>
-        <CalendarComponent />
+      <CalendarComponent />
     </div>
-  )
-}
+  );
+};
 
-export default CalendarByTeacher
+export default CalendarByTeacher;

@@ -1,10 +1,15 @@
 import DashboardStudents from "../pages/DashboardStudents";
 import NestedRoutes from "../../public/routes/NestedRoutes";
-import MyProfile from "../pages/MyProfile";
+import CoursesByStudent from "../pages/CoursesByStudent";
+import ActivitiesList from "../../teachers/components/ActivitiesList";
+ import MyProfile from "../pages/MyProfile";
 
 const studentRoutes = [
   { path: "dashboard", element: <DashboardStudents /> },
-  { path: "settings", element: <MyProfile /> },
+  { path: "courses", element: <CoursesByStudent /> },
+  { path: "courses/:id/classes", element: <ActivitiesList /> },
+  { path: "settings", element: <MyProfile /> }
+
   // Otras rutas específicas para estudiantes
 ];
 

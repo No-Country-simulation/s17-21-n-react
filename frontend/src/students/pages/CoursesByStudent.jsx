@@ -1,8 +1,8 @@
-import { courses } from "../data/coursesData";
-import Pagination from "../../common/components/Pagination";
 import CardCourse from "../../common/components/CardCourse";
+import Pagination from "../../common/components/Pagination";
+import { courses } from "../../teachers/data/coursesData";
 
-export default function CoursesByTeacher() {
+export default function CoursesByStudent() {
   return (
     <div className="relative w-full mx-auto bg-white">
       <h1 className="text-[#495057] text-2xl mb-6 font-bold">Mis Cursos</h1>

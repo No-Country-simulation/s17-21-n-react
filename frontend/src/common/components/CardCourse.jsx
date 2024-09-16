@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Star, Clipboard, CheckCircle, BookOpen, UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
+import useUserStore from "../../store/auth";
 import { profile } from "../../common/assets";
 
 export default function CardCourse({
@@ -18,6 +19,7 @@ export default function CardCourse({
   courseId,
   inviteLink = "https://example.com/invite",
 }) {
+  const { user } = useUserStore((state) => state);
   const [copied, setCopied] = useState(false);
   const [showInvite, setShowInvite] = useState(false);
 
@@ -56,7 +58,6 @@ export default function CardCourse({
 
           <h3 className="text-2xl font-bold mt-2 mb-2">{name}</h3>
 
-          {/* Nueva sección para la fecha de inicio y duración */}
           <div className="text-gray-600 text-sm mb-4">
             <p>
               <strong>Fecha de inicio:</strong> {startDate}
@@ -74,29 +75,29 @@ export default function CardCourse({
               className="rounded-full"
               height="40"
               src={profile}
-              style={{
-                aspectRatio: "1 / 1",
-                objectFit: "cover",
-              }}
+              style={{ aspectRatio: "1 / 1", objectFit: "cover" }}
               width="40"
             />
             <span className="font-medium">{instructor}</span>
           </div>
 
           <div className="flex justify-start items-center gap-4">
-            <Link to={`/courses/${courseId}/classes`}>
+            <Link to={`${courseId}/classes`}>
               <button className="font font-semibold text-base border border-blue-500 text-blue-500 px-4 py-2 rounded hover:bg-blue-50 flex items-center">
                 <BookOpen className="h-4 w-4 mr-2" />
                 Ver Actividades
               </button>
             </Link>
-            <button
-              onClick={() => setShowInvite(!showInvite)}
-              className="font font-semibold text-base border border-green-500 text-green-500 px-4 py-2 rounded hover:bg-green-50 flex items-center"
-            >
-              <UserPlus className="h-4 w-4 mr-2" />
-              Invitar Alumnos
-            </button>
+
+            {(user.role === "admin" || user.role === "teacher") && (
+              <button
+                onClick={() => setShowInvite(!showInvite)}
+                className="font font-semibold text-base border border-green-500 text-green-500 px-4 py-2 rounded hover:bg-green-50 flex items-center"
+              >
+                <UserPlus className="h-4 w-4 mr-2" />
+                Invitar Alumnos
+              </button>
+            )}
           </div>
 
           {showInvite && (

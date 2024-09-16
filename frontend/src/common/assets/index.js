@@ -79,6 +79,17 @@ import upload from "./icons/upload.svg";
 import save from "./icons/save.svg";
 import excel from "./icons/excel.svg";
 import pdf from "./icons/pdf.svg";
+import email from "./icons/email.svg";
+import star from "./icons/star.svg";
+import drafts from "./icons/drafts.svg";
+import share from "./icons/share.svg";
+import add from "./icons/add.svg";
+import trash2 from "./icons/trash2.svg";
+import profile1 from "./images/profile1.webp";
+import profile2 from "./images/profile2.webp";
+import profile3 from "./images/profile3.webp";
+import filter from "./icons/filter.svg";
+import reload from "./icons/reload.svg";
 
 export {
   facebook,
@@ -162,5 +173,15 @@ export {
   save,
   excel,
   pdf,
-
+  email,
+  star,
+  drafts,
+  share,
+  add,
+  trash2,
+  profile1,
+  profile2,
+  profile3,
+  filter,
+  reload,
 };

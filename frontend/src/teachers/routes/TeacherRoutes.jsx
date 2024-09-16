@@ -6,18 +6,19 @@ import MyProfile from "../pages/MyProfile";
 import StudentsByTeacher from "../pages/StudentsByTeacher";
 import GradesByTeacher from "../pages/GradesByTeacher";
 import CoursesByTeacher from "../pages/CoursesByTeacher";
+import ComunicationByTeacher from "../pages/ComunicationByTeacher";
 import CalendarByTeacher from "../pages/CalendarByTeacher";
-
 
 const teacherRoutes = [
   { path: "dashboard", element: <DashboardTeachers /> },
-  { path: "attendance-summary", element: <AttendanceControl /> },
-  { path: "activities", element: <ActivitiesList /> },
+  { path: "course/attendance-control", element: <AttendanceControl /> },
+  { path: "courses/:id/classes", element: <ActivitiesList /> },
   { path: "settings", element: <MyProfile /> },
   { path: "grades", element: <GradesByTeacher /> },
   { path: "students", element: <StudentsByTeacher /> },
   { path: "courses", element: <CoursesByTeacher /> },
-  { path: "calendar", element: <CalendarByTeacher />},
+  { path: "communication", element: <ComunicationByTeacher /> },
+  { path: "calendar", element: <CalendarByTeacher /> },
   // Otras rutas específicas para maestros
 ];
 
