@@ -1,5 +1,5 @@
 import { PathItem } from "swagger-jsdoc";
-import { defaultErrorResponseSchemas, paginationSchema, succesResponseSchema } from "../responses.swagger";
+import { defaultErrorResponseSchemas, paginationSchema, successResponseSchema } from "../responses.swagger";
 import { EnrollmentSchema } from "./schemas.swagger";
 const createEnrollmentPath: PathItem = {
   post: {
@@ -17,7 +17,7 @@ const createEnrollmentPath: PathItem = {
       200: {
         content: {
           "application/json": {
-            schema: succesResponseSchema(EnrollmentSchema, "Enrollment created successfully"),
+            schema: successResponseSchema(EnrollmentSchema, "Enrollment created successfully"),
           },
         },
         description: "Created Enrollment",
@@ -60,7 +60,7 @@ const updateEnrollmentPath: PathItem = {
       200: {
         content: {
           "application/json": {
-            schema: succesResponseSchema(EnrollmentSchema, "Enrollment updated successfully"),
+            schema: successResponseSchema(EnrollmentSchema, "Enrollment updated successfully"),
           },
         },
         description: "Enrollment updated successfully, enrollment data returned",
@@ -139,7 +139,7 @@ const findManyEnrollmentPath: PathItem = {
       200: {
         content: {
           "application/json": {
-            schema: succesResponseSchema(paginationSchema(EnrollmentSchema)),
+            schema: successResponseSchema(paginationSchema(EnrollmentSchema)),
           },
         },
         description: "Enrollments found successfully, enrollments data returned",
