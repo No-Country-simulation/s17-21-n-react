@@ -15,7 +15,7 @@ const StudyTime = () => {
           ))}
         </div>
         <svg
-        className="size-72 md:size-[481px]"
+          className="size-72 md:size-[481px]"
           width="481"
           height="481"
           viewBox="0 0 481 481"

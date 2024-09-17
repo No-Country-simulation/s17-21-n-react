@@ -1,46 +1,46 @@
-import { Award, BookCheck, CheckSquare, ClockArrowUp,  } from "lucide-react";
+import { Award, BookCheck, CheckSquare, ClockArrowUp } from "lucide-react";
 
 const studentSummary = [
-    {
-      id: 1,
-      title: "Horas de estudio",
-      icon: <ClockArrowUp className="text-gray-600" size={24} />,
-      value: "24 H",
-      percentage: "+11%",
-      description: "Respecto a la semana pasada",
-    },
-    {
-      id: 2, 
-      title: "Promedio General",
-      icon: <Award className="text-gray-600" size={24} />,
-      value: "86.5",
-      percentage: "-29%",
-      description: "Respecto al semestre anterior",
-    },
-    {
-      id: 3,
-      title: "Tareas Completadas",
-      icon: <BookCheck className="text-gray-600" size={24} />,
-      value: "20/20",
-      percentage: "100%",
-      description: "",
-    },
-    {
-      id: 4,
-      title: "Promedio del Curso",
-      icon: <CheckSquare className="text-gray-600" size={24} />,
-      value: "75%",
-      percentage: "+89%",
-      description: "En el último periodo",
-    },
-  ];
-  
-  const getBackgroundColor = (percentage) => {
-    const value = parseFloat(percentage);
-    if (value > 0) return "bg-green-500";
-    if (value < 0) return "bg-red-500";
-    return "bg-yellow-500";
-  };
+  {
+    id: 1,
+    title: "Horas de estudio",
+    icon: <ClockArrowUp className="text-gray-600" size={24} />,
+    value: "24 H",
+    percentage: "+11%",
+    description: "Respecto a la semana pasada",
+  },
+  {
+    id: 2,
+    title: "Promedio General",
+    icon: <Award className="text-gray-600" size={24} />,
+    value: "86.5",
+    percentage: "-29%",
+    description: "Respecto al semestre anterior",
+  },
+  {
+    id: 3,
+    title: "Tareas Completadas",
+    icon: <BookCheck className="text-gray-600" size={24} />,
+    value: "20/20",
+    percentage: "100%",
+    description: "",
+  },
+  {
+    id: 4,
+    title: "Promedio del Curso",
+    icon: <CheckSquare className="text-gray-600" size={24} />,
+    value: "75%",
+    percentage: "+89%",
+    description: "En el último periodo",
+  },
+];
+
+const getBackgroundColor = (percentage) => {
+  const value = parseFloat(percentage);
+  if (value > 0) return "bg-green-500";
+  if (value < 0) return "bg-red-500";
+  return "bg-yellow-500";
+};
 
 const DashboardSummary = () => {
   return (
@@ -68,7 +68,7 @@ const DashboardSummary = () => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default DashboardSummary
+export default DashboardSummary;
