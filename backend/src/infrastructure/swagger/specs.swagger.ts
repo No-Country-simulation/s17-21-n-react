@@ -12,6 +12,7 @@ import { userPaths } from "./user";
 import { bulletinPaths, bulletinSchemas } from "./bulletin";
 import { attendancePaths, attendanceSchemas } from "./attendance";
 import { attendanceStudentPaths, attendanceStudentSchemas } from "./attendanceStudent";
+import { enrollmentPaths } from "./enrollments";
 
 export const swaggerOptions:SwaggerOptions = {
   swaggerOptions: {
@@ -49,7 +50,8 @@ const options: swaggerJsdoc.OAS3Options = {
       ...userPaths,
       ...bulletinPaths,
       ...attendancePaths,
-      ...attendanceStudentPaths
+      ...attendanceStudentPaths,
+      ...enrollmentPaths,
     },
     components: {
       securitySchemes: {
@@ -67,7 +69,8 @@ const options: swaggerJsdoc.OAS3Options = {
         ...roleSchemas,
         ...bulletinSchemas,
         ...attendanceSchemas,
-        ...attendanceStudentSchemas
+        ...attendanceStudentSchemas,
+        ...enrollmentPaths,
       },
     },
   },
