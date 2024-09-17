@@ -7,7 +7,7 @@ export default function CoursesByTeacher() {
     <div className="relative w-full mx-auto bg-white">
       <h1 className="text-[#495057] text-2xl mb-6 font-bold">Mis Cursos</h1>
 
-      <ul className="grid space-y-6">
+      <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {courses.map((course) => (
           <li key={course.id}>
             <CardCourse
@@ -22,7 +22,7 @@ export default function CoursesByTeacher() {
               rating={course.rating || 4.5}
               reviews={course.reviews || 44}
               lessons={course.lessons || 8}
-              instructor={course.instructor || "Sarah Smith"}
+              teacher={course.teacher || "Sarah Smith"}
             />
           </li>
         ))}
