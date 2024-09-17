@@ -12,7 +12,7 @@ import { userPaths } from "./user";
 import { bulletinPaths, bulletinSchemas } from "./bulletin";
 import { attendancePaths, attendanceSchemas } from "./attendance";
 import { attendanceStudentPaths, attendanceStudentSchemas } from "./attendanceStudent";
-import { enrollmentPaths } from "./enrollments";
+import { enrollmentPaths, enrollmentSchemas } from "./enrollments";
 
 export const swaggerOptions:SwaggerOptions = {
   swaggerOptions: {
@@ -70,7 +70,7 @@ const options: swaggerJsdoc.OAS3Options = {
         ...bulletinSchemas,
         ...attendanceSchemas,
         ...attendanceStudentSchemas,
-        ...enrollmentPaths,
+        ...enrollmentSchemas,
       },
     },
   },

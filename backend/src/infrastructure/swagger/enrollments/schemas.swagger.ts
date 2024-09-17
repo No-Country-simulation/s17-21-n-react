@@ -49,7 +49,7 @@ export const updateEnrollmentSchema: Schema = {
   }
 };
 
-export const bulletinSchemas = {
+export const enrollmentSchemas = {
   "Enrollment:POST": createEnrollmentSchema,
   "Enrollment:PATCH": updateEnrollmentSchema
 };
