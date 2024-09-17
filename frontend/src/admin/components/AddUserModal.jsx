@@ -3,7 +3,7 @@ import { useState } from "react";
 import { TextInput } from "./TextInput";
 import { Modal } from "./Modal";
 import { roleTranslations } from "../../common/utils/roleTranslations";
-import { addUser } from "../../common/services/userService";
+import { addUser } from "../../api/services/userService";
 
 export default function AddUserModal({ isOpen, onClose, role }) {
   const [newUser, setNewUser] = useState({

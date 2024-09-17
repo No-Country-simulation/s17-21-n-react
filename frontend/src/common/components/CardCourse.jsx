@@ -8,14 +8,12 @@ import { profile } from "../../common/assets";
 export default function CardCourse({
   name,
   description,
-  startDate,
-  duration,
   image,
   category,
   rating,
   reviews,
   lessons,
-  instructor,
+  teacher,
   courseId,
   inviteLink = "https://example.com/invite",
 }) {
@@ -57,28 +55,18 @@ export default function CardCourse({
           </div>
 
           <h3 className="text-2xl font-bold mt-2 mb-2">{name}</h3>
-
-          <div className="text-gray-600 text-sm mb-4">
-            <p>
-              <strong>Fecha de inicio:</strong> {startDate}
-            </p>
-            <p>
-              <strong>Duración:</strong> {duration}
-            </p>
-          </div>
-
           <p className="text-gray-500 mb-4">{description}</p>
 
           <div className="flex items-center space-x-4 mb-4">
             <img
-              alt="Instructor avatar"
+              alt="Teacher avatar"
               className="rounded-full"
               height="40"
               src={profile}
               style={{ aspectRatio: "1 / 1", objectFit: "cover" }}
               width="40"
             />
-            <span className="font-medium">{instructor}</span>
+            <span className="font-medium">{teacher}</span>
           </div>
 
           <div className="flex justify-start items-center gap-4">

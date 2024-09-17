@@ -27,7 +27,6 @@ export default function CoursesByStudent() {
           </li>
         ))}
       </ul>
-      {/* Controles de Paginación */}
       <section className="mt-6 flex justify-end">
         <Pagination />
       </section>

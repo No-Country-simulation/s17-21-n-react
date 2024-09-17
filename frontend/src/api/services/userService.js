@@ -1,4 +1,4 @@
-import configureAxios from "../../api/axios";
+import configureAxios from "../axios";
 
 export const addUser = async (userData) => {
   try {
