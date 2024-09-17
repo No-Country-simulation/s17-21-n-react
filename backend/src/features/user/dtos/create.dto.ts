@@ -1,3 +1,5 @@
+import { SystemGenders } from "../../../shared/constants";
+
 export interface CreateUserDto {
     email: string;
     password: string;
@@ -7,6 +9,7 @@ export interface CreateUserDto {
     phone?:string;
     birthDate:Date;
     roleId : string;
+    gender: SystemGenders
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type

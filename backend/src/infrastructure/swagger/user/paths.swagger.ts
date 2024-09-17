@@ -117,6 +117,7 @@ const updatePasswordPath: PathItem = {
   }
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const updateEmailPath: PathItem = {
   patch:{
     summary: "Update user email. Allowed roles ALL (registered)",
@@ -300,9 +301,31 @@ const usersGetPath:PathItem = {
   }
 };
 
+const userProfile: PathItem = {
+  get:{
+    summary:"Get current user profile. Allowed roles ALL (registered and logged)",
+    tags: [ "User" ],
+    security:[
+      {
+        bearerAuth:[]
+      }
+    ],
+    responses: {
+      200: {
+        content: {
+          "application/json": {
+            schema: successResponseSchema(userSchemas["User:Profile:GET"])
+          },
+        },
+        description: "User profile",
+      },
+    },
+  }
+};
+
 export const userPaths = {
   "/user":{ ...authLoginPath, ...usersGetPath },
   "/user/{userId}":{ ...updateUserPath,...deleteUserPath, ...getUserPath },
   "/user/password":{ ...updatePasswordPath },
-  "/user/email":{ ...updateEmailPath }
+  "/user/profile": userProfile
 };

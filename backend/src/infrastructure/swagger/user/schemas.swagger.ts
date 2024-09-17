@@ -4,7 +4,7 @@ import { Schema } from "swagger-jsdoc";
 
 export const createUserSchema: Schema = {
   type: "object",
-  required: [ "email", "password", "name", "last_name", "dni", "roleId", "birthDate" ],
+  required: [ "email", "password", "name", "last_name", "dni", "roleId", "birthDate", "gender" ],
   properties: {
     email: {
       type: "string",
@@ -43,6 +43,10 @@ export const createUserSchema: Schema = {
       description: "ID del rol asignado al usuario",
       example: "27d8dafa-8207-4878-bed8-9af291563df7",
     },
+    gender: {
+      type: "string",
+      enum: [ "MALE", "FEMALE", "OTHER" ]
+    }
   },
 };
 
@@ -104,6 +108,10 @@ const getUserSchema = {
       format: "date-time",
       example: "2024-09-06T00:39:34.569Z",
     },
+    gender: {
+      type: "string",
+      enum: [ "MALE", "FEMALE", "OTHER" ]
+    },
     updatedAt: {
       type: "string",
       format: "date-time",
@@ -113,6 +121,62 @@ const getUserSchema = {
       type: "string",
       format: "date-time",
       example: "2024-09-09T19:56:47.652Z",
+    },
+    role: {
+      type: "string",
+      example: "ADMIN",
+    },
+  },
+  required: [
+    "id",
+    "email",
+    "name",
+    "lastName",
+    "role",
+    "isActive",
+    "createdAt",
+    "updatedAt",
+  ],
+};
+
+const getUserProfileSchema = {
+  type: "object",
+  properties: {
+    id: {
+      type: "string",
+      format: "uuid",
+      example: "933e9ea3-cbd2-45d3-8bd3-90f341e2fb26",
+    },
+    email: {
+      type: "string",
+      format: "email",
+      example: "administrador@test.com",
+    },
+    name: {
+      type: "string",
+      example: "Admin",
+    },
+    lastName: {
+      type: "string",
+      example: "EducaPro",
+    },
+    dni: {
+      type: "string",
+      example: "99999999",
+    },
+    phone: {
+      type: "string",
+      description: "Teléfono del usuario",
+      example: "1234567890",
+    },
+    birthDate: {
+      type: "string",
+      description: "Fecha de nacimiento del usuario",
+      example: "1990-01-01",
+    },
+    gender: {
+      type: "string",
+      enum: [ "MALE", "FEMALE", "OTHER" ]
     },
     role: {
       type: "string",
@@ -160,6 +224,7 @@ const updatePasswordShema: Schema = {
   required: [ "newPassword", "newPasswordConfirm", "password" ],
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const updateEmailSchema: Schema = {
   type: "object",
   properties: {
@@ -182,5 +247,5 @@ export const userSchemas = {
   "User:PATCH": updateUserSchema,
   "User:GET": getUserSchema,
   "User:Password:PATCH": updatePasswordShema,
-  "User:Email:PATCH": updateEmailSchema,
+  "User:Profile:GET": getUserProfileSchema,
 };
