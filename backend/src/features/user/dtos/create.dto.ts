@@ -9,7 +9,7 @@ export interface CreateUserDto {
     phone?:string;
     birthDate:Date;
     roleId : string;
-    gender: SystemGenders
+    gender?: SystemGenders
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type

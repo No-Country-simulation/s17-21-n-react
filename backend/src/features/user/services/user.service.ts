@@ -19,7 +19,10 @@ export class UserService {
     const existingRole = await this.roleRepository.findById(dto.roleId);
     if (!existingRole) throw Error("Role does not exists");
 
-    this.validateGenderOrThrow(dto.gender);
+    if(dto.gender)
+      this.validateGenderOrThrow(dto.gender);
+
+    dto.gender = SystemGenders.OTHER;
 
     await this.validateDniOrThrow(dto.dni);
     await this.validateEmailOrThrow(dto.email);
