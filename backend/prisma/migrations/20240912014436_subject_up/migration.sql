@@ -7,9 +7,9 @@
 
 */
 -- DropIndex
-DROP INDEX "Subject_name_divisionId_key";
+DROP INDEX IF EXISTS "Subject_name_divisionId_key";
 
 -- AlterTable
-ALTER TABLE "Subject" ADD COLUMN     "description" VARCHAR(256) NOT NULL,
-ADD COLUMN     "scheduleEnd" VARCHAR(128) NOT NULL,
-ADD COLUMN     "scheduleInit" VARCHAR(128) NOT NULL;
+ALTER TABLE "Subject" ADD COLUMN IF NOT EXISTS     "description" VARCHAR(256) NOT NULL,
+ADD COLUMN IF NOT EXISTS    "scheduleEnd" VARCHAR(128) NOT NULL,
+ADD COLUMN  IF NOT EXISTS   "scheduleInit" VARCHAR(128) NOT NULL;
