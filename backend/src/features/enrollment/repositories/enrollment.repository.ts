@@ -13,7 +13,6 @@ export class EnrollmentRepository implements IEnrollmentRepository {
           whereClause.year = {
             year: filter.year
           };
-        
       }
       return await prisma.enrollment.findMany({
         include: {
@@ -32,22 +31,9 @@ export class EnrollmentRepository implements IEnrollmentRepository {
     }
   }
 
-  async findByUniqueCombination(EnrollmentData: Enrollment) {
-    return await prisma.enrollment.findUnique({
-      where: {
-        studentId_subjectId_divisionId_yearId: {
-          divisionId: EnrollmentData.divisionId,
-          studentId : EnrollmentData.studentId,
-          subjectId : EnrollmentData.subjectId,
-          yearId    : EnrollmentData.yearId,
-        },
-      },
-    });
-  }
-
   async findById(id: string): Promise<Enrollment | null> {
     try {
-      return await prisma.enrollment.findUnique({ where: { id, isDeleted: false } });
+      return await prisma.enrollment.findUnique({ where: { id } });
     } catch (error) {
       ErrorHandler.handleError(error);
     }
@@ -63,10 +49,6 @@ export class EnrollmentRepository implements IEnrollmentRepository {
 
   async create(EnrollmentData: Enrollment): Promise<Enrollment> {
     try {
-      const existingEnrollment = await this.findByUniqueCombination(EnrollmentData);
-      if (existingEnrollment) 
-        throw new Error("Enrollment already exists");
-      
       return await prisma.enrollment.create({ data: EnrollmentData });
     } catch (error) {
       ErrorHandler.handleError(error);
@@ -81,12 +63,13 @@ export class EnrollmentRepository implements IEnrollmentRepository {
     }
   }
 
-  async delete(id: string): Promise<Enrollment> {
+  async delete(id: string): Promise<void> {
     try {
-      return await prisma.enrollment.update({
-        data : { isDeleted: true },
-        where: { id },
-      });
+      console.log("ID:", id);
+      /*await prisma.enrollment.update({
+        //data: { isDeleted: true },
+        where: { id }
+      });*/
     } catch (error) {
       ErrorHandler.handleError(error);
     }

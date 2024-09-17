@@ -11,6 +11,7 @@ import { academicYearRouter } from "../../features/academic_year/routes/academic
 import { subjectCategoryRouter } from "../../features/subject-category/routes/subject-category.routes";
 import { activityRouter } from "../../features/activity/routes/activity.routes";
 import { divisionRouter } from "../../features/division/routes/division.routes";
+import { enrollmentRouter } from "../../features/enrollment/router/enrollment.router";
 
 const router = Router();
 
@@ -20,6 +21,7 @@ router.use("/role", roleRouter);
 router.use("/user", userRouter);
 router.use("/subject", subjectRouter);
 router.use("/class", classRouter);
+router.use("/enrollment", enrollmentRouter);
 router.use("/grade", gradeRouter);
 router.use("/attendance", attendanceRouter);
 router.use("/attendanceStudent", attendanceStudentRouter);

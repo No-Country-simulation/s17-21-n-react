@@ -13,14 +13,9 @@ import { bulletinPaths, bulletinSchemas } from "./bulletin";
 import { classPaths, classSchemas } from "./class";
 import { subjectPaths, subjectSchemas } from "./subject";
 import { attendancePaths, attendanceSchemas } from "./attendance";
-import {
-  attendanceStudentPaths,
-  attendanceStudentSchemas,
-} from "./attendanceStudent";
-import {
-  subjectCategoryPaths,
-  subjectCategorySchemas,
-} from "./subject-category";
+import { attendanceStudentPaths, attendanceStudentSchemas } from "./attendanceStudent";
+import { enrollmentPaths, enrollmentSchemas } from "./enrollments";
+import { subjectCategoryPaths, subjectCategorySchemas } from "./subject-category";
 import { divisionPaths, divisionSchemas } from "./division";
 
 export const swaggerOptions: SwaggerOptions = {
@@ -63,6 +58,7 @@ const options: swaggerJsdoc.OAS3Options = {
       ...divisionPaths,
       ...attendancePaths,
       ...attendanceStudentPaths,
+      ...enrollmentPaths,
     },
     components: {
       securitySchemes: {
@@ -86,6 +82,7 @@ const options: swaggerJsdoc.OAS3Options = {
         ...divisionSchemas,
         ...attendanceSchemas,
         ...attendanceStudentSchemas,
+        ...enrollmentSchemas,
       },
     },
   },

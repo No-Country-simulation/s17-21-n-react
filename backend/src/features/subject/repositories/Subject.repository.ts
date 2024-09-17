@@ -4,9 +4,30 @@ import { Prisma, Subject } from "@prisma/client";
 import { ErrorHandler } from "../../../shared/utils/ErrorHandler";
 
 export class SubjectRepository implements ISubjectRepository {
-  async findMany(skip: number, take: number): Promise<Subject[]> {
+  async findMany(skip: number, take: number, user: {
+    userId?: string;
+    role?: string;
+  }): Promise<Subject[]> {
     try {
-      return await prisma.subject.findMany({ skip, take });
+      let whereClause: any = {};
+      switch (user.role) {
+      case "TEACHER":
+        whereClause = { teacherId: user.userId };
+        break;
+      case "STUDENT":
+        whereClause = { 
+          enrollments: {
+            some: { studentId: user.userId }
+          }
+        };
+        break;
+      case "ADMIN":
+        // Los administradores pueden ver todas las asignaturas
+        break;
+      default:
+        throw new Error("Rol de usuario no válido");
+      }
+      return await prisma.subject.findMany({ skip, take, where: whereClause });
     } catch (error) {
       ErrorHandler.handleError(error);
     }
