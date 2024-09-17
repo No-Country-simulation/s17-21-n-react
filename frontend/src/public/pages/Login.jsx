@@ -12,9 +12,9 @@ import {
 } from "../../common/assets";
 import { useState } from "react";
 import { Mail, Lock } from "lucide-react";
-import { loginService } from "../../common/services/authService";
 import { handleUpClick } from "../../common/utils/handleUpClick";
 import Footer from "../../common/components/layout/Footer";
+import { loginService } from "../../api/services/authService";
 
 const users = [
   { email: "administrador@test.com", password: "adminPassword123#", role: "admin" },

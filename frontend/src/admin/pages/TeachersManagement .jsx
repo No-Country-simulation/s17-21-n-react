@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { CirclePlus } from "lucide-react";
 import Pagination from "../../common/components/Pagination";
-import { getAllTeachers } from "../../common/services/teachersService";
 import AddUserModal from "../components/AddUserModal";
+import { getAllTeachers } from "../../api/services/teachersService";
 
 export default function TeachersManagement() {
   const [users, setUsers] = useState([]);
