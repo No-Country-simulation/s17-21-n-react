@@ -4,6 +4,7 @@ import { Star, Clipboard, CheckCircle, BookOpen, UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
 import useUserStore from "../../store/auth";
 import { profile } from "../../common/assets";
+import { categoryColors } from "../../public/data/categoryColors";
 
 export default function CardCourse({
   name,
@@ -30,20 +31,22 @@ export default function CardCourse({
 
   return (
     <div className="overflow-hidden border rounded-lg shadow-md">
-      <div className="md:flex">
-        <div className="md:w-1/3 relative">
-          <span className="absolute top-2 left-2 z-10 bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded">
+      <div>
+        <div className="relative">
+          <span
+            className={`absolute top-2 left-2 z-10 text-white text-xs font-semibold px-2 py-1 rounded ${categoryColors[category]}`}
+          >
             {category}
           </span>
           <img
             alt="Course image"
             className="aspect-[4/3] object-cover w-full"
             src={image}
-            height="300"
-            width="400"
+            height="200"
+            width="300"
           />
         </div>
-        <div className="p-6 md:w-2/3">
+        <div className="p-6">
           <div className="flex items-center space-x-2 text-sm text-gray-500">
             <span className="flex items-center">
               <Star className="h-4 w-4 fill-current text-yellow-500 mr-1" />
@@ -69,10 +72,10 @@ export default function CardCourse({
             <span className="font-medium">{teacher}</span>
           </div>
 
-          <div className="flex justify-start items-center gap-4">
+          <div className="grid 2xl:grid-cols-2 items-center gap-4">
             <Link to={`${courseId}/classes`}>
-              <button className="font font-semibold text-base border border-blue-500 text-blue-500 px-4 py-2 rounded hover:bg-blue-50 flex items-center">
-                <BookOpen className="h-4 w-4 mr-2" />
+              <button className="w-full justify-center font-semibold border border-blue-500 text-blue-500 lg:px-4 py-2 rounded hover:bg-blue-50 flex items-center gap-2">
+                <BookOpen className="h-4 w-4" />
                 Ver Actividades
               </button>
             </Link>
@@ -80,9 +83,9 @@ export default function CardCourse({
             {(user.role === "admin" || user.role === "teacher") && (
               <button
                 onClick={() => setShowInvite(!showInvite)}
-                className="font font-semibold text-base border border-green-500 text-green-500 px-4 py-2 rounded hover:bg-green-50 flex items-center"
+                className="w-full justify-center font-semibold text-base border border-green-500 text-green-500 px-4 py-2 rounded hover:bg-green-50 flex items-center gap-2"
               >
-                <UserPlus className="h-4 w-4 mr-2" />
+                <UserPlus className="h-4 w-4" />
                 Invitar Alumnos
               </button>
             )}

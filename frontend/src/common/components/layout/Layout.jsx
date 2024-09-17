@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState, useRef, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import Sidebar from "./config/Sidebar";
 import { Menu } from "lucide-react";
 import SessionNavbar from "./SessionNavbar";
+import Sidebar from "./Sidebar";
 
 export default function Layout({ userRole }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
