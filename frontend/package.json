@@ -11,6 +11,8 @@
     "format": "prettier --write src/**/*.{js,jsx}"
   },
   "dependencies": {
+    "@nivo/bar": "^0.87.0",
+    "@nivo/line": "^0.87.0",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.5",
     "dayjs": "^1.11.13",
