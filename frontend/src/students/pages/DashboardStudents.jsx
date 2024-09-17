@@ -1,6 +1,4 @@
 import DashboardSummary from "../components/DashboardSummary";
-// import WeeklyProgress from "../components/WeeklyProgress";
-// import { progressData } from "../data/dashboardStudents";
 import QualificationsProgress from "../components/QualificationsProgress";
 import StudyTime from "../components/StudyTime";
 import WeeklyLineChart from "../components/WeeklyLineChart";
