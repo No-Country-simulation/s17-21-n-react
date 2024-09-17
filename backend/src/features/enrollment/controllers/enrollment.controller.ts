@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { errorResponse, HttpCodes, successResponse } from "../../../shared/utils";
 import { IEnrollmentService } from "../services/IEnrollment.service";
 import { Request, Response } from "express";
@@ -44,15 +45,15 @@ export class EnrollmentController {
     try {
       const { page, size } = req.query;
       const { studentId } = req.params;
-      const year = parseInt(req.query.year as string);
-      const filter: any = { studentId };
+      const year = parseInt(req.query.year as string);      
+      const filter: Prisma.EnrollmentWhereInput = { studentId };
       if (!isNaN(year)) 
-        filter.year = year;
+        filter.year = { year };
       
       const enrollments = await this._enrollmentService.getAllEnrollments(
         parseInt(page as string),
         parseInt(size as string),
-        filter
+        filter  
       );
       if (!enrollments) 
         return successResponse({ data: enrollments, res ,status: HttpCodes.SUCCESS_DELETED });

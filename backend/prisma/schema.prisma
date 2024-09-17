@@ -14,17 +14,19 @@ datasource db {
 }
 
 model User {
-  id                 String           @id @default(uuid())
-  email              String           @unique
-  password           String           @db.VarChar(256)
-  name               String           @db.VarChar(128)
-  lastName           String           @db.VarChar(128)
-  dni                String           @db.VarChar(56)
-  role               Role             @relation(fields: [roleId], references: [id])
+  id                 String              @id @default(uuid())
+  email              String              @unique
+  password           String              @db.VarChar(256)
+  name               String              @db.VarChar(128)
+  lastName           String              @db.VarChar(128)
+  dni                String              @db.VarChar(56)
+  phone              String              @db.VarChar(128) @default("sin teléfono")
+  birthDate          DateTime            @default(now())
+  role               Role                @relation(fields: [roleId], references: [id])
   roleId             String
-  isActive           Boolean          @default(true)
-  createdAt          DateTime         @default(now())
-  updatedAt          DateTime         @updatedAt
+  isActive           Boolean             @default(true)
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
   deletedAt          DateTime?
   enrollments        Enrollment[]
   subjectTeachers    SubjectTeacher[]
@@ -54,7 +56,8 @@ model Grade {
   yearId       String
   isDeleted    Boolean        @default(false)
   subjects     GradeSubject[]
-  divisions    Division[]
+
+  @@unique([name, yearId])
 }
 
 model GradeSubject {
@@ -80,7 +83,6 @@ model Subject {
   category        SubjectCategory  @relation(fields: [categoryId], references: [id])
   categoryId      String
   isDeleted       Boolean          @default(false)
-
 }
 
 model SubjectCategory {
@@ -110,6 +112,9 @@ model Enrollment {
   yearId     String
   subject    Subject      @relation(fields: [subjectId], references: [id])
   subjectId  String
+  isDeleted  Boolean      @default(false)
+
+  @@unique([studentId, subjectId, divisionId, yearId])
 }
 
 //las clases pertenecen a una materia,división y a un año escolar especifico
@@ -121,23 +126,19 @@ model Class {
   subjectId   String
   year        AcademicYear @relation(fields: [yearId], references: [id])
   yearId      String
-  division    Division     @relation(fields: [divisionId], references: [id])
-  divisionId  String
   activities  Activity[]
   isDeleted   Boolean      @default(false)
   attendances Attendance[]
 
-  @@unique([name, subjectId, divisionId, yearId])
+  @@unique([name, subjectId, yearId, date])
 }
 
 model Division {
   id          String       @id @default(uuid())
   name        String
-  grade       Grade        @relation(fields: [gradeId], references: [id])
-  gradeId     String
+  isDeleted   Boolean      @default(false)
   enrollments Enrollment[]
   subjects    Subject[]
-  classes     Class[]
 }
 
 // Temporal 
@@ -155,16 +156,16 @@ enum ActivityStatus {
 }
 
 model Activity {
-  id      String    @id @default(uuid())
-  name    String    @db.VarChar(128)
-  description String?  @db.VarChar(256)
-  activityType   ActivityType
-  status   ActivityStatus @default(PENDING)
-  startDate   DateTime  @default(now())
-  dueDate DateTime
-  files   String[]
-  class   Class    @relation(fields: [classId], references: [id])
-  classId String
+  id           String         @id @default(uuid())
+  name         String         @db.VarChar(128)
+  description  String?        @db.VarChar(256)
+  activityType ActivityType
+  status       ActivityStatus @default(PENDING)
+  startDate    DateTime       @default(now())
+  dueDate      DateTime
+  files        String[]
+  class        Class          @relation(fields: [classId], references: [id])
+  classId      String
 }
 
 model Bulletin {
@@ -181,15 +182,15 @@ model Bulletin {
 }
 
 model Attendance {
-  id                String    @id @default(uuid())
-  class             Class     @relation(fields: [classId], references: [id])
+  id                String              @id @default(uuid())
+  class             Class               @relation(fields: [classId], references: [id])
   classId           String
   eventDate         DateTime
-  status            String    @db.VarChar(128)
+  status            String              @db.VarChar(128)
   attendanceStudent AttendanceStudent[]
-  isDeleted         Boolean   @default(false)
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  isDeleted         Boolean             @default(false)
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
   deletedAt         DateTime?
 }
 

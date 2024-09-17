@@ -27,18 +27,22 @@ export class SubjectCategoryController {
     return errorResponse({ message: errorMessage, res, status });
   };
 
-  private parseQueryParams = (page?: string, size?: string) => ({
-    page: page ? parseInt(page, 10) : 1,
-    size: size ? parseInt(size, 10) : 10,
+  private parseQueryParams = (page?: string, size?: string, filter?: string, sort?: string) => ({
+    filter: filter ? { name: { contains: filter } } : undefined,
+    page  : page ? parseInt(page, 10) : 1,
+    size  : size ? parseInt(size, 10) : 10,
+    sort  : sort ? { name: sort as "asc" | "desc" } : undefined,
   });
 
   public getAllSubjectCategories = async (req: Request, res: Response) => {
     try {
-      const { page, size } = this.parseQueryParams(
+      const { page, size, filter, sort } = this.parseQueryParams(
         req.query.page as string,
-        req.query.size as string
+        req.query.size as string,
+        req.query.name as string,
+        req.query.sort as "asc" | "desc" | undefined
       );
-      const subjectCategories = await this._subjectCategoryService.getAllSubjectCategories(page, size);
+      const subjectCategories = await this._subjectCategoryService.getAllSubjectCategories(page, size, filter, sort);
       return successResponse({ data: subjectCategories, res });
     } catch (error) {
       return this.handleClassError(error, ERROR_MESSAGES.FETCH, res);
@@ -73,6 +77,17 @@ export class SubjectCategoryController {
       });
     } catch (error) {
       return this.handleClassError(error, ERROR_MESSAGES.CREATE, res);
+    }
+  };
+
+  public updateSubjectCategory = async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const updateDto = req.body;
+      const updatedSubjectCategory = await this._subjectCategoryService.update(id, updateDto);
+      return successResponse({ data: updatedSubjectCategory, res });
+    } catch (error) {
+      return this.handleClassError(error, ERROR_MESSAGES.UPDATE, res);
     }
   };
 

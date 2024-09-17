@@ -39,10 +39,9 @@ export class EnrollmentRepository implements IEnrollmentRepository {
     }
   }
 
-  async findEnrollmentsByStudentAndYear(studentId: string): Promise<Enrollment[] | null> {
+  async findEnrollmentsByStudentAndYear(studentId: string, year: number): Promise<Enrollment[] | null> {
     try {
-      //const whereClause: any = {};
-      return await prisma.enrollment.findMany({ where: { studentId } });
+      return await prisma.enrollment.findMany({ where: { studentId, year: { year } } });
     } catch (error) {
       ErrorHandler.handleError(error);
     }
@@ -50,11 +49,8 @@ export class EnrollmentRepository implements IEnrollmentRepository {
 
   async create(EnrollmentData: Enrollment): Promise<Enrollment> {
     try {
-      console.log("Attempting to create enrollment with data:", EnrollmentData);
       return await prisma.enrollment.create({ data: EnrollmentData });
     } catch (error) {
-      console.error("Error creating enrollment:", error);
-      console.error("Enrollment data:", EnrollmentData);
       ErrorHandler.handleError(error);
     }
   }

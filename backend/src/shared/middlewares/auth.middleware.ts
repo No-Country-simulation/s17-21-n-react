@@ -23,10 +23,10 @@ export const authMiddleware = async (
     const decoded = decodeJwt(token);
     const user = await prisma.user.findUnique({
       select: { id: true, role: { select: { name: true } } },
-      where : { id: (decoded as JwtPayload).userId }
+      where : { id: (decoded as JwtPayload).userId },
     });
-    if(!user)
-      errorResponse({
+    if (!user)
+      return errorResponse({
         res,
         status : HttpCodes.UNAUTHORIZED,
         message: "Invalid token",
@@ -35,7 +35,7 @@ export const authMiddleware = async (
     next();
   } catch (error: any) {
     console.log(error);
-    errorResponse({
+    return errorResponse({
       res,
       status : HttpCodes.UNAUTHORIZED,
       message: "Invalid token",

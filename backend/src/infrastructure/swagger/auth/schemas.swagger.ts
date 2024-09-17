@@ -3,7 +3,7 @@
 import { Schema } from "swagger-jsdoc";
 import {
   errorResponseSchema,
-  succesResponseSchema,
+  successResponseSchema,
 } from "../responses.swagger";
 const loginDataSchema: Schema = {
   type: "object",
@@ -23,6 +23,6 @@ const loginDataSchema: Schema = {
 };
 
 export const authSchemas = {
-  "Auth:Success": succesResponseSchema(loginDataSchema),
+  "Auth:Success": successResponseSchema(loginDataSchema),
   "Auth:Error": errorResponseSchema("Error login user"),
 };

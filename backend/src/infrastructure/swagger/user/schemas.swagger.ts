@@ -4,7 +4,7 @@ import { Schema } from "swagger-jsdoc";
 
 export const createUserSchema: Schema = {
   type: "object",
-  required: [ "email", "password", "name", "last_name", "dni", "roleId" ],
+  required: [ "email", "password", "name", "last_name", "dni", "roleId", "birthDate" ],
   properties: {
     email: {
       type: "string",
@@ -26,6 +26,17 @@ export const createUserSchema: Schema = {
       type: "string",
       description: "Documento Nacional de Identidad",
       example: "12345678",
+    },
+    phone: {
+      type: "string",
+      description: "Teléfono del usuario",
+      example: "1234567890",
+    },
+    birthDate: {
+      type: "string",
+      format: "date",
+      description: "Fecha de nacimiento del usuario",
+      example: "1990-01-01",
     },
     roleId: {
       type: "string",
@@ -68,6 +79,16 @@ const getUserSchema = {
     dni: {
       type: "string",
       example: "99999999",
+    },
+    phone: {
+      type: "string",
+      description: "Teléfono del usuario",
+      example: "1234567890",
+    },
+    birthDate: {
+      type: "string",
+      description: "Fecha de nacimiento del usuario",
+      example: "1990-01-01",
     },
     roleId: {
       type: "string",

@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { errorResponse, successResponse } from "../../../shared/utils";
 import { HttpCodes } from "../../../shared/utils/HTTPCode.utils";
 import { ISubjectService } from "../services/ISubject.service";
+import { FindSubjectOptions } from "../dto/subjectSelect.dto";
+import { SubjectCreate } from "../dto/subjectCreate.dto";
 
 export class SubjectController {
   private _subjectService: ISubjectService;
@@ -20,11 +22,6 @@ export class SubjectController {
     return errorResponse({ message: errorMessage, res, status });
   };
 
-  private parseQueryParams = (page?: string, size?: string) => ({
-    page: page ? parseInt(page, 10) : 1,
-    size: size ? parseInt(size, 10) : 10,
-  });
-
   private ERROR_MESSAGES = {
     CREATE   : "Ocurrió un error al crear la asignatura",
     DELETE   : "Ocurrió un error al eliminar la asignatura",
@@ -33,11 +30,26 @@ export class SubjectController {
     UPDATE   : "Ocurrió un error al actualizar la asignatura",
   };
 
+  private parseQueryParams = (query: Request["query"]) => {
+    const { page, size, sort, name, divisionId } = query;
+    const filter: FindSubjectOptions = {};
+    
+    if (typeof name === "string") 
+      filter.name = { contains: name, mode: "insensitive" };
+    
+    if (typeof divisionId === "string") filter.divisionId = divisionId;
+    return {
+      filter,
+      page: page ? parseInt(page as string, 10) : 1,
+      size: size ? parseInt(size as string, 10) : 10,
+      sort: sort ? { name: sort as "asc" | "desc" } : undefined,
+    };
+  };
+
   public getAllSubjects = async (req: Request, res: Response): Promise<void> => {
     try {
-      const { page, size } = this.parseQueryParams(req.query.page as string, req.query.size as string);
-      if (!req.user) throw new Error("Usuario no autenticado");
-      const subjects = await this._subjectService.getAllSubjects(page, size, req.user);
+      const { page, size, filter, sort } = this.parseQueryParams(req.query);
+      const subjects = await this._subjectService.getAllSubjects(page, size, filter, sort);
       successResponse({
         data   : subjects,
         message: "Asignaturas recuperadas exitosamente",
@@ -74,12 +86,13 @@ export class SubjectController {
   
   public createSubject = async (req: Request, res: Response): Promise<void> => {
     try {
-      const subject = await this._subjectService.create(req.body);
+      const data = req.body as SubjectCreate;
+      const subject = await this._subjectService.create(data);
       successResponse({
         data   : subject,
         message: "Asignatura creada exitosamente",
         res,
-        status : HttpCodes.SUCCESS,
+        status : HttpCodes.SUCCESS_CREATED,
       });
     } catch (error) {
       this.handleSubjectError(error, this.ERROR_MESSAGES.CREATE, res);
@@ -117,7 +130,7 @@ export class SubjectController {
       successResponse({
         message: "Asignatura eliminada exitosamente",
         res,
-        status : HttpCodes.SUCCESS,
+        status : HttpCodes.SUCCESS_DELETED,
       });
     } catch (error) {
       this.handleSubjectError(error, this.ERROR_MESSAGES.DELETE, res);

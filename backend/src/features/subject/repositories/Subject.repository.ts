@@ -1,6 +1,6 @@
 import { ISubjectRepository } from "./ISubject.repository";
 import prisma from "../../../infrastructure/database/prisma";
-import { Subject } from "@prisma/client";
+import { Prisma, Subject } from "@prisma/client";
 import { ErrorHandler } from "../../../shared/utils/ErrorHandler";
 
 export class SubjectRepository implements ISubjectRepository {
@@ -50,8 +50,11 @@ export class SubjectRepository implements ISubjectRepository {
     try {
       if (!subject) throw new Error("Data to create cannot be empty");
       return await prisma.subject.create({ data: subject });
-    } catch (error) {
-      ErrorHandler.handleError(error);
+    } catch (error: unknown) {
+      let message = error instanceof Error ? error.message : "Error desconocido";
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2003") 
+        message = "Asegúrese de que categoryId Y divisionId existan";
+      ErrorHandler.handleError(error, message);
     }
   }
   async update(id: string, subject: Subject): Promise<Subject> {

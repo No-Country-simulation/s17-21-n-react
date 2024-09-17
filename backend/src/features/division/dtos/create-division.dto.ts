@@ -1,4 +1,3 @@
-export interface CreateActivityDTO {
+export interface CreateDivisionDTO {
   name: string;
-  gradeId: string;
 }

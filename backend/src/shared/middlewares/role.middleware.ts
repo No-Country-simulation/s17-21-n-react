@@ -11,7 +11,7 @@ export const roleMiddleware = (allowedRoles:string[]) => {
   ) => {
     if(allowedRoles.includes(req.user?.role as string))
       next();
-    else   
-      errorResponse({ res, status: HttpCodes.FORBIDDEN,message: "Nope" });
+    else
+      return errorResponse({ res, status: HttpCodes.FORBIDDEN,message: "Nope" });
   };
 };

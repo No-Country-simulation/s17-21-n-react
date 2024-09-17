@@ -25,7 +25,7 @@ export class EnrollmentService implements IEnrollmentService {
     sort?: any
   ): Promise<Paginated<Enrollments>> {
     //return await this._enrollmentRepository.findMany(page, size, filter);
-    let queryFilter: any = {};
+    const queryFilter: any = {};
 
     if (filter) {
       if (filter.yearId) queryFilter.yearId = filter.yearId;

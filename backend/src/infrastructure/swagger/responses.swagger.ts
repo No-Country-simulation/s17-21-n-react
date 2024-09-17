@@ -2,7 +2,7 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 import { Schema } from "swagger-jsdoc";
 
-export const succesResponseSchema = (
+export const successResponseSchema = (
   dataDataSchema?: Schema,
   message?: string
 ) => {
