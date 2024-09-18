@@ -1,3 +1,5 @@
+/* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Paginated } from "../../../shared/interfaces/Paginated";
 import { Paginate } from "../../../shared/utils";
 import { Enrollments } from "../entities/enrollment.entity";

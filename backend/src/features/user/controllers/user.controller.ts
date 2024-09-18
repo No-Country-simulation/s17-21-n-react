@@ -111,4 +111,18 @@ export class UserController {
       return errorResponse({ message: "Internal server error", res, status: HttpCodes.INTERNAL_SERVER_ERROR });
     }
   }
+
+  async getUserProfile(req:Request, res:Response){
+    try {
+      console.log(req.user);
+      const profile = await this.userService.userProfile(req.user!.userId!);
+      return successResponse({ data: profile, res, status: HttpCodes.SUCCESS });
+    } catch (error) {
+      console.log(error);
+      if(error instanceof Error)
+        return errorResponse({ message: error.message, res, status: HttpCodes.BAD_REQUEST });
+      
+      return errorResponse({ message: "Internal server error", res, status: HttpCodes.INTERNAL_SERVER_ERROR });
+    }
+  }
 }

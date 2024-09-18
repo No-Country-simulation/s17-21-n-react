@@ -1,12 +1,56 @@
-import { ISubjectRepository } from "./ISubject.repository";
+import { ISubjectFindMany, ISubjectRepository } from "./ISubject.repository";
 import prisma from "../../../infrastructure/database/prisma";
 import { Prisma, Subject } from "@prisma/client";
 import { ErrorHandler } from "../../../shared/utils/ErrorHandler";
+import { Paginate } from "../../../shared/utils";
+import { Paginated } from "../../../shared/interfaces/Paginated";
 
 export class SubjectRepository implements ISubjectRepository {
-  async findMany(skip: number, take: number): Promise<Subject[]> {
+  private readonly includeOptions: Prisma.SubjectInclude = {
+    _count  : { select: { classes: true } },
+    category: { select: { id: true, name: true } },
+    division: { select: { id: true, name: true } },
+  };
+
+  async findMany({ page, pageSize, sort, filter }: ISubjectFindMany, user: {
+    userId?: string;
+    role?: string;
+  }): Promise<Paginated<Subject>> {
     try {
-      return await prisma.subject.findMany({ skip, take });
+      let whereClause: any = {};
+      switch (user.role) {
+      case "TEACHER":
+        whereClause = {
+          ...filter,
+          subjectTeachers: {
+            some: { teacherId: user.userId }
+          }
+        };
+        break;
+      case "STUDENT":
+        whereClause = { 
+          ...filter,
+          enrollments: {
+            some: { studentId: user.userId }
+          }
+        };
+        break;
+      case "ADMIN":
+        // Los administradores pueden ver todas las asignaturas
+        whereClause = filter;
+        break;
+      default:
+        throw new Error("Rol de usuario no válido");
+      }
+
+      return await Paginate<Subject>(
+        "subject",
+        page,
+        pageSize,
+        whereClause,
+        sort,
+        this.includeOptions
+      );
     } catch (error) {
       ErrorHandler.handleError(error);
     }
