@@ -2,6 +2,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useUserStore from "../../../store/auth";
 import { SidebarConfig } from "./config/sidebarConfig";
+import { showToast } from "../../utils/toast";
 
 export default function Sidebar({ isOpen, sidebarRef, userRole }) {
   const location = useLocation();
@@ -14,6 +15,7 @@ export default function Sidebar({ isOpen, sidebarRef, userRole }) {
   const handleLogout = () => {
     logout();
     navigate("/");
+    showToast("Vuelva Pronto!", "success");
   };
 
   return (
