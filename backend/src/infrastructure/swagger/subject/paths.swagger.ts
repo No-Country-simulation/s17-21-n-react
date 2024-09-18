@@ -51,6 +51,17 @@ const updateSubjectPath: PathItem = {
           type: "string",
         },
       },
+      {
+        description: "Operation to perform on the subjectTeachers array",
+        in: "query",
+        name: "operation",
+        required: true,
+        schema: {
+          enum: [ "add", "remove", "set" ],
+          type: "string",
+          description: "Operation to perform on the subjectTeachers array",
+        },
+      },
     ],
     requestBody: {
       content: {

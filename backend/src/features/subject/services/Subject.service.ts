@@ -4,7 +4,7 @@ import {  ISubjectRepository } from "../repositories/ISubject.repository";
 import { ISubjectService } from "./ISubject.service";
 import { Subject } from "@prisma/client";
 import { Paginated } from "../../../shared/interfaces/Paginated";
-import { SubjectCreate } from "../dto/subjectCreate.dto";
+import { SubjectCreate, SubjectTeachersOperations } from "../dto/subjectCreate.dto";
 import { IAcademicYearRepository } from "../../academic_year/repositories/Iacademic-year.repository";
 import { FindSubjectOptions } from "../dto/subjectSelect.dto";
 
@@ -52,8 +52,22 @@ export class SubjectService implements ISubjectService {
 
   async update(
     id: string,
-    data: Partial<SubjectEntity>
+    data: Partial<SubjectEntity> & { subjectTeachers?: SubjectTeachersOperations }
   ): Promise<SubjectEntity | null> {
+    const academicYear = await this._academicYearRepository.findLatest();
+    if (!academicYear) throw new Error("No academic year found");
+    if (data.subjectTeachers) {
+      const operations: (keyof SubjectTeachersOperations)[] = [ "add", "remove", "set" ];
+      operations.forEach(operation => {
+        const teachers = data.subjectTeachers?.[operation];
+        if (Array.isArray(teachers)) 
+          data.subjectTeachers![operation] = teachers.map(teacher => ({
+            academicYearId: academicYear.id,
+            subjectId: id,
+            teacherId: teacher.teacherId
+          })) as unknown as { teacherId: string; academicYearId: string; subjectId: string }[];
+      });
+    }
     return await this._subjectRepository.update(id, data);
   }
 

@@ -115,7 +115,20 @@ export class SubjectController {
   public updateSubject = async (req: Request, res: Response): Promise<void> => {
     try {
       const { id } = req.params;
+      const { operation } = req.query;
       const subject = req.body;
+      if (![ "add", "remove", "set" ].includes(operation as string)) {
+        errorResponse({
+          message: "Operación no válida",
+          res,
+          status : HttpCodes.BAD_REQUEST,
+        });
+        return;
+      }
+  
+      subject.subjectTeachers = {
+        [operation as string]: subject.subjectTeachers
+      };
       const updatedSubject = await this._subjectService.update(id, subject);
       if (!updatedSubject) {
         errorResponse({
