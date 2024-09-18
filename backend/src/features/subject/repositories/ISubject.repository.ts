@@ -3,6 +3,7 @@ import { FindSubjectOptions } from "../dto/subjectSelect.dto";
 import { Paginated } from "../../../shared/interfaces/Paginated";
 import { SubjectTeacherCreate } from "../dto/subjectCreate.dto";
 
+
 export interface ISubjectFindMany {
   filter?: FindSubjectOptions;
   page: number;
@@ -11,7 +12,6 @@ export interface ISubjectFindMany {
 }
 
 export interface ISubjectRepository {
-
   findMany(
     options: {
       page: number;
