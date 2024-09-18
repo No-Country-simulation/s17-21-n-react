@@ -12,6 +12,7 @@ import { subjectCategoryRouter } from "../../features/subject-category/routes/su
 import { activityRouter } from "../../features/activity/routes/activity.routes";
 import { divisionRouter } from "../../features/division/routes/division.routes";
 import { enrollmentRouter } from "../../features/enrollment/router/enrollment.router";
+import { subjectTeacherRouter } from "../../features/subject-teacher/routes/subject-teacher.routes";
 
 const router = Router();
 
@@ -29,5 +30,6 @@ router.use("/academic-year",academicYearRouter);
 router.use("/subject-category", subjectCategoryRouter);
 router.use("/activity", activityRouter);
 router.use("/division", divisionRouter);
+router.use("/subject-teacher", subjectTeacherRouter);
 
 export { router as mainRouter };
