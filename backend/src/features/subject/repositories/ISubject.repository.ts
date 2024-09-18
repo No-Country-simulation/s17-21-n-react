@@ -11,6 +11,7 @@ export interface ISubjectFindMany {
 }
 
 export interface ISubjectRepository {
+
   findMany(
     options: {
       page: number;

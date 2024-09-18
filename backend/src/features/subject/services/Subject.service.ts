@@ -1,12 +1,12 @@
 /* eslint-disable key-spacing */
 import { SubjectEntity } from "../entities/Subject.entity";
-import { ISubjectRepository } from "../repositories/ISubject.repository";
+import {  ISubjectRepository } from "../repositories/ISubject.repository";
 import { ISubjectService } from "./ISubject.service";
 import { Subject } from "@prisma/client";
 import { Paginated } from "../../../shared/interfaces/Paginated";
-import { FindSubjectOptions } from "../dto/subjectSelect.dto";
 import { SubjectCreate } from "../dto/subjectCreate.dto";
 import { IAcademicYearRepository } from "../../academic_year/repositories/Iacademic-year.repository";
+import { FindSubjectOptions } from "../dto/subjectSelect.dto";
 
 export class SubjectService implements ISubjectService {
   private readonly _subjectRepository: ISubjectRepository;

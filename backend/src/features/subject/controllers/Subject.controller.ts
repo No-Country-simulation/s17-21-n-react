@@ -62,6 +62,7 @@ export class SubjectController {
       }
 
       const subjects = await this._subjectService.getAllSubjects(page, size, filter, sort, user );
+
       successResponse({
         data   : subjects,
         message: "Asignaturas recuperadas exitosamente",
