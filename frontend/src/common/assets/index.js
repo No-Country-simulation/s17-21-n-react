@@ -90,6 +90,8 @@ import profile2 from "./images/profile2.webp";
 import profile3 from "./images/profile3.webp";
 import filter from "./icons/filter.svg";
 import reload from "./icons/reload.svg";
+import tickBox from "./icons/tickBox.svg";
+import edit from "./icons/edit.svg";
 
 export {
   facebook,
@@ -184,4 +186,6 @@ export {
   profile3,
   filter,
   reload,
+  tickBox,
+  edit,
 };
