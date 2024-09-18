@@ -12,7 +12,7 @@ const academicYearController = new AcademicYearController(academicYearService);
 
 router.get(
   "/",
-  [ authMiddleware, roleMiddleware([ "ADMIN" ]) ],
+  [ authMiddleware, roleMiddleware([ "ADMIN", "TEACHER", "STUDENT" ]) ],
   (req: Request, res: Response) => academicYearController.getAllAcademicYears(req, res)
 );
 
