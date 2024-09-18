@@ -58,7 +58,7 @@ const Attendance = () => {
   };
 
   return (
-    <div className="m-[-16px] min-h-[calc(100vh-64px)] flex flex-col justify-between items-end pb-4 pe-3">
+    <div className="m-[-16px] min-h-[calc(100vh-64px)] flex flex-col justify-between items-end">
       <div className="w-full">
         <div className="bg-gradient-to-r from-[#3440BFBF] to-[#181E59BF] p-4 mb-12 flex gap-4 items-center md:py-11">
           <img src={tickBox} alt="tick box" className="inline md:w-12 md:h-12" />
@@ -100,7 +100,9 @@ const Attendance = () => {
           )}
         </div>
       </div>
-      <Pagination />
+      <div className="pb-4 pe-3">
+        <Pagination />
+      </div>
     </div>
   );
 };
