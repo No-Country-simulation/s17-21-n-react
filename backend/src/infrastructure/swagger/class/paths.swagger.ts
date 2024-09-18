@@ -254,6 +254,14 @@ const classesGetPath:PathItem = {
         }
       },
       {
+        name: "sortBy",
+        in: "query",
+        description:"Attribute for sort",
+        schema: {
+          type: "string",
+        }
+      },
+      {
         name: "sort",
         in: "query",
         description:"asc or desc. By default, it's asc if orderBy is set and sort isn't",
