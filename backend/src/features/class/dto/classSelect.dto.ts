@@ -1,5 +1,5 @@
 export interface FindClassOptions {
-  name?: string;
+  name?: { contains: string; mode: "insensitive" | "default" };
   date?: Date;
   subjectId?: string;
   yearId?: string;

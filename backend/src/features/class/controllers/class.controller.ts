@@ -28,21 +28,30 @@ export class ClassController {
     return errorResponse({ message: errorMessage, res, status });
   };
 
-  private parseQueryParams = (page?: string, size?: string, sort?: string) => ({
-    page: page ? parseInt(page, 10) : 1,
-    size: size ? parseInt(size, 10) : 10,
-    sort: sort ? { [sort]: "asc" as const } : undefined,
-  });
+  private parseQueryParams = (query: Request["query"]) => {
+    const { page, size, sortBy, sort, date, divisionId, name, subjectId, yearId } = query;
+
+    const filter: FindClassOptions = {};
+
+    if (typeof name === "string") 
+      filter.name = { contains: name, mode: "insensitive" };
+
+    if (typeof date === "string") filter.date = new Date(date);
+    if (typeof divisionId === "string") filter.divisionId = divisionId;
+    if (typeof subjectId === "string") filter.subjectId = subjectId;
+    if (typeof yearId === "string") filter.yearId = yearId;
+
+    return {
+      filter,
+      page: page ? parseInt(page as string, 10) : 1,
+      size: size ? parseInt(size as string, 10) : 10,
+      sort: sortBy ? { [sortBy as string]: sort as "asc" | "desc" ?? "asc" } : undefined
+    };
+  };
 
   public getAllClasses = async (req: Request, res: Response) => {
     try {
-      const { page, size, sort } = this.parseQueryParams(
-        req.query.page as string,
-        req.query.size as string,
-        req.query.sort as string
-      );
-
-      const filter = req.query as unknown as FindClassOptions;
+      const { page, size, sort, filter } = this.parseQueryParams(req.query);
       
       const classes = await this._classService.getAllClasses(page, size, filter, sort);
       return successResponse({ data: classes, res });
@@ -56,10 +65,8 @@ export class ClassController {
     res: Response
   ) => {
     try {
-      const { page, size } = this.parseQueryParams(
-        req.query.page as string,
-        req.query.size as string
-      );
+      const { page, size } = this.parseQueryParams(req.query);
+
       const { teacherId } = req.params;
       const yearNum = parseInt(req.query.yearNum as string, 10) || 0;
 
