@@ -17,6 +17,7 @@ import { attendanceStudentPaths, attendanceStudentSchemas } from "./attendanceSt
 import { enrollmentPaths, enrollmentSchemas } from "./enrollments";
 import { subjectCategoryPaths, subjectCategorySchemas } from "./subject-category";
 import { divisionPaths, divisionSchemas } from "./division";
+import { activityPaths, activitySchemas } from "./activity";
 
 export const swaggerOptions: SwaggerOptions = {
   swaggerOptions: {
@@ -59,6 +60,7 @@ const options: swaggerJsdoc.OAS3Options = {
       ...attendancePaths,
       ...attendanceStudentPaths,
       ...enrollmentPaths,
+      ...activityPaths
     },
     components: {
       securitySchemes: {
@@ -83,6 +85,7 @@ const options: swaggerJsdoc.OAS3Options = {
         ...attendanceSchemas,
         ...attendanceStudentSchemas,
         ...enrollmentSchemas,
+        ...activitySchemas
       },
     },
   },
