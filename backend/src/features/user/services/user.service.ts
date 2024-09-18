@@ -1,10 +1,10 @@
 import { User } from "@prisma/client";
-import { SystemBaseRoles } from "../../../shared/constants";
+import { SystemBaseRoles, SystemGenders } from "../../../shared/constants";
 import { comparePassword, hashPassword } from "../../../shared/utils";
 import generatePassword from "../../../shared/utils/generatePassword.utils";
 import { RoleRepository } from "../../role/repositories/role.repository";
 import { RegisterUserDto } from "../dtos/create.dto";
-import { FilterUsers, FindUsersOptionsDto, orders, SelectUserDto } from "../dtos/select.dto";
+import { FilterUsers, FindUsersOptionsDto, orders, SelectUserDto, UserProfileDto } from "../dtos/select.dto";
 import { UpdateEmailDto, UpdatePasswordDto, UpdateUserDataDto } from "../dtos/update.dto";
 import { UserRepository } from "../repositories/user.repository";
 import { Paginated } from "../../../shared/interfaces/Paginated";
@@ -18,6 +18,11 @@ export class UserService {
   async createUser(dto: RegisterUserDto) {
     const existingRole = await this.roleRepository.findById(dto.roleId);
     if (!existingRole) throw Error("Role does not exists");
+
+    if(dto.gender)
+      this.validateGenderOrThrow(dto.gender);
+
+    dto.gender = SystemGenders.OTHER;
 
     await this.validateDniOrThrow(dto.dni);
     await this.validateEmailOrThrow(dto.email);
@@ -36,6 +41,10 @@ export class UserService {
     dto: UpdateUserDataDto
   ): Promise<SelectUserDto> {
     const existingUser = await this.getUserByIdOrThrow(userId, true);
+    console.log(dto);
+    if(dto.gender)
+      this.validateGenderOrThrow(dto.gender);
+
     if (dto.roleId) {
       const existingRole = await this.roleRepository.findById(dto.roleId);
       if (!existingRole) throw Error("Role does not exists");
@@ -101,7 +110,7 @@ export class UserService {
 
     const users = await this.userRepository.findUsersAndCount(filterOptions);
     const usersData =  users.data.map((user) => {
-      return { ...user, password: undefined, role: user.role.name };
+      return { ...user, gender: user.gender as SystemGenders, password: undefined, role: user.role.name };
     });
     return {
       content: usersData,
@@ -153,6 +162,20 @@ export class UserService {
     return true;
   }
 
+  async userProfile(userId:string): Promise<UserProfileDto>{
+    const user = await this.getUserByIdOrThrow(userId, true);
+    const userProfile = {
+      ...user,
+      createdAt: undefined,
+      deletedAt: undefined,
+      isActive : undefined,
+      password : undefined,
+      roleId   : undefined,
+      updatedAt: undefined
+    } as UserProfileDto;
+    return userProfile;
+  }
+
   private async validateDniOrThrow(userDni?: string, userId?: string) {
     if (userDni) {
       const existingDni = await this.userRepository.findUserByDni(userDni);
@@ -169,5 +192,10 @@ export class UserService {
       if (userId && existingEmail && existingEmail.id === userId) return;
       if (existingEmail) throw Error("Email already in use");
     }
+  }
+
+  private validateGenderOrThrow(toValidate:string) {
+    if(!Object.values(SystemGenders).includes(toValidate as SystemGenders))
+      throw Error("Gender not valid");
   }
 }

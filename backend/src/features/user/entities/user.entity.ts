@@ -1,3 +1,5 @@
+import { SystemGenders } from "../../../shared/constants";
+
 export interface User {
     id: string;
     email: string;
@@ -7,6 +9,7 @@ export interface User {
     dni: string;
     phone?: string;
     birthDate : Date; 
+    gender: SystemGenders
     roleId: string;
     isActive: boolean;
     createdAt: Date;

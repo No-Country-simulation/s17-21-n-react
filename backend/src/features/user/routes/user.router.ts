@@ -44,6 +44,9 @@ userRouter.get(
   (req: Request, res: Response) => userController.getUsers(req, res)
 );
 
+userRouter.get("/profile", [ authMiddleware ], (req: Request, res: Response) =>
+  userController.getUserProfile(req, res) );
+
 userRouter.patch("/password", [ authMiddleware ], (req: Request, res: Response) =>
   userController.updatePassword(req, res)
 );
