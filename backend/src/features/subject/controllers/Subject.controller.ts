@@ -49,7 +49,7 @@ export class SubjectController {
   public getAllSubjects = async (req: Request, res: Response): Promise<void> => {
     try {
       const { page, size, filter, sort } = this.parseQueryParams(req.query);
-      const subjects = await this._subjectService.getAllSubjects(page, size, filter, sort);
+      const subjects = await this._subjectService.getAllSubjects({ filter, page, pageSize: size, sort }, req.user!);
       successResponse({
         data   : subjects,
         message: "Asignaturas recuperadas exitosamente",

@@ -12,7 +12,7 @@ const subjectController = new SubjectController(subjectService);
 
 router.get(
   "/",
-  [ authMiddleware, roleMiddleware([ "ADMIN", "TEACHER" ]) ],
+  [ authMiddleware, roleMiddleware([ "ADMIN", "TEACHER", "STUDENT" ]) ],
   (req: Request, res: Response) => subjectController.getAllSubjects(req, res)
 );
 
