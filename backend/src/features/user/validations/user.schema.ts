@@ -1,10 +1,12 @@
 import { z } from "zod";
 import { User } from "../entities/user.entity";
+import { SystemGenders } from "../../../shared/constants";
 
 export const registerUserSchema = z.object({
   birthDate: z.string().optional(),
   dni      : z.string().max(56),
   email    : z.string().email(),
+  gender   : z.nativeEnum(SystemGenders).optional(),
   lastName : z.string().min(1, "Last Name is required").max(256, "Too large"),
   name     : z.string().min(1, "Name is required").max(256, "Too large"),
   phone    : z.string().optional(),

@@ -1,3 +1,5 @@
+import { SystemGenders } from "../../../shared/constants";
+
 export interface UpdateUserDto {
     email?: string;
     password?: string;
@@ -6,6 +8,7 @@ export interface UpdateUserDto {
     dni?: string;
     phone?: string;
     birthDate?: Date;
+    gender?: SystemGenders;
     roleId?: string;
     isActive?: boolean;
     updatedAt?: Date;

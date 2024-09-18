@@ -20,8 +20,9 @@ model User {
   name               String              @db.VarChar(128)
   lastName           String              @db.VarChar(128)
   dni                String              @db.VarChar(56)
-  phone              String              @db.VarChar(128) @default("sin teléfono")
+  phone              String              @default("sin teléfono") @db.VarChar(128)
   birthDate          DateTime            @default(now())
+  gender             Gender              @default(OTHER)
   role               Role                @relation(fields: [roleId], references: [id])
   roleId             String
   isActive           Boolean             @default(true)
@@ -31,6 +32,12 @@ model User {
   enrollments        Enrollment[]
   subjectTeachers    SubjectTeacher[]
   attendanceStudents AttendanceStudent[]
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
 }
 
 model Role {
