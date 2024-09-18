@@ -5,7 +5,7 @@ import { ErrorHandler } from "../../../shared/utils/ErrorHandler";
 import { Paginate } from "../../../shared/utils";
 import { Paginated } from "../../../shared/interfaces/Paginated";
 import { FindSubjectOptions } from "../dto/subjectSelect.dto";
-import { SubjectTeacherCreate } from "../dto/subjectCreate.dto";
+import { SubjectTeacherCreate, SubjectTeachersOperations } from "../dto/subjectCreate.dto";
 import { SystemBaseRoles } from "../../../shared/constants";
 
 export class SubjectRepository implements ISubjectRepository {
@@ -15,11 +15,11 @@ export class SubjectRepository implements ISubjectRepository {
     category       : { select: { id: true, name: true } },
     division       : { select: { id: true, name: true } },
     subjectTeachers: {
-      select: { id: true, teacher: { select: { id: true, name: true } } },
+      select: { id: true, teacher: { select: { id: true, lastName: true, name: true } } },
     },
   };
 
-  private buildWhereClause(filter: FindSubjectOptions, user: { userId?: string; role?: string }): any {
+  private buildWhereClause(filter: FindSubjectOptions, user: { userId?: string; role?: string }): Prisma.SubjectWhereInput	 {
     switch (user.role) {
     case "TEACHER":
       return {
@@ -112,9 +112,71 @@ export class SubjectRepository implements ISubjectRepository {
     }
   }
 
-  async update(id: string, subject: Subject): Promise<Subject> {
+  private buildSubjectTeachersUpdateData(subjectTeachers: SubjectTeachersOperations): Prisma.SubjectTeacherUpdateManyWithoutSubjectNestedInput {
+    const updateData: Prisma.SubjectTeacherUpdateManyWithoutSubjectNestedInput = {};
+
+    if (subjectTeachers.add) 
+      updateData.create = subjectTeachers.add.map(st => ({
+        academicYear: { connect: { id: st.academicYearId } },
+        teacher     : { connect: { id: st.teacherId } }
+      }));
+  
+
+    if (subjectTeachers.remove) 
+      updateData.deleteMany = {
+        OR: subjectTeachers.remove.map(teacher => ({
+          subjectId: teacher.subjectId,
+          teacherId: teacher.teacherId,
+          yearId   : teacher.academicYearId
+        }))
+      };
+
+    if (subjectTeachers.set) {
+      updateData.deleteMany = {};
+      updateData.create = subjectTeachers.set.map(st => ({
+        academicYear: { connect: { id: st.academicYearId } },
+        teacher     : { connect: { id: st.teacherId } }
+      }));
+    }
+
+    return updateData;
+  }
+
+  async update(id: string, subject: Omit<Partial<Subject>, "subjectTeachers"> & { subjectTeachers?: SubjectTeachersOperations }): Promise<Subject> {
     try {
-      return await prisma.subject.update({ data: subject, where: { id } });
+      const updated = { ...subject } as Prisma.SubjectUpdateInput;
+
+      if (subject.subjectTeachers) {
+        const currentSubject = await prisma.subject.findUnique({
+          include: { subjectTeachers: true },
+          where  : { id }
+        });
+
+        if (!currentSubject) 
+          throw new Error("Asignatura no encontrada");
+
+        if (subject.subjectTeachers.add) {
+          const newTeachers = subject.subjectTeachers.add.filter(newTeacher => 
+            !currentSubject.subjectTeachers.some(
+              currentTeacher => 
+                currentTeacher.teacherId === newTeacher.teacherId &&
+                currentTeacher.yearId === newTeacher.academicYearId
+            )
+          );
+          if (newTeachers.length === 0) 
+            throw new Error("Todos los profesores ya están asignados a esta asignatura");
+          
+          subject.subjectTeachers.add = newTeachers;
+        }
+
+        updated.subjectTeachers = this.buildSubjectTeachersUpdateData(subject.subjectTeachers);
+      }
+
+      return await prisma.subject.update({ 
+        data   : updated, 
+        include: this.includeOptions, 
+        where  : { id } 
+      });
     } catch (error) {
       ErrorHandler.handleError(error);
     }

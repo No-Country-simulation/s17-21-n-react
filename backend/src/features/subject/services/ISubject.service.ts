@@ -1,6 +1,6 @@
 import { Subject } from "@prisma/client";
 import { Paginated } from "../../../shared/interfaces/Paginated";
-import { SubjectCreate } from "../dto/subjectCreate.dto";
+import { SubjectCreate, SubjectTeachersOperations } from "../dto/subjectCreate.dto";
 import { SubjectEntity } from "../entities/Subject.entity";
 import { FindSubjectOptions } from "../dto/subjectSelect.dto";
 
@@ -17,7 +17,8 @@ export interface ISubjectService {
   create(subject: SubjectCreate): Promise<SubjectEntity>;
   update(
     id: string,
-    classData: Partial<SubjectEntity>
+    classData: Partial<SubjectEntity> & { subjectTeachers?: SubjectTeachersOperations }
+
   ): Promise<SubjectEntity | null>;
   delete(id: string): Promise<void>;
 }

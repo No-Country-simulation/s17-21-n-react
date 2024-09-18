@@ -60,6 +60,7 @@ export const updateSubjectSchema: Schema = {
   },
   required: [
     "id",
+    "operation",
   ],
   type: "object",
 };
@@ -112,8 +113,9 @@ export const getSubjectSchema: Schema = {
         {
           id     : "933e9ea3-cbd2-45d3-8bd3-90f341e2fb26",
           teacher: {
-            id  : "933e9ea3-cbd2-45d3-8bd3-90f341e2fb26",
-            name: "Juan Pérez",
+            id      : "933e9ea3-cbd2-45d3-8bd3-90f341e2fb26",
+            lastName: "García",
+            name    : "Juan Pérez",
           },
         },
       ],

@@ -1,7 +1,7 @@
 import { Subject } from "@prisma/client";
 import { FindSubjectOptions } from "../dto/subjectSelect.dto";
 import { Paginated } from "../../../shared/interfaces/Paginated";
-import { SubjectTeacherCreate } from "../dto/subjectCreate.dto";
+import { SubjectTeacherCreate, SubjectTeachersOperations } from "../dto/subjectCreate.dto";
 
 
 export interface ISubjectFindMany {
@@ -24,7 +24,7 @@ export interface ISubjectRepository {
   findById(id: string): Promise<Subject | null>;
   findByName(name: string): Promise<Subject | null>;
   create(subject: Subject, subjectTeachers: SubjectTeacherCreate[], yearId: string): Promise<Subject>;
-  update(id: string, data: Partial<Subject>): Promise<Subject | null>;
+  update(id: string, data: Partial<Subject> & { subjectTeachers?: SubjectTeachersOperations }): Promise<Subject | null>;
   delete(id: string): Promise<Subject>;
   count(): Promise<number>;
 }
