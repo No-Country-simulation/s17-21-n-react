@@ -1,11 +1,9 @@
 /* eslint-disable key-spacing */
 import { SubjectEntity } from "../entities/Subject.entity";
-import { ISubjectRepository } from "../repositories/ISubject.repository";
+import { ISubjectFindMany, ISubjectRepository } from "../repositories/ISubject.repository";
 import { ISubjectService } from "./ISubject.service";
-import { Paginate } from "../../../shared/utils/paginate";
-import { Prisma, Subject } from "@prisma/client";
+import { Subject } from "@prisma/client";
 import { Paginated } from "../../../shared/interfaces/Paginated";
-import { FindSubjectOptions } from "../dto/subjectSelect.dto";
 import { SubjectCreate } from "../dto/subjectCreate.dto";
 
 export class SubjectService implements ISubjectService {
@@ -15,21 +13,11 @@ export class SubjectService implements ISubjectService {
     this._subjectRepository = subjectRepository;
   }
 
-  private readonly includeOptions: Prisma.SubjectInclude = {
-    _count: { select: { classes: true } },
-    category: { select: { id: true, name: true } },
-    division: { select: { id: true, name: true } },
-  };
-
-  async getAllSubjects(page = 1, pageSize = 10, filter: FindSubjectOptions, sort: Record<string, "asc" | "desc">): Promise<Paginated<Subject>> {
-    return await Paginate<Subject>(
-      "subject",
-      page,
-      pageSize,
-      filter,
-      sort,
-      this.includeOptions
-    );
+  async getAllSubjects(args: ISubjectFindMany, user: {
+    userId?: string;
+    role?: string;
+  }): Promise<Paginated<Subject>> {
+    return await this._subjectRepository.findMany(args, user);
   }
 
   async getSubjectById(id: string): Promise<SubjectEntity | null> {

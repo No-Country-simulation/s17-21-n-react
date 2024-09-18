@@ -1,21 +1,35 @@
-import { ISubjectRepository } from "./ISubject.repository";
+import { ISubjectFindMany, ISubjectRepository } from "./ISubject.repository";
 import prisma from "../../../infrastructure/database/prisma";
 import { Prisma, Subject } from "@prisma/client";
 import { ErrorHandler } from "../../../shared/utils/ErrorHandler";
+import { Paginate } from "../../../shared/utils";
+import { Paginated } from "../../../shared/interfaces/Paginated";
 
 export class SubjectRepository implements ISubjectRepository {
-  async findMany(skip: number, take: number, user: {
+  private readonly includeOptions: Prisma.SubjectInclude = {
+    _count  : { select: { classes: true } },
+    category: { select: { id: true, name: true } },
+    division: { select: { id: true, name: true } },
+  };
+
+  async findMany({ page, pageSize, sort, filter }: ISubjectFindMany, user: {
     userId?: string;
     role?: string;
-  }): Promise<Subject[]> {
+  }): Promise<Paginated<Subject>> {
     try {
       let whereClause: any = {};
       switch (user.role) {
       case "TEACHER":
-        whereClause = { teacherId: user.userId };
+        whereClause = {
+          ...filter,
+          subjectTeachers: {
+            some: { teacherId: user.userId }
+          }
+        };
         break;
       case "STUDENT":
         whereClause = { 
+          ...filter,
           enrollments: {
             some: { studentId: user.userId }
           }
@@ -23,11 +37,20 @@ export class SubjectRepository implements ISubjectRepository {
         break;
       case "ADMIN":
         // Los administradores pueden ver todas las asignaturas
+        whereClause = filter;
         break;
       default:
         throw new Error("Rol de usuario no válido");
       }
-      return await prisma.subject.findMany({ skip, take, where: whereClause });
+
+      return await Paginate<Subject>(
+        "subject",
+        page,
+        pageSize,
+        whereClause,
+        sort,
+        this.includeOptions
+      );
     } catch (error) {
       ErrorHandler.handleError(error);
     }

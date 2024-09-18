@@ -1,14 +1,18 @@
-import { PageSubject } from "../dto/PageSubject";
+import { Subject } from "@prisma/client";
+import { Paginated } from "../../../shared/interfaces/Paginated";
 import { SubjectCreate } from "../dto/subjectCreate.dto";
-import { FindSubjectOptions } from "../dto/subjectSelect.dto";
 import { SubjectEntity } from "../entities/Subject.entity";
+import { ISubjectFindMany } from "../repositories/ISubject.repository";
 
 export interface ISubjectService {
   /*getAllSubjects(page: number, size: number, user: {
     userId?: string;
     role?: string;
   }): Promise<PageSubject>;*/
-  getAllSubjects(page: number, size: number, filter?: FindSubjectOptions, sort?: Record<string, "asc" | "desc">): Promise<PageSubject>;
+  getAllSubjects(args: ISubjectFindMany, user: {
+    userId?: string;
+    role?: string;
+  }): Promise<Paginated<Subject>>;
   getSubjectById(id: string): Promise<SubjectEntity | null>;
   getSubjectByName(name: string): Promise<SubjectEntity | null>;
   create(subject: SubjectCreate): void;
