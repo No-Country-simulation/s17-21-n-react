@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { edit, tickBox } from "../../common/assets";
 import { attendancePerClass, classes } from "../data/attendance";
@@ -84,7 +85,7 @@ const Attendance = () => {
           </div>
         </div>
 
-        <div className="px-8 mt-8">
+        <div className="px-4 mt-8">
           {!selectedClass ? (
             "No seleccionaste ninguna clase"
           ) : (

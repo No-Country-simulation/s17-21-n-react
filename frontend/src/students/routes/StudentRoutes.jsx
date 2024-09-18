@@ -10,7 +10,7 @@ const studentRoutes = [
   { path: "courses", element: <CoursesByStudent /> },
   { path: "courses/:id/classes", element: <ActivitiesList /> },
   { path: "settings", element: <MyProfile /> },
-  { path:"attendance", element: <Attendance /> }
+  { path: "attendance", element: <Attendance /> },
 
   // Otras rutas específicas para estudiantes
 ];
