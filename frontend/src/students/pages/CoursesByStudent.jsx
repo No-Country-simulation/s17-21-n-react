@@ -34,22 +34,29 @@ export default function CoursesByStudent() {
         <p className="text-red-500">{error}</p>
       ) : (
         <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {courses.map((course) => (
-            <li key={course.id}>
-              <CardCourse
-                courseId={course.id || 1}
-                name={course.name || "Curso sin nombre"}
-                code={course.code || "12345"}
-                description={course.description || "Descripción no disponible"}
-                image={course.image || "/course_cover.webp"}
-                category={course.category?.name || "Sin categoría"}
-                rating={course.rating || 4.5}
-                reviews={course.reviews || 0}
-                lessons={course.lessons || 0}
-                teacher={course.teacher || "Docente no disponible"}
-              />
-            </li>
-          ))}
+          {courses.map((course) => {
+            const teacher =
+              course.subjectTeachers?.[0]?.teacher?.name +
+                " " +
+                course.subjectTeachers?.[0]?.teacher?.lastName || "Docente no disponible";
+
+            return (
+              <li key={course.id}>
+                <CardCourse
+                  courseId={course.id || 1}
+                  name={course.name || "Curso sin nombre"}
+                  code={course.code || "12345"}
+                  description={course.description || "Descripción no disponible"}
+                  image={course.image || "/course_cover.webp"}
+                  category={course.category?.name || "Sin categoría"}
+                  rating={course.rating || 4.5}
+                  reviews={course.reviews || 12}
+                  lessons={course._count.classes || 0}
+                  teacher={teacher}
+                />
+              </li>
+            );
+          })}
         </ul>
       )}
 

@@ -8,24 +8,24 @@ import { evaluationStatistics, exampleTaskData } from "../../teachers/data/dashb
 const DashboardAdmin = () => {
   return (
     <div className="container bg-white">
-    <DashboardSummary />
-    <section className="bg-white my-7 grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <AttendanceCardSVG />
-      <EvaluationStatisticsSVG data={evaluationStatistics} />
-      <LineChartSVG data={exampleTaskData} />
-    </section>
+      <DashboardSummary />
+      <section className="bg-white my-7 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <AttendanceCardSVG />
+        <EvaluationStatisticsSVG data={evaluationStatistics} />
+        <LineChartSVG data={exampleTaskData} />
+      </section>
 
-    <section>
-      <ActivityOverview />
-    </section>
+      <section>
+        <ActivityOverview />
+      </section>
 
-    <footer className="text-center mt-8 border-t-2 pt-4">
-      <p className="text-sm">
-        © {new Date().getFullYear()} EducaPro, Todos los derechos reservados. Equipo:
-        s17-n-react-node
-      </p>
-    </footer>
-  </div>
+      <footer className="text-center mt-8 border-t-2 pt-4">
+        <p className="text-sm">
+          © {new Date().getFullYear()} EducaPro, Todos los derechos reservados. Equipo:
+          s17-n-react-node
+        </p>
+      </footer>
+    </div>
   );
 };
 
