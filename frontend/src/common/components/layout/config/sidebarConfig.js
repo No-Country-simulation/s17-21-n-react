@@ -20,7 +20,7 @@ const commonRoutes = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/dashboard" },
   { icon: BookOpen, label: "Cursos", path: "/courses" },
   { icon: ClipboardList, label: "Calificaciones", path: "/grades" },
-  { icon: Calendar, label: "Calendario", path: "/calendar", notification: 1 },
+  { icon: Calendar, label: "Calendario", path: "/calendar" },
   { icon: MessageSquare, label: "Comunicación", path: "/communication" },
 ];
 
@@ -38,7 +38,10 @@ const roleSpecificRoutes = {
     { icon: GraduationCap, label: "Alumnos", path: "/students" },
     { icon: Settings, label: "Configuración", path: "/settings" },
   ],
-  student: [{ icon: Settings, label: "Configuración", path: "/settings" }],
+  student: [
+    { icon: UserCheck, label: "Reporte de Asistencias", path: "/attendance" },
+    { icon: Settings, label: "Configuración", path: "/settings" },
+  ],
 };
 
 export const SidebarConfig = Object.fromEntries(
