@@ -1,6 +1,7 @@
 import { Subject } from "@prisma/client";
 import { FindSubjectOptions } from "../dto/subjectSelect.dto";
 import { Paginated } from "../../../shared/interfaces/Paginated";
+import { SubjectTeacherCreate } from "../dto/subjectCreate.dto";
 
 export interface ISubjectFindMany {
   filter?: FindSubjectOptions;
@@ -10,13 +11,18 @@ export interface ISubjectFindMany {
 }
 
 export interface ISubjectRepository {
-  findMany(args: ISubjectFindMany, user: {
-    userId?: string;
-    role?: string;
-  }): Promise<Paginated<Subject>>;
+  findMany(
+    options: {
+      page: number;
+      pageSize: number;
+      filter: FindSubjectOptions;
+      sort: Record<string, "asc" | "desc">;
+    },
+    user: { userId?: string; role?: string }
+  ): Promise<Paginated<Subject>>;
   findById(id: string): Promise<Subject | null>;
   findByName(name: string): Promise<Subject | null>;
-  create(subject: Subject): Promise<Subject>;
+  create(subject: Subject, subjectTeachers: SubjectTeacherCreate[], yearId: string): Promise<Subject>;
   update(id: string, data: Partial<Subject>): Promise<Subject | null>;
   delete(id: string): Promise<Subject>;
   count(): Promise<number>;

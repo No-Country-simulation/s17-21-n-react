@@ -28,6 +28,19 @@ export const createSubjectSchema: Schema = {
       example: "08:00",
       type   : "string",
     },
+    subjectTeachers: {
+      items: {
+        properties: {
+          teacherId: {
+            example: "933e9ea3-cbd2-45d3-8bd3-90f341e2fb26",
+            format : "uuid",
+            type   : "string",
+          },
+        },
+        type: "object",
+      },
+      type: "array",
+    },
   },
   required: [
     "name",
@@ -36,6 +49,7 @@ export const createSubjectSchema: Schema = {
     "scheduleEnd",
     "divisionId",
     "categoryId",
+    "subjectTeachers",
   ],
   type: "object",
 };
@@ -92,6 +106,18 @@ export const getSubjectSchema: Schema = {
     scheduleInit: {
       example: "08:00",
       type   : "string",
+    },
+    subjectTeachers: {
+      example: [
+        {
+          id     : "933e9ea3-cbd2-45d3-8bd3-90f341e2fb26",
+          teacher: {
+            id  : "933e9ea3-cbd2-45d3-8bd3-90f341e2fb26",
+            name: "Juan Pérez",
+          },
+        },
+      ],
+      type: "array",
     },
   },
   type: "object",

@@ -3,11 +3,13 @@ import { SubjectRepository } from "../repositories/Subject.repository";
 import { SubjectService } from "../services/Subject.service";
 import { SubjectController } from "../controllers/Subject.controller";
 import { authMiddleware, roleMiddleware } from "../../../shared/middlewares";
+import { AcademicYearRepository } from "../../academic_year/repositories/academic-year.repository";
 
 const router = Router();
 
 const subjectRepository = new SubjectRepository();
-const subjectService = new SubjectService(subjectRepository);
+const academicYearRepository = new AcademicYearRepository();
+const subjectService = new SubjectService(subjectRepository, academicYearRepository);
 const subjectController = new SubjectController(subjectService);
 
 router.get(

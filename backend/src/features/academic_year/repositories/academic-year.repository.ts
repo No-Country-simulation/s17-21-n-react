@@ -23,6 +23,14 @@ export class AcademicYearRepository implements IAcademicYearRepository {
     }
   }
 
+  async findLatest(): Promise<AcademicYear | null> {
+    try {
+      return await prisma.academicYear.findFirst({ orderBy: { year: "desc" } });
+    } catch (error) {
+      ErrorHandler.handleError(error);
+    }
+  }
+
   async create(academicYearData: AcademicYear): Promise<AcademicYear> {
     try {
       const existingAcademicYear = await prisma.academicYear.findFirst({
