@@ -1,6 +1,6 @@
 import { RequiredKeys } from "@prisma/client/runtime/library";
 import { AttendanceRepository, AttendanceStudentRepository, EnrollmentRepository, ClassRepository } from "../repositories";
-import { validateRequiredKeys } from "../../../shared/utils";
+import { formatDate, validateRequiredKeys } from "../../../shared/utils";
 import { CreateAttendanceStudentDto, GetSertAttendanceDto, UpdateAttendanceDto } from "../dtos";
 import { AttendanceStatusEnum, AttendanceStudentStatusEnum, ReturnAttendance, ReturnAttendanceStudent } from "../entities";
 
@@ -29,7 +29,7 @@ export class AttendanceService {
 
     const { classId, eventDate } = data;
 
-    const dateParsed = new Date(eventDate);
+    const dateParsed = formatDate(eventDate);
     dateParsed.setHours(0, 0, 0, 0);
 
     let attendance = await this.attendanceRepository.findFirst({
@@ -57,8 +57,8 @@ export class AttendanceService {
 
     const enrollments = await this.enrollmentRepository.findWithStudents(
       {
-        divisionId: firstClass.divisionId,
-        subjectId : firstClass.subjectId
+        subjectId: firstClass.subjectId,
+        yearId   : firstClass.yearId
       },
       { studentId: true }
     );
