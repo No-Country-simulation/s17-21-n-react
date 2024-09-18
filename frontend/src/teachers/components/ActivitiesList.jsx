@@ -52,8 +52,19 @@ export default function ActivitiesList() {
   };
 
   useEffect(() => {
+    const fetchClasses = async () => {
+      try {
+        const fetchedClasses = await getAllClassesBySubject(id);
+        setClasses(fetchedClasses);
+      } catch (error) {
+        console.error("Error al cargar las clases:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchClasses();
-  });
+  }, [id]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
