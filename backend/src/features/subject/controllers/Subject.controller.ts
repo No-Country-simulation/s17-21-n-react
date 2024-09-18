@@ -3,7 +3,6 @@ import { errorResponse, successResponse } from "../../../shared/utils";
 import { HttpCodes } from "../../../shared/utils/HTTPCode.utils";
 import { ISubjectService } from "../services/ISubject.service";
 import { FindSubjectOptions } from "../dto/subjectSelect.dto";
-import { SubjectCreate } from "../dto/subjectCreate.dto";
 
 export class SubjectController {
   private _subjectService: ISubjectService;
@@ -31,13 +30,16 @@ export class SubjectController {
   };
 
   private parseQueryParams = (query: Request["query"]) => {
-    const { page, size, sort, name, divisionId } = query;
+    const { page, size, sort, name, divisionId, teacherId, categoryId } = query;
     const filter: FindSubjectOptions = {};
     
     if (typeof name === "string") 
       filter.name = { contains: name, mode: "insensitive" };
     
     if (typeof divisionId === "string") filter.divisionId = divisionId;
+    if (typeof categoryId === "string") filter.categoryId = categoryId;
+    if (typeof teacherId === "string") filter.subjectTeachers = { some: { teacherId } };
+
     return {
       filter,
       page: page ? parseInt(page as string, 10) : 1,
@@ -49,7 +51,18 @@ export class SubjectController {
   public getAllSubjects = async (req: Request, res: Response): Promise<void> => {
     try {
       const { page, size, filter, sort } = this.parseQueryParams(req.query);
-      const subjects = await this._subjectService.getAllSubjects({ filter, page, pageSize: size, sort }, req.user!);
+      const user = req.user;
+      if (!user || !user.role) {
+        errorResponse({
+          message: "No se proporcionó un usuario válido",
+          res,
+          status : HttpCodes.UNAUTHORIZED,
+        });
+        return;
+      }
+
+      const subjects = await this._subjectService.getAllSubjects(page, size, filter, sort, user );
+
       successResponse({
         data   : subjects,
         message: "Asignaturas recuperadas exitosamente",
@@ -83,10 +96,10 @@ export class SubjectController {
       this.handleSubjectError(error, this.ERROR_MESSAGES.FETCH, res);
     }
   };
-  
+   
   public createSubject = async (req: Request, res: Response): Promise<void> => {
     try {
-      const data = req.body as SubjectCreate;
+      const data = req.body; 
       const subject = await this._subjectService.create(data);
       successResponse({
         data   : subject,

@@ -168,6 +168,15 @@ const subjectGetPath: PathItem = {
         },
       },
       {
+        description: "Teacher id",
+        in: "query",
+        name: "teacherId",
+        required: false,
+        schema: {
+          type: "string",
+        },
+      },
+      {
         description: "Division id",
         in: "query",
         name: "divisionId",
