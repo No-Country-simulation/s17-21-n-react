@@ -146,14 +146,18 @@ const findManyEnrollmentPath: PathItem = {
       },
       ...defaultErrorResponseSchemas()
     },
+    security: [
+      {
+        bearerAuth: []
+      }
+    ],
     summary: "Find many enrollments.",
     tags   : [ "Enrollment" ],
   },
 };
 
 export const enrollmentPaths = {
-  "/enrollment"               : createEnrollmentPath,
-  "/enrollment/all"           : findManyEnrollmentPath,
+  "/enrollment"               : { ...findManyEnrollmentPath, ...createEnrollmentPath },
   "/enrollment/{enrollmentId}": {
     ...updateEnrollmentPath
   }
