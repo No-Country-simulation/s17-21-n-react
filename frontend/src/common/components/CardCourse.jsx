@@ -76,7 +76,7 @@ export default function CardCourse({
             <Link to={`${courseId}/classes`}>
               <button className="w-full justify-center font-semibold border border-blue-500 text-blue-500 lg:px-4 py-2 rounded hover:bg-blue-50 flex items-center gap-2">
                 <BookOpen className="h-4 w-4" />
-                Ver Actividades
+                Ver clases
               </button>
             </Link>
 
