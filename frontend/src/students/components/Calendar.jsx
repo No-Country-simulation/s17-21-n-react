@@ -55,7 +55,7 @@ const events = [
     },
   },
   {
-    title: "Entrega de Proyecto Final",
+    title: "Entrega de Trabajo Práctico #2",
     start: dayjs("2024-09-20T08:00:00-05:00").toDate(),
     end: dayjs("2024-09-20T17:30:00-05:00").toDate(),
     data: {
@@ -79,7 +79,7 @@ const events = [
     },
   },
   {
-    title: "Entrega de Trabajo Práctico #2",
+    title: "Entrega de Proyecto Final",
     start: dayjs("2024-09-30T08:00:00-05:00").toDate(),
     end: dayjs("2024-09-30T17:30:00-05:00").toDate(),
     data: {
