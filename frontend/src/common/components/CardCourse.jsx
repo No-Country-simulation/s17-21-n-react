@@ -83,7 +83,7 @@ export default function CardCourse({
             {(user.role === "admin" || user.role === "teacher") && (
               <button
                 onClick={() => setShowInvite(!showInvite)}
-                className="w-full justify-center font-semibold text-base border border-green-500 text-green-500 px-4 py-2 rounded hover:bg-green-50 flex items-center gap-2"
+                className="w-full justify-center font-semibold text-base border border-green-500 text-green-500 px-3 py-2 rounded hover:bg-green-50 flex items-center gap-2"
               >
                 <UserPlus className="h-4 w-4" />
                 Invitar Alumnos
