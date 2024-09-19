@@ -13,8 +13,8 @@ export const createClassSchema: Schema = {
     },
     date: {
       type: "date",
-      description: "Fecha de la clase",
-      example: "2024-09-06T08:00:00",
+      description: "Fecha de la clase (DD-MM-YYY | DD/MM/YYYY | ISO)",
+      example: "2024-09-19T01:10:31.006Z",
     },
     subjectId: {
       type: "string",
@@ -49,8 +49,8 @@ const getClassSchema = {
       example: "Clase 1",
     },
     date: {
-      type: "string",
-      example: "2024-09-06",
+      type: "date",
+      example: "2024-09-19T05:00:00.000Z",
     },
     subjectId: {
       type: "string",

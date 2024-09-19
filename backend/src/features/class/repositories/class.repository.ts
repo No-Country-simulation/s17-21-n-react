@@ -2,6 +2,7 @@ import { Class, Prisma } from "@prisma/client";
 import { IClassRepository } from "./Iclass.repository";
 import prisma from "../../../infrastructure/database/prisma";
 import { ErrorHandler } from "../../../shared/utils/ErrorHandler";
+import { parseDate } from "../../../shared/utils";
 
 export class ClassRepository implements IClassRepository {
   async findMany(skip: number, take: number, include?: Prisma.ClassInclude): Promise<Class[]> {
@@ -68,7 +69,12 @@ export class ClassRepository implements IClassRepository {
 
   async update(id: string, classData: Partial<Class>): Promise<Class | null> {
     try {
-      return await prisma.class.update({ data: classData, where: { id } });
+      return await prisma.class.update({
+        data: {
+          ...classData,
+          ...classData?.date ? { date: parseDate(classData.date) } : {}
+        }, where: { id }
+      });
     } catch (error) {
       ErrorHandler.handleError(error);
     }
