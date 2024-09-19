@@ -38,7 +38,7 @@ export default function CoursesByAdmin() {
 
   return (
     <div className="relative w-full mx-auto bg-white">
-      <h1 className="text-[#495057] text-2xl mb-6 font-bold">Mis Cursos</h1>
+      <h1 className="text-[#495057] text-2xl mb-6 font-bold">Gestión de Cursos</h1>
 
       <div className="flex justify-end py-5">
         <button
