@@ -125,7 +125,7 @@ const Attendance = () => {
           <h2 className="font-semibold text-lg md:font-bold md:text-2xl">Filtrar datos</h2>
           <div className="mt-4">
             <label htmlFor="class" className="font-semibold text-lg text-[#042DFF] md:text-2xl">
-              Seleccionar clase
+              Seleccionar curso
             </label>
             <Select
               id="class"
