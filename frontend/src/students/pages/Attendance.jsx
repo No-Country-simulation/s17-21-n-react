@@ -35,7 +35,7 @@ const AttendanceRow = ({ item }) => {
           <span>{item.asistencia}</span>
         </AttendanceButton>
       </td>
-      <td className={`p-2.5 truncate flex items-center`}>
+      <td className={`p-2.5 flex items-center`}>
         <span>
           {item.observaciones === "Justificada" ? (
             <div className="flex flex-row items-center gap-x-2 ">
@@ -79,7 +79,7 @@ const AttendanceRow = ({ item }) => {
                 </svg>
                 Injustificada
               </div>
-              <div className="flex flex-row items-center gap-x-2 ">
+              <div className="flex flex-row items-center gap-x-2 cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
