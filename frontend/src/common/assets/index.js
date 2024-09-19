@@ -92,8 +92,13 @@ import filter from "./icons/filter.svg";
 import reload from "./icons/reload.svg";
 import tickBox from "./icons/tickBox.svg";
 import edit from "./icons/edit.svg";
+import medal from "./icons/medal.svg";
+import clockCheck from "./icons/clockCheck.svg";
+import closeCircle from "./icons/closeCircle.svg";
+import checkAlert from "./icons/checkAlert.svg";
+import checkVector from "./icons/checkVector.svg";
 
-export {
+export {  
   facebook,
   pinterest,
   twitter,
@@ -188,4 +193,9 @@ export {
   reload,
   tickBox,
   edit,
+  medal,
+  clockCheck,
+  closeCircle,
+  checkAlert,
+  checkVector,
 };
