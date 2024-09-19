@@ -143,7 +143,7 @@ const ContactInfo = ({ icon, title, details }) => (
       <img src={icon} alt={`${title} icon`} className="w-6 h-6" />
     </div>
     <div>
-      <h5 className="text-xl font-bold">{title}</h5>
+      <h2 className="text-xl font-bold">{title}</h2>
       {details.map((detail, index) => (
         <p key={index}>{detail}</p>
       ))}

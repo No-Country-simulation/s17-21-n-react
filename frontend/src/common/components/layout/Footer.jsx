@@ -25,7 +25,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row gap-12">
           {Object.entries(footerLinks).map(([section, links]) => (
             <div key={section} className="flex flex-col gap-5 w-44">
-              <h3 className="font-bold text-xl capitalize">{section}</h3>
+              <h2 className="font-bold text-xl capitalize">{section}</h2>
               <ul className="flex flex-col gap-1 text-lightGray leading-6 text-base">
                 {links.map((link) => (
                   <li key={link.label}>
