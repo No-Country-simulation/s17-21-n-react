@@ -60,7 +60,7 @@ export function Events() {
               </div>
               <div className="p-7 flex flex-col gap-2">
                 <span className="font-normal text-base">Fecha: {event.date}</span>
-                <h5 className="font-bold text-lg">{event.title}</h5>
+                <h2 className="font-bold text-lg">{event.title}</h2>
                 <p className="font-normal text-base">{event.description}</p>
                 <span className="font-semibold text-base">Leer mas</span>
               </div>
