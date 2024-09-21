@@ -22,7 +22,6 @@ const App = () => {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/access-denied" element={<AccessDeniedPage />} />
         <Route path="/team" element={<TeamList />} />
-        
 
         {/* Rutas protegidas dentro del layout */}
         <Route element={<Layout userRole={role} />}>

@@ -98,7 +98,7 @@ import closeCircle from "./icons/closeCircle.svg";
 import checkAlert from "./icons/checkAlert.svg";
 import checkVector from "./icons/checkVector.svg";
 
-export {  
+export {
   facebook,
   pinterest,
   twitter,
