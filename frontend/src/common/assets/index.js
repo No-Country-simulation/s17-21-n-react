@@ -90,6 +90,11 @@ import profile2 from "./images/profile2.webp";
 import profile3 from "./images/profile3.webp";
 import filter from "./icons/filter.svg";
 import reload from "./icons/reload.svg";
+import medal from "./icons/medal.svg";
+import clockCheck from "./icons/clockCheck.svg";
+import closeCircle from "./icons/closeCircle.svg";
+import checkAlert from "./icons/checkAlert.svg";
+import checkVector from "./icons/checkVector.svg";
 
 export {
   facebook,
@@ -184,4 +189,9 @@ export {
   profile3,
   filter,
   reload,
+  medal,
+  clockCheck,
+  closeCircle,
+  checkAlert,
+  checkVector,
 };
