@@ -10,12 +10,12 @@ export function ForTeachers() {
           alt="background"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <h4 className="relative z-10 text-primary font-semibold text-center md:mt-20 before:content-[''] before:w-3 before:h-3 before:inline-block before:bg-primary before:rounded-full flex items-center justify-center gap-2 md:text-xl">
+        <h2 className="relative z-10 text-primary font-semibold uppercase text-center md:mt-20 before:content-[''] before:w-3 before:h-3 before:inline-block before:bg-primary before:rounded-full flex items-center justify-center gap-2 md:text-xl">
           PARA DOCENTES
-        </h4>
-        <h5 className="relative z-10 text-3xl font-bold text-white text-center md:text-[40px]">
+        </h2>
+        <h3 className="relative z-10 text-3xl font-bold capitalize text-white text-center md:text-[40px]">
           Simplifica tu Labor, Maximiza el Impacto
-        </h5>
+        </h3>
       </div>
 
       <div className="grid py-12 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-7 max-w-7xl mx-auto px-4 relative md:mt-[-175px]">

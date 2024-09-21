@@ -6,6 +6,7 @@ import MyProfile from "../pages/MyProfile";
 import Attendance from "../pages/Attendance";
 import CalendarByStudent from "../pages/CalendarByStudent";
 import QualificationStudents from "../components/QualificationStudents";
+import ComunicationByStudent from "../pages/ComunicationByStudent";
 
 const studentRoutes = [
   { path: "dashboard", element: <DashboardStudents /> },
@@ -15,6 +16,7 @@ const studentRoutes = [
   { path: "attendance", element: <Attendance /> },
   { path: "calendar", element: <CalendarByStudent /> },
   { path: "grades", element: <QualificationStudents /> },
+  { path: "communication", element: <ComunicationByStudent /> },
 
   // Otras rutas específicas para estudiantes
 ];

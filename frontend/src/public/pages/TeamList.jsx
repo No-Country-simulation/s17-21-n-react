@@ -39,7 +39,7 @@ export default function TeamList() {
       <div className="grid gap-4 min-h-screen">
         {Object.keys(groupedData).map((role) => (
           <div key={role} className="w-full p-4 mx-auto max-w-7xl">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Equipo {role}</h2>
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">{role}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {groupedData[role].map((profile) => (
                 <TeamCard key={profile.id} profile={profile} />

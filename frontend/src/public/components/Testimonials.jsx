@@ -29,7 +29,7 @@ export function Testimonials({ testimonial }) {
               {testimonial.testimonial}
             </p>
             <div id="testimonial-person" className="flex flex-col">
-              <h5 className="font-bold text-sm lg:text-lg">{testimonial.fullName}</h5>
+              <h2 className="font-bold text-sm lg:text-lg">{testimonial.fullName}</h2>
               <span className="text-xs lg:text-base font-normal">{testimonial.specialty}</span>
             </div>
           </div>
