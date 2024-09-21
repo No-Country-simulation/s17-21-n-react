@@ -2,9 +2,6 @@
 export const content = ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"];
 export const theme = {
   extend: {
-    backgroundImage: {
-      customGradient: 'linear-gradient(180deg, rgba(52, 64, 191, 0.75) 0%, rgba(24, 30, 89, 0.75) 100%)',
-    },
     colors: {
       primary: "#2b4eff",
       secondary: "#0e1133",

@@ -9,7 +9,6 @@ import useUserStore from "./store/auth";
 import AccessDeniedPage from "./common/components/layout/AccessDeniedPage";
 import { Home } from "./public/pages/Home";
 import TeamList from "./public/pages/TeamList";
-import QualificationStudents from "./students/components/QualificationStudents";
 
 const App = () => {
   const { role } = useUserStore((state) => state.user || { role: "" });
@@ -18,7 +17,6 @@ const App = () => {
     <div className="font-hind">
       <Routes>
         {/* Rutas públicas */}
-        <Route path="/calificacion" element={<QualificationStudents/>} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
