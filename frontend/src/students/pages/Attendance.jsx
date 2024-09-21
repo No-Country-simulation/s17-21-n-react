@@ -20,7 +20,6 @@ const selectStyles = {
   }),
 };
 
-
 const AttendanceRow = ({ item }) => {
   return (
     <tr className="grid grid-cols-[80px_140px_1fr] border-b border-gray-200">
