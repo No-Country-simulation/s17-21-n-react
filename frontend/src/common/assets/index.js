@@ -90,8 +90,6 @@ import profile2 from "./images/profile2.webp";
 import profile3 from "./images/profile3.webp";
 import filter from "./icons/filter.svg";
 import reload from "./icons/reload.svg";
-import tickBox from "./icons/tickBox.svg";
-import edit from "./icons/edit.svg";
 import medal from "./icons/medal.svg";
 import clockCheck from "./icons/clockCheck.svg";
 import closeCircle from "./icons/closeCircle.svg";
@@ -191,8 +189,6 @@ export {
   profile3,
   filter,
   reload,
-  tickBox,
-  edit,
   medal,
   clockCheck,
   closeCircle,
