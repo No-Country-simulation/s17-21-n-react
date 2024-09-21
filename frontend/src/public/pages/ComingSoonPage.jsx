@@ -16,7 +16,7 @@ export default function ComingSoonPage() {
         <p className="mb-8">
           Suscríbete para recibir todas las novedades sobre las nuevas funcionalidades.
         </p>
-        <form className="flex z-40" onSubmit={handleSubmit}>
+        <form className="flex z-20" onSubmit={handleSubmit}>
           <input
             type="email"
             placeholder="Ingresa tu correo"
@@ -41,7 +41,7 @@ export default function ComingSoonPage() {
         />
         <div className="absolute inset-y-0 left-0 w-1/5 bg-gradient-to-r from-white to-transparent"></div>
       </div>
-      <div className="absolute -bottom-10 -left-20 z-30">
+      <div className="absolute -bottom-10 -left-20 z-20">
         <div className="rotate-12 whitespace-nowrap">
           <div className="inline-block py-2 text-white text-2xl bg-gradient-to-r from-orange-600 to-orange-700">
             COMING SOON | COMING SOON | COMING SOON | COMING SOON | COMING SOON | COMING SOON |
