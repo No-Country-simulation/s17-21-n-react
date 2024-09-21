@@ -10,7 +10,7 @@ export function Modal({ isOpen, onClose, title, onSubmit, submitText, cancelText
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm backdrop-brightness-75 p-4">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm backdrop-brightness-75 p-4 z-20">
       <div className="bg-white p-4 rounded-lg shadow-md w-full max-w-lg border border-gray-300 max-h-screen overflow-y-auto">
         <header className="flex justify-between items-center border-b border-gray-300 pb-4 mb-4">
           <h2 className="text-xl font-medium text-gray-900">{title}</h2>

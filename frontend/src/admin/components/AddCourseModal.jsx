@@ -6,6 +6,7 @@ import { addCourse } from "../../api/services/courseService";
 import { getAllCategories } from "../../api/services/categoryService";
 import { getAllDivisions } from "../../api/services/divisionService";
 import { showToast } from "../../common/utils/toast";
+import { getAllTeachers } from "../../api/services/teachersService";
 
 export default function AddCourseModal({ isOpen, onClose }) {
   const [newCourse, setNewCourse] = useState({
@@ -15,31 +16,43 @@ export default function AddCourseModal({ isOpen, onClose }) {
     divisionId: "",
     scheduleInit: "",
     scheduleEnd: "",
+    subjectTeachers: [{ teacherId: "" }],
   });
 
   const [categories, setCategories] = useState([]);
   const [divisions, setDivisions] = useState([]);
+  const [teachers, setTeachers] = useState([]);
 
   useEffect(() => {
-    const fetchCategoriesAndDivisions = async () => {
+    const fetchCategoriesAndDivisionsAndTeachers = async () => {
       try {
-        const [categoriesResponse, divisionsResponse] = await Promise.all([
+        const [categoriesResponse, divisionsResponse, teachersResponse] = await Promise.all([
           getAllCategories(),
           getAllDivisions(),
+          getAllTeachers(),
         ]);
         setCategories(categoriesResponse || []);
         setDivisions(divisionsResponse || []);
+        setTeachers(teachersResponse || []);
       } catch (error) {
-        console.error("Error al obtener las categorías o divisiones:", error);
+        console.error("Error al obtener las categorías, divisiones o profesores:", error);
       }
     };
 
-    if (isOpen) fetchCategoriesAndDivisions();
+    if (isOpen) fetchCategoriesAndDivisionsAndTeachers();
   }, [isOpen]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewCourse((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const handleTeacherChange = (e) => {
+    const { value } = e.target;
+    setNewCourse((prevState) => ({
+      ...prevState,
+      subjectTeachers: [{ teacherId: value }],
+    }));
   };
 
   const handleAddCourse = async () => {
@@ -123,6 +136,26 @@ export default function AddCourseModal({ isOpen, onClose }) {
           {divisions.map((division) => (
             <option key={division.id} value={division.id}>
               {division.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700">Profesor</label>
+        <select
+          name="teacherId"
+          value={newCourse.subjectTeachers[0].teacherId}
+          onChange={handleTeacherChange}
+          className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+          required
+        >
+          <option value="" disabled>
+            Selecciona un profesor
+          </option>
+          {teachers.map((teacher) => (
+            <option key={teacher.id} value={teacher.id}>
+              {teacher.name} {teacher.lastName}
             </option>
           ))}
         </select>

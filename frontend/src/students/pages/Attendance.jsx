@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { edit, tickBox } from "../../common/assets";
 import { attendancePerClass, classes } from "../data/attendance";
 import Pagination from "../../common/components/Pagination";
 import Select from "react-select";
+import AttendanceButton from "../components/AttendanceButton";
+import AttendanceIcon from "../components/AttendanceIcon";
 
 const selectStyles = {
   indicatorSeparator: (baseStyles) => ({
@@ -19,33 +20,90 @@ const selectStyles = {
   }),
 };
 
-const verifyDate = (date) => {
-  const actualDate = new Date();
-  const classDate = new Date(date);
-
-  return actualDate < classDate;
-};
 
 const AttendanceRow = ({ item }) => {
   return (
-    <tr className="grid grid-cols-[80px_80px_1fr]">
-      <td
-        className={`border-[1px] border-black text-center truncate py-2.5 text-white bg-[#042DFF]`}
-      >
+    <tr className="grid grid-cols-[80px_140px_1fr] border-b border-gray-200">
+      <td className={`flex items-center justify-center text-center truncate py-2.5 `}>
         {item.titulo}
       </td>
-
-      <td
-        className={`border-[1px] border-black text-center truncate py-2.5 text-white ${verifyDate(item.fecha) ? "bg-[#9C9898]" : item.asistencia === "Presente" ? "bg-[#22C55E]" : "bg-[#F6161F]"}`}
-      >
-        {item.asistencia}
+      <td className="p-2.5">
+        <AttendanceButton
+          className={`text-center truncate ${item.asistencia === "Presente" ? "bg-[#2BB148] text-white" : item.asistencia === "Ausente" ? "bg-[#F15050] text-white" : "bg-gray-200 text-gray-700"}`}
+        >
+          <AttendanceIcon item={item} />
+          <span>{item.asistencia}</span>
+        </AttendanceButton>
       </td>
-
-      <td
-        className={`px-2.5 border-[1px] border-black py-2.5 truncate  text-white ${verifyDate(item.fecha) ? "bg-[#9C9898]" : item.observaciones ? "bg-[#505BCF]" : "bg-[#B8C4FF]"}`}
-      >
-        <img src={edit} alt="edit" width={20} height={20} className="inline me-2.5" />
-        <span>{item.observaciones ?? "Añadir"}</span>
+      <td className={`p-2.5 flex items-center`}>
+        <span>
+          {item.observaciones === "Justificada" ? (
+            <div className="flex flex-row items-center gap-x-2 ">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="size-4 text-[#2BB148]"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M7 12l5 5l10 -10"></path>
+                <path d="M2 12l5 5m5 -5l5 -5"></path>
+              </svg>
+              Justificada
+            </div>
+          ) : item.observaciones === "Injustificada" ? (
+            <div className="flex flex-row gap-4">
+              <div className="flex flex-row items-center gap-x-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="size-4 text-[#F15050]"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                  <path d="M12 9v4" />
+                  <path d="M12 16v.01" />
+                </svg>
+                Injustificada
+              </div>
+              <div className="flex flex-row items-center gap-x-2 cursor-pointer">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="size-4 "
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                  <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                  <path d="M16 5l3 3" />
+                </svg>
+                Añadir
+              </div>
+            </div>
+          ) : (
+            <span>{item.observaciones ?? "Sin observaciones"}</span>
+          )}
+        </span>
       </td>
     </tr>
   );
@@ -59,20 +117,15 @@ const Attendance = () => {
   };
 
   return (
-    <div className="m-[-16px] min-h-[calc(100vh-64px)] flex flex-col justify-between items-end">
+    <div className="m-[-16px] min-h-[calc(100vh-64px)] flex flex-col justify-between md:items-end gap-8">
       <div className="w-full">
-        <div className="bg-gradient-to-r from-[#3440BFBF] to-[#181E59BF] p-4 mb-12 flex gap-4 items-center md:py-11">
-          <img src={tickBox} alt="tick box" className="inline md:w-12 md:h-12" />
-          <h2 className="inline font-semibold text-lg text-white md:font-bold md:text-5xl">
-            Asistencia
-          </h2>
-        </div>
+        <h1 className="text-[#495057] text-2xl font-bold p-4 mb-6 ">Mis Asistencias</h1>
 
         <div className="px-4">
-          <h4 className="font-semibold text-lg md:font-bold md:text-[28px]">Filtrar datos</h4>
-          <div className="mt-6">
-            <label htmlFor="class" className="font-semibold text-lg text-[#042DFF] md:text-[28px]">
-              Seleccionar clase
+          <h2 className="font-semibold text-lg md:font-bold md:text-2xl">Filtrar datos</h2>
+          <div className="mt-4">
+            <label htmlFor="class" className="font-semibold text-lg text-[#042DFF] md:text-2xl">
+              Seleccionar curso
             </label>
             <Select
               id="class"
@@ -89,8 +142,8 @@ const Attendance = () => {
           {!selectedClass ? (
             "No seleccionaste ninguna clase"
           ) : (
-            <div className="rounded-lg border-[1px] border-black overflow-hidden">
-              <table className="w-full">
+            <div className="rounded-lg border border-black overflow-x-auto w-full">
+              <table className="w-full border-collapse bg-white rounded-lg shadow-md">
                 <tbody className="flex flex-col">
                   {attendancePerClass[selectedClass]?.map((item) => (
                     <AttendanceRow item={item} key={item.id} />
@@ -101,7 +154,7 @@ const Attendance = () => {
           )}
         </div>
       </div>
-      <div className="pb-4 pe-3">
+      <div className="pb-4 md:pe-3">
         <Pagination />
       </div>
     </div>

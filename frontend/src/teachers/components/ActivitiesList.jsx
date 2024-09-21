@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { ChevronDown, ChevronUp, CirclePlus } from "lucide-react";
-import { Link } from "react-router-dom";
-import { activitiesTeacherData } from "../data/activitiesTeacherData";
 import ClassDetail from "./ClassDetail";
 import useUserStore from "../../store/auth";
+import { getAllClassesBySubject } from "../../api/services/classService";
+import Spinner from "../../common/utils/Spinner";
+import AddClassModal from "../../admin/components/AddClassModal";
 
 const AccordionItem = ({ title, date, user }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,34 +36,84 @@ const AccordionItem = ({ title, date, user }) => {
 
 export default function ActivitiesList() {
   const { user } = useUserStore((state) => state);
+  const [classes, setClasses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { id } = useParams();
+
+  const fetchClasses = async () => {
+    try {
+      const fetchedClasses = await getAllClassesBySubject(id);
+      setClasses(fetchedClasses);
+    } catch (error) {
+      console.error("Error al cargar las clases:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const fetchClasses = async () => {
+      try {
+        const fetchedClasses = await getAllClassesBySubject(id);
+        setClasses(fetchedClasses);
+      } catch (error) {
+        console.error("Error al cargar las clases:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchClasses();
+  }, [id]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAddClassClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    fetchClasses();
+  };
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-8">Actividades del curso</h1>
+      <h1 className="text-2xl font-bold mb-8">Clases del curso</h1>
 
-      {/* Mostrar botón de añadir actividad solo para administradores */}
       {user.role === "admin" && (
         <div className="flex justify-end py-5">
-          <Link to="/newActivity">
-            <button className="bg-primary p-4 w-56 h-10 flex justify-center text-white rounded-md items-center">
-              <CirclePlus />
-              <p className="p-4">Añadir Actividad</p>
-            </button>
-          </Link>
+          <button
+            className="bg-primary p-4 w-56 h-10 flex justify-center text-white rounded-md items-center"
+            onClick={handleAddClassClick}
+          >
+            <CirclePlus />
+            <p className="p-4">Añadir Clase</p>
+          </button>
         </div>
       )}
 
-      <div className="flex flex-col text-black gap-2">
-        {activitiesTeacherData.map((activity) => (
-          <AccordionItem
-            key={activity.id}
-            title={activity.title}
-            date={activity.date}
-            content={activity.content}
-            user={user}
-          />
-        ))}
-      </div>
+      {loading ? (
+        <Spinner />
+      ) : classes.length > 0 ? (
+        <div className="flex flex-col text-black gap-2">
+          {classes.map((cls) => (
+            <AccordionItem
+              key={cls.id}
+              title={cls.name}
+              date={new Date(cls.date).toLocaleDateString()}
+              user={user}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center text-gray-500 mt-8 text-xl">
+          <p>Ups, aún no hay clases definidas para este curso.</p>
+          {user.role === "admin" && <p>Comienza a crear nuevas clases ahora.</p>}
+        </div>
+      )}
+
+      <AddClassModal isOpen={isModalOpen} onClose={handleModalClose} />
     </div>
   );
 }
