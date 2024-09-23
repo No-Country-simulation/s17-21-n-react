@@ -3,7 +3,7 @@ import prisma from "./prisma";
 export const initializeCategory = async () => {
   const categories = await prisma.subjectCategory.count();
   const categoriesData = [
-    "Matemática",
+    "Matemáticas",
     "Lengua y Literatura",
     "Ciencias",
     "Ciencias Sociales",
