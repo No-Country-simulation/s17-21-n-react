@@ -18,8 +18,8 @@ import { loginService } from "../../api/services/authService";
 
 const users = [
   { email: "administrador@test.com", password: "adminPassword123#", role: "admin" },
-  { email: "sarah.smith@educapro.edu", password: "OsWk26Dj", role: "teacher" },
-  { email: "john.doe@gmail.com", password: "5QLKCu8y", role: "student" },
+  { email: "sara.smith@educapro.com", password: "5kVt8Fpr", role: "teacher" },
+  { email: "john.doe@gmail.com", password: "Ql7D0Zvc", role: "student" },
 ];
 
 const Login = () => {
