@@ -60,17 +60,19 @@ export default function CardCourse({
           <h3 className="text-2xl font-bold mt-2 mb-2">{name}</h3>
           <p className="text-gray-500 mb-4">{description}</p>
 
-          <div className="flex items-center space-x-4 mb-4">
-            <img
-              alt="Teacher avatar"
-              className="rounded-full"
-              height="40"
-              src={profile}
-              style={{ aspectRatio: "1 / 1", objectFit: "cover" }}
-              width="40"
-            />
-            <span className="font-medium">{teacher}</span>
-          </div>
+          {user.role !== "teacher" && (
+            <div className="flex items-center space-x-4 mb-4">
+              <img
+                alt="Teacher avatar"
+                className="rounded-full"
+                height="40"
+                src={profile}
+                style={{ aspectRatio: "1 / 1", objectFit: "cover" }}
+                width="40"
+              />
+              <span className="font-medium">{teacher}</span>
+            </div>
+          )}
 
           <div className="grid 2xl:grid-cols-2 items-center gap-4">
             <Link to={`${courseId}/classes`}>
