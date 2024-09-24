@@ -8,7 +8,7 @@ import { getAllClassesBySubject } from "../../api/services/classService";
 import Spinner from "../../common/utils/Spinner";
 import AddClassModal from "../../admin/components/AddClassModal";
 
-const AccordionItem = ({ title, date, user }) => {
+const AccordionItem = ({ title, date, user, classDetail }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -27,7 +27,7 @@ const AccordionItem = ({ title, date, user }) => {
       <span className="text-gray-500 mb-8">{date}</span>
       {isOpen && (
         <div className="p-4 text-black">
-          <ClassDetail role={user.role} />
+          <ClassDetail role={user.role} classDetail={classDetail} />
         </div>
       )}
     </div>
@@ -52,17 +52,6 @@ export default function ActivitiesList() {
   };
 
   useEffect(() => {
-    const fetchClasses = async () => {
-      try {
-        const fetchedClasses = await getAllClassesBySubject(id);
-        setClasses(fetchedClasses);
-      } catch (error) {
-        console.error("Error al cargar las clases:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchClasses();
   }, [id]);
 
@@ -103,6 +92,7 @@ export default function ActivitiesList() {
               title={cls.name}
               date={new Date(cls.date).toLocaleDateString()}
               user={user}
+              classDetail={cls}
             />
           ))}
         </div>
