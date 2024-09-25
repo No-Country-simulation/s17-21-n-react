@@ -1,15 +1,11 @@
 import configureAxios from "../../api/axios";
 
-export const getUserData = async (token) => {
+export const getUserData = async () => {
   try {
     const api = configureAxios();
 
-    const response = await api.get("/user/profile", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    
+    const response = await api.get("/user/profile");
+
     const profile = response.data.data;
 
     return profile;
