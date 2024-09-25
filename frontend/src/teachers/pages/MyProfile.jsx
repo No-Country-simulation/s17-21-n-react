@@ -75,20 +75,22 @@ export default function MyProfile() {
               id="gender"
               value={user.gender === "OTHER" ? "Sin especificar" : user.gender}
             />
-            <InputForm
-              label="Correo electronico"
-              id="email"
-              value={user.email || ""}
-              type="email"
-            />
+            <div className="flex-flex-col gap-2">
+              <InputForm
+                label="Correo electronico"
+                id="email"
+                value={user.email || ""}
+                type="email"
+              />
+              <p className="text-warning font-medium text-sm cursor-pointer">
+                Solicitar cambio de información
+              </p>
+            </div>
           </>
         ) : (
           <p>No hay datos de usuario disponibles.</p>
         )}
       </div>
-      <p className="text-warning font-medium text-sm cursor-pointer">
-        Solicitar cambio de información
-      </p>
     </div>
   );
 }
