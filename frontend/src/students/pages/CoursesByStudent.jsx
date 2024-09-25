@@ -1,24 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Pagination from "../../common/components/Pagination";
 import CardCourse from "../../common/components/CardCourse";
-import { getAllCourse } from "../../api/services/courseService";
 import Spinner from "../../common/utils/Spinner";
+import useCoursesStore from "../../store/courses";
 
 export default function CoursesByStudent() {
-  const [courses, setCourses] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const fetchCourses = async () => {
-    try {
-      const subjects = await getAllCourse();
-      setCourses(subjects);
-      setLoading(false);
-    } catch (error) {
-      setError(error.message || "Error al obtener los cursos");
-      setLoading(false);
-    }
-  };
+  const { courses, loading, error, fetchCourses } = useCoursesStore();
 
   useEffect(() => {
     fetchCourses();

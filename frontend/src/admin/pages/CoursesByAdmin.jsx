@@ -1,27 +1,15 @@
 import { useEffect, useState } from "react";
-import { CirclePlus } from "lucide-react";
+import { CirclePlus, RefreshCcw } from "lucide-react";
 import Pagination from "../../common/components/Pagination";
 import CardCourse from "../../common/components/CardCourse";
-import { getAllCourse } from "../../api/services/courseService";
 import AddCourseModal from "../components/AddCourseModal";
 import Spinner from "../../common/utils/Spinner";
+import useCoursesStore from "../../store/courses";
 
 export default function CoursesByAdmin() {
-  const [courses, setCourses] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const fetchCourses = async () => {
-    try {
-      const subjects = await getAllCourse();
-      setCourses(subjects);
-      setLoading(false);
-    } catch (error) {
-      setError(error.message || "Error al obtener los cursos");
-      setLoading(false);
-    }
-  };
+  const { courses, loading, error, fetchCourses } = useCoursesStore();
 
   useEffect(() => {
     fetchCourses();
@@ -40,7 +28,10 @@ export default function CoursesByAdmin() {
     <div className="relative w-full mx-auto bg-white">
       <h1 className="text-[#495057] text-2xl mb-6 font-bold">Gestión de Cursos</h1>
 
-      <div className="flex justify-end py-5">
+      <div className="flex justify-end py-5 space-x-4">
+      <button onClick={fetchCourses}>
+          <RefreshCcw />
+        </button>
         <button
           className="flex justify-center bg-primary p-4 w-56 h-10 text-white rounded-md items-center"
           onClick={handleAddCourseClick}

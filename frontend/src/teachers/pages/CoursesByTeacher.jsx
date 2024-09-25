@@ -1,24 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Pagination from "../../common/components/Pagination";
 import CardCourse from "../../common/components/CardCourse";
-import { getAllCourse } from "../../api/services/courseService";
 import Spinner from "../../common/utils/Spinner";
+import useCoursesStore from "../../store/courses";
+import { RefreshCcw } from "lucide-react";
 
 export default function CoursesByTeacher() {
-  const [courses, setCourses] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const fetchCourses = async () => {
-    try {
-      const subjects = await getAllCourse();
-      setCourses(subjects);
-      setLoading(false);
-    } catch (error) {
-      setError(error.message || "Error al obtener los cursos");
-      setLoading(false);
-    }
-  };
+  const { courses, loading, error, fetchCourses } = useCoursesStore();
 
   useEffect(() => {
     fetchCourses();
@@ -28,6 +16,11 @@ export default function CoursesByTeacher() {
     <div className="relative w-full mx-auto bg-white">
       <h1 className="text-[#495057] text-2xl mb-6 font-bold">Mis Cursos</h1>
 
+      <div className="flex justify-end py-5 mr-3">
+        <button onClick={fetchCourses}>
+          <RefreshCcw />
+        </button>
+      </div>
       {loading ? (
         <Spinner />
       ) : error ? (
