@@ -1,72 +1,78 @@
 import { useState, useEffect } from "react";
-import useUserStore from "../../store/auth";
 import { upload, trash } from "../../common/assets";
-import dataUserStore from "../../store/data";
 import imgStore from "../../store/imgPhoto";
 import { generateAvatar } from "../../common/utils/avatar";
+import Spinner from "../../common/utils/Spinner";
+import InputForm from "../../teachers/components/InputForm";
+import { getUserData } from "../../api/services/userProfile";
+import { formatDate } from "../../common/utils/formatDate";
+import { showToast } from "../../common/utils/toast";
 
 const MyProfile = () => {
-  const { user } = useUserStore();
-  const { data } = dataUserStore();
-  const { loadImgs, resetImgs } = imgStore();
-
-  const [form, setForm] = useState({
+  const [user, setUser] = useState({
     name: "",
-    lastname: "",
+    lastName: "",
     phone: "",
     dni: "",
-    photo: "",
-    birthdate: "",
+    birthDate: "",
     gender: "",
     email: "",
   });
-
-  const { initials, backgroundColor } = generateAvatar(form.name, form.lastname);
+  const [loading, setLoading] = useState(true);
+  const { loadImgs, resetImgs } = imgStore();
+  const { initials, backgroundColor } = generateAvatar(user.name, user.lastname);
 
   const handleUpload = () => {
     try {
       loadImgs(user.id);
-      if (user.photo) alert("Imagen cargada correctamente!");
+      if (user.photo) showToast("Imagen cargada correctamente!");
     } catch (error) {
       console.error("Error uploading image:", error);
-      alert("Ups!.. algo salió mal", error);
+      showToast("Ups!.. algo salió mal", error);
     }
   };
 
   const handleDelete = () => {
     try {
       resetImgs(user.id);
-      setForm((prevForm) => ({
+      setUser((prevForm) => ({
         ...prevForm,
         photo: "",
       }));
-      alert("Imagen borrada correctamente");
+      showToast("Imagen borrada correctamente");
     } catch (error) {
       console.error("Error deleting image:", error);
-      alert("Ups!.. algo salió mal", error);
+      showToast("Ups!.. algo salió mal", error);
+    }
+  };
+
+  const fetchUserData = async () => {
+    const token = sessionStorage.getItem("token");
+    try {
+      const userData = await getUserData(token);
+      const formattedUserData = {
+        ...userData,
+        birthDate: formatDate(userData.birthDate),
+      };
+      setUser(formattedUserData);
+    } catch (error) {
+      console.error("Error al obtener los datos del usuario:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    setForm({
-      name: user.name || "",
-      lastname: user.lastName || "",
-      phone: data.phone || "",
-      dni: data.dni || "",
-      photo: data.photo || "",
-      birthdate: data.birthdate || "",
-      gender: data.gender || "",
-      email: user.email || "",
-    });
-  }, [user, data]);
+    fetchUserData();
+  }, []);
 
   return (
     <div>
       <h2 className="text-2xl font-bold py-4">Mi Cuenta</h2>
 
       <div className="py-4 flex flex-col items-center sm:flex-row">
-        {form.photo ? (
-          <img src={form.photo} width={128} height={128} className="rounded-full" />
+        {user.photo ? (
+          <img src={user.photo} width={128} height={128} className="rounded-full" />
         ) : (
           <div
             className="w-[128px] h-[128px] rounded-full flex items-center justify-center"
@@ -100,93 +106,36 @@ const MyProfile = () => {
       </div>
 
       <div className="sm:grid grid-cols-2 gap-x-4 max-w-screen-lg">
-        <div className="py-3">
-          <label htmlFor="name">Nombre</label>
-          <input
-            id="name"
-            type="text"
-            placeholder="Sin informar"
-            className="border-[1px] border-[#B2B0B0] rounded-lg w-full mt-2 px-4 py-[7px] bg-gray-100"
-            value={form.name}
-            disabled
-          />
-        </div>
-
-        <div className="py-3">
-          <label htmlFor="lastname">Apellido</label>
-          <input
-            id="lastname"
-            type="text"
-            placeholder="Sin informar"
-            className="border-[1px] border-[#B2B0B0] rounded-lg w-full mt-2 px-4 py-[7px] bg-gray-100"
-            value={form.lastname}
-            disabled
-          />
-        </div>
-
-        <div className="py-3">
-          <label htmlFor="phone">Teléfono / Celular</label>
-          <input
-            id="phone"
-            type="text"
-            className="border-[1px] border-[#B2B0B0] rounded-lg w-full mt-2 px-4 py-[7px] bg-gray-100"
-            value={form.phone}
-            placeholder="Sin informar"
-            disabled
-          />
-        </div>
-
-        <div className="py-3">
-          <label htmlFor="dni">DNI</label>
-          <input
-            id="dni"
-            type="number"
-            placeholder="Sin informar"
-            className="border-[1px] border-[#B2B0B0] rounded-lg w-full mt-2 px-4 py-[7px] bg-gray-100"
-            value={form.dni}
-            disabled
-          />
-        </div>
-
-        <div className="py-3">
-          <label htmlFor="birthdate">Fecha de Nacimiento</label>
-          <input
-            id="birthdate"
-            type="text"
-            placeholder="Sin informar"
-            className="border-[1px] border-[#B2B0B0] rounded-lg w-full mt-2 px-4 py-[7px] bg-gray-100"
-            value={form.birthdate}
-            disabled
-          />
-        </div>
-
-        <div className="py-3">
-          <label htmlFor="genero" className="block">
-            Género
-          </label>
-          <input
-            id="birthdate"
-            type="text"
-            placeholder="Sin informar"
-            className="border-[1px] border-[#B2B0B0] rounded-lg w-full mt-2 px-4 py-[7px] bg-gray-100"
-            value={form.gender}
-            disabled
-          />
-        </div>
-
-        <div className="py-3">
-          <label htmlFor="email">Correo electrónico</label>
-          <input
-            id="email"
-            type="email"
-            placeholder="Sin informar"
-            className="border-[1px] border-[#B2B0B0] rounded-lg w-full mt-2 px-4 py-[7px] bg-gray-100"
-            value={form.email}
-            disabled
-          />
-        </div>
+        {loading ? (
+          <Spinner />
+        ) : user ? (
+          <>
+            <InputForm label="Nombre" id="name" value={user.name} />
+            <InputForm label="Apellido" id="lastname" value={user.lastName || ""} />
+            <InputForm label="Telefono / Celular" id="phone" value={user.phone || ""} />
+            <InputForm label="DNI" id="dni" value={user.dni || ""} type="number" />
+            <InputForm label="Fecha de Nacimiento" id="birthdate" value={user.birthDate} />
+            <InputForm
+              label="Género"
+              id="gender"
+              value={user.gender === "OTHER" ? "Sin especificar" : user.gender}
+            />
+            <div className="flex-flex-col gap-2">
+              <InputForm
+                label="Correo electronico"
+                id="email"
+                value={user.email || ""}
+                type="email"
+              />
+              <p className="text-warning font-medium text-sm cursor-pointer">
+                Solicitar cambio de correo
+              </p>
+            </div>
+          </>
+        ) : (
+          <p>No hay datos de usuario disponibles.</p>
+        )}
       </div>
-      <p className="text-warning font-medium text-sm cursor-pointer">Solicitar cambio de correo</p>
     </div>
   );
 };
