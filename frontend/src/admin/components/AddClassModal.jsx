@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import { TextInput } from "./TextInput";
 import { Modal } from "./Modal";
 import { addClass } from "../../api/services/classService";
-import { getAllCourse } from "../../api/services/courseService";
 import { getAllYears } from "../../api/services/yearService";
 
 import { showToast } from "../../common/utils/toast";
+import useCoursesStore from "../../store/courses";
 
 export default function AddClassModal({ isOpen, onClose }) {
   const [newClass, setNewClass] = useState({
@@ -18,12 +18,13 @@ export default function AddClassModal({ isOpen, onClose }) {
 
   const [subjects, setSubjects] = useState([]);
   const [years, setYears] = useState([]);
+  const { fetchCourses } = useCoursesStore();
 
   useEffect(() => {
     const fetchSubjectsAndYears = async () => {
       try {
         const [subjectsResponse, yearsResponse] = await Promise.all([
-          getAllCourse(),
+          fetchCourses(),
           getAllYears(),
         ]);
         setSubjects(subjectsResponse || []);
