@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import configureAxios from '../api/axios';
+import configureAxios from "../api/axios";
 
 const useCoursesStore = create((set) => ({
   courses: [],
@@ -8,7 +8,7 @@ const useCoursesStore = create((set) => ({
 
   fetchCourses: async () => {
     try {
-      const api = configureAxios(); 
+      const api = configureAxios();
 
       const response = await api.get("/subject", {
         params: {
