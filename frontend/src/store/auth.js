@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware"
+import { persist, createJSONStorage } from "zustand/middleware";
 
 const useUserStore = create(
   persist(

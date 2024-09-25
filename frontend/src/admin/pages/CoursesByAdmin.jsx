@@ -29,7 +29,7 @@ export default function CoursesByAdmin() {
       <h1 className="text-[#495057] text-2xl mb-6 font-bold">Gestión de Cursos</h1>
 
       <div className="flex justify-end py-5 space-x-4">
-      <button onClick={fetchCourses}>
+        <button onClick={fetchCourses}>
           <RefreshCcw />
         </button>
         <button

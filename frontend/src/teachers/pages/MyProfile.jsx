@@ -1,16 +1,11 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { profileLarge, trash, upload } from "../../common/assets";
 import { getUserData } from "../../api/services/userProfile";
 import Spinner from "../../common/utils/Spinner";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
+import InputForm from "../components/InputForm";
+import { formatDate } from "../../common/utils/formatDate";
 
-const MyProfile = () => {
-  dayjs.extend(utc);
-  dayjs.extend(timezone);
-
+export default function MyProfile() {
   const [user, setUser] = useState({
     name: "",
     lastName: "",
@@ -28,7 +23,7 @@ const MyProfile = () => {
       const userData = await getUserData(token);
       const formattedUserData = {
         ...userData,
-        birthDate: dayjs(userData.birthDate).tz("Pacific/Chatham").format("DD-MM-YYYY"),
+        birthDate: formatDate(userData.birthDate),
       };
       setUser(formattedUserData);
     } catch (error) {
@@ -96,21 +91,4 @@ const MyProfile = () => {
       </p>
     </div>
   );
-};
-
-export default MyProfile;
-
-const InputForm = ({ label, value, type, id }) => {
-  return (
-    <div className="py-3">
-      <label htmlFor={id}>{label}</label>
-      <input
-        id={id}
-        type={type ?? "text"}
-        value={value}
-        className="border-[1px] border-[#B2B0B0] rounded-lg w-full mt-2 px-4 py-[7px]"
-        disabled
-      />
-    </div>
-  );
-};
+}
